@@ -1,0 +1,17 @@
+[
+	{ "id": "VS-01-e01", "roundId": "VS-01", "type": "roundStart", "betAtomicUnits": 1000000 },
+	{
+		"id": "VS-01-e02",
+		"roundId": "VS-01",
+		"type": "revealBoard",
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		]
+	},
+	{ "id": "VS-01-e03", "roundId": "VS-01", "type": "setTotalWin", "totalWinAtomicUnits": 0 },
+	{ "id": "VS-01-e04", "roundId": "VS-01", "type": "finalWin", "payoutAtomicUnits": 0 }
+]

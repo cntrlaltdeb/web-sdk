@@ -1,14 +1,14 @@
 <script lang="ts">
-  import Board from '$lib/components/Board.svelte';
+	import BookScenario from '$lib/components/BookScenario.svelte';
 </script>
 
 <main>
-  <h1>Chef Battle: Kitchen Crown</h1>
-  <Board />
+	<h1>Chef Battle: Kitchen Crown</h1>
+	<BookScenario roundId="VS-01" />
 </main>
 
 <style>
-  main {
-    padding: clamp(1rem, 4vw, 3rem);
-  }
+	main {
+		padding: clamp(1rem, 4vw, 3rem);
+	}
 </style>
