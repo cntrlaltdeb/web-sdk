@@ -361,6 +361,8 @@ describe('local Chef Battle books', () => {
 
 	it.each([
 		['VS-02', 'clusterWin', 'positions', [{ reel: 5, row: 0 }], 'positions'],
+		['VS-02', 'clusterWin', 'positions', [], 'positions'],
+		['VS-02', 'removeSymbols', 'positions', [{ reel: 0, row: 0 }, { reel: 0, row: 0 }], 'positions'],
 		['VS-02', 'clusterWin', 'chef', 'pastry', 'chef'],
 		['VS-02', 'revealBoard', 'board', invalidBoardSymbol, 'board'],
 		['VS-02', 'roundStart', 'betAtomicUnits', -1, 'betAtomicUnits'],
@@ -425,4 +427,91 @@ describe('local Chef Battle books', () => {
 			event[field] = originalValue;
 		}
 	});
+
+	it.each([
+		['VS-02', 'pastaPull', 'positions', [], 'positions'],
+		['VS-02', 'pastaPull', 'positions', [{ reel: 2, row: 0 }, { reel: 2, row: 0 }], 'positions'],
+		['VS-02', 'pastaPull', 'positions', [{ reel: 0, row: 0 }, { reel: 2, row: 0 }], 'positions'],
+		[
+			'VS-02',
+			'pastaPull',
+			'positions',
+			[{ reel: 0, row: 0 }, { reel: 0, row: 1 }, { reel: 0, row: 2 }],
+			'positions',
+		],
+		['VS-03', 'sauceFinish', 'spots', [{ position: { reel: 0, row: 0 }, multiplier: 2 }] * 2, 'spots'],
+		[
+			'VS-03',
+			'sauceFinish',
+			'spots',
+			[
+				{ position: { reel: 0, row: 0 }, multiplier: 2 },
+				{ position: { reel: 1, row: 0 }, multiplier: 3 },
+				{ position: { reel: 2, row: 0 }, multiplier: 4 },
+				{ position: { reel: 3, row: 0 }, multiplier: 5 },
+				{ position: { reel: 4, row: 0 }, multiplier: 6 },
+				{ position: { reel: 4, row: 1 }, multiplier: 7 },
+			],
+			'spots',
+		],
+		[
+			'VS-03',
+			'sauceFinish',
+			'spots',
+			[
+				{ position: { reel: 0, row: 0 }, multiplier: 2 },
+				{ position: { reel: 0, row: 0 }, multiplier: 3 },
+				{ position: { reel: 1, row: 0 }, multiplier: 4 },
+			],
+			'spots',
+		],
+		['VS-04', 'wokToss', 'positions', [], 'positions'],
+		['VS-04', 'wokToss', 'positions', [{ reel: 0, row: 0 }, { reel: 0, row: 1 }, { reel: 1, row: 0 }], 'positions'],
+		[
+			'VS-04',
+			'wokToss',
+			'positions',
+			[
+				{ reel: 0, row: 0 },
+				{ reel: 0, row: 1 },
+				{ reel: 0, row: 2 },
+				{ reel: 0, row: 3 },
+				{ reel: 0, row: 4 },
+				{ reel: 1, row: 0 },
+				{ reel: 1, row: 1 },
+				{ reel: 1, row: 2 },
+				{ reel: 1, row: 3 },
+			],
+			'positions',
+		],
+		[
+			'VS-04',
+			'wokToss',
+			'positions',
+			[
+				{ reel: 0, row: 0 },
+				{ reel: 0, row: 0 },
+				{ reel: 1, row: 0 },
+				{ reel: 1, row: 1 },
+			],
+			'positions',
+		],
+		['VS-04', 'wokToss', 'targetSymbol', 'pizza', 'targetSymbol'],
+	] as const)(
+		'rejects local %s %s payloads whose special positions violate Math semantics',
+		async (roundId, eventType, field, invalidValue, expectedField) => {
+			const event = fixtures[roundId].find((candidate) => candidate.type === eventType);
+			expect(event).toBeDefined();
+			if (!event) return;
+
+			const originalValue = event[field];
+			event[field] = invalidValue;
+
+			try {
+				await expect(loadLocalBook(roundId)).rejects.toThrow(expectedField);
+			} finally {
+				event[field] = originalValue;
+			}
+		},
+	);
 });

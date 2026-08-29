@@ -4,7 +4,7 @@ import VS03 from './books/VS-03.json';
 import VS04 from './books/VS-04.json';
 import VS05 from './books/VS-05.json';
 import { playBookEvents } from './bookEventHandlerMap';
-import type { BookEvent, ChefId, SymbolId, VerticalSliceId } from './typesBookEvent';
+import type { BookEvent, ChefId, Position, SymbolId, VerticalSliceId } from './typesBookEvent';
 
 const staticBooks: Record<VerticalSliceId, unknown> = {
 	'VS-01': VS01,
@@ -49,19 +49,29 @@ const symbolIds = new Set<SymbolId>([
 	'kitchen_crown_scatter',
 	'pasta_wild',
 ]);
+const chineseDishIds = new Set<SymbolId>(['peking_duck', 'kung_pao_chicken', 'xiaolongbao']);
 
 const isRecord = (value: unknown): value is EventRecord => typeof value === 'object' && value !== null;
 const isNonNegativeSafeInteger = (value: unknown): value is number =>
 	typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
 const isChefId = (value: unknown): value is ChefId => typeof value === 'string' && chefIds.has(value as ChefId);
 const isSymbolId = (value: unknown): value is SymbolId => typeof value === 'string' && symbolIds.has(value as SymbolId);
-const isPosition = (value: unknown) =>
+const isPosition = (value: unknown): value is Position =>
 	isRecord(value) &&
 	isNonNegativeSafeInteger(value.reel) &&
 	value.reel <= 4 &&
 	isNonNegativeSafeInteger(value.row) &&
 	value.row <= 4;
-const isPositions = (value: unknown) => Array.isArray(value) && value.every(isPosition);
+const isPositions = (value: unknown): value is Position[] =>
+	Array.isArray(value) &&
+	value.length > 0 &&
+	value.every(isPosition) &&
+	new Set(value.map((position) => `${position.reel}:${position.row}`)).size === value.length;
+const isOrthogonallyAdjacent = (first: Position, second: Position) =>
+	Math.abs(first.reel - second.reel) + Math.abs(first.row - second.row) === 1;
+const isPastaPullPositions = (value: unknown) =>
+	isPositions(value) && value.length === 2 && isOrthogonallyAdjacent(value[0], value[1]);
+const isWokTossPositions = (value: unknown) => isPositions(value) && value.length >= 4 && value.length <= 8;
 const isBoard = (value: unknown) =>
 	Array.isArray(value) &&
 	value.length === 5 &&
@@ -71,6 +81,8 @@ const isMeterValues = (value: unknown) =>
 	isRecord(value) && Array.from(chefIds).every((chef) => isMeterValue(value[chef]));
 const isSauceSpots = (value: unknown) =>
 	Array.isArray(value) &&
+	value.length >= 3 &&
+	value.length <= 5 &&
 	value.every(
 		(spot) =>
 			isRecord(spot) &&
@@ -78,7 +90,15 @@ const isSauceSpots = (value: unknown) =>
 			isNonNegativeSafeInteger(spot.multiplier) &&
 			spot.multiplier >= 2 &&
 			spot.multiplier <= 10,
-	);
+	) &&
+	new Set(
+		value.map((spot) => {
+			if (!isRecord(spot) || !isPosition(spot.position)) return '';
+			return `${spot.position.reel}:${spot.position.row}`;
+		}),
+	).size === value.length;
+const isChineseDish = (value: unknown): value is SymbolId =>
+	isSymbolId(value) && chineseDishIds.has(value);
 const hasFields = (event: EventRecord, fields: readonly string[]) => fields.every((field) => field in event);
 
 function invalidEvent(type: string, field: string): never {
@@ -134,7 +154,7 @@ function validateStaticEvent(value: unknown): BookEvent {
 			if (
 				!hasFields(value, ['chef', 'positions', 'meterAfter']) ||
 				value.chef !== 'italian' ||
-				!isPositions(value.positions) ||
+				!isPastaPullPositions(value.positions) ||
 				value.meterAfter !== 0
 			)
 				return invalidEvent(value.type, 'chef, positions, and meterAfter');
@@ -152,8 +172,8 @@ function validateStaticEvent(value: unknown): BookEvent {
 			if (
 				!hasFields(value, ['chef', 'positions', 'targetSymbol', 'meterAfter']) ||
 				value.chef !== 'chinese' ||
-				!isPositions(value.positions) ||
-				!isSymbolId(value.targetSymbol) ||
+				!isWokTossPositions(value.positions) ||
+				!isChineseDish(value.targetSymbol) ||
 				value.meterAfter !== 0
 			)
 				return invalidEvent(value.type, 'chef, positions, targetSymbol, and meterAfter');
