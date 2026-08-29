@@ -4,11 +4,15 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import ChefBattleRound from './components/ChefBattleRound.svelte';
 import BookScenario from './components/BookScenario.svelte';
+import VS01 from './books/VS-01.json';
 import VS02 from './books/VS-02.json';
+import VS03 from './books/VS-03.json';
+import VS04 from './books/VS-04.json';
+import VS05 from './books/VS-05.json';
 import { playBookEvent, playBookEvents } from './bookEventHandlerMap';
 import { loadLocalBook, playLocalBook } from './localBookAdapter';
 import { resetGameState, stateGame } from '../game/stateGame.svelte';
-import type { BookEvent } from './typesBookEvent';
+import type { BookEvent, VerticalSliceId } from './typesBookEvent';
 
 const board = [
 	['pizza', 'pizza', 'tiramisu', 'frog_legs', 'french_onion_soup'],
@@ -17,6 +21,24 @@ const board = [
 	['croissant', 'peking_duck', 'kung_pao_chicken', 'xiaolongbao', 'pasta_carbonara'],
 	['tiramisu', 'frog_legs', 'french_onion_soup', 'croissant', 'peking_duck'],
 ] as const;
+
+type FixtureEvent = Record<string, unknown>;
+
+const fixtures: Record<VerticalSliceId, FixtureEvent[]> = {
+	'VS-01': VS01 as FixtureEvent[],
+	'VS-02': VS02 as FixtureEvent[],
+	'VS-03': VS03 as FixtureEvent[],
+	'VS-04': VS04 as FixtureEvent[],
+	'VS-05': VS05 as FixtureEvent[],
+};
+
+const invalidBoardSymbol = [
+	['unknown_ingredient', 'pizza', 'tiramisu', 'frog_legs', 'french_onion_soup'],
+	['pizza', 'pizza', 'croissant', 'peking_duck', 'kung_pao_chicken'],
+	['xiaolongbao', 'pasta_carbonara', 'tiramisu', 'frog_legs', 'french_onion_soup'],
+	['croissant', 'peking_duck', 'kung_pao_chicken', 'xiaolongbao', 'pasta_carbonara'],
+	['tiramisu', 'frog_legs', 'french_onion_soup', 'croissant', 'peking_duck'],
+];
 
 afterEach(() => {
 	cleanup();
@@ -290,6 +312,73 @@ describe('local Chef Battle books', () => {
 			await expect(loadLocalBook('VS-02')).rejects.toThrow('meterAfter');
 		} finally {
 			pastaPull.meterAfter = meterAfter;
+		}
+	});
+
+	it.each([
+		['VS-02', 'clusterWin', 'positions', [{ reel: 5, row: 0 }], 'positions'],
+		['VS-02', 'clusterWin', 'chef', 'pastry', 'chef'],
+		['VS-02', 'revealBoard', 'board', invalidBoardSymbol, 'board'],
+		['VS-02', 'roundStart', 'betAtomicUnits', -1, 'betAtomicUnits'],
+		['VS-02', 'roundStart', 'betAtomicUnits', 1.5, 'betAtomicUnits'],
+		['VS-02', 'roundStart', 'betAtomicUnits', Number.MAX_SAFE_INTEGER + 1, 'betAtomicUnits'],
+		['VS-02', 'chefMeterUpdate', 'amount', 40.5, 'amount'],
+		['VS-02', 'chefMeterUpdate', 'total', 101, 'total'],
+		['VS-03', 'sauceFinish', 'spots', [{ position: { reel: 0, row: 0 }, multiplier: 11 }], 'spots'],
+		['VS-03', 'sauceFinish', 'spots', [{ position: { reel: 0, row: 0 }, multiplier: 2.5 }], 'spots'],
+		['VS-04', 'wokToss', 'targetSymbol', 'raw_ingredient', 'targetSymbol'],
+		['VS-05', 'kitchenShowdownStart', 'meters', { italian: 50, french: 50, chinese: 101 }, 'meters'],
+		['VS-05', 'freeSpinStart', 'spin', 1.5, 'spin'],
+		['VS-05', 'freeSpinStart', 'remainingFreeSpins', -1, 'remainingFreeSpins'],
+		['VS-05', 'judgeStarUpdate', 'stars', 4, 'stars'],
+		['VS-05', 'kitchenCrownReveal', 'multiplier', 101, 'multiplier'],
+		['VS-05', 'kitchenCrownReveal', 'bonusWinAtomicUnits', -1, 'bonusWinAtomicUnits'],
+	] as const)(
+		'rejects malformed %s %s payloads with invalid %s',
+		async (roundId, eventType, field, invalidValue, expectedField) => {
+			const event = fixtures[roundId].find((candidate) => candidate.type === eventType);
+			expect(event).toBeDefined();
+			if (!event) return;
+
+			const originalValue = event[field];
+			event[field] = invalidValue;
+
+			try {
+				await expect(loadLocalBook(roundId)).rejects.toThrow(expectedField);
+			} finally {
+				event[field] = originalValue;
+			}
+		},
+	);
+
+	it.each([
+		['VS-01', 'roundStart', 'betAtomicUnits'],
+		['VS-01', 'revealBoard', 'board'],
+		['VS-02', 'clusterWin', 'chef'],
+		['VS-02', 'removeSymbols', 'positions'],
+		['VS-02', 'cascade', 'index'],
+		['VS-02', 'chefMeterUpdate', 'amount'],
+		['VS-02', 'pastaPull', 'positions'],
+		['VS-03', 'sauceFinish', 'spots'],
+		['VS-04', 'wokToss', 'targetSymbol'],
+		['VS-05', 'kitchenShowdownStart', 'meters'],
+		['VS-05', 'freeSpinStart', 'remainingFreeSpins'],
+		['VS-05', 'judgeStarUpdate', 'stars'],
+		['VS-05', 'kitchenCrownReveal', 'multiplier'],
+		['VS-05', 'setTotalWin', 'totalWinAtomicUnits'],
+		['VS-05', 'finalWin', 'payoutAtomicUnits'],
+	] as const)('requires %s on known %s events', async (roundId, eventType, field) => {
+		const event = fixtures[roundId].find((candidate) => candidate.type === eventType);
+		expect(event).toBeDefined();
+		if (!event) return;
+
+		const originalValue = event[field];
+		delete event[field];
+
+		try {
+			await expect(loadLocalBook(roundId)).rejects.toThrow(field);
+		} finally {
+			event[field] = originalValue;
 		}
 	});
 });

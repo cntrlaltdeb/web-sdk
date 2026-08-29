@@ -4,7 +4,7 @@ import VS03 from './books/VS-03.json';
 import VS04 from './books/VS-04.json';
 import VS05 from './books/VS-05.json';
 import { playBookEvents } from './bookEventHandlerMap';
-import type { BookEvent, VerticalSliceId } from './typesBookEvent';
+import type { BookEvent, ChefId, SymbolId, VerticalSliceId } from './typesBookEvent';
 
 const staticBooks: Record<VerticalSliceId, unknown> = {
 	'VS-01': VS01,
@@ -34,15 +34,51 @@ const knownEventTypes = new Set<BookEvent['type']>([
 
 type EventRecord = Record<string, unknown>;
 
+const chefIds = new Set<ChefId>(['italian', 'french', 'chinese']);
+const symbolIds = new Set<SymbolId>([
+	'pizza',
+	'pasta_carbonara',
+	'tiramisu',
+	'frog_legs',
+	'french_onion_soup',
+	'croissant',
+	'peking_duck',
+	'kung_pao_chicken',
+	'xiaolongbao',
+	'golden_cloche_wild',
+	'kitchen_crown_scatter',
+	'pasta_wild',
+]);
+
 const isRecord = (value: unknown): value is EventRecord => typeof value === 'object' && value !== null;
-const isNumber = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value);
+const isNonNegativeSafeInteger = (value: unknown): value is number =>
+	typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
+const isChefId = (value: unknown): value is ChefId => typeof value === 'string' && chefIds.has(value as ChefId);
+const isSymbolId = (value: unknown): value is SymbolId => typeof value === 'string' && symbolIds.has(value as SymbolId);
 const isPosition = (value: unknown) =>
-	isRecord(value) && isNumber(value.reel) && isNumber(value.row);
+	isRecord(value) &&
+	isNonNegativeSafeInteger(value.reel) &&
+	value.reel <= 4 &&
+	isNonNegativeSafeInteger(value.row) &&
+	value.row <= 4;
 const isPositions = (value: unknown) => Array.isArray(value) && value.every(isPosition);
 const isBoard = (value: unknown) =>
 	Array.isArray(value) &&
 	value.length === 5 &&
-	value.every((reel) => Array.isArray(reel) && reel.length === 5 && reel.every((symbol) => typeof symbol === 'string'));
+	value.every((reel) => Array.isArray(reel) && reel.length === 5 && reel.every(isSymbolId));
+const isMeterValue = (value: unknown) => isNonNegativeSafeInteger(value) && value <= 100;
+const isMeterValues = (value: unknown) =>
+	isRecord(value) && Array.from(chefIds).every((chef) => isMeterValue(value[chef]));
+const isSauceSpots = (value: unknown) =>
+	Array.isArray(value) &&
+	value.every(
+		(spot) =>
+			isRecord(spot) &&
+			isPosition(spot.position) &&
+			isNonNegativeSafeInteger(spot.multiplier) &&
+			spot.multiplier >= 2 &&
+			spot.multiplier <= 10,
+	);
 const hasFields = (event: EventRecord, fields: readonly string[]) => fields.every((field) => field in event);
 
 function invalidEvent(type: string, field: string): never {
@@ -62,81 +98,110 @@ function validateStaticEvent(value: unknown): BookEvent {
 
 	switch (value.type) {
 		case 'roundStart':
-			if (!isNumber(value.betAtomicUnits)) return invalidEvent(value.type, 'betAtomicUnits');
+			if (!hasFields(value, ['betAtomicUnits']) || !isNonNegativeSafeInteger(value.betAtomicUnits))
+				return invalidEvent(value.type, 'betAtomicUnits');
 			break;
 		case 'revealBoard':
-			if (!isBoard(value.board)) return invalidEvent(value.type, 'board');
+			if (!hasFields(value, ['board']) || !isBoard(value.board)) return invalidEvent(value.type, 'board');
 			break;
 		case 'clusterWin':
 			if (
-				typeof value.chef !== 'string' ||
-				typeof value.symbol !== 'string' ||
+				!hasFields(value, ['chef', 'symbol', 'positions', 'payoutAtomicUnits']) ||
+				!isChefId(value.chef) ||
+				!isSymbolId(value.symbol) ||
 				!isPositions(value.positions) ||
-				!isNumber(value.payoutAtomicUnits)
+				!isNonNegativeSafeInteger(value.payoutAtomicUnits)
 			)
 				return invalidEvent(value.type, 'chef, symbol, positions, and payoutAtomicUnits');
 			break;
 		case 'removeSymbols':
-			if (!isPositions(value.positions)) return invalidEvent(value.type, 'positions');
+			if (!hasFields(value, ['positions']) || !isPositions(value.positions)) return invalidEvent(value.type, 'positions');
 			break;
 		case 'cascade':
-			if (!isNumber(value.index)) return invalidEvent(value.type, 'index');
+			if (!hasFields(value, ['index']) || !isNonNegativeSafeInteger(value.index))
+				return invalidEvent(value.type, 'index');
 			break;
 		case 'chefMeterUpdate':
 			if (
-				typeof value.chef !== 'string' ||
-				!isNumber(value.amount) ||
-				!isNumber(value.total)
+				!hasFields(value, ['chef', 'amount', 'total']) ||
+				!isChefId(value.chef) ||
+				!isMeterValue(value.amount) ||
+				!isMeterValue(value.total)
 			)
 				return invalidEvent(value.type, 'chef, amount, and total');
 			break;
 		case 'pastaPull':
-			if (value.chef !== 'italian' || !isPositions(value.positions) || value.meterAfter !== 0)
+			if (
+				!hasFields(value, ['chef', 'positions', 'meterAfter']) ||
+				value.chef !== 'italian' ||
+				!isPositions(value.positions) ||
+				value.meterAfter !== 0
+			)
 				return invalidEvent(value.type, 'chef, positions, and meterAfter');
 			break;
 		case 'sauceFinish':
 			if (
+				!hasFields(value, ['chef', 'spots', 'meterAfter']) ||
 				value.chef !== 'french' ||
-				!Array.isArray(value.spots) ||
-				!value.spots.every((spot) => isRecord(spot) && isPosition(spot.position) && isNumber(spot.multiplier)) ||
+				!isSauceSpots(value.spots) ||
 				value.meterAfter !== 0
 			)
 				return invalidEvent(value.type, 'chef, spots, and meterAfter');
 			break;
 		case 'wokToss':
 			if (
+				!hasFields(value, ['chef', 'positions', 'targetSymbol', 'meterAfter']) ||
 				value.chef !== 'chinese' ||
 				!isPositions(value.positions) ||
-				typeof value.targetSymbol !== 'string' ||
+				!isSymbolId(value.targetSymbol) ||
 				value.meterAfter !== 0
 			)
 				return invalidEvent(value.type, 'chef, positions, targetSymbol, and meterAfter');
 			break;
 		case 'kitchenShowdownStart':
-			if (!isNumber(value.totalFreeSpins) || !isRecord(value.meters))
+			if (
+				!hasFields(value, ['totalFreeSpins', 'meters']) ||
+				!isNonNegativeSafeInteger(value.totalFreeSpins) ||
+				!isMeterValues(value.meters)
+			)
 				return invalidEvent(value.type, 'totalFreeSpins and meters');
 			break;
 		case 'freeSpinStart':
-			if (!isNumber(value.spin) || !isNumber(value.remainingFreeSpins))
+			if (
+				!hasFields(value, ['spin', 'remainingFreeSpins']) ||
+				!isNonNegativeSafeInteger(value.spin) ||
+				!isNonNegativeSafeInteger(value.remainingFreeSpins)
+			)
 				return invalidEvent(value.type, 'spin and remainingFreeSpins');
 			break;
 		case 'judgeStarUpdate':
-			if (typeof value.chef !== 'string' || !isNumber(value.stars)) return invalidEvent(value.type, 'chef and stars');
+			if (
+				!hasFields(value, ['chef', 'stars']) ||
+				!isChefId(value.chef) ||
+				!isNonNegativeSafeInteger(value.stars) ||
+				value.stars > 3
+			)
+				return invalidEvent(value.type, 'chef and stars');
 			break;
 		case 'kitchenCrownReveal':
 			if (
-				typeof value.chef !== 'string' ||
-				!isNumber(value.multiplier) ||
-				!isNumber(value.bonusWinAtomicUnits) ||
-				!isNumber(value.finalBonusWinAtomicUnits)
+				!hasFields(value, ['chef', 'multiplier', 'bonusWinAtomicUnits', 'finalBonusWinAtomicUnits']) ||
+				!isChefId(value.chef) ||
+				!isNonNegativeSafeInteger(value.multiplier) ||
+				value.multiplier < 2 ||
+				value.multiplier > 100 ||
+				!isNonNegativeSafeInteger(value.bonusWinAtomicUnits) ||
+				!isNonNegativeSafeInteger(value.finalBonusWinAtomicUnits)
 			)
-				return invalidEvent(value.type, 'chef, multiplier, and payout fields');
+				return invalidEvent(value.type, 'chef, multiplier, bonusWinAtomicUnits, and finalBonusWinAtomicUnits');
 			break;
 		case 'setTotalWin':
-			if (!isNumber(value.totalWinAtomicUnits)) return invalidEvent(value.type, 'totalWinAtomicUnits');
+			if (!hasFields(value, ['totalWinAtomicUnits']) || !isNonNegativeSafeInteger(value.totalWinAtomicUnits))
+				return invalidEvent(value.type, 'totalWinAtomicUnits');
 			break;
 		case 'finalWin':
-			if (!isNumber(value.payoutAtomicUnits)) return invalidEvent(value.type, 'payoutAtomicUnits');
+			if (!hasFields(value, ['payoutAtomicUnits']) || !isNonNegativeSafeInteger(value.payoutAtomicUnits))
+				return invalidEvent(value.type, 'payoutAtomicUnits');
 			break;
 	}
 
