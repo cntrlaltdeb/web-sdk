@@ -1,5 +1,5 @@
 export type BookEvent = never;
 
 export type BookEventContext = {
-  bookEvents: readonly BookEvent[];
+	bookEvents: readonly BookEvent[];
 };

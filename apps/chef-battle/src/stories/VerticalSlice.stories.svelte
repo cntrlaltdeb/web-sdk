@@ -19,7 +19,19 @@
 {/snippet}
 
 <Story name="VS-01 Zero Win" args={{ roundId: 'VS-01' }} {template} />
-<Story name="VS-02 Pasta Pull" args={{ roundId: 'VS-02', snapshotEventType: 'pastaPull' }} {template} />
-<Story name="VS-03 Sauce Finish" args={{ roundId: 'VS-03', snapshotEventType: 'sauceFinish' }} {template} />
+<Story
+	name="VS-02 Pasta Pull"
+	args={{ roundId: 'VS-02', snapshotEventType: 'pastaPull' }}
+	{template}
+/>
+<Story
+	name="VS-03 Sauce Finish"
+	args={{ roundId: 'VS-03', snapshotEventType: 'sauceFinish' }}
+	{template}
+/>
 <Story name="VS-04 Wok Toss" args={{ roundId: 'VS-04', snapshotEventType: 'wokToss' }} {template} />
-<Story name="VS-05 Kitchen Showdown" args={{ roundId: 'VS-05', snapshotEventType: 'kitchenCrownReveal' }} {template} />
+<Story
+	name="VS-05 Kitchen Showdown"
+	args={{ roundId: 'VS-05', snapshotEventType: 'kitchenCrownReveal' }}
+	{template}
+/>

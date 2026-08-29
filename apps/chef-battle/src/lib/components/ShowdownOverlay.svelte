@@ -17,7 +17,7 @@
 		</header>
 
 		<section class="showdown-meters" aria-label="Showdown chef meters">
-			{#each Object.entries(stateGame.meters) as [chef, meter]}
+			{#each Object.entries(stateGame.meters) as [chef, meter] (chef)}
 				<div class="meter" aria-label={`${chef} showdown meter ${meter}`}>
 					<span>{chefNames[chef as keyof typeof chefNames]}: {meter}</span>
 					<div class="meter-track" aria-hidden="true">
@@ -29,7 +29,7 @@
 
 		<section class="judge-stars" aria-label="Judge Stars">
 			<h2>Judge Stars</h2>
-			{#each Object.entries(stateGame.judgeStars) as [chef, stars]}
+			{#each Object.entries(stateGame.judgeStars) as [chef, stars] (chef)}
 				<p aria-label={`${chefNames[chef as keyof typeof chefNames]} Judge Stars: ${stars}`}>
 					{chefNames[chef as keyof typeof chefNames]} Judge Stars: {stars}
 				</p>
@@ -37,7 +37,9 @@
 		</section>
 
 		{#if stateGame.crownReveal === null}
-			<div class="curtain closed" aria-label="Kitchen Crown curtain closed">Kitchen Crown curtain closed</div>
+			<div class="curtain closed" aria-label="Kitchen Crown curtain closed">
+				Kitchen Crown curtain closed
+			</div>
 		{:else}
 			<div class="curtain revealed" aria-label="Kitchen Crown curtain revealed">
 				<p>{chefNames[stateGame.crownReveal.chef]} wins the Kitchen Crown</p>

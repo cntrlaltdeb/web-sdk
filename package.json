@@ -1,36 +1,42 @@
 {
-  "name": "twist-turbo",
-  "version": "0.0.0",
-  "private": true,
+	"name": "twist-turbo",
+	"version": "0.0.0",
+	"private": true,
 	"license": "MIT",
-  "scripts": {
-    "lint": "turbo run lint",
-    "format": "turbo run format",
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "preview": "turbo run preview",
-    "real-build-storybook": "turbo run real-build-storybook",
-    "storybook": "turbo run storybook",
-    "publish-packages": "turbo run build lint test && changeset version && changeset publish",
-    "e2e": "turbo run e2e",
-    "e2e-smoke": "turbo run e2e-smoke",
-    "e2e-mobile": "turbo run e2e-mobile"
-  },
-  "dependencies": {
-    "eslint": "9.21.0",
-    "eslint-config-custom": "workspace:*",
-    "prettier": "3.5.2",
-    "prettier-plugin-svelte": "3.3.3",
-    "turbo": "2.4.4"
-  },
-  "engines": {
-    "node": ">=22.16.0"
-  },
-  "packageManager": "pnpm@10.5.0",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "svelte-preprocess"
-    ]
-  }
+	"scripts": {
+		"typecheck": "pnpm --filter chef-battle exec svelte-kit sync && svelte-check --tsconfig apps/chef-battle/tsconfig.quality.json --threshold error",
+		"lint": "eslint apps/chef-battle/src",
+		"format": "prettier --check --ignore-path=.prettierignore package.json eslint.config.mjs packages/eslint-config-custom/package.json packages/eslint-config-custom/flat.mjs apps/chef-battle/src apps/chef-battle/.eslintrc.cjs apps/chef-battle/tsconfig.json apps/chef-battle/tsconfig.quality.json",
+		"format:write": "prettier --write --ignore-path=.prettierignore package.json eslint.config.mjs packages/eslint-config-custom/package.json packages/eslint-config-custom/flat.mjs apps/chef-battle/src apps/chef-battle/.eslintrc.cjs apps/chef-battle/tsconfig.json apps/chef-battle/tsconfig.quality.json",
+		"dev": "turbo run dev",
+		"build": "turbo run build",
+		"preview": "turbo run preview",
+		"real-build-storybook": "turbo run real-build-storybook",
+		"storybook": "turbo run storybook",
+		"publish-packages": "turbo run build lint test && changeset version && changeset publish",
+		"e2e": "turbo run e2e",
+		"e2e-smoke": "turbo run e2e-smoke",
+		"e2e-mobile": "turbo run e2e-mobile"
+	},
+	"dependencies": {
+		"@types/node": "24.0.13",
+		"eslint": "9.21.0",
+		"eslint-config-custom": "workspace:*",
+		"prettier": "3.5.2",
+		"prettier-plugin-svelte": "3.3.3",
+		"svelte": "5.20.5",
+		"svelte-check": "4.7.6",
+		"typescript": "5.8.3",
+		"turbo": "2.4.4"
+	},
+	"engines": {
+		"node": ">=22.16.0"
+	},
+	"packageManager": "pnpm@10.5.0",
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild",
+			"svelte-preprocess"
+		]
+	}
 }

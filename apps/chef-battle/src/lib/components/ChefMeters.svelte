@@ -5,7 +5,7 @@
 </script>
 
 <section class="chef-meters" aria-label="Chef meters">
-	{#each Object.entries(meters) as [chef, total]}
+	{#each Object.entries(meters) as [chef, total] (chef)}
 		<div class="meter" aria-label={`${chef} meter ${total}`}>
 			<span>{chef[0]?.toUpperCase()}{chef.slice(1)}: {total}</span>
 			<div aria-hidden="true" class="meter-track">

@@ -184,7 +184,9 @@ describe('local Chef Battle books', () => {
 			},
 		] satisfies BookEvent[]);
 
-		expect(stateGame.board.find((cell) => cell.position.reel === 2 && cell.position.row === 1)).toMatchObject({
+		expect(
+			stateGame.board.find((cell) => cell.position.reel === 2 && cell.position.row === 1),
+		).toMatchObject({
 			symbol: 'pasta_carbonara',
 			isWild: false,
 		});
@@ -201,15 +203,19 @@ describe('local Chef Battle books', () => {
 	it.each([
 		['VS-03', 'sauceFinish', '×10'],
 		['VS-04', 'wokToss', /Wok Toss active/],
-	] as const)('renders the named %s story snapshot at %s', async (roundId, snapshotEventType, expectedState) => {
-		render(BookScenario, { roundId, snapshotEventType });
+	] as const)(
+		'renders the named %s story snapshot at %s',
+		async (roundId, snapshotEventType, expectedState) => {
+			render(BookScenario, { roundId, snapshotEventType });
 
-		await waitFor(() => {
-			if (typeof expectedState === 'string') expect(screen.getByText(expectedState)).not.toBeNull();
-			else expect(screen.getAllByLabelText(expectedState)).toHaveLength(4);
-		});
-		expect(screen.getByText('Final win: 0')).not.toBeNull();
-	});
+			await waitFor(() => {
+				if (typeof expectedState === 'string')
+					expect(screen.getByText(expectedState)).not.toBeNull();
+				else expect(screen.getAllByLabelText(expectedState)).toHaveLength(4);
+			});
+			expect(screen.getByText('Final win: 0')).not.toBeNull();
+		},
+	);
 
 	it('clears Pasta Pull highlights when the next reveal supplies the transformed board', async () => {
 		render(ChefBattleRound);
@@ -331,7 +337,9 @@ describe('local Chef Battle books', () => {
 			},
 		] satisfies BookEvent[]);
 
-		expect(stateGame.board.find((cell) => cell.position.reel === 0 && cell.position.row === 0)).toMatchObject({
+		expect(
+			stateGame.board.find((cell) => cell.position.reel === 0 && cell.position.row === 0),
+		).toMatchObject({
 			symbol: 'pizza',
 			isWild: false,
 		});
@@ -362,7 +370,16 @@ describe('local Chef Battle books', () => {
 	it.each([
 		['VS-02', 'clusterWin', 'positions', [{ reel: 5, row: 0 }], 'positions'],
 		['VS-02', 'clusterWin', 'positions', [], 'positions'],
-		['VS-02', 'removeSymbols', 'positions', [{ reel: 0, row: 0 }, { reel: 0, row: 0 }], 'positions'],
+		[
+			'VS-02',
+			'removeSymbols',
+			'positions',
+			[
+				{ reel: 0, row: 0 },
+				{ reel: 0, row: 0 },
+			],
+			'positions',
+		],
 		['VS-02', 'clusterWin', 'chef', 'pastry', 'chef'],
 		['VS-02', 'revealBoard', 'board', invalidBoardSymbol, 'board'],
 		['VS-02', 'roundStart', 'betAtomicUnits', -1, 'betAtomicUnits'],
@@ -371,9 +388,21 @@ describe('local Chef Battle books', () => {
 		['VS-02', 'chefMeterUpdate', 'amount', 40.5, 'amount'],
 		['VS-02', 'chefMeterUpdate', 'total', 101, 'total'],
 		['VS-03', 'sauceFinish', 'spots', [{ position: { reel: 0, row: 0 }, multiplier: 11 }], 'spots'],
-		['VS-03', 'sauceFinish', 'spots', [{ position: { reel: 0, row: 0 }, multiplier: 2.5 }], 'spots'],
+		[
+			'VS-03',
+			'sauceFinish',
+			'spots',
+			[{ position: { reel: 0, row: 0 }, multiplier: 2.5 }],
+			'spots',
+		],
 		['VS-04', 'wokToss', 'targetSymbol', 'raw_ingredient', 'targetSymbol'],
-		['VS-05', 'kitchenShowdownStart', 'meters', { italian: 50, french: 50, chinese: 101 }, 'meters'],
+		[
+			'VS-05',
+			'kitchenShowdownStart',
+			'meters',
+			{ italian: 50, french: 50, chinese: 101 },
+			'meters',
+		],
 		['VS-05', 'freeSpinStart', 'spin', 1.5, 'spin'],
 		['VS-05', 'freeSpinStart', 'remainingFreeSpins', -1, 'remainingFreeSpins'],
 		['VS-05', 'judgeStarUpdate', 'stars', 4, 'stars'],
@@ -430,16 +459,44 @@ describe('local Chef Battle books', () => {
 
 	it.each([
 		['VS-02', 'pastaPull', 'positions', [], 'positions'],
-		['VS-02', 'pastaPull', 'positions', [{ reel: 2, row: 0 }, { reel: 2, row: 0 }], 'positions'],
-		['VS-02', 'pastaPull', 'positions', [{ reel: 0, row: 0 }, { reel: 2, row: 0 }], 'positions'],
 		[
 			'VS-02',
 			'pastaPull',
 			'positions',
-			[{ reel: 0, row: 0 }, { reel: 0, row: 1 }, { reel: 0, row: 2 }],
+			[
+				{ reel: 2, row: 0 },
+				{ reel: 2, row: 0 },
+			],
 			'positions',
 		],
-		['VS-03', 'sauceFinish', 'spots', [{ position: { reel: 0, row: 0 }, multiplier: 2 }] * 2, 'spots'],
+		[
+			'VS-02',
+			'pastaPull',
+			'positions',
+			[
+				{ reel: 0, row: 0 },
+				{ reel: 2, row: 0 },
+			],
+			'positions',
+		],
+		[
+			'VS-02',
+			'pastaPull',
+			'positions',
+			[
+				{ reel: 0, row: 0 },
+				{ reel: 0, row: 1 },
+				{ reel: 0, row: 2 },
+			],
+			'positions',
+		],
+		[
+			'VS-03',
+			'sauceFinish',
+			'spots',
+			[{ position: { reel: 0, row: 0 }, multiplier: 2 }] * 2,
+			'spots',
+		],
 		[
 			'VS-03',
 			'sauceFinish',
@@ -466,7 +523,17 @@ describe('local Chef Battle books', () => {
 			'spots',
 		],
 		['VS-04', 'wokToss', 'positions', [], 'positions'],
-		['VS-04', 'wokToss', 'positions', [{ reel: 0, row: 0 }, { reel: 0, row: 1 }, { reel: 1, row: 0 }], 'positions'],
+		[
+			'VS-04',
+			'wokToss',
+			'positions',
+			[
+				{ reel: 0, row: 0 },
+				{ reel: 0, row: 1 },
+				{ reel: 1, row: 0 },
+			],
+			'positions',
+		],
 		[
 			'VS-04',
 			'wokToss',

@@ -29,14 +29,18 @@
 			? `${cell.position.reel}:${cell.position.row}`
 			: `${index % 5}:${Math.floor(index / 5)}`;
 
-	const visualCells = () =>
+	const visualCells = (): BoardCell[] =>
 		Array.from({ length: 25 }, (_, index) => {
 			const reel = index % 5;
 			const row = Math.floor(index / 5);
 			return (
-				stateGame.board.find((cell) => cell.position.reel === reel && cell.position.row === row) ?? {
+				stateGame.board.find(
+					(cell) => cell.position.reel === reel && cell.position.row === row,
+				) ?? {
 					position: { reel, row },
 					symbol: 'Empty',
+					isWild: false,
+					isScatter: false,
 				}
 			);
 		});
@@ -44,7 +48,7 @@
 
 <section class="board" aria-label="Chef Battle board">
 	{#key stateGame.boardVersion}
-		{#each visualCells() as cell, index}
+		{#each visualCells() as cell, index (cellKey(cell, index))}
 			{@const positionKey = cellKey(cell, index)}
 			{@const pastaPullActive = pastaPullPositionKeys.includes(positionKey)}
 			{@const wokTossActive = wokTossPositionKeys.includes(positionKey)}
