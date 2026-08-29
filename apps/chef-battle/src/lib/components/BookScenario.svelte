@@ -1,12 +1,32 @@
 <script lang="ts">
-	import { playLocalBook } from '../localBookAdapter';
-	import type { VerticalSliceId } from '../typesBookEvent';
+	import { playBookEvent } from '../bookEventHandlerMap';
+	import { loadLocalBook } from '../localBookAdapter';
+	import type { BookEvent, VerticalSliceId } from '../typesBookEvent';
 	import ChefBattleRound from './ChefBattleRound.svelte';
 
-	let { roundId }: { roundId: VerticalSliceId } = $props();
+	let {
+		roundId,
+		snapshotEventType,
+	}: {
+		roundId: VerticalSliceId;
+		snapshotEventType?: BookEvent['type'];
+	} = $props();
 
 	$effect(() => {
-		void playLocalBook(roundId);
+		let cancelled = false;
+
+		void (async () => {
+			const events = await loadLocalBook(roundId);
+			for (const event of events) {
+				if (cancelled) return;
+				await playBookEvent(event);
+				if (event.type === snapshotEventType) return;
+			}
+		})();
+
+		return () => {
+			cancelled = true;
+		};
 	});
 </script>
 

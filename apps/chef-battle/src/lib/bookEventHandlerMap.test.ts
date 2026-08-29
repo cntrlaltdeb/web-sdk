@@ -1,8 +1,10 @@
-import { cleanup, render, screen } from '@testing-library/svelte';
+import { cleanup, render, screen, waitFor } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import ChefBattleRound from './components/ChefBattleRound.svelte';
+import BookScenario from './components/BookScenario.svelte';
+import VS02 from './books/VS-02.json';
 import { playBookEvent, playBookEvents } from './bookEventHandlerMap';
 import { loadLocalBook, playLocalBook } from './localBookAdapter';
 import { resetGameState, stateGame } from '../game/stateGame.svelte';
@@ -64,6 +66,15 @@ describe('local Chef Battle books', () => {
 		expect(screen.getByLabelText('Cell 1: pizza')).not.toBeNull();
 	});
 
+	it('renders reel-major payload coordinates in row-major grid positions', async () => {
+		render(ChefBattleRound);
+		await playBookEvent({ type: 'revealBoard', id: 'e01', roundId: 'coordinates', board });
+		await tick();
+
+		expect(screen.getByLabelText('Cell 3: xiaolongbao')).not.toBeNull();
+		expect(screen.getByLabelText('Cell 6: pizza')).not.toBeNull();
+	});
+
 	it('renders Pasta Pull highlights and resets only the meter supplied by its payload', async () => {
 		render(ChefBattleRound);
 		await playBookEvents([
@@ -94,6 +105,85 @@ describe('local Chef Battle books', () => {
 		expect(screen.getAllByLabelText(/Pasta Pull active/)).toHaveLength(2);
 	});
 
+	it('keeps board symbols from the preceding reveal when Pasta Pull arrives', async () => {
+		await playBookEvents([
+			{ type: 'revealBoard', id: 'e01', roundId: 'pasta-board', board },
+			{
+				type: 'pastaPull',
+				id: 'e02',
+				roundId: 'pasta-board',
+				chef: 'italian',
+				positions: [{ reel: 2, row: 1 }],
+				meterAfter: 0,
+			},
+		] satisfies BookEvent[]);
+
+		expect(stateGame.board.find((cell) => cell.position.reel === 2 && cell.position.row === 1)).toMatchObject({
+			symbol: 'pasta_carbonara',
+			isWild: false,
+		});
+	});
+
+	it('pauses a Pasta Pull scenario on its special event instead of autoplaying to final win', async () => {
+		render(BookScenario, { roundId: 'VS-02', snapshotEventType: 'pastaPull' });
+
+		await waitFor(() => expect(screen.getAllByLabelText(/Pasta Pull active/)).toHaveLength(2));
+		await new Promise((resolve) => setTimeout(resolve, 20));
+		expect(screen.getByText('Final win: 0')).not.toBeNull();
+	});
+
+	it.each([
+		['VS-03', 'sauceFinish', '×10'],
+		['VS-04', 'wokToss', /Wok Toss active/],
+	] as const)('renders the named %s story snapshot at %s', async (roundId, snapshotEventType, expectedState) => {
+		render(BookScenario, { roundId, snapshotEventType });
+
+		await waitFor(() => {
+			if (typeof expectedState === 'string') expect(screen.getByText(expectedState)).not.toBeNull();
+			else expect(screen.getAllByLabelText(expectedState)).toHaveLength(4);
+		});
+		expect(screen.getByText('Final win: 0')).not.toBeNull();
+	});
+
+	it('clears Pasta Pull highlights when the next reveal supplies the transformed board', async () => {
+		render(ChefBattleRound);
+		await playBookEvents([
+			{ type: 'revealBoard', id: 'e01', roundId: 'pasta-lifecycle', board },
+			{
+				type: 'pastaPull',
+				id: 'e02',
+				roundId: 'pasta-lifecycle',
+				chef: 'italian',
+				positions: [{ reel: 2, row: 0 }],
+				meterAfter: 0,
+			},
+			{ type: 'revealBoard', id: 'e03', roundId: 'pasta-lifecycle', board },
+		] satisfies BookEvent[]);
+		await tick();
+
+		expect(screen.queryByLabelText(/Pasta Pull active/)).toBeNull();
+	});
+
+	it('clears Wok Toss highlights when the next reveal supplies the transformed board', async () => {
+		render(ChefBattleRound);
+		await playBookEvents([
+			{ type: 'revealBoard', id: 'e01', roundId: 'wok-lifecycle', board },
+			{
+				type: 'wokToss',
+				id: 'e02',
+				roundId: 'wok-lifecycle',
+				chef: 'chinese',
+				meterAfter: 0,
+				positions: [{ reel: 1, row: 1 }],
+				targetSymbol: 'kung_pao_chicken',
+			},
+			{ type: 'revealBoard', id: 'e03', roundId: 'wok-lifecycle', board },
+		] satisfies BookEvent[]);
+		await tick();
+
+		expect(screen.queryByLabelText(/Wok Toss active/)).toBeNull();
+	});
+
 	it('renders Sauce Finish multiplier badges from payload spots', async () => {
 		render(ChefBattleRound);
 		await playBookEvents([
@@ -117,7 +207,26 @@ describe('local Chef Battle books', () => {
 		expect(screen.getByText('×10')).not.toBeNull();
 	});
 
-	it('transforms Wok Toss positions only to its payload target symbol', async () => {
+	it('keeps Sauce Finish payload multipliers visible after the next cascade reveal', async () => {
+		render(ChefBattleRound);
+		await playBookEvents([
+			{ type: 'revealBoard', id: 'e01', roundId: 'sauce-cascade', board },
+			{
+				type: 'sauceFinish',
+				id: 'e02',
+				roundId: 'sauce-cascade',
+				chef: 'french',
+				meterAfter: 0,
+				spots: [{ position: { reel: 3, row: 3 }, multiplier: 10 }],
+			},
+			{ type: 'revealBoard', id: 'e03', roundId: 'sauce-cascade', board },
+		] satisfies BookEvent[]);
+		await tick();
+
+		expect(screen.getByText('×10')).not.toBeNull();
+	});
+
+	it('renders Wok Toss highlights from its payload positions', async () => {
 		render(ChefBattleRound);
 		await playBookEvents([
 			{ type: 'revealBoard', id: 'e01', roundId: 'wok', board },
@@ -138,8 +247,28 @@ describe('local Chef Battle books', () => {
 		] satisfies BookEvent[]);
 		await tick();
 
-		expect(screen.getAllByLabelText(/kung_pao_chicken.*Wok Toss active/)).toHaveLength(4);
+		expect(screen.getAllByLabelText(/Wok Toss active/)).toHaveLength(4);
 		expect(screen.getByText('Chinese: 0')).not.toBeNull();
+	});
+
+	it('keeps board symbols from the preceding reveal when Wok Toss arrives', async () => {
+		await playBookEvents([
+			{ type: 'revealBoard', id: 'e01', roundId: 'wok-board', board },
+			{
+				type: 'wokToss',
+				id: 'e02',
+				roundId: 'wok-board',
+				chef: 'chinese',
+				meterAfter: 0,
+				positions: [{ reel: 0, row: 0 }],
+				targetSymbol: 'kung_pao_chicken',
+			},
+		] satisfies BookEvent[]);
+
+		expect(stateGame.board.find((cell) => cell.position.reel === 0 && cell.position.row === 0)).toMatchObject({
+			symbol: 'pizza',
+			isWild: false,
+		});
 	});
 
 	it('rejects an unknown event type instead of ignoring it', async () => {
@@ -150,5 +279,17 @@ describe('local Chef Battle books', () => {
 				roundId: 'unknown',
 			} as unknown as BookEvent),
 		).rejects.toThrow('Unknown BookEvent type: unrecognisedEvent');
+	});
+
+	it('rejects a local special event that is missing meterAfter', async () => {
+		const pastaPull = VS02.find((event) => event.type === 'pastaPull') as { meterAfter?: unknown };
+		const meterAfter = pastaPull.meterAfter;
+		delete pastaPull.meterAfter;
+
+		try {
+			await expect(loadLocalBook('VS-02')).rejects.toThrow('meterAfter');
+		} finally {
+			pastaPull.meterAfter = meterAfter;
+		}
 	});
 });

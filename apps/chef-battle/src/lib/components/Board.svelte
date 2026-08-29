@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { stateGame } from '../../game/stateGame.svelte';
+	import type { SauceSpot } from '../typesBookEvent';
 
 	export type BoardCell = {
 		position?: { reel: number; row: number };
@@ -13,30 +14,47 @@
 		clusterPositionKeys = [],
 		removedPositionKeys = [],
 		pastaPullPositionKeys = [],
+		sauceSpots = [],
 		wokTossPositionKeys = [],
 	}: {
 		clusterPositionKeys?: string[];
 		removedPositionKeys?: string[];
 		pastaPullPositionKeys?: string[];
+		sauceSpots?: readonly SauceSpot[];
 		wokTossPositionKeys?: string[];
 	} = $props();
 
 	const cellKey = (cell: BoardCell, index: number) =>
 		cell.position
 			? `${cell.position.reel}:${cell.position.row}`
-			: `${Math.floor(index / 5)}:${index % 5}`;
+			: `${index % 5}:${Math.floor(index / 5)}`;
+
+	const visualCells = () =>
+		Array.from({ length: 25 }, (_, index) => {
+			const reel = index % 5;
+			const row = Math.floor(index / 5);
+			return (
+				stateGame.board.find((cell) => cell.position.reel === reel && cell.position.row === row) ?? {
+					position: { reel, row },
+					symbol: 'Empty',
+				}
+			);
+		});
 </script>
 
 <section class="board" aria-label="Chef Battle board">
 	{#key stateGame.boardVersion}
-		{#each Array.from({ length: 25 }, (_, index) => stateGame.board[index] ?? { symbol: 'Empty' }) as cell, index}
+		{#each visualCells() as cell, index}
 			{@const positionKey = cellKey(cell, index)}
 			{@const pastaPullActive = pastaPullPositionKeys.includes(positionKey)}
 			{@const wokTossActive = wokTossPositionKeys.includes(positionKey)}
+			{@const sauceSpot = sauceSpots.find(
+				(spot) => `${spot.position.reel}:${spot.position.row}` === positionKey,
+			)}
 			<div
 				class:wild={cell.isWild}
 				class:scatter={cell.isScatter}
-				class:multiplier-spot={cell.multiplier !== undefined}
+				class:multiplier-spot={sauceSpot !== undefined}
 				class:cluster-win={clusterPositionKeys.includes(positionKey)}
 				class:removed={removedPositionKeys.includes(positionKey)}
 				class:pasta-pull={pastaPullActive}
@@ -46,8 +64,8 @@
 			>
 				<span class="symbol">{cell.isWild ? 'Wild' : cell.isScatter ? 'Scatter' : cell.symbol}</span
 				>
-				{#if cell.multiplier !== undefined}
-					<span class="multiplier">×{cell.multiplier}</span>
+				{#if sauceSpot}
+					<span class="multiplier">×{sauceSpot.multiplier}</span>
 				{/if}
 			</div>
 		{/each}

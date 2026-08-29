@@ -1,5 +1,5 @@
 import type { GridCell } from './types';
-import type { ChefId, MeterValues, Position } from '../lib/typesBookEvent';
+import type { ChefId, MeterValues, SauceSpot } from '../lib/typesBookEvent';
 
 const createEmptyMeters = (): MeterValues => ({ italian: 0, french: 0, chinese: 0 });
 const createEmptyStars = (): Record<ChefId, number> => ({ italian: 0, french: 0, chinese: 0 });
@@ -23,7 +23,7 @@ const createInitialState = () => ({
 	removedPositionKeys: [] as string[],
 	pastaPullPositionKeys: [] as string[],
 	wokTossPositionKeys: [] as string[],
-	sauceSpotPositionKeys: [] as string[],
+	sauceSpots: [] as SauceSpot[],
 	handledEventIds: [] as string[],
 	crownReveal: null as null | {
 		chef: ChefId;

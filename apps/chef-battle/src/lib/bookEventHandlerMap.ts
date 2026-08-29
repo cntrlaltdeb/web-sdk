@@ -6,8 +6,6 @@ type BookEventHandlerMap = {
 };
 
 const positionKey = ({ reel, row }: Position) => `${reel}:${row}`;
-const findCell = ({ reel, row }: Position) =>
-	stateGame.board.find((cell) => cell.position.reel === reel && cell.position.row === row);
 
 export const bookEventHandlerMap = {
 	roundStart: (event) => {
@@ -30,6 +28,8 @@ export const bookEventHandlerMap = {
 		);
 		stateGame.boardVersion += 1;
 		stateGame.removedPositionKeys = [];
+		stateGame.pastaPullPositionKeys = [];
+		stateGame.wokTossPositionKeys = [];
 	},
 	clusterWin: (event) => {
 		stateGame.clusterPositionKeys = event.positions.map(positionKey);
@@ -48,37 +48,17 @@ export const bookEventHandlerMap = {
 	pastaPull: (event) => {
 		stateGame.meters[event.chef] = event.meterAfter;
 		stateGame.pastaPullPositionKeys = event.positions.map(positionKey);
-		for (const position of event.positions) {
-			const cell = findCell(position);
-			if (cell) {
-				cell.symbol = 'pasta_wild';
-				cell.isWild = true;
-				cell.isScatter = false;
-			}
-		}
-		stateGame.boardVersion += 1;
 	},
 	sauceFinish: (event) => {
 		stateGame.meters[event.chef] = event.meterAfter;
-		stateGame.sauceSpotPositionKeys = event.spots.map((spot) => positionKey(spot.position));
-		for (const spot of event.spots) {
-			const cell = findCell(spot.position);
-			if (cell) cell.multiplier = spot.multiplier;
-		}
-		stateGame.boardVersion += 1;
+		stateGame.sauceSpots = event.spots.map((spot) => ({
+			position: { ...spot.position },
+			multiplier: spot.multiplier,
+		}));
 	},
 	wokToss: (event) => {
 		stateGame.meters[event.chef] = event.meterAfter;
 		stateGame.wokTossPositionKeys = event.positions.map(positionKey);
-		for (const position of event.positions) {
-			const cell = findCell(position);
-			if (cell) {
-				cell.symbol = event.targetSymbol;
-				cell.isWild = false;
-				cell.isScatter = false;
-			}
-		}
-		stateGame.boardVersion += 1;
 	},
 	kitchenShowdownStart: (event) => {
 		stateGame.totalFreeSpins = event.totalFreeSpins;

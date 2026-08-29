@@ -10,6 +10,7 @@
 		clusterPositionKeys={stateGame.clusterPositionKeys}
 		removedPositionKeys={stateGame.removedPositionKeys}
 		pastaPullPositionKeys={stateGame.pastaPullPositionKeys}
+		sauceSpots={stateGame.sauceSpots}
 		wokTossPositionKeys={stateGame.wokTossPositionKeys}
 	/>
 	<p class="final-win">Final win: {stateGame.finalWinAtomicUnits}</p>

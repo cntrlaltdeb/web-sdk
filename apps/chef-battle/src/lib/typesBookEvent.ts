@@ -16,6 +16,7 @@ export type SymbolId =
 
 export type Position = { reel: number; row: number };
 export type MeterValues = Record<ChefId, number>;
+export type SauceSpot = { position: Position; multiplier: number };
 
 type BaseBookEvent = { id: string; roundId: string };
 
@@ -36,20 +37,20 @@ export type BookEvent =
 			type: 'pastaPull';
 			chef: 'italian';
 			positions: readonly Position[];
-			meterAfter: number;
+			meterAfter: 0;
 	  })
 	| (BaseBookEvent & {
 			type: 'sauceFinish';
 			chef: 'french';
-			spots: readonly { position: Position; multiplier: number }[];
-			meterAfter: number;
+			spots: readonly SauceSpot[];
+			meterAfter: 0;
 	  })
 	| (BaseBookEvent & {
 			type: 'wokToss';
 			chef: 'chinese';
 			positions: readonly Position[];
 			targetSymbol: SymbolId;
-			meterAfter: number;
+			meterAfter: 0;
 	  })
 	| (BaseBookEvent & { type: 'kitchenShowdownStart'; totalFreeSpins: number; meters: MeterValues })
 	| (BaseBookEvent & { type: 'freeSpinStart'; spin: number; remainingFreeSpins: number })
