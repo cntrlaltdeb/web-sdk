@@ -63,6 +63,8 @@ export const bookEventHandlerMap = {
 	kitchenShowdownStart: (event) => {
 		stateGame.totalFreeSpins = event.totalFreeSpins;
 		stateGame.meters = { ...event.meters };
+		stateGame.judgeStars = { italian: 0, french: 0, chinese: 0 };
+		stateGame.crownReveal = null;
 	},
 	freeSpinStart: (event) => {
 		stateGame.freeSpin = event.spin;

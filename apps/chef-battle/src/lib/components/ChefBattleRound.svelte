@@ -2,10 +2,12 @@
 	import { stateGame } from '../../game/stateGame.svelte';
 	import Board from './Board.svelte';
 	import ChefMeters from './ChefMeters.svelte';
+	import ShowdownOverlay from './ShowdownOverlay.svelte';
 </script>
 
 <section class="round" aria-label="Chef Battle round">
 	<ChefMeters meters={stateGame.meters} />
+	<ShowdownOverlay />
 	<Board
 		clusterPositionKeys={stateGame.clusterPositionKeys}
 		removedPositionKeys={stateGame.removedPositionKeys}

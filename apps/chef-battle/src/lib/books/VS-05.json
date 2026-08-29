@@ -94,10 +94,24 @@
 		"roundId": "VS-05",
 		"type": "judgeStarUpdate",
 		"chef": "italian",
-		"stars": 3
+		"stars": 1
 	},
 	{
 		"id": "VS-05-e15",
+		"roundId": "VS-05",
+		"type": "judgeStarUpdate",
+		"chef": "italian",
+		"stars": 2
+	},
+	{
+		"id": "VS-05-e16",
+		"roundId": "VS-05",
+		"type": "judgeStarUpdate",
+		"chef": "italian",
+		"stars": 3
+	},
+	{
+		"id": "VS-05-e17",
 		"roundId": "VS-05",
 		"type": "kitchenCrownReveal",
 		"chef": "italian",
@@ -106,10 +120,10 @@
 		"finalBonusWinAtomicUnits": 20000000000
 	},
 	{
-		"id": "VS-05-e16",
+		"id": "VS-05-e18",
 		"roundId": "VS-05",
 		"type": "setTotalWin",
 		"totalWinAtomicUnits": 20000000000
 	},
-	{ "id": "VS-05-e17", "roundId": "VS-05", "type": "finalWin", "payoutAtomicUnits": 20000000000 }
+	{ "id": "VS-05-e19", "roundId": "VS-05", "type": "finalWin", "payoutAtomicUnits": 20000000000 }
 ]

@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import ChefBattleRound from './components/ChefBattleRound.svelte';
 import BookScenario from './components/BookScenario.svelte';
+import ShowdownOverlay from './components/ShowdownOverlay.svelte';
 import VS01 from './books/VS-01.json';
 import VS02 from './books/VS-02.json';
 import VS03 from './books/VS-03.json';
@@ -46,6 +47,49 @@ afterEach(() => {
 });
 
 describe('local Chef Battle books', () => {
+	it('plays VS-05 in Showdown order and renders only its supplied crown outcome', async () => {
+		const showdownTypes = VS05.map((event) => event.type);
+		expect(showdownTypes).toEqual([
+			'roundStart',
+			'revealBoard',
+			'kitchenShowdownStart',
+			...Array(10).fill('freeSpinStart'),
+			...Array(3).fill('judgeStarUpdate'),
+			'kitchenCrownReveal',
+			'setTotalWin',
+			'finalWin',
+		]);
+
+		render(ShowdownOverlay);
+		await playBookEvents(VS05.slice(0, 13) as BookEvent[]);
+		await tick();
+
+		expect(screen.getByText('Spins: 10 / 10')).not.toBeNull();
+		expect(screen.getByText('Italian: 50')).not.toBeNull();
+		expect(screen.getByText('French: 50')).not.toBeNull();
+		expect(screen.getByText('Chinese: 50')).not.toBeNull();
+		expect(screen.getByText('Kitchen Crown curtain closed')).not.toBeNull();
+
+		await playBookEvents(VS05.slice(13, 16) as BookEvent[]);
+		await tick();
+		expect(screen.getByText('Italian Judge Stars: 3')).not.toBeNull();
+
+		await playBookEvent({
+			type: 'kitchenCrownReveal',
+			id: 'payload-only-crown',
+			roundId: 'VS-05',
+			chef: 'italian',
+			multiplier: 2,
+			bonusWinAtomicUnits: 200_000_000,
+			finalBonusWinAtomicUnits: 1_234_567,
+		});
+		await tick();
+
+		expect(screen.getByText('Italian wins the Kitchen Crown')).not.toBeNull();
+		expect(screen.getByText('Curtain multiplier: ×2')).not.toBeNull();
+		expect(screen.getByText('Final bonus win: 1234567')).not.toBeNull();
+	});
+
 	it.each([
 		['VS-01', 0],
 		['VS-02', 12_000_000],

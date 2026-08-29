@@ -10,7 +10,7 @@
 
 	type StoryArgs = {
 		roundId: VerticalSliceId;
-		snapshotEventType?: 'pastaPull' | 'sauceFinish' | 'wokToss';
+		snapshotEventType?: 'pastaPull' | 'sauceFinish' | 'wokToss' | 'kitchenCrownReveal';
 	};
 </script>
 
@@ -22,3 +22,4 @@
 <Story name="VS-02 Pasta Pull" args={{ roundId: 'VS-02', snapshotEventType: 'pastaPull' }} {template} />
 <Story name="VS-03 Sauce Finish" args={{ roundId: 'VS-03', snapshotEventType: 'sauceFinish' }} {template} />
 <Story name="VS-04 Wok Toss" args={{ roundId: 'VS-04', snapshotEventType: 'wokToss' }} {template} />
+<Story name="VS-05 Kitchen Showdown" args={{ roundId: 'VS-05', snapshotEventType: 'kitchenCrownReveal' }} {template} />
