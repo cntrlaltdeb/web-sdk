@@ -1,0 +1,44 @@
+[
+	{
+		"id": "P3-08-e0001",
+		"sequence": 1,
+		"roundId": "P3-08",
+		"type": "roundStart",
+		"mode": "extraReservation",
+		"betAtomicUnits": 1000000,
+		"paidBetAtomicUnits": 2000000,
+		"maxWinAtomicUnits": 20000000000,
+		"meters": {
+			"italian": 0,
+			"french": 0,
+			"chinese": 0
+		}
+	},
+	{
+		"id": "P3-08-e0002",
+		"sequence": 2,
+		"roundId": "P3-08",
+		"type": "revealBoard",
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		]
+	},
+	{
+		"id": "P3-08-e0003",
+		"sequence": 3,
+		"roundId": "P3-08",
+		"type": "setTotalWin",
+		"totalWinAtomicUnits": 0
+	},
+	{
+		"id": "P3-08-e0004",
+		"sequence": 4,
+		"roundId": "P3-08",
+		"type": "finalWin",
+		"payoutAtomicUnits": 0
+	}
+]

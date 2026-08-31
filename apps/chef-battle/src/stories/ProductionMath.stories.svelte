@@ -21,3 +21,7 @@
 <Story name="P3-05 Natural Showdown" args={{ roundId: 'P3-05' }} {template} />
 <Story name="P3-06 Purchased Showdown" args={{ roundId: 'P3-06' }} {template} />
 <Story name="P3-07 Exact Max Win" args={{ roundId: 'P3-07' }} {template} />
+<Story name="P3-08 Extra Reservation" args={{ roundId: 'P3-08' }} {template} />
+<Story name="P3-09 Signature Spin" args={{ roundId: 'P3-09' }} {template} />
+<Story name="P3-10 Grand Showdown" args={{ roundId: 'P3-10' }} {template} />
+<Story name="P3-11 Mystery Tasting" args={{ roundId: 'P3-11' }} {template} />

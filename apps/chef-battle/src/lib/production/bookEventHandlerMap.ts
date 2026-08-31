@@ -28,6 +28,7 @@ export const productionBookEventHandlerMap = {
 	roundStart: (event) => {
 		productionState.roundId = event.roundId;
 		productionState.mode = event.mode;
+		productionState.selectedChef = event.selectedChef ?? null;
 		productionState.betAtomicUnits = event.betAtomicUnits;
 		productionState.paidBetAtomicUnits = event.paidBetAtomicUnits;
 		productionState.maxWinAtomicUnits = event.maxWinAtomicUnits;
@@ -109,6 +110,7 @@ export const productionBookEventHandlerMap = {
 			crownPayoutAtomicUnits: null,
 			finalWinAtomicUnits: null,
 		};
+		productionState.headliner = snapshot.headliner;
 		productionState.bonusBankAtomicUnits = snapshot.bonusBankAtomicUnits;
 		productionState.meters = { ...snapshot.meters };
 		productionState.activeSauceSpots = snapshot.activeSauceSpots;

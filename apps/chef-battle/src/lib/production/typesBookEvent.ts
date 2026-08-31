@@ -23,6 +23,10 @@ export const PRODUCTION_SCENARIO_IDS = [
 	'P3-05',
 	'P3-06',
 	'P3-07',
+	'P3-08',
+	'P3-09',
+	'P3-10',
+	'P3-11',
 ] as const;
 export type ProductionScenarioId = (typeof PRODUCTION_SCENARIO_IDS)[number];
 
@@ -85,6 +89,7 @@ export type ProductionBookEvent =
 			paidBetAtomicUnits: number;
 			maxWinAtomicUnits: number;
 			meters: MeterValues;
+			selectedChef?: ChefId;
 	  })
 	| (ProductionEventBase & { type: 'revealBoard'; board: Board })
 	| ClusterWinEvent
@@ -102,7 +107,12 @@ export type ProductionBookEvent =
 	| (ProductionEventBase & { type: 'removeSymbols'; positions: readonly Position[] })
 	| (ProductionEventBase & { type: 'cascade'; index: number })
 	| (ProductionEventBase & { type: 'boardSettled'; board: Board })
-	| (ProductionEventBase & { type: 'serviceQueueOpened'; entries: readonly ServiceQueueEntry[] })
+	| (ProductionEventBase & {
+			type: 'serviceQueueOpened';
+			entries: readonly ServiceQueueEntry[];
+			phase?: 'opening';
+			source?: 'initialReady';
+	  })
 	| (ProductionEventBase & {
 			type: 'pastaPull';
 			queueEntryId: string;

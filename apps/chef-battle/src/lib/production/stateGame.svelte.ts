@@ -3,6 +3,7 @@ import type {
 	CrownMultiplier,
 	EntryKind,
 	GameMode,
+	ChefId,
 	MeterValues,
 	SauceSpot,
 	ServiceQueueEntry,
@@ -23,6 +24,8 @@ const emptyMeters = (): MeterValues => ({ italian: 0, french: 0, chinese: 0 });
 const createInitialState = () => ({
 	roundId: '',
 	mode: 'base' as GameMode,
+	selectedChef: null as ChefId | null,
+	headliner: null as ChefId | null,
 	betAtomicUnits: 0,
 	paidBetAtomicUnits: 0,
 	maxWinAtomicUnits: 0,

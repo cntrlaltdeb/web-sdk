@@ -288,6 +288,24 @@ function validateRoundStart(event: EventRecord): void {
 	if (paidBet !== bet * modeCosts[mode as GameMode])
 		validationError('roundStart.paidBetAtomicUnits');
 	if (maxWin !== bet * MAX_WIN_MULTIPLIER) validationError('roundStart.maxWinAtomicUnits');
+	if (mode === 'signatureSpin') {
+		if (typeof event.selectedChef !== 'string' || !chefIds.has(event.selectedChef as ChefId))
+			validationError('Signature roundStart.selectedChef');
+		const expectedMeters: Record<ChefId, number> = {
+			italian: event.selectedChef === 'italian' ? 100 : 0,
+			french: event.selectedChef === 'french' ? 100 : 0,
+			chinese: event.selectedChef === 'chinese' ? 100 : 0,
+		};
+		if (
+			!Array.from(chefIds).every(
+				(chef) => (event.meters as Record<ChefId, number>)[chef] === expectedMeters[chef],
+			)
+		)
+			validationError('Signature roundStart meters must ready only selectedChef');
+	} else if (event.selectedChef !== undefined)
+		validationError('roundStart.selectedChef is only valid for Signature Spin');
+	if (event.headliner !== undefined)
+		validationError('roundStart.headliner is not a frontend-selected identity');
 }
 
 function validateKnownPayload(event: EventRecord): void {
@@ -426,9 +444,18 @@ function validateBaseLifecycle(
 		roundStart.maxWinAtomicUnits,
 		'roundStart.maxWinAtomicUnits',
 	);
-	if (roundStart.mode !== 'base') validationError('Task 2 supports Base production rounds only');
+	if (
+		roundStart.mode !== 'base' &&
+		roundStart.mode !== 'extraReservation' &&
+		roundStart.mode !== 'signatureSpin'
+	)
+		validationError('unsupported base production lifecycle');
 	if (!isMeterValues(roundStart.meters)) validationError('Base roundStart.meters');
-	if (!allowInitialMeters && Object.values(roundStart.meters).some((meter) => meter !== 0))
+	if (
+		!allowInitialMeters &&
+		roundStart.mode !== 'signatureSpin' &&
+		Object.values(roundStart.meters).some((meter) => meter !== 0)
+	)
 		validationError('Base roundStart.meters must reset to zero');
 	if (!isBoard(revealBoard.board)) validationError('revealBoard.board');
 	let currentBoard: Board = revealBoard.board;
@@ -436,6 +463,16 @@ function validateBaseLifecycle(
 
 	const meters: Record<ChefId, number> = { ...roundStart.meters };
 	const readyEntries: Array<{ id: string; chef: ChefId; perfectServeUnits: number }> = [];
+	const initialReadyChefs = Array.from(chefIds).filter((chef) => meters[chef] === 100);
+	if (roundStart.mode === 'signatureSpin' || allowInitialMeters) {
+		initialReadyChefs.forEach((chef) =>
+			readyEntries.push({
+				id: `${String(roundStart.roundId)}-service-01-${chef}`,
+				chef,
+				perfectServeUnits: 0,
+			}),
+		);
+	}
 	let activeSauceSpots: SauceSpot[] = initialSauceSpots.map((spot) => ({
 		position: { ...spot.position },
 		boost: spot.boost,
@@ -574,6 +611,14 @@ function validateBaseLifecycle(
 		if (!opened || opened.type !== 'serviceQueueOpened')
 			validationError('READY chefs require serviceQueueOpened after boardSettled');
 		validateKnownPayload(opened);
+		const openingExpected =
+			serviceWindowIndex === 1 &&
+			(roundStart.mode === 'signatureSpin' || (allowInitialMeters && initialReadyChefs.length > 0));
+		if (openingExpected) {
+			if (opened.phase !== 'opening' || opened.source !== 'initialReady')
+				validationError('opening Service requires phase=opening and source=initialReady');
+		} else if (opened.phase !== undefined || opened.source !== undefined)
+			validationError('opening Service metadata is only valid for initialReady');
 		if (
 			!Array.isArray(opened.entries) ||
 			opened.entries.length !== readyEntries.length ||
@@ -1140,7 +1185,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 
 	let startIndex: number;
 	let entryKind: 'natural' | 'purchase';
-	if (roundStart.mode === 'base') {
+	if (roundStart.mode === 'base' || roundStart.mode === 'extraReservation') {
 		const reveal = events[1];
 		const trigger = events[2];
 		if (!reveal || reveal.type !== 'revealBoard' || !isBoard(reveal.board))
@@ -1175,7 +1220,11 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 			`${roundId}-trigger`,
 		);
 		entryKind = 'natural';
-	} else if (roundStart.mode === 'kitchenShowdown') {
+	} else if (
+		roundStart.mode === 'kitchenShowdown' ||
+		roundStart.mode === 'grandShowdown' ||
+		roundStart.mode === 'mysteryTasting'
+	) {
 		if (
 			Object.values(requireChefValues(roundStart.meters, 'roundStart.meters', 100)).some(
 				(value) => value !== 0,
@@ -1191,21 +1240,70 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		validationError('kitchenShowdownStart.entryKind');
 	const state = readShowdownSnapshot(start, 'kitchenShowdownStart');
 	if (
-		state.totalFreeSpins !== 10 ||
 		state.currentFreeSpin !== 0 ||
 		state.remainingFreeSpins !== state.totalFreeSpins ||
-		state.completedCourses.length !== 0 ||
-		state.crownPotAtomicUnits !== 0 ||
-		Object.values(state.stars).some((value) => value !== 0) ||
 		state.winner !== null ||
-		state.headliner !== null ||
 		state.bonusBankAtomicUnits !== bankBeforeIndex[startIndex] ||
+		state.crownPotAtomicUnits !==
+			state.completedCourses.reduce((sum, course) => sum + course.valueAtomicUnits, 0) ||
 		(entryKind === 'natural' && state.activeSauceSpots.length !== 0)
 	)
 		validationError('kitchenShowdownStart snapshot');
+	if (
+		roundStart.mode === 'base' ||
+		roundStart.mode === 'extraReservation' ||
+		roundStart.mode === 'kitchenShowdown'
+	) {
+		if (
+			state.totalFreeSpins !== 10 ||
+			state.completedCourses.length !== 0 ||
+			state.crownPotAtomicUnits !== 0 ||
+			Object.values(state.stars).some((value) => value !== 0) ||
+			!Array.from(chefIds).every((chef) => state.meters[chef] === 50) ||
+			state.headliner !== null
+		)
+			validationError('Kitchen Showdown start snapshot');
+	} else if (roundStart.mode === 'grandShowdown') {
+		if (
+			state.totalFreeSpins !== 10 ||
+			!Array.from(chefIds).every((chef) => state.meters[chef] === 75 && state.stars[chef] === 1) ||
+			state.completedCourses.length !== 3 ||
+			!(['italian', 'french', 'chinese'] as const).every(
+				(chef, index) => state.completedCourses[index]?.chef === chef,
+			) ||
+			state.headliner !== null
+		)
+			validationError(
+				'Grand Showdown start requires meters 75, one star and one matching positive Course per chef',
+			);
+	} else if (roundStart.mode === 'mysteryTasting') {
+		const headliner = state.headliner;
+		if (
+			headliner === null ||
+			state.totalFreeSpins !== 12 ||
+			!Array.from(chefIds).every(
+				(chef) =>
+					state.meters[chef] === (chef === headliner ? 100 : 50) &&
+					state.stars[chef] === (chef === headliner ? 1 : 0),
+			) ||
+			state.completedCourses.length !== 1 ||
+			state.completedCourses[0]?.chef !== headliner
+		)
+			validationError(
+				'Mystery Tasting start requires Headliner meter 100, one star and one matching positive Course',
+			);
+	}
+	validateCrownHeadroom(
+		state.bonusBankAtomicUnits,
+		state.crownPotAtomicUnits,
+		selectedMultiplier as CrownMultiplier,
+		maxWinAtomicUnits,
+	);
 
 	let cursor = startIndex + 1;
-	const courseSources = new Set<string>();
+	const courseSources = new Set<string>(
+		state.completedCourses.map((course) => course.sourceEventId),
+	);
 	const consumedCourseMeta = new Set<EventRecord>();
 	for (let spin = 1; spin <= state.totalFreeSpins; spin++) {
 		const spinStart = events[cursor];
@@ -1351,11 +1449,13 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 					consumedMeta.add(phaseIndex + 1);
 					if (expectedStars[expectedEntry.chef] === 3) {
 						const lock = phase[phaseIndex + 2];
+						const expectedHeadliner =
+							roundStart.mode === 'mysteryTasting' ? state.headliner : expectedEntry.chef;
 						if (
 							!lock ||
 							lock.type !== 'kitchenWinnerLocked' ||
 							lock.winner !== expectedEntry.chef ||
-							lock.headliner !== expectedEntry.chef ||
+							lock.headliner !== expectedHeadliner ||
 							!Array.from(chefIds).every(
 								(chef) =>
 									requireChefValues(lock.stars, 'kitchenWinnerLocked.stars', 3)[chef] ===
@@ -1366,7 +1466,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 						if (consumedCourseMeta.has(lock))
 							validationError('Showdown meta event cannot serve two canonical Course chains');
 						state.winner = expectedEntry.chef;
-						state.headliner = expectedEntry.chef;
+						if (roundStart.mode !== 'mysteryTasting') state.headliner = expectedEntry.chef;
 						consumedCourseMeta.add(lock);
 						consumedMeta.add(phaseIndex + 2);
 					}
@@ -1500,6 +1600,8 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 		validationError('P3-00 must contain exactly roundStart → revealBoard → setTotalWin → finalWin');
 	const hasShowdown =
 		roundStart.mode === 'kitchenShowdown' ||
+		roundStart.mode === 'grandShowdown' ||
+		roundStart.mode === 'mysteryTasting' ||
 		events.some(
 			(event) => event.type === 'kitchenShowdownTriggered' || event.type === 'kitchenShowdownStart',
 		);

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { productionState } from '../stateGame.svelte';
 	import Board from '../../components/Board.svelte';
+	import ModeSummary from './ModeSummary.svelte';
 	import PerfectServeBanner from './PerfectServeBanner.svelte';
 	import ProductionShowdownOverlay from './ProductionShowdownOverlay.svelte';
 	import RecoveryNotice from './RecoveryNotice.svelte';
@@ -8,6 +9,7 @@
 </script>
 
 <section aria-label="Production Chef Battle round">
+	<ModeSummary />
 	<p class="round-win">Round ledger: {productionState.roundWinAtomicUnits}</p>
 	<p class="cascade">Cascade: {productionState.cascadeIndex}</p>
 	<ProductionShowdownOverlay />
