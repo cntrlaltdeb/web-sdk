@@ -1,6 +1,8 @@
 import { cleanup, render, screen } from '@testing-library/svelte';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import P300 from '../books/production/P3-00.json';
+import P308 from '../books/production/P3-08.json';
 import P309 from '../books/production/P3-09.json';
 import P310 from '../books/production/P3-10.json';
 import P311 from '../books/production/P3-11.json';
@@ -92,6 +94,30 @@ describe('production paid modes', () => {
 		expect(productionState.selectedChef).toBeNull();
 		expect(productionState.headliner).toBeNull();
 	});
+
+	it.each([
+		['Base selectedChef', P300, 'selectedChef'],
+		['Base headliner', P300, 'headliner'],
+		['Extra selectedChef', P308, 'selectedChef'],
+		['Extra headliner', P308, 'headliner'],
+		['Signature selectedChef', P309, 'selectedChef'],
+		['Signature headliner', P309, 'headliner'],
+		['Grand selectedChef', P310, 'selectedChef'],
+		['Grand headliner', P310, 'headliner'],
+		['Mystery selectedChef', P311, 'selectedChef'],
+		['Mystery headliner', P311, 'headliner'],
+	] as const)(
+		'rejects explicit null %s before frontend state mutation',
+		async (_name, fixture, field) => {
+			productionState.roundId = 'keep-me';
+			const book = structuredClone(fixture) as MutableBook;
+			event(book, 'roundStart')[field] = null;
+
+			await expect(playProductionBook(book)).rejects.toThrow(field);
+			expect(productionState.roundId).toBe('keep-me');
+			expect(productionState.handledSequences).toEqual([]);
+		},
+	);
 
 	it.each([
 		[
