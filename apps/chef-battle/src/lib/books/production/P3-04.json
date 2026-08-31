@@ -106,12 +106,12 @@
     "roundId": "P3-04",
     "type": "chefMeterUpdate",
     "chef": "french",
-    "earnedCharge": 100,
+    "earnedCharge": 120,
     "appliedCharge": 100,
-    "overflowCharge": 0,
+    "overflowCharge": 20,
     "meterAfter": 100,
     "serviceQueueEntryId": "P3-04-service-01-french",
-    "perfectServeUnitsAfter": 0
+    "perfectServeUnitsAfter": 20
   },
   {
     "id": "P3-04-e0006",
@@ -262,12 +262,12 @@
     "roundId": "P3-04",
     "type": "chefMeterUpdate",
     "chef": "chinese",
-    "earnedCharge": 100,
+    "earnedCharge": 130,
     "appliedCharge": 100,
-    "overflowCharge": 0,
+    "overflowCharge": 30,
     "meterAfter": 100,
     "serviceQueueEntryId": "P3-04-service-01-chinese",
-    "perfectServeUnitsAfter": 0
+    "perfectServeUnitsAfter": 30
   },
   {
     "id": "P3-04-e0014",
@@ -352,7 +352,7 @@
       {
         "id": "P3-04-service-01-french",
         "chef": "french",
-        "perfectServeUnits": 0
+        "perfectServeUnits": 20
       },
       {
         "id": "P3-04-service-01-italian",
@@ -362,7 +362,7 @@
       {
         "id": "P3-04-service-01-chinese",
         "chef": "chinese",
-        "perfectServeUnits": 0
+        "perfectServeUnits": 30
       }
     ]
   },
@@ -423,6 +423,24 @@
     "id": "P3-04-e0019",
     "sequence": 19,
     "roundId": "P3-04",
+    "type": "perfectServeAward",
+    "queueEntryId": "P3-04-service-01-french",
+    "consumedOverflowUnits": 20,
+    "payoutAtomicUnits": 500000
+  },
+  {
+    "id": "P3-04-e0020",
+    "sequence": 20,
+    "roundId": "P3-04",
+    "type": "roundWinUpdate",
+    "sourceEventId": "P3-04-e0019",
+    "creditAtomicUnits": 500000,
+    "balanceAfterAtomicUnits": 3500000
+  },
+  {
+    "id": "P3-04-e0021",
+    "sequence": 21,
+    "roundId": "P3-04",
     "type": "pastaPull",
     "queueEntryId": "P3-04-service-01-italian",
     "positions": [
@@ -474,8 +492,8 @@
     ]
   },
   {
-    "id": "P3-04-e0020",
-    "sequence": 20,
+    "id": "P3-04-e0022",
+    "sequence": 22,
     "roundId": "P3-04",
     "type": "wokToss",
     "queueEntryId": "P3-04-service-01-chinese",
@@ -537,8 +555,26 @@
     ]
   },
   {
-    "id": "P3-04-e0021",
-    "sequence": 21,
+    "id": "P3-04-e0023",
+    "sequence": 23,
+    "roundId": "P3-04",
+    "type": "perfectServeAward",
+    "queueEntryId": "P3-04-service-01-chinese",
+    "consumedOverflowUnits": 30,
+    "payoutAtomicUnits": 750000
+  },
+  {
+    "id": "P3-04-e0024",
+    "sequence": 24,
+    "roundId": "P3-04",
+    "type": "roundWinUpdate",
+    "sourceEventId": "P3-04-e0023",
+    "creditAtomicUnits": 750000,
+    "balanceAfterAtomicUnits": 4250000
+  },
+  {
+    "id": "P3-04-e0025",
+    "sequence": 25,
     "roundId": "P3-04",
     "type": "serviceQueueClosed",
     "finalBoard": [
@@ -580,8 +616,8 @@
     ]
   },
   {
-    "id": "P3-04-e0022",
-    "sequence": 22,
+    "id": "P3-04-e0026",
+    "sequence": 26,
     "roundId": "P3-04",
     "type": "clusterWin",
     "chef": "chinese",
@@ -618,17 +654,17 @@
     "payoutAtomicUnits": 3000000
   },
   {
-    "id": "P3-04-e0023",
-    "sequence": 23,
+    "id": "P3-04-e0027",
+    "sequence": 27,
     "roundId": "P3-04",
     "type": "roundWinUpdate",
-    "sourceEventId": "P3-04-e0022",
+    "sourceEventId": "P3-04-e0026",
     "creditAtomicUnits": 3000000,
-    "balanceAfterAtomicUnits": 6000000
+    "balanceAfterAtomicUnits": 7250000
   },
   {
-    "id": "P3-04-e0024",
-    "sequence": 24,
+    "id": "P3-04-e0028",
+    "sequence": 28,
     "roundId": "P3-04",
     "type": "chefMeterUpdate",
     "chef": "chinese",
@@ -640,8 +676,8 @@
     "perfectServeUnitsAfter": 0
   },
   {
-    "id": "P3-04-e0025",
-    "sequence": 25,
+    "id": "P3-04-e0029",
+    "sequence": 29,
     "roundId": "P3-04",
     "type": "removeSymbols",
     "positions": [
@@ -664,15 +700,15 @@
     ]
   },
   {
-    "id": "P3-04-e0026",
-    "sequence": 26,
+    "id": "P3-04-e0030",
+    "sequence": 30,
     "roundId": "P3-04",
     "type": "cascade",
     "index": 2
   },
   {
-    "id": "P3-04-e0027",
-    "sequence": 27,
+    "id": "P3-04-e0031",
+    "sequence": 31,
     "roundId": "P3-04",
     "type": "boardSettled",
     "board": [
@@ -714,17 +750,17 @@
     ]
   },
   {
-    "id": "P3-04-e0028",
-    "sequence": 28,
+    "id": "P3-04-e0032",
+    "sequence": 32,
     "roundId": "P3-04",
     "type": "setTotalWin",
-    "totalWinAtomicUnits": 6000000
+    "totalWinAtomicUnits": 7250000
   },
   {
-    "id": "P3-04-e0029",
-    "sequence": 29,
+    "id": "P3-04-e0033",
+    "sequence": 33,
     "roundId": "P3-04",
     "type": "finalWin",
-    "payoutAtomicUnits": 6000000
+    "payoutAtomicUnits": 7250000
   }
 ]

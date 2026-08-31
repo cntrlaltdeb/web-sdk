@@ -61,6 +61,9 @@ export const productionBookEventHandlerMap = {
 		productionState.perfectServePayoutAtomicUnits = event.payoutAtomicUnits;
 	},
 	serviceQueueClosed: (event) => {
+		const meters = { ...productionState.meters };
+		for (const entry of productionState.serviceQueue) meters[entry.chef] = 0;
+		productionState.meters = meters;
 		productionState.board = event.finalBoard.map((reel) => [...reel]);
 		productionState.serviceQueue = [];
 	},

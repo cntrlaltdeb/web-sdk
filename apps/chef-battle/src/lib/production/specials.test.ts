@@ -9,6 +9,7 @@ import {
 	playValidatedPrefixForTest,
 	playValidatedProductionBook,
 } from './localBookAdapter';
+import { playProductionBookEvent } from './bookEventHandlerMap';
 import ProductionRound from './components/ProductionRound.svelte';
 import { productionState, resetProductionState } from './stateGame.svelte';
 
@@ -52,6 +53,36 @@ describe('production Chef Specials', () => {
 		expect(screen.getByLabelText('Service Queue').textContent).toContain(
 			'French READYItalian READYChinese READY',
 		);
+	});
+
+	it('resets every served P3-04 meter immediately when Service Queue closes', async () => {
+		const book = await loadProductionBook('P3-04');
+		const closed = book.events.findIndex((candidate) => candidate.type === 'serviceQueueClosed');
+		if (closed < 0) throw new Error('P3-04 must close Service Queue');
+		const closedEvent = book.events[closed];
+		if (!closedEvent) throw new Error('P3-04 Service Queue close event is required');
+
+		await playValidatedPrefixForTest(book, closed);
+		expect(productionState.meters).toEqual({ italian: 100, french: 100, chinese: 100 });
+
+		await playProductionBookEvent(closedEvent);
+		expect(productionState.meters).toEqual({ italian: 0, french: 0, chinese: 0 });
+	});
+
+	it('keeps a meter unchanged when its chef is not in the closing queue', async () => {
+		const book = await loadProductionBook('P3-04');
+		const opened = book.events.findIndex((candidate) => candidate.type === 'serviceQueueOpened');
+		const closed = book.events.find((candidate) => candidate.type === 'serviceQueueClosed');
+		if (opened < 0 || !closed) throw new Error('P3-04 Service Queue lifecycle is required');
+
+		await playValidatedPrefixForTest(book, opened + 1);
+		productionState.serviceQueue = productionState.serviceQueue.filter(
+			(entry) => entry.chef !== 'italian',
+		);
+		productionState.meters = { italian: 37, french: 100, chinese: 100 };
+
+		await playProductionBookEvent(closed);
+		expect(productionState.meters).toEqual({ italian: 37, french: 0, chinese: 0 });
 	});
 
 	it('expires Base Pasta and Sauce overlays only when finalWin closes the round', async () => {
@@ -112,6 +143,24 @@ describe('production Chef Specials', () => {
 				return book;
 			},
 			'sauceFlightMultiplier',
+		],
+		[
+			'French partial Perfect Serve consumption',
+			() => {
+				const book = structuredClone(P304) as MutableBook;
+				event(book, 'perfectServeAward').consumedOverflowUnits = 19;
+				return book;
+			},
+			'overflow',
+		],
+		[
+			'negative Chinese Perfect Serve payout',
+			() => {
+				const book = structuredClone(P304) as MutableBook;
+				event(book, 'perfectServeAward', 1).payoutAtomicUnits = -1;
+				return book;
+			},
+			'safe non-negative',
 		],
 	])('rejects %s before any handler mutates state', async (_name, makeBook, error) => {
 		productionState.roundId = 'keep-me';
