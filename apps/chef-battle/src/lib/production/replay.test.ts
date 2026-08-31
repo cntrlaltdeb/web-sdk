@@ -20,7 +20,7 @@ import { validateProductionBook } from './bookValidator';
 import { loadPreparedProductionBook } from './localBookAdapter';
 import RecoveryNotice from './components/RecoveryNotice.svelte';
 import { productionState, resetProductionState } from './stateGame.svelte';
-import { PRODUCTION_SCENARIO_IDS } from './typesBookEvent';
+import { PRODUCTION_EVENT_TYPES, PRODUCTION_SCENARIO_IDS } from './typesBookEvent';
 import type {
 	PreparedProductionBook,
 	ProductionReplayState,
@@ -525,5 +525,22 @@ describe('production recovery surface', () => {
 		);
 		expect(JSON.stringify(diagnostic)).not.toContain('raw-round-secret');
 		expect(JSON.stringify(diagnostic)).not.toContain('must-not-leak');
+	});
+
+	it('accepts every canonical event type and omits an unknown diagnostic event type', async () => {
+		const diagnostics = await Promise.all(
+			PRODUCTION_EVENT_TYPES.map((eventType) =>
+				safeDiagnostic('INVALID_BOOK', { roundId: 'P3-contract', eventType }),
+			),
+		);
+
+		expect(diagnostics.map((diagnostic) => diagnostic.eventType)).toEqual([
+			...PRODUCTION_EVENT_TYPES,
+		]);
+		const unknown = await safeDiagnostic('INVALID_BOOK', {
+			roundId: 'P3-contract',
+			eventType: 'futureUnknownEvent',
+		});
+		expect(unknown).not.toHaveProperty('eventType');
 	});
 });

@@ -1,5 +1,6 @@
 import { getValidatedFinalState, validateProductionBook } from './bookValidator';
 import type { Position } from '../typesBookEvent';
+import { PRODUCTION_EVENT_TYPES } from './typesBookEvent';
 import type {
 	CrownCourse,
 	PreparedProductionBook,
@@ -21,35 +22,7 @@ const SAFE_DIAGNOSTIC_CODES = new Set([
 	'INVALID_BOOK',
 	'INVALID_SUFFIX',
 ]);
-const SAFE_EVENT_TYPES = new Set<ProductionBookEvent['type']>([
-	'roundStart',
-	'revealBoard',
-	'clusterWin',
-	'roundWinUpdate',
-	'chefMeterUpdate',
-	'removeSymbols',
-	'cascade',
-	'boardSettled',
-	'serviceQueueOpened',
-	'pastaPull',
-	'sauceFinish',
-	'wokToss',
-	'perfectServeAward',
-	'serviceQueueClosed',
-	'kitchenShowdownTriggered',
-	'bonusBankUpdate',
-	'kitchenShowdownStart',
-	'freeSpinStart',
-	'freeSpinRetrigger',
-	'freeSpinEnd',
-	'crownCourseComplete',
-	'judgeStarUpdate',
-	'kitchenWinnerLocked',
-	'kitchenCrownReveal',
-	'maxWinReached',
-	'setTotalWin',
-	'finalWin',
-]);
+const SAFE_EVENT_TYPES = new Set<ProductionBookEvent['type']>(PRODUCTION_EVENT_TYPES);
 const SHA256_HEX = /^[0-9a-f]{64}$/;
 
 function replayError(code: string, message: string): never {
