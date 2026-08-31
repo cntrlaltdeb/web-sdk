@@ -405,12 +405,154 @@
     "id": "P3-02-e0018",
     "sequence": 18,
     "roundId": "P3-02",
-    "type": "setTotalWin",
-    "totalWinAtomicUnits": 8500000
+    "type": "clusterWin",
+    "chef": "french",
+    "symbol": "french_onion_soup",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 0
+      },
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 2,
+        "row": 1
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ],
+    "basePayoutAtomicUnits": 0,
+    "appliedSauceSpots": [],
+    "sauceFlightMultiplier": 1,
+    "payoutAtomicUnits": 0
   },
   {
     "id": "P3-02-e0019",
     "sequence": 19,
+    "roundId": "P3-02",
+    "type": "roundWinUpdate",
+    "sourceEventId": "P3-02-e0018",
+    "creditAtomicUnits": 0,
+    "balanceAfterAtomicUnits": 8500000
+  },
+  {
+    "id": "P3-02-e0020",
+    "sequence": 20,
+    "roundId": "P3-02",
+    "type": "chefMeterUpdate",
+    "chef": "french",
+    "earnedCharge": 0,
+    "appliedCharge": 0,
+    "overflowCharge": 0,
+    "meterAfter": 0,
+    "serviceQueueEntryId": null,
+    "perfectServeUnitsAfter": 0
+  },
+  {
+    "id": "P3-02-e0021",
+    "sequence": 21,
+    "roundId": "P3-02",
+    "type": "removeSymbols",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 0
+      },
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 2,
+        "row": 1
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ]
+  },
+  {
+    "id": "P3-02-e0022",
+    "sequence": 22,
+    "roundId": "P3-02",
+    "type": "cascade",
+    "index": 2
+  },
+  {
+    "id": "P3-02-e0023",
+    "sequence": 23,
+    "roundId": "P3-02",
+    "type": "boardSettled",
+    "board": [
+      [
+        "pizza",
+        "pasta_carbonara",
+        "tiramisu",
+        "frog_legs",
+        "french_onion_soup"
+      ],
+      [
+        "croissant",
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "golden_cloche_wild"
+      ],
+      [
+        "kitchen_crown_scatter",
+        "pasta_wild",
+        "pizza",
+        "pasta_carbonara",
+        "tiramisu"
+      ],
+      [
+        "frog_legs",
+        "french_onion_soup",
+        "croissant",
+        "peking_duck",
+        "kung_pao_chicken"
+      ],
+      [
+        "xiaolongbao",
+        "golden_cloche_wild",
+        "kitchen_crown_scatter",
+        "pasta_wild",
+        "pizza"
+      ]
+    ]
+  },
+  {
+    "id": "P3-02-e0024",
+    "sequence": 24,
+    "roundId": "P3-02",
+    "type": "setTotalWin",
+    "totalWinAtomicUnits": 8500000
+  },
+  {
+    "id": "P3-02-e0025",
+    "sequence": 25,
     "roundId": "P3-02",
     "type": "finalWin",
     "payoutAtomicUnits": 8500000

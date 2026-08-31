@@ -211,6 +211,48 @@ describe('production Base cascade handlers', () => {
 		expect(productionState.roundId).toBe('keep-me');
 		expect(productionState.handledSequences).toEqual([]);
 	});
+
+	it('accepts the next canonical cluster group only after the P3-02 Service Queue closes', () => {
+		const book = validateProductionBook(P302);
+
+		expect(book.events.filter((event) => event.type === 'cascade')).toHaveLength(2);
+		expect(book.finalWinAtomicUnits).toBe(8_500_000);
+	});
+
+	it('rejects a forged 80 plus 40 meter update that only conserves charge units', () => {
+		const invalidBook = structuredClone(P302) as MutableBook;
+		const meter = invalidBook.filter((event) => event.type === 'chefMeterUpdate')[1];
+		if (!meter) throw new Error('P3-02 second meter update is required');
+		Object.assign(meter, {
+			appliedCharge: 10,
+			overflowCharge: 30,
+			meterAfter: 90,
+			serviceQueueEntryId: null,
+			perfectServeUnitsAfter: 0,
+		});
+		const opened = invalidBook.findIndex((event) => event.type === 'serviceQueueOpened');
+		const closed = invalidBook.findIndex((event) => event.type === 'serviceQueueClosed');
+		if (opened < 0 || closed < 0) throw new Error('P3-02 Service Queue is required');
+		invalidBook.splice(opened, closed - opened + 1);
+		const total = invalidBook.find((event) => event.type === 'setTotalWin');
+		const final = invalidBook.find((event) => event.type === 'finalWin');
+		if (!total || !final) throw new Error('P3-02 terminal events are required');
+		total.totalWinAtomicUnits = 7_000_000;
+		final.payoutAtomicUnits = 7_000_000;
+
+		expect(() => validateProductionBook(canonicalizeP302(invalidBook))).toThrow('charge fields');
+	});
+
+	it('rejects an additional field in the Book-authored Service Queue entry', () => {
+		const invalidBook = structuredClone(P302) as MutableBook;
+		const opened = invalidBook.find((event) => event.type === 'serviceQueueOpened');
+		if (!opened || !Array.isArray(opened.entries)) throw new Error('P3-02 Service Queue is required');
+		const entry = opened.entries[0] as Record<string, unknown> | undefined;
+		if (!entry) throw new Error('P3-02 Service Queue entry is required');
+		entry.forged = true;
+
+		expect(() => validateProductionBook(canonicalizeP302(invalidBook))).toThrow('queue order');
+	});
 });
 
 function canonicalizeP302(events: MutableBook): MutableBook {

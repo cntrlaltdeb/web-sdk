@@ -289,7 +289,8 @@ function validateKnownPayload(event: EventRecord): void {
 			requirePositions(event.positions, 'removeSymbols.positions');
 			return;
 		case 'cascade':
-			if (event.index !== 1) validationError('cascade.index');
+			if (!isSafeNonNegativeInteger(event.index) || event.index === 0)
+				validationError('cascade.index');
 			return;
 		case 'boardSettled':
 			if (!isBoard(event.board)) validationError('boardSettled.board');
@@ -348,121 +349,63 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 	)
 		validationError('Base roundStart.meters must reset to zero');
 	if (!isBoard(revealBoard.board)) validationError('revealBoard.board');
-	const remainingClusters = [...findCanonicalProductionClusters(revealBoard.board)];
+	let currentBoard: Board = revealBoard.board;
+	let remainingClusters = [...findCanonicalProductionClusters(currentBoard)];
 
 	const meters: Record<ChefId, number> = { ...roundStart.meters };
 	const readyEntries: Array<{ id: string; chef: ChefId; perfectServeUnits: number }> = [];
 	const creditedSources = new Set<string>();
 	let balance = 0;
 	let index = 2;
-	let clusterCount = 0;
-	while (events[index]?.type === 'clusterWin') {
-		const cluster = events[index];
-		if (!cluster) validationError('clusterWin is required');
-		validateKnownPayload(cluster);
-		const expectedCluster = remainingClusters.shift();
-		if (
-			!expectedCluster ||
-			cluster.chef !== expectedCluster.chef ||
-			cluster.symbol !== expectedCluster.symbol ||
-			!samePositions(
-				requirePositions(cluster.positions, 'clusterWin.positions'),
-				expectedCluster.positions,
-			)
-		)
-			validationError('clusterWin must match the next canonical board cluster');
-		const chef = cluster.chef as ChefId;
-		const payout = requireSafeNonNegativeInteger(
-			cluster.payoutAtomicUnits,
-			'clusterWin.payoutAtomicUnits',
-		);
-		const ledger = events[index + 1];
-		if (!ledger || ledger.type !== 'roundWinUpdate')
-			validationError('clusterWin requires immediate roundWinUpdate');
-		validateKnownPayload(ledger);
-		if (ledger.sourceEventId !== cluster.id || creditedSources.has(ledger.sourceEventId as string))
-			validationError('roundWinUpdate.sourceEventId must credit one unique cluster source');
-		const credit = requireSafeNonNegativeInteger(
-			ledger.creditAtomicUnits,
-			'roundWinUpdate.creditAtomicUnits',
-		);
-		const balanceAfter = requireSafeNonNegativeInteger(
-			ledger.balanceAfterAtomicUnits,
-			'roundWinUpdate.balanceAfterAtomicUnits',
-		);
-		if (credit !== payout || balanceAfter !== balance + credit)
-			validationError('roundWinUpdate.balanceAfterAtomicUnits must exactly credit the source');
-		creditedSources.add(ledger.sourceEventId as string);
-		balance = balanceAfter;
-		const meter = events[index + 2];
-		if (!meter || meter.type !== 'chefMeterUpdate')
-			validationError('roundWinUpdate requires chefMeterUpdate');
-		validateKnownPayload(meter);
-		if (meter.chef !== chef) validationError('chefMeterUpdate.chef');
-		const earned = requireSafeNonNegativeInteger(
-			meter.earnedCharge,
-			'chefMeterUpdate.earnedCharge',
-		);
-		const applied = requireSafeNonNegativeInteger(
-			meter.appliedCharge,
-			'chefMeterUpdate.appliedCharge',
-		);
-		const overflow = requireSafeNonNegativeInteger(
-			meter.overflowCharge,
-			'chefMeterUpdate.overflowCharge',
-		);
-		const meterAfter = requireSafeNonNegativeInteger(
-			meter.meterAfter,
-			'chefMeterUpdate.meterAfter',
-		);
-		if (earned !== applied + overflow || meterAfter !== meters[chef] + applied || meterAfter > 100)
-			validationError('chefMeterUpdate charge fields');
-		const existingEntry = readyEntries.find((entry) => entry.chef === chef);
-		if (meterAfter === 100) {
-			const expectedId = existingEntry?.id ?? `${roundStart.roundId}-service-01-${chef}`;
-			const expectedUnits = (existingEntry?.perfectServeUnits ?? 0) + overflow;
-			if (
-				meter.serviceQueueEntryId !== expectedId ||
-				meter.perfectServeUnitsAfter !== expectedUnits
-			)
-				validationError('chefMeterUpdate service queue fields');
-			if (existingEntry) existingEntry.perfectServeUnits = expectedUnits;
-			else readyEntries.push({ id: expectedId, chef, perfectServeUnits: expectedUnits });
-		} else if (meter.serviceQueueEntryId !== null || meter.perfectServeUnitsAfter !== 0) {
-			validationError('chefMeterUpdate service queue fields');
+	let cascadeIndex = 0;
+	let serviceWindowIndex = 1;
+	const consumeClusterGroup = (): void => {
+		while (remainingClusters.length > 0) {
+			const cluster = events[index];
+			if (!cluster || cluster.type !== 'clusterWin')
+				validationError('all remaining board clusters require a ledger credit');
+			validateKnownPayload(cluster);
+			const expectedCluster = remainingClusters.shift();
+			if (!expectedCluster || cluster.chef !== expectedCluster.chef || cluster.symbol !== expectedCluster.symbol || !samePositions(requirePositions(cluster.positions, 'clusterWin.positions'), expectedCluster.positions)) validationError('clusterWin must match the next canonical board cluster');
+			const chef = cluster.chef as ChefId;
+			const payout = requireSafeNonNegativeInteger(cluster.payoutAtomicUnits, 'clusterWin.payoutAtomicUnits');
+			const ledger = events[index + 1];
+			if (!ledger || ledger.type !== 'roundWinUpdate') validationError('clusterWin requires immediate roundWinUpdate');
+			validateKnownPayload(ledger);
+			if (ledger.sourceEventId !== cluster.id || creditedSources.has(ledger.sourceEventId as string)) validationError('roundWinUpdate.sourceEventId must credit one unique cluster source');
+			const credit = requireSafeNonNegativeInteger(ledger.creditAtomicUnits, 'roundWinUpdate.creditAtomicUnits');
+			const balanceAfter = requireSafeNonNegativeInteger(ledger.balanceAfterAtomicUnits, 'roundWinUpdate.balanceAfterAtomicUnits');
+			if (credit !== payout || balanceAfter !== balance + credit) validationError('roundWinUpdate.balanceAfterAtomicUnits must exactly credit the source');
+			creditedSources.add(ledger.sourceEventId as string);
+			balance = balanceAfter;
+			const meter = events[index + 2];
+			if (!meter || meter.type !== 'chefMeterUpdate') validationError('roundWinUpdate requires chefMeterUpdate');
+			validateKnownPayload(meter);
+			if (meter.chef !== chef) validationError('chefMeterUpdate.chef');
+			const earned = requireSafeNonNegativeInteger(meter.earnedCharge, 'chefMeterUpdate.earnedCharge');
+			const applied = requireSafeNonNegativeInteger(meter.appliedCharge, 'chefMeterUpdate.appliedCharge');
+			const overflow = requireSafeNonNegativeInteger(meter.overflowCharge, 'chefMeterUpdate.overflowCharge');
+			const meterAfter = requireSafeNonNegativeInteger(meter.meterAfter, 'chefMeterUpdate.meterAfter');
+			const expectedApplied = Math.min(earned, 100 - meters[chef]);
+			const expectedOverflow = earned - expectedApplied;
+			const expectedMeterAfter = Math.min(100, meters[chef] + earned);
+			if (applied !== expectedApplied || overflow !== expectedOverflow || meterAfter !== expectedMeterAfter) validationError('chefMeterUpdate charge fields');
+			const existingEntry = readyEntries.find((entry) => entry.chef === chef);
+			if (meterAfter === 100) {
+				const expectedId = existingEntry?.id ?? `${roundStart.roundId}-service-${String(serviceWindowIndex).padStart(2, '0')}-${chef}`;
+				const expectedUnits = (existingEntry?.perfectServeUnits ?? 0) + overflow;
+				if (meter.serviceQueueEntryId !== expectedId || meter.perfectServeUnitsAfter !== expectedUnits) validationError('chefMeterUpdate service queue fields');
+				if (existingEntry) existingEntry.perfectServeUnits = expectedUnits;
+				else readyEntries.push({ id: expectedId, chef, perfectServeUnits: expectedUnits });
+			} else if (meter.serviceQueueEntryId !== null || meter.perfectServeUnitsAfter !== 0) validationError('chefMeterUpdate service queue fields');
+			meters[chef] = meterAfter;
+			const removal = events[index + 3];
+			if (!removal || removal.type !== 'removeSymbols') validationError('chefMeterUpdate requires removeSymbols');
+			if (!samePositions(requirePositions(removal.positions, 'removeSymbols.positions'), requirePositions(cluster.positions, 'clusterWin.positions'))) validationError('removeSymbols.positions must match clusterWin.positions');
+			index += 4;
 		}
-		meters[chef] = meterAfter;
-		const removal = events[index + 3];
-		if (!removal || removal.type !== 'removeSymbols')
-			validationError('chefMeterUpdate requires removeSymbols');
-		if (
-			!samePositions(
-				requirePositions(removal.positions, 'removeSymbols.positions'),
-				requirePositions(cluster.positions, 'clusterWin.positions'),
-			)
-		)
-			validationError('removeSymbols.positions must match clusterWin.positions');
-		index += 4;
-		clusterCount++;
-	}
-	if (remainingClusters.length > 0)
-		validationError('all current board clusters require a ledger credit');
-	let currentBoard: Board = revealBoard.board;
-	if (clusterCount > 0) {
-		const cascade = events[index];
-		const settled = events[index + 1];
-		if (!cascade || cascade.type !== 'cascade') validationError('Base clusters require cascade');
-		if (!settled || settled.type !== 'boardSettled')
-			validationError('cascade requires boardSettled');
-		validateKnownPayload(cascade);
-		validateKnownPayload(settled);
-		if (!isBoard(settled.board)) validationError('boardSettled.board');
-		if (findCanonicalProductionClusters(settled.board).length > 0)
-			validationError('boardSettled leaves remaining clusters before terminal events');
-		currentBoard = settled.board;
-		index += 2;
-	}
-	if (readyEntries.length > 0) {
+	};
+	const consumeServiceWindow = (): void => {
 		const opened = events[index];
 		if (!opened || opened.type !== 'serviceQueueOpened')
 			validationError('READY chefs require serviceQueueOpened after boardSettled');
@@ -475,6 +418,7 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 				return (
 					!isRecord(entry) ||
 					!expected ||
+					Object.keys(entry).length !== 3 ||
 					entry.id !== expected.id ||
 					entry.chef !== expected.chef ||
 					entry.perfectServeUnits !== expected.perfectServeUnits
@@ -567,6 +511,28 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 			validationError('serviceQueueClosed must repeat the final board');
 		meters[entry.chef] = 0;
 		index++;
+		readyEntries.splice(0);
+		serviceWindowIndex++;
+	};
+	while (remainingClusters.length > 0 || readyEntries.length > 0) {
+		if (readyEntries.length > 0) {
+			consumeServiceWindow();
+			remainingClusters = [...findCanonicalProductionClusters(currentBoard)];
+			continue;
+		}
+		consumeClusterGroup();
+		cascadeIndex++;
+		const cascade = events[index];
+		const settled = events[index + 1];
+		if (!cascade || cascade.type !== 'cascade') validationError('Base clusters require cascade');
+		if (cascade.index !== cascadeIndex) validationError('cascade.index must increment for each cluster group');
+		if (!settled || settled.type !== 'boardSettled') validationError('cascade requires boardSettled');
+		validateKnownPayload(cascade);
+		validateKnownPayload(settled);
+		if (!isBoard(settled.board)) validationError('boardSettled.board');
+		currentBoard = settled.board;
+		remainingClusters = [...findCanonicalProductionClusters(currentBoard)];
+		index += 2;
 	}
 	const total = events[index];
 	const final = events[index + 1];
