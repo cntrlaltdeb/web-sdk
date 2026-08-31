@@ -6,6 +6,7 @@ import type {
 	ProductionBookEvent,
 	ValidatedProductionBook,
 } from './typesBookEvent';
+import type { Position, SymbolId } from '../typesBookEvent';
 
 const MAX_SAFE_INTEGER = 9_007_199_254_740_991;
 const MAX_WIN_MULTIPLIER = 20_000;
@@ -34,8 +35,28 @@ const symbolIds = new Set([
 	'kitchen_crown_scatter',
 	'pasta_wild',
 ]);
+const dishChefs: Readonly<
+	Record<Exclude<SymbolId, 'golden_cloche_wild' | 'kitchen_crown_scatter' | 'pasta_wild'>, ChefId>
+> = {
+	pizza: 'italian',
+	pasta_carbonara: 'italian',
+	tiramisu: 'italian',
+	frog_legs: 'french',
+	french_onion_soup: 'french',
+	croissant: 'french',
+	peking_duck: 'chinese',
+	kung_pao_chicken: 'chinese',
+	xiaolongbao: 'chinese',
+};
+const wildSymbols = new Set<SymbolId>(['golden_cloche_wild', 'pasta_wild']);
 
 type EventRecord = Record<string, unknown>;
+export type CanonicalProductionCluster = Readonly<{
+	chef: ChefId;
+	symbol: SymbolId;
+	positions: readonly Position[];
+	hasGoldenClocheWild: boolean;
+}>;
 
 const validatedBooks = new WeakSet<ValidatedProductionBook>();
 
@@ -117,6 +138,83 @@ function samePositions(
 			return other?.reel === position.reel && other.row === position.row;
 		})
 	);
+}
+
+const positionKey = (position: Position): string => `${position.reel}:${position.row}`;
+
+const comparePosition = (left: Position, right: Position): number =>
+	left.reel - right.reel || left.row - right.row;
+
+export function findCanonicalProductionClusters(
+	board: Board,
+): readonly CanonicalProductionCluster[] {
+	const candidates: CanonicalProductionCluster[] = [];
+	for (const [symbol, chef] of Object.entries(dishChefs) as Array<[SymbolId, ChefId]>) {
+		const available = new Map<string, Position>();
+		for (let reel = 0; reel < board.length; reel++) {
+			const symbols = board[reel];
+			if (!symbols) continue;
+			for (let row = 0; row < symbols.length; row++) {
+				const cell = symbols[row];
+				if (cell === symbol || wildSymbols.has(cell))
+					available.set(`${reel}:${row}`, { reel, row });
+			}
+		}
+		const visited = new Set<string>();
+		for (const start of [...available.values()].sort(comparePosition)) {
+			const startKey = positionKey(start);
+			if (visited.has(startKey)) continue;
+			const component: Position[] = [];
+			const pending = [start];
+			visited.add(startKey);
+			while (pending.length > 0) {
+				const current = pending.pop();
+				if (!current) continue;
+				component.push(current);
+				for (const neighbor of [
+					{ reel: current.reel - 1, row: current.row },
+					{ reel: current.reel + 1, row: current.row },
+					{ reel: current.reel, row: current.row - 1 },
+					{ reel: current.reel, row: current.row + 1 },
+				]) {
+					const key = positionKey(neighbor);
+					if (available.has(key) && !visited.has(key)) {
+						visited.add(key);
+						pending.push(neighbor);
+					}
+				}
+			}
+			if (
+				component.length < 4 ||
+				!component.some((position) => board[position.reel]?.[position.row] === symbol)
+			)
+				continue;
+			const positions = component.sort(comparePosition);
+			candidates.push({
+				chef,
+				symbol,
+				positions,
+				hasGoldenClocheWild: positions.some(
+					(position) => board[position.reel]?.[position.row] === 'golden_cloche_wild',
+				),
+			});
+		}
+	}
+	const claimed = new Set<string>();
+	return candidates
+		.sort((left, right) => {
+			if (left.positions.length !== right.positions.length)
+				return right.positions.length - left.positions.length;
+			if (left.symbol !== right.symbol) return left.symbol < right.symbol ? -1 : 1;
+			const leftFirst = left.positions[0];
+			const rightFirst = right.positions[0];
+			return leftFirst && rightFirst ? comparePosition(leftFirst, rightFirst) : 0;
+		})
+		.filter((cluster) => {
+			if (cluster.positions.some((position) => claimed.has(positionKey(position)))) return false;
+			cluster.positions.forEach((position) => claimed.add(positionKey(position)));
+			return true;
+		});
 }
 
 function validateRoundStart(event: EventRecord): void {
@@ -221,6 +319,7 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 	)
 		validationError('Base roundStart.meters must reset to zero');
 	if (!isBoard(revealBoard.board)) validationError('revealBoard.board');
+	const remainingClusters = [...findCanonicalProductionClusters(revealBoard.board)];
 
 	const meters: Record<ChefId, number> = { ...roundStart.meters };
 	const creditedSources = new Set<string>();
@@ -231,6 +330,17 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 		const cluster = events[index];
 		if (!cluster) validationError('clusterWin is required');
 		validateKnownPayload(cluster);
+		const expectedCluster = remainingClusters.shift();
+		if (
+			!expectedCluster ||
+			cluster.chef !== expectedCluster.chef ||
+			cluster.symbol !== expectedCluster.symbol ||
+			!samePositions(
+				requirePositions(cluster.positions, 'clusterWin.positions'),
+				expectedCluster.positions,
+			)
+		)
+			validationError('clusterWin must match the next canonical board cluster');
 		const chef = cluster.chef as ChefId;
 		const payout = requireSafeNonNegativeInteger(
 			cluster.payoutAtomicUnits,
@@ -291,6 +401,8 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 		index += 4;
 		clusterCount++;
 	}
+	if (remainingClusters.length > 0)
+		validationError('all current board clusters require a ledger credit');
 	if (clusterCount > 0) {
 		const cascade = events[index];
 		const settled = events[index + 1];
@@ -299,6 +411,9 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 			validationError('cascade requires boardSettled');
 		validateKnownPayload(cascade);
 		validateKnownPayload(settled);
+		if (!isBoard(settled.board)) validationError('boardSettled.board');
+		if (findCanonicalProductionClusters(settled.board).length > 0)
+			validationError('boardSettled leaves remaining clusters before terminal events');
 		index += 2;
 	}
 	const total = events[index];

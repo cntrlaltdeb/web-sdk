@@ -1,11 +1,27 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import P301 from '../books/production/P3-01.json';
-import { validateProductionBook } from './bookValidator';
+import { findCanonicalProductionClusters, validateProductionBook } from './bookValidator';
 import { playProductionBook, playValidatedProductionBook } from './localBookAdapter';
 import { productionState, resetProductionState } from './stateGame.svelte';
 
 type MutableBook = Array<Record<string, unknown>>;
+
+const equalSizeDifferentSymbolsBoard = [
+	['pizza', 'pizza', 'tiramisu', 'frog_legs', 'french_onion_soup'],
+	['pizza', 'pizza', 'kung_pao_chicken', 'xiaolongbao', 'peking_duck'],
+	['tiramisu', 'frog_legs', 'french_onion_soup', 'kung_pao_chicken', 'xiaolongbao'],
+	['croissant', 'croissant', 'tiramisu', 'frog_legs', 'french_onion_soup'],
+	['croissant', 'croissant', 'kung_pao_chicken', 'xiaolongbao', 'peking_duck'],
+] as const;
+
+const equalSizeAndSymbolBoard = [
+	['pizza', 'pizza', 'tiramisu', 'frog_legs', 'french_onion_soup'],
+	['pizza', 'pizza', 'kung_pao_chicken', 'xiaolongbao', 'peking_duck'],
+	['tiramisu', 'frog_legs', 'french_onion_soup', 'croissant', 'peking_duck'],
+	['frog_legs', 'french_onion_soup', 'croissant', 'pizza', 'pizza'],
+	['croissant', 'peking_duck', 'kung_pao_chicken', 'pizza', 'pizza'],
+] as const;
 
 const cloneBook = (): MutableBook => structuredClone(P301) as MutableBook;
 
@@ -62,5 +78,80 @@ describe('production Base cascade handlers', () => {
 		await expect(playProductionBook(canonicalize(invalidBook))).rejects.toThrow(error);
 		expect(productionState.roundId).toBe('keep-me');
 		expect(productionState.handledSequences).toEqual([]);
+	});
+
+	it.each([
+		[
+			'cluster that does not match the current canonical board',
+			(book: MutableBook) => {
+				const cluster = book[2];
+				if (!cluster) throw new Error('P3-01 first cluster is required');
+				cluster.symbol = 'tiramisu';
+			},
+			'canonical',
+		],
+		[
+			'winning boardSettled terminal state',
+			(book: MutableBook) => {
+				const settled = book[11];
+				const reveal = book[1];
+				if (!settled || !reveal) throw new Error('P3-01 board snapshots are required');
+				settled.board = reveal.board;
+			},
+			'remaining',
+		],
+	])(
+		'rejects semantic Base board drift before any frontend state mutation',
+		async (_name, mutate, error) => {
+			productionState.roundId = 'keep-me';
+			const invalidBook = cloneBook();
+			mutate(invalidBook);
+
+			await expect(playProductionBook(canonicalize(invalidBook))).rejects.toThrow(error);
+			expect(productionState.roundId).toBe('keep-me');
+		},
+	);
+
+	it('uses symbol then first position for equal-size canonical cluster ties', () => {
+		expect(
+			findCanonicalProductionClusters(equalSizeDifferentSymbolsBoard).map((cluster) => [
+				cluster.symbol,
+				cluster.positions[0],
+			]),
+		).toEqual([
+			['croissant', { reel: 3, row: 0 }],
+			['pizza', { reel: 0, row: 0 }],
+		]);
+		expect(
+			findCanonicalProductionClusters(equalSizeAndSymbolBoard).map(
+				(cluster) => cluster.positions[0],
+			),
+		).toEqual([
+			{ reel: 0, row: 0 },
+			{ reel: 3, row: 3 },
+		]);
+	});
+
+	it('accepts a zero-payout cluster cascade as a complete Base lifecycle', () => {
+		const zeroPayoutBook = cloneBook();
+		for (const index of [2, 6]) {
+			const cluster = zeroPayoutBook[index];
+			if (!cluster) throw new Error('P3-01 cluster is required');
+			cluster.basePayoutAtomicUnits = 0;
+			cluster.payoutAtomicUnits = 0;
+		}
+		for (const index of [3, 7]) {
+			const credit = zeroPayoutBook[index];
+			if (!credit) throw new Error('P3-01 credit is required');
+			credit.creditAtomicUnits = 0;
+			credit.balanceAfterAtomicUnits = 0;
+		}
+		const total = zeroPayoutBook[12];
+		const final = zeroPayoutBook[13];
+		if (!total || !final) throw new Error('P3-01 terminal events are required');
+		total.totalWinAtomicUnits = 0;
+		final.payoutAtomicUnits = 0;
+
+		expect(validateProductionBook(zeroPayoutBook).finalWinAtomicUnits).toBe(0);
 	});
 });
