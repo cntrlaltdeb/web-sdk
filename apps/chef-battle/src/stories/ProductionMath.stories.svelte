@@ -18,3 +18,5 @@
 <Story name="P3-02 Perfect Serve" args={{ roundId: 'P3-02' }} {template} />
 <Story name="P3-03 Sauce Flight" args={{ roundId: 'P3-03' }} {template} />
 <Story name="P3-04 Multi-Chef Service" args={{ roundId: 'P3-04' }} {template} />
+<Story name="P3-05 Natural Showdown" args={{ roundId: 'P3-05' }} {template} />
+<Story name="P3-06 Purchased Showdown" args={{ roundId: 'P3-06' }} {template} />

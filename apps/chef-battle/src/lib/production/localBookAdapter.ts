@@ -3,6 +3,8 @@ import P301 from '../books/production/P3-01.json';
 import P302 from '../books/production/P3-02.json';
 import P303 from '../books/production/P3-03.json';
 import P304 from '../books/production/P3-04.json';
+import P305 from '../books/production/P3-05.json';
+import P306 from '../books/production/P3-06.json';
 import { assertValidatedProductionBook, validateProductionBook } from './bookValidator';
 import { playProductionBookEvent } from './bookEventHandlerMap';
 import { resetProductionState } from './stateGame.svelte';
@@ -14,6 +16,8 @@ const staticBooks: Record<ProductionScenarioId, unknown> = {
 	'P3-02': P302,
 	'P3-03': P303,
 	'P3-04': P304,
+	'P3-05': P305,
+	'P3-06': P306,
 };
 
 export async function loadProductionBook(

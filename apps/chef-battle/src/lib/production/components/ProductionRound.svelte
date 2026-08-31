@@ -2,12 +2,14 @@
 	import { productionState } from '../stateGame.svelte';
 	import Board from '../../components/Board.svelte';
 	import PerfectServeBanner from './PerfectServeBanner.svelte';
+	import ProductionShowdownOverlay from './ProductionShowdownOverlay.svelte';
 	import ServiceQueue from './ServiceQueue.svelte';
 </script>
 
 <section aria-label="Production Chef Battle round">
 	<p class="round-win">Round ledger: {productionState.roundWinAtomicUnits}</p>
 	<p class="cascade">Cascade: {productionState.cascadeIndex}</p>
+	<ProductionShowdownOverlay />
 	<ServiceQueue />
 	<PerfectServeBanner />
 	<Board
