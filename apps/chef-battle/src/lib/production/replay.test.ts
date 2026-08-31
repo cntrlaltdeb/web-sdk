@@ -1,6 +1,8 @@
 import { cleanup, render, screen } from '@testing-library/svelte';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import P305 from '../books/production/P3-05.json';
+import P306 from '../books/production/P3-06.json';
 import P312 from '../books/production/P3-12.json';
 import P312Checkpoint from '../books/production/checkpoints/P3-12-e0040.json';
 import {
@@ -121,6 +123,16 @@ describe('production replay hashing and checkpoint contract', () => {
 		},
 	);
 
+	it('rejects non-string own keys instead of silently dropping them', async () => {
+		const hidden = Symbol('hidden');
+		const value: Record<PropertyKey, unknown> = { visible: 1, [hidden]: 'not-canonical' };
+
+		expect(() => canonicalProductionJson(value)).toThrow(/INVALID_CANONICAL_JSON/);
+		await expect(hashCanonicalProductionValue(value)).rejects.toThrow(
+			/INVALID_CANONICAL_JSON/,
+		);
+	});
+
 	it('prepares the whole P3-12 Book before exposing matching Book/state hashes', async () => {
 		const prepared = await prepare();
 		const saved = checkpoint();
@@ -171,6 +183,21 @@ describe('production replay hashing and checkpoint contract', () => {
 			meterUpdate?.event.meterAfter,
 		);
 		expect(transitions.at(-1)?.after).toEqual(reduceProductionEvents(events));
+	});
+
+	it.each([
+		['natural', P305, 2_500_001],
+		['purchased', P306, 1],
+	] as const)('rejects a forged %s Showdown start Bank in the reducer', (_entry, source, forgedBank) => {
+		const events = clone(source) as Array<Record<string, unknown>>;
+		const startIndex = events.findIndex((event) => event.type === 'kitchenShowdownStart');
+		const before = reduceProductionEvents(events.slice(0, startIndex));
+		const start = events[startIndex];
+		if (!start) throw new Error('kitchenShowdownStart required');
+		expect(before.bonusBankAtomicUnits).not.toBe(forgedBank);
+		start.bonusBankAtomicUnits = forgedBank;
+
+		expect(() => reduceProductionEvents([start], before)).toThrow(/Bank.*continuity/);
 	});
 
 	it('adds exactly three spins while preserving every persistent field and clearing Pasta', () => {

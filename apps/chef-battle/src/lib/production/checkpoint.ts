@@ -73,11 +73,14 @@ function canonicalFragment(value: unknown): string {
 		return String(value);
 	}
 	if (Array.isArray(value)) return `[${value.map(canonicalFragment).join(',')}]`;
-	if (isRecord(value))
+	if (isRecord(value)) {
+		if (Reflect.ownKeys(value).some((key) => typeof key !== 'string'))
+			replayError('INVALID_CANONICAL_JSON', 'object keys must be strings');
 		return `{${Object.keys(value)
 			.sort(compareUtf16ObjectKeys)
 			.map((key) => `${JSON.stringify(key)}:${canonicalFragment(value[key])}`)
 			.join(',')}}`;
+	}
 	replayError('INVALID_CANONICAL_JSON', `unsupported value ${typeof value}`);
 }
 
@@ -360,6 +363,11 @@ export function reduceProductionEvent(
 			break;
 		}
 		case 'kitchenShowdownStart':
+			if (event.bonusBankAtomicUnits !== next.bonusBankAtomicUnits)
+				replayError(
+					'INVALID_BOOK',
+					'kitchenShowdownStart Bank must preserve reducer continuity',
+				);
 			const openingQueue = (['italian', 'french', 'chinese'] as const)
 				.filter((chef) => event.meters[chef] === 100)
 				.map((chef) => ({

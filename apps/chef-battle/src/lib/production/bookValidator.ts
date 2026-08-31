@@ -1236,7 +1236,6 @@ function validateShowdownLifecycle(
 		state.currentFreeSpin !== 0 ||
 		state.remainingFreeSpins !== state.totalFreeSpins ||
 		state.winner !== null ||
-		state.bonusBankAtomicUnits !== transitionBefore(transitions, startIndex).bonusBankAtomicUnits ||
 		state.crownPotAtomicUnits !==
 			state.completedCourses.reduce((sum, course) => sum + course.valueAtomicUnits, 0) ||
 		(entryKind === 'natural' && state.activeSauceSpots.length !== 0)
