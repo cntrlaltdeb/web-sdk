@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { productionState } from '../stateGame.svelte';
+	import Board from '../../components/Board.svelte';
 	import PerfectServeBanner from './PerfectServeBanner.svelte';
 	import ServiceQueue from './ServiceQueue.svelte';
 </script>
@@ -9,6 +10,15 @@
 	<p class="cascade">Cascade: {productionState.cascadeIndex}</p>
 	<ServiceQueue />
 	<PerfectServeBanner />
+	<Board
+		board={productionState.board}
+		sauceSpots={productionState.activeSauceSpots}
+		pastaPullPositionKeys={productionState.pastaPullPositionKeys}
+		wokTossPositionKeys={productionState.wokTossPositionKeys}
+	/>
+	{#if productionState.lastSauceFlightMultiplier > 1}
+		<p class="sauce-flight">SAUCE FLIGHT ×{productionState.lastSauceFlightMultiplier}</p>
+	{/if}
 	<p class="final-win">Final win: {productionState.finalWinAtomicUnits}</p>
 </section>
 

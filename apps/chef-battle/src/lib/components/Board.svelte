@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { stateGame } from '../../game/stateGame.svelte';
-	import type { SauceSpot } from '../typesBookEvent';
-
 	export type BoardCell = {
 		position?: { reel: number; row: number };
 		symbol: string;
@@ -9,18 +6,27 @@
 		isScatter?: boolean;
 		multiplier?: number;
 	};
+	type BoardSauceSpot = {
+		position: { reel: number; row: number };
+		boost?: number;
+		multiplier?: number;
+	};
 
 	let {
+		board,
+		boardVersion = 0,
 		clusterPositionKeys = [],
 		removedPositionKeys = [],
 		pastaPullPositionKeys = [],
 		sauceSpots = [],
 		wokTossPositionKeys = [],
 	}: {
+		board: readonly BoardCell[] | readonly (readonly string[])[];
+		boardVersion?: number;
 		clusterPositionKeys?: string[];
 		removedPositionKeys?: string[];
 		pastaPullPositionKeys?: string[];
-		sauceSpots?: readonly SauceSpot[];
+		sauceSpots?: readonly BoardSauceSpot[];
 		wokTossPositionKeys?: string[];
 	} = $props();
 
@@ -33,9 +39,19 @@
 		Array.from({ length: 25 }, (_, index) => {
 			const reel = index % 5;
 			const row = Math.floor(index / 5);
+			const first = board[0];
+			if (Array.isArray(first)) {
+				const symbol = (board as readonly (readonly string[])[])[reel]?.[row] ?? 'Empty';
+				return {
+					position: { reel, row },
+					symbol,
+					isWild: symbol === 'golden_cloche_wild' || symbol === 'pasta_wild',
+					isScatter: symbol === 'kitchen_crown_scatter',
+				};
+			}
 			return (
-				stateGame.board.find(
-					(cell) => cell.position.reel === reel && cell.position.row === row,
+				(board as readonly BoardCell[]).find(
+					(cell) => cell.position?.reel === reel && cell.position.row === row,
 				) ?? {
 					position: { reel, row },
 					symbol: 'Empty',
@@ -47,7 +63,7 @@
 </script>
 
 <section class="board" aria-label="Chef Battle board">
-	{#key stateGame.boardVersion}
+	{#key boardVersion}
 		{#each visualCells() as cell, index (cellKey(cell, index))}
 			{@const positionKey = cellKey(cell, index)}
 			{@const pastaPullActive = pastaPullPositionKeys.includes(positionKey)}
@@ -69,7 +85,11 @@
 				<span class="symbol">{cell.isWild ? 'Wild' : cell.isScatter ? 'Scatter' : cell.symbol}</span
 				>
 				{#if sauceSpot}
-					<span class="multiplier">×{sauceSpot.multiplier}</span>
+					<span class="multiplier">
+						{sauceSpot.boost === undefined
+							? `×${sauceSpot.multiplier}`
+							: `BOOST +${sauceSpot.boost}×`}
+					</span>
 				{/if}
 			</div>
 		{/each}

@@ -4,6 +4,7 @@ import type {
 	GameMode,
 	MeterValues,
 	ProductionBookEvent,
+	SauceSpot,
 	ValidatedProductionBook,
 } from './typesBookEvent';
 import type { Position, SymbolId } from '../typesBookEvent';
@@ -49,6 +50,7 @@ const dishChefs: Readonly<
 	xiaolongbao: 'chinese',
 };
 const wildSymbols = new Set<SymbolId>(['golden_cloche_wild', 'pasta_wild']);
+const chineseSymbols = new Set<SymbolId>(['peking_duck', 'kung_pao_chicken', 'xiaolongbao']);
 
 type EventRecord = Record<string, unknown>;
 export type CanonicalProductionCluster = Readonly<{
@@ -136,6 +138,42 @@ function samePositions(
 		left.every((position, index) => {
 			const other = right[index];
 			return other?.reel === position.reel && other.row === position.row;
+		})
+	);
+}
+
+function requireSauceSpots(value: unknown, field: string, minimum = 0, maximum = 5): SauceSpot[] {
+	if (!Array.isArray(value) || value.length < minimum || value.length > maximum)
+		validationError(`${field} must contain from ${minimum} to ${maximum} spots`);
+	const spots = value.map((spot, index) => {
+		if (!isRecord(spot) || Object.keys(spot).length !== 2)
+			validationError(`${field}[${index}] must be a Sauce spot`);
+		const [position] = requirePositions([spot.position], `${field}[${index}].position`);
+		if (!position) validationError(`${field}[${index}].position is required`);
+		if (
+			typeof spot.boost !== 'number' ||
+			!Number.isInteger(spot.boost) ||
+			spot.boost < 1 ||
+			spot.boost > 9
+		)
+			validationError(`${field}[${index}].boost must be from 1 to 9`);
+		return { position, boost: spot.boost };
+	});
+	if (new Set(spots.map((spot) => positionKey(spot.position))).size !== spots.length)
+		validationError(`${field} must contain unique positions`);
+	return spots;
+}
+
+function sameSauceSpots(left: readonly SauceSpot[], right: readonly SauceSpot[]): boolean {
+	return (
+		left.length === right.length &&
+		left.every((spot, index) => {
+			const other = right[index];
+			return (
+				other?.boost === spot.boost &&
+				other.position.reel === spot.position.reel &&
+				other.position.row === spot.position.row
+			);
 		})
 	);
 }
@@ -253,11 +291,13 @@ function validateKnownPayload(event: EventRecord): void {
 				event.basePayoutAtomicUnits,
 				'clusterWin.basePayoutAtomicUnits',
 			);
-			if (!Array.isArray(event.appliedSauceSpots) || event.appliedSauceSpots.length !== 0)
-				validationError('clusterWin.appliedSauceSpots');
-			if (event.sauceFlightMultiplier !== 1) validationError('clusterWin.sauceFlightMultiplier');
-			if (event.payoutAtomicUnits !== event.basePayoutAtomicUnits)
-				validationError('clusterWin.payoutAtomicUnits');
+			requireSauceSpots(event.appliedSauceSpots, 'clusterWin.appliedSauceSpots');
+			if (
+				!isSafeNonNegativeInteger(event.sauceFlightMultiplier) ||
+				event.sauceFlightMultiplier < 1 ||
+				event.sauceFlightMultiplier > 46
+			)
+				validationError('clusterWin.sauceFlightMultiplier');
 			requireSafeNonNegativeInteger(event.payoutAtomicUnits, 'clusterWin.payoutAtomicUnits');
 			return;
 		}
@@ -304,6 +344,26 @@ function validateKnownPayload(event: EventRecord): void {
 			requirePositions(event.positions, 'pastaPull.positions');
 			if (!isBoard(event.boardAfter)) validationError('pastaPull.boardAfter');
 			return;
+		case 'sauceFinish':
+			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
+				validationError('sauceFinish.queueEntryId');
+			requireSauceSpots(event.appliedSpots, 'sauceFinish.appliedSpots', 3);
+			requireSauceSpots(event.activeSpots, 'sauceFinish.activeSpots');
+			return;
+		case 'wokToss':
+			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
+				validationError('wokToss.queueEntryId');
+			if (requirePositions(event.positions, 'wokToss.positions').length < 4)
+				validationError('wokToss.positions must contain from four to eight positions');
+			if (!Array.isArray(event.positions) || event.positions.length > 8)
+				validationError('wokToss.positions must contain from four to eight positions');
+			if (
+				typeof event.targetSymbol !== 'string' ||
+				!chineseSymbols.has(event.targetSymbol as SymbolId)
+			)
+				validationError('wokToss.targetSymbol must be a Chinese dish');
+			if (!isBoard(event.boardAfter)) validationError('wokToss.boardAfter');
+			return;
 		case 'perfectServeAward':
 			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
 				validationError('perfectServeAward.queueEntryId');
@@ -314,11 +374,7 @@ function validateKnownPayload(event: EventRecord): void {
 			requireSafeNonNegativeInteger(event.payoutAtomicUnits, 'perfectServeAward.payoutAtomicUnits');
 			return;
 		case 'serviceQueueClosed':
-			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
-				validationError('serviceQueueClosed.queueEntryId');
-			if (typeof event.chef !== 'string' || !chefIds.has(event.chef as ChefId))
-				validationError('serviceQueueClosed.chef');
-			if (!isBoard(event.board)) validationError('serviceQueueClosed.board');
+			if (!isBoard(event.finalBoard)) validationError('serviceQueueClosed.finalBoard');
 			return;
 		case 'setTotalWin':
 			requireSafeNonNegativeInteger(event.totalWinAtomicUnits, 'setTotalWin.totalWinAtomicUnits');
@@ -354,6 +410,7 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 
 	const meters: Record<ChefId, number> = { ...roundStart.meters };
 	const readyEntries: Array<{ id: string; chef: ChefId; perfectServeUnits: number }> = [];
+	let activeSauceSpots: SauceSpot[] = [];
 	const creditedSources = new Set<string>();
 	let balance = 0;
 	let index = 2;
@@ -366,42 +423,119 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 				validationError('all remaining board clusters require a ledger credit');
 			validateKnownPayload(cluster);
 			const expectedCluster = remainingClusters.shift();
-			if (!expectedCluster || cluster.chef !== expectedCluster.chef || cluster.symbol !== expectedCluster.symbol || !samePositions(requirePositions(cluster.positions, 'clusterWin.positions'), expectedCluster.positions)) validationError('clusterWin must match the next canonical board cluster');
+			if (
+				!expectedCluster ||
+				cluster.chef !== expectedCluster.chef ||
+				cluster.symbol !== expectedCluster.symbol ||
+				!samePositions(
+					requirePositions(cluster.positions, 'clusterWin.positions'),
+					expectedCluster.positions,
+				)
+			)
+				validationError('clusterWin must match the next canonical board cluster');
 			const chef = cluster.chef as ChefId;
-			const payout = requireSafeNonNegativeInteger(cluster.payoutAtomicUnits, 'clusterWin.payoutAtomicUnits');
+			const expectedAppliedSpots = activeSauceSpots.filter((spot) =>
+				expectedCluster.positions.some(
+					(position) => positionKey(position) === positionKey(spot.position),
+				),
+			);
+			const appliedSpots = requireSauceSpots(
+				cluster.appliedSauceSpots,
+				'clusterWin.appliedSauceSpots',
+			);
+			if (!sameSauceSpots(appliedSpots, expectedAppliedSpots))
+				validationError('clusterWin.appliedSauceSpots must be the exact active cluster subset');
+			const expectedMultiplier =
+				1 + expectedAppliedSpots.reduce((total, spot) => total + spot.boost, 0);
+			if (cluster.sauceFlightMultiplier !== expectedMultiplier)
+				validationError('clusterWin.sauceFlightMultiplier');
+			const basePayout = requireSafeNonNegativeInteger(
+				cluster.basePayoutAtomicUnits,
+				'clusterWin.basePayoutAtomicUnits',
+			);
+			const payout = requireSafeNonNegativeInteger(
+				cluster.payoutAtomicUnits,
+				'clusterWin.payoutAtomicUnits',
+			);
+			if (payout !== basePayout * expectedMultiplier)
+				validationError('clusterWin.payoutAtomicUnits must trust the supplied Sauce Flight result');
 			const ledger = events[index + 1];
-			if (!ledger || ledger.type !== 'roundWinUpdate') validationError('clusterWin requires immediate roundWinUpdate');
+			if (!ledger || ledger.type !== 'roundWinUpdate')
+				validationError('clusterWin requires immediate roundWinUpdate');
 			validateKnownPayload(ledger);
-			if (ledger.sourceEventId !== cluster.id || creditedSources.has(ledger.sourceEventId as string)) validationError('roundWinUpdate.sourceEventId must credit one unique cluster source');
-			const credit = requireSafeNonNegativeInteger(ledger.creditAtomicUnits, 'roundWinUpdate.creditAtomicUnits');
-			const balanceAfter = requireSafeNonNegativeInteger(ledger.balanceAfterAtomicUnits, 'roundWinUpdate.balanceAfterAtomicUnits');
-			if (credit !== payout || balanceAfter !== balance + credit) validationError('roundWinUpdate.balanceAfterAtomicUnits must exactly credit the source');
+			if (
+				ledger.sourceEventId !== cluster.id ||
+				creditedSources.has(ledger.sourceEventId as string)
+			)
+				validationError('roundWinUpdate.sourceEventId must credit one unique cluster source');
+			const credit = requireSafeNonNegativeInteger(
+				ledger.creditAtomicUnits,
+				'roundWinUpdate.creditAtomicUnits',
+			);
+			const balanceAfter = requireSafeNonNegativeInteger(
+				ledger.balanceAfterAtomicUnits,
+				'roundWinUpdate.balanceAfterAtomicUnits',
+			);
+			if (credit !== payout || balanceAfter !== balance + credit)
+				validationError('roundWinUpdate.balanceAfterAtomicUnits must exactly credit the source');
 			creditedSources.add(ledger.sourceEventId as string);
 			balance = balanceAfter;
 			const meter = events[index + 2];
-			if (!meter || meter.type !== 'chefMeterUpdate') validationError('roundWinUpdate requires chefMeterUpdate');
+			if (!meter || meter.type !== 'chefMeterUpdate')
+				validationError('roundWinUpdate requires chefMeterUpdate');
 			validateKnownPayload(meter);
 			if (meter.chef !== chef) validationError('chefMeterUpdate.chef');
-			const earned = requireSafeNonNegativeInteger(meter.earnedCharge, 'chefMeterUpdate.earnedCharge');
-			const applied = requireSafeNonNegativeInteger(meter.appliedCharge, 'chefMeterUpdate.appliedCharge');
-			const overflow = requireSafeNonNegativeInteger(meter.overflowCharge, 'chefMeterUpdate.overflowCharge');
-			const meterAfter = requireSafeNonNegativeInteger(meter.meterAfter, 'chefMeterUpdate.meterAfter');
+			const earned = requireSafeNonNegativeInteger(
+				meter.earnedCharge,
+				'chefMeterUpdate.earnedCharge',
+			);
+			const applied = requireSafeNonNegativeInteger(
+				meter.appliedCharge,
+				'chefMeterUpdate.appliedCharge',
+			);
+			const overflow = requireSafeNonNegativeInteger(
+				meter.overflowCharge,
+				'chefMeterUpdate.overflowCharge',
+			);
+			const meterAfter = requireSafeNonNegativeInteger(
+				meter.meterAfter,
+				'chefMeterUpdate.meterAfter',
+			);
 			const expectedApplied = Math.min(earned, 100 - meters[chef]);
 			const expectedOverflow = earned - expectedApplied;
 			const expectedMeterAfter = Math.min(100, meters[chef] + earned);
-			if (applied !== expectedApplied || overflow !== expectedOverflow || meterAfter !== expectedMeterAfter) validationError('chefMeterUpdate charge fields');
+			if (
+				applied !== expectedApplied ||
+				overflow !== expectedOverflow ||
+				meterAfter !== expectedMeterAfter
+			)
+				validationError('chefMeterUpdate charge fields');
 			const existingEntry = readyEntries.find((entry) => entry.chef === chef);
 			if (meterAfter === 100) {
-				const expectedId = existingEntry?.id ?? `${roundStart.roundId}-service-${String(serviceWindowIndex).padStart(2, '0')}-${chef}`;
+				const expectedId =
+					existingEntry?.id ??
+					`${roundStart.roundId}-service-${String(serviceWindowIndex).padStart(2, '0')}-${chef}`;
 				const expectedUnits = (existingEntry?.perfectServeUnits ?? 0) + overflow;
-				if (meter.serviceQueueEntryId !== expectedId || meter.perfectServeUnitsAfter !== expectedUnits) validationError('chefMeterUpdate service queue fields');
+				if (
+					meter.serviceQueueEntryId !== expectedId ||
+					meter.perfectServeUnitsAfter !== expectedUnits
+				)
+					validationError('chefMeterUpdate service queue fields');
 				if (existingEntry) existingEntry.perfectServeUnits = expectedUnits;
 				else readyEntries.push({ id: expectedId, chef, perfectServeUnits: expectedUnits });
-			} else if (meter.serviceQueueEntryId !== null || meter.perfectServeUnitsAfter !== 0) validationError('chefMeterUpdate service queue fields');
+			} else if (meter.serviceQueueEntryId !== null || meter.perfectServeUnitsAfter !== 0)
+				validationError('chefMeterUpdate service queue fields');
 			meters[chef] = meterAfter;
 			const removal = events[index + 3];
-			if (!removal || removal.type !== 'removeSymbols') validationError('chefMeterUpdate requires removeSymbols');
-			if (!samePositions(requirePositions(removal.positions, 'removeSymbols.positions'), requirePositions(cluster.positions, 'clusterWin.positions'))) validationError('removeSymbols.positions must match clusterWin.positions');
+			if (!removal || removal.type !== 'removeSymbols')
+				validationError('chefMeterUpdate requires removeSymbols');
+			if (
+				!samePositions(
+					requirePositions(removal.positions, 'removeSymbols.positions'),
+					requirePositions(cluster.positions, 'clusterWin.positions'),
+				)
+			)
+				validationError('removeSymbols.positions must match clusterWin.positions');
 			index += 4;
 		}
 	};
@@ -427,89 +561,150 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 		)
 			validationError('serviceQueueOpened queue order must match READY chefs');
 		index++;
-		const entry = readyEntries[0];
-		if (readyEntries.length !== 1 || entry?.chef !== 'italian')
-			validationError('Task 3 Service Queue requires Italian as the only next chef');
-		if (!entry) validationError('Service Queue entry is required');
-		const pasta = events[index];
-		if (!pasta || pasta.type !== 'pastaPull')
-			validationError('serviceQueueOpened requires one pastaPull');
-		validateKnownPayload(pasta);
-		if (pasta.queueEntryId !== entry.id) validationError('pastaPull.queueEntryId');
-		const positions = requirePositions(pasta.positions, 'pastaPull.positions');
-		const visited = new Set<string>([`${positions[0]?.reel}:${positions[0]?.row}`]);
-		const pending = [...positions.slice(0, 1)];
-		while (pending.length > 0) {
-			const position = pending.pop();
-			if (!position) continue;
-			for (const neighbour of [
-				{ reel: position.reel - 1, row: position.row },
-				{ reel: position.reel + 1, row: position.row },
-				{ reel: position.reel, row: position.row - 1 },
-				{ reel: position.reel, row: position.row + 1 },
-			]) {
-				const key = `${neighbour.reel}:${neighbour.row}`;
-				if (positions.some((selected) => positionKey(selected) === key) && !visited.has(key)) {
-					visited.add(key);
-					pending.push(neighbour);
+		const pastaPositionKeys = new Set<string>();
+		const wokPositionKeys = new Set<string>();
+		for (const entry of readyEntries) {
+			const special = events[index];
+			if (!special) validationError('Service Queue entry requires a Chef Special');
+			if (special.queueEntryId !== entry.id) validationError('Chef Special queueEntryId');
+
+			if (entry.chef === 'italian') {
+				if (special.type !== 'pastaPull')
+					validationError('Italian Service Queue entry requires pastaPull');
+				validateKnownPayload(special);
+				const positions = requirePositions(special.positions, 'pastaPull.positions');
+				if (positions.some((position) => wokPositionKeys.has(positionKey(position))))
+					validationError('Pasta Pull and Wok Toss positions must not overlap');
+				const visited = new Set<string>([positionKey(positions[0] as Position)]);
+				const pending = [...positions.slice(0, 1)];
+				while (pending.length > 0) {
+					const position = pending.pop();
+					if (!position) continue;
+					for (const neighbour of [
+						{ reel: position.reel - 1, row: position.row },
+						{ reel: position.reel + 1, row: position.row },
+						{ reel: position.reel, row: position.row - 1 },
+						{ reel: position.reel, row: position.row + 1 },
+					]) {
+						const key = positionKey(neighbour);
+						if (positions.some((selected) => positionKey(selected) === key) && !visited.has(key)) {
+							visited.add(key);
+							pending.push(neighbour);
+						}
+					}
 				}
+				if (visited.size !== positions.length)
+					validationError('pastaPull.positions must be neighbouring');
+				const expectedBoard = currentBoard.map((reel) => [...reel]);
+				positions.forEach((position) => {
+					const reel = expectedBoard[position.reel];
+					if (reel) reel[position.row] = 'pasta_wild';
+					pastaPositionKeys.add(positionKey(position));
+				});
+				if (JSON.stringify(special.boardAfter) !== JSON.stringify(expectedBoard))
+					validationError('pastaPull.boardAfter');
+				if (!isBoard(special.boardAfter)) validationError('pastaPull.boardAfter');
+				currentBoard = special.boardAfter;
+			} else if (entry.chef === 'french') {
+				if (special.type !== 'sauceFinish')
+					validationError('French Service Queue entry requires sauceFinish');
+				validateKnownPayload(special);
+				const writes = requireSauceSpots(special.appliedSpots, 'sauceFinish.appliedSpots', 3);
+				const replacements = new Map(
+					activeSauceSpots.map((spot) => [positionKey(spot.position), spot]),
+				);
+				writes.forEach((spot) => replacements.set(positionKey(spot.position), spot));
+				if (replacements.size > 5)
+					validationError('Sauce Finish cannot exceed five active positions');
+				const expectedActive = [...replacements.values()].sort((left, right) =>
+					comparePosition(left.position, right.position),
+				);
+				const active = requireSauceSpots(special.activeSpots, 'sauceFinish.activeSpots');
+				if (!sameSauceSpots(active, expectedActive))
+					validationError('sauceFinish.activeSpots must be the sorted full active snapshot');
+				activeSauceSpots = active;
+			} else {
+				if (special.type !== 'wokToss')
+					validationError('Chinese Service Queue entry requires wokToss');
+				validateKnownPayload(special);
+				const positions = requirePositions(special.positions, 'wokToss.positions');
+				if (positions.some((position) => pastaPositionKeys.has(positionKey(position))))
+					validationError('Pasta Pull and Wok Toss positions must not overlap');
+				const beforeClusters = findCanonicalProductionClusters(currentBoard).filter(
+					(cluster) => cluster.chef === 'chinese',
+				);
+				const expectedBoard = currentBoard.map((reel) => [...reel]);
+				positions.forEach((position) => {
+					const reel = expectedBoard[position.reel];
+					if (reel) reel[position.row] = special.targetSymbol as SymbolId;
+					wokPositionKeys.add(positionKey(position));
+				});
+				if (JSON.stringify(special.boardAfter) !== JSON.stringify(expectedBoard))
+					validationError('wokToss.boardAfter');
+				if (!isBoard(special.boardAfter)) validationError('wokToss.boardAfter');
+				const createsOrExpands = findCanonicalProductionClusters(special.boardAfter).some(
+					(cluster) => {
+						if (
+							cluster.chef !== 'chinese' ||
+							!cluster.positions.some((position) => wokPositionKeys.has(positionKey(position)))
+						)
+							return false;
+						const afterKeys = new Set(cluster.positions.map(positionKey));
+						return !beforeClusters.some(
+							(before) =>
+								before.symbol === cluster.symbol &&
+								[...afterKeys].every((key) =>
+									before.positions.some((position) => positionKey(position) === key),
+								),
+						);
+					},
+				);
+				if (!createsOrExpands) validationError('wokToss must create or expand a Chinese cluster');
+				currentBoard = special.boardAfter;
 			}
-		}
-		if (visited.size !== positions.length)
-			validationError('pastaPull.positions must be neighbouring');
-		const expectedBoard = currentBoard.map((reel) => [...reel]);
-		positions.forEach((position) => {
-			const reel = expectedBoard[position.reel];
-			if (reel) reel[position.row] = 'pasta_wild';
-		});
-		if (JSON.stringify(pasta.boardAfter) !== JSON.stringify(expectedBoard))
-			validationError('pastaPull.boardAfter');
-		const pastaBoard = pasta.boardAfter;
-		if (!isBoard(pastaBoard)) validationError('pastaPull.boardAfter');
-		currentBoard = pastaBoard;
-		index++;
-		if (entry.perfectServeUnits > 0) {
-			const award = events[index];
-			if (!award || award.type !== 'perfectServeAward')
-				validationError('unconsumed overflow requires perfectServeAward');
-			validateKnownPayload(award);
-			if (
-				award.queueEntryId !== entry.id ||
-				award.consumedOverflowUnits !== entry.perfectServeUnits
-			)
-				validationError('perfectServeAward must consume all overflow units');
-			const awardId = award.id;
-			const awardPayout = requireSafeNonNegativeInteger(
-				award.payoutAtomicUnits,
-				'perfectServeAward.payoutAtomicUnits',
-			);
-			if (typeof awardId !== 'string' || creditedSources.has(awardId))
-				validationError('perfectServeAward ledger source');
-			const ledger = events[index + 1];
-			if (!ledger || ledger.type !== 'roundWinUpdate')
-				validationError('perfectServeAward requires immediate roundWinUpdate');
-			validateKnownPayload(ledger);
-			if (
-				ledger.sourceEventId !== awardId ||
-				ledger.creditAtomicUnits !== awardPayout ||
-				ledger.balanceAfterAtomicUnits !== balance + awardPayout
-			)
-				validationError('roundWinUpdate must exactly credit perfectServeAward');
-			creditedSources.add(awardId);
-			balance += awardPayout;
-			index += 2;
+
+			index++;
+			if (entry.perfectServeUnits > 0) {
+				const award = events[index];
+				if (!award || award.type !== 'perfectServeAward')
+					validationError('unconsumed overflow requires perfectServeAward');
+				validateKnownPayload(award);
+				if (
+					award.queueEntryId !== entry.id ||
+					award.consumedOverflowUnits !== entry.perfectServeUnits
+				)
+					validationError('perfectServeAward must consume all overflow units');
+				const awardId = award.id;
+				const awardPayout = requireSafeNonNegativeInteger(
+					award.payoutAtomicUnits,
+					'perfectServeAward.payoutAtomicUnits',
+				);
+				if (typeof awardId !== 'string' || creditedSources.has(awardId))
+					validationError('perfectServeAward ledger source');
+				const ledger = events[index + 1];
+				if (!ledger || ledger.type !== 'roundWinUpdate')
+					validationError('perfectServeAward requires immediate roundWinUpdate');
+				validateKnownPayload(ledger);
+				if (
+					ledger.sourceEventId !== awardId ||
+					ledger.creditAtomicUnits !== awardPayout ||
+					ledger.balanceAfterAtomicUnits !== balance + awardPayout
+				)
+					validationError('roundWinUpdate must exactly credit perfectServeAward');
+				creditedSources.add(awardId);
+				balance += awardPayout;
+				index += 2;
+			} else if (events[index]?.type === 'perfectServeAward') {
+				validationError('Perfect Serve payout requires overflow units');
+			}
+			meters[entry.chef] = 0;
 		}
 		const closed = events[index];
 		if (!closed || closed.type !== 'serviceQueueClosed')
-			validationError('Pasta Pull service requires serviceQueueClosed');
+			validationError('Service Queue requires serviceQueueClosed');
 		validateKnownPayload(closed);
-		if (
-			closed.queueEntryId !== entry.id ||
-			closed.chef !== entry.chef ||
-			JSON.stringify(closed.board) !== JSON.stringify(currentBoard)
-		)
-			validationError('serviceQueueClosed must repeat the final board');
-		meters[entry.chef] = 0;
+		if (JSON.stringify(closed.finalBoard) !== JSON.stringify(currentBoard))
+			validationError('serviceQueueClosed.finalBoard must repeat the final board');
 		index++;
 		readyEntries.splice(0);
 		serviceWindowIndex++;
@@ -525,8 +720,10 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 		const cascade = events[index];
 		const settled = events[index + 1];
 		if (!cascade || cascade.type !== 'cascade') validationError('Base clusters require cascade');
-		if (cascade.index !== cascadeIndex) validationError('cascade.index must increment for each cluster group');
-		if (!settled || settled.type !== 'boardSettled') validationError('cascade requires boardSettled');
+		if (cascade.index !== cascadeIndex)
+			validationError('cascade.index must increment for each cluster group');
+		if (!settled || settled.type !== 'boardSettled')
+			validationError('cascade requires boardSettled');
 		validateKnownPayload(cascade);
 		validateKnownPayload(settled);
 		if (!isBoard(settled.board)) validationError('boardSettled.board');

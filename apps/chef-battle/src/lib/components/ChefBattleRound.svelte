@@ -9,6 +9,8 @@
 	<ChefMeters meters={stateGame.meters} />
 	<ShowdownOverlay />
 	<Board
+		board={stateGame.board}
+		boardVersion={stateGame.boardVersion}
 		clusterPositionKeys={stateGame.clusterPositionKeys}
 		removedPositionKeys={stateGame.removedPositionKeys}
 		pastaPullPositionKeys={stateGame.pastaPullPositionKeys}

@@ -19,7 +19,10 @@ export const productionBookEventHandlerMap = {
 	revealBoard: (event) => {
 		productionState.board = event.board.map((reel) => [...reel]);
 	},
-	clusterWin: () => {},
+	clusterWin: (event) => {
+		productionState.lastSauceFlightMultiplier = event.sauceFlightMultiplier;
+		productionState.lastClusterWinAtomicUnits = event.payoutAtomicUnits;
+	},
 	roundWinUpdate: (event) => {
 		productionState.roundWinAtomicUnits = event.balanceAfterAtomicUnits;
 	},
@@ -38,13 +41,27 @@ export const productionBookEventHandlerMap = {
 	},
 	pastaPull: (event) => {
 		productionState.board = event.boardAfter.map((reel) => [...reel]);
+		productionState.pastaPullPositionKeys = event.positions.map(
+			(position) => `${position.reel}:${position.row}`,
+		);
+	},
+	sauceFinish: (event) => {
+		productionState.activeSauceSpots = event.activeSpots.map((spot) => ({
+			position: { ...spot.position },
+			boost: spot.boost,
+		}));
+	},
+	wokToss: (event) => {
+		productionState.board = event.boardAfter.map((reel) => [...reel]);
+		productionState.wokTossPositionKeys = event.positions.map(
+			(position) => `${position.reel}:${position.row}`,
+		);
 	},
 	perfectServeAward: (event) => {
 		productionState.perfectServePayoutAtomicUnits = event.payoutAtomicUnits;
 	},
 	serviceQueueClosed: (event) => {
-		productionState.meters = { ...productionState.meters, [event.chef]: 0 };
-		productionState.board = event.board.map((reel) => [...reel]);
+		productionState.board = event.finalBoard.map((reel) => [...reel]);
 		productionState.serviceQueue = [];
 	},
 	setTotalWin: (event) => {
@@ -52,6 +69,9 @@ export const productionBookEventHandlerMap = {
 	},
 	finalWin: (event) => {
 		productionState.finalWinAtomicUnits = event.payoutAtomicUnits;
+		productionState.activeSauceSpots = [];
+		productionState.pastaPullPositionKeys = [];
+		productionState.wokTossPositionKeys = [];
 	},
 } satisfies ProductionBookEventHandlerMap;
 

@@ -361,9 +361,7 @@
     "sequence": 17,
     "roundId": "P3-02",
     "type": "serviceQueueClosed",
-    "queueEntryId": "P3-02-service-01-italian",
-    "chef": "italian",
-    "board": [
+    "finalBoard": [
       [
         "pasta_wild",
         "pasta_wild",

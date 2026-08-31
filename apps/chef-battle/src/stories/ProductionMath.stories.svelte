@@ -16,3 +16,5 @@
 <Story name="P3-00 Zero Win" args={{ roundId: 'P3-00' }} {template} />
 <Story name="P3-01 Base Cascade Ledger" args={{ roundId: 'P3-01' }} {template} />
 <Story name="P3-02 Perfect Serve" args={{ roundId: 'P3-02' }} {template} />
+<Story name="P3-03 Sauce Flight" args={{ roundId: 'P3-03' }} {template} />
+<Story name="P3-04 Multi-Chef Service" args={{ roundId: 'P3-04' }} {template} />
