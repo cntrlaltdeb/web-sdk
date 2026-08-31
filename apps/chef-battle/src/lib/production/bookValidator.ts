@@ -278,8 +278,12 @@ function validateKnownPayload(event: EventRecord): void {
 			requireSafeNonNegativeInteger(event.overflowCharge, 'chefMeterUpdate.overflowCharge');
 			if (!isSafeNonNegativeInteger(event.meterAfter) || event.meterAfter > 100)
 				validationError('chefMeterUpdate.meterAfter');
-			if (event.serviceQueueEntryId !== null || event.perfectServeUnitsAfter !== 0)
-				validationError('chefMeterUpdate service queue fields');
+			if (event.serviceQueueEntryId !== null && typeof event.serviceQueueEntryId !== 'string')
+				validationError('chefMeterUpdate.serviceQueueEntryId');
+			requireSafeNonNegativeInteger(
+				event.perfectServeUnitsAfter,
+				'chefMeterUpdate.perfectServeUnitsAfter',
+			);
 			return;
 		case 'removeSymbols':
 			requirePositions(event.positions, 'removeSymbols.positions');
@@ -289,6 +293,31 @@ function validateKnownPayload(event: EventRecord): void {
 			return;
 		case 'boardSettled':
 			if (!isBoard(event.board)) validationError('boardSettled.board');
+			return;
+		case 'serviceQueueOpened':
+			if (!Array.isArray(event.entries)) validationError('serviceQueueOpened.entries');
+			return;
+		case 'pastaPull':
+			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
+				validationError('pastaPull.queueEntryId');
+			requirePositions(event.positions, 'pastaPull.positions');
+			if (!isBoard(event.boardAfter)) validationError('pastaPull.boardAfter');
+			return;
+		case 'perfectServeAward':
+			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
+				validationError('perfectServeAward.queueEntryId');
+			requireSafeNonNegativeInteger(
+				event.consumedOverflowUnits,
+				'perfectServeAward.consumedOverflowUnits',
+			);
+			requireSafeNonNegativeInteger(event.payoutAtomicUnits, 'perfectServeAward.payoutAtomicUnits');
+			return;
+		case 'serviceQueueClosed':
+			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
+				validationError('serviceQueueClosed.queueEntryId');
+			if (typeof event.chef !== 'string' || !chefIds.has(event.chef as ChefId))
+				validationError('serviceQueueClosed.chef');
+			if (!isBoard(event.board)) validationError('serviceQueueClosed.board');
 			return;
 		case 'setTotalWin':
 			requireSafeNonNegativeInteger(event.totalWinAtomicUnits, 'setTotalWin.totalWinAtomicUnits');
@@ -322,6 +351,7 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 	const remainingClusters = [...findCanonicalProductionClusters(revealBoard.board)];
 
 	const meters: Record<ChefId, number> = { ...roundStart.meters };
+	const readyEntries: Array<{ id: string; chef: ChefId; perfectServeUnits: number }> = [];
 	const creditedSources = new Set<string>();
 	let balance = 0;
 	let index = 2;
@@ -387,6 +417,20 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 		);
 		if (earned !== applied + overflow || meterAfter !== meters[chef] + applied || meterAfter > 100)
 			validationError('chefMeterUpdate charge fields');
+		const existingEntry = readyEntries.find((entry) => entry.chef === chef);
+		if (meterAfter === 100) {
+			const expectedId = existingEntry?.id ?? `${roundStart.roundId}-service-01-${chef}`;
+			const expectedUnits = (existingEntry?.perfectServeUnits ?? 0) + overflow;
+			if (
+				meter.serviceQueueEntryId !== expectedId ||
+				meter.perfectServeUnitsAfter !== expectedUnits
+			)
+				validationError('chefMeterUpdate service queue fields');
+			if (existingEntry) existingEntry.perfectServeUnits = expectedUnits;
+			else readyEntries.push({ id: expectedId, chef, perfectServeUnits: expectedUnits });
+		} else if (meter.serviceQueueEntryId !== null || meter.perfectServeUnitsAfter !== 0) {
+			validationError('chefMeterUpdate service queue fields');
+		}
 		meters[chef] = meterAfter;
 		const removal = events[index + 3];
 		if (!removal || removal.type !== 'removeSymbols')
@@ -403,6 +447,7 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 	}
 	if (remainingClusters.length > 0)
 		validationError('all current board clusters require a ledger credit');
+	let currentBoard: Board = revealBoard.board;
 	if (clusterCount > 0) {
 		const cascade = events[index];
 		const settled = events[index + 1];
@@ -414,7 +459,114 @@ function validateBaseLifecycle(events: EventRecord[]): number {
 		if (!isBoard(settled.board)) validationError('boardSettled.board');
 		if (findCanonicalProductionClusters(settled.board).length > 0)
 			validationError('boardSettled leaves remaining clusters before terminal events');
+		currentBoard = settled.board;
 		index += 2;
+	}
+	if (readyEntries.length > 0) {
+		const opened = events[index];
+		if (!opened || opened.type !== 'serviceQueueOpened')
+			validationError('READY chefs require serviceQueueOpened after boardSettled');
+		validateKnownPayload(opened);
+		if (
+			!Array.isArray(opened.entries) ||
+			opened.entries.length !== readyEntries.length ||
+			opened.entries.some((entry, entryIndex) => {
+				const expected = readyEntries[entryIndex];
+				return (
+					!isRecord(entry) ||
+					!expected ||
+					entry.id !== expected.id ||
+					entry.chef !== expected.chef ||
+					entry.perfectServeUnits !== expected.perfectServeUnits
+				);
+			})
+		)
+			validationError('serviceQueueOpened queue order must match READY chefs');
+		index++;
+		const entry = readyEntries[0];
+		if (readyEntries.length !== 1 || entry?.chef !== 'italian')
+			validationError('Task 3 Service Queue requires Italian as the only next chef');
+		if (!entry) validationError('Service Queue entry is required');
+		const pasta = events[index];
+		if (!pasta || pasta.type !== 'pastaPull')
+			validationError('serviceQueueOpened requires one pastaPull');
+		validateKnownPayload(pasta);
+		if (pasta.queueEntryId !== entry.id) validationError('pastaPull.queueEntryId');
+		const positions = requirePositions(pasta.positions, 'pastaPull.positions');
+		const visited = new Set<string>([`${positions[0]?.reel}:${positions[0]?.row}`]);
+		const pending = [...positions.slice(0, 1)];
+		while (pending.length > 0) {
+			const position = pending.pop();
+			if (!position) continue;
+			for (const neighbour of [
+				{ reel: position.reel - 1, row: position.row },
+				{ reel: position.reel + 1, row: position.row },
+				{ reel: position.reel, row: position.row - 1 },
+				{ reel: position.reel, row: position.row + 1 },
+			]) {
+				const key = `${neighbour.reel}:${neighbour.row}`;
+				if (positions.some((selected) => positionKey(selected) === key) && !visited.has(key)) {
+					visited.add(key);
+					pending.push(neighbour);
+				}
+			}
+		}
+		if (visited.size !== positions.length)
+			validationError('pastaPull.positions must be neighbouring');
+		const expectedBoard = currentBoard.map((reel) => [...reel]);
+		positions.forEach((position) => {
+			const reel = expectedBoard[position.reel];
+			if (reel) reel[position.row] = 'pasta_wild';
+		});
+		if (JSON.stringify(pasta.boardAfter) !== JSON.stringify(expectedBoard))
+			validationError('pastaPull.boardAfter');
+		const pastaBoard = pasta.boardAfter;
+		if (!isBoard(pastaBoard)) validationError('pastaPull.boardAfter');
+		currentBoard = pastaBoard;
+		index++;
+		if (entry.perfectServeUnits > 0) {
+			const award = events[index];
+			if (!award || award.type !== 'perfectServeAward')
+				validationError('unconsumed overflow requires perfectServeAward');
+			validateKnownPayload(award);
+			if (
+				award.queueEntryId !== entry.id ||
+				award.consumedOverflowUnits !== entry.perfectServeUnits
+			)
+				validationError('perfectServeAward must consume all overflow units');
+			const awardId = award.id;
+			const awardPayout = requireSafeNonNegativeInteger(
+				award.payoutAtomicUnits,
+				'perfectServeAward.payoutAtomicUnits',
+			);
+			if (typeof awardId !== 'string' || creditedSources.has(awardId))
+				validationError('perfectServeAward ledger source');
+			const ledger = events[index + 1];
+			if (!ledger || ledger.type !== 'roundWinUpdate')
+				validationError('perfectServeAward requires immediate roundWinUpdate');
+			validateKnownPayload(ledger);
+			if (
+				ledger.sourceEventId !== awardId ||
+				ledger.creditAtomicUnits !== awardPayout ||
+				ledger.balanceAfterAtomicUnits !== balance + awardPayout
+			)
+				validationError('roundWinUpdate must exactly credit perfectServeAward');
+			creditedSources.add(awardId);
+			balance += awardPayout;
+			index += 2;
+		}
+		const closed = events[index];
+		if (!closed || closed.type !== 'serviceQueueClosed')
+			validationError('Pasta Pull service requires serviceQueueClosed');
+		validateKnownPayload(closed);
+		if (
+			closed.queueEntryId !== entry.id ||
+			closed.chef !== entry.chef ||
+			JSON.stringify(closed.board) !== JSON.stringify(currentBoard)
+		)
+			validationError('serviceQueueClosed must repeat the final board');
+		meters[entry.chef] = 0;
+		index++;
 	}
 	const total = events[index];
 	const final = events[index + 1];

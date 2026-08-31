@@ -1,8 +1,16 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { cleanup, render, screen } from '@testing-library/svelte';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import P301 from '../books/production/P3-01.json';
+import P302 from '../books/production/P3-02.json';
 import { findCanonicalProductionClusters, validateProductionBook } from './bookValidator';
-import { playProductionBook, playValidatedProductionBook } from './localBookAdapter';
+import {
+	loadProductionBook,
+	playProductionBook,
+	playValidatedPrefixForTest,
+	playValidatedProductionBook,
+} from './localBookAdapter';
+import ProductionRound from './components/ProductionRound.svelte';
 import { productionState, resetProductionState } from './stateGame.svelte';
 
 type MutableBook = Array<Record<string, unknown>>;
@@ -37,6 +45,7 @@ function canonicalize(events: MutableBook): MutableBook {
 
 describe('production Base cascade handlers', () => {
 	beforeEach(resetProductionState);
+	afterEach(cleanup);
 
 	it('uses the supplied ledger balance and settled board without payout arithmetic', async () => {
 		const book = validateProductionBook(P301);
@@ -154,4 +163,62 @@ describe('production Base cascade handlers', () => {
 
 		expect(validateProductionBook(zeroPayoutBook).finalWinAtomicUnits).toBe(0);
 	});
+
+	it('shows READY, queue order and exact Perfect Serve award from P3-02', async () => {
+		render(ProductionRound);
+		const book = await loadProductionBook('P3-02');
+		const opened = book.events.findIndex((event) => event.type === 'serviceQueueOpened');
+		if (opened < 0) throw new Error('P3-02 must open Service Queue');
+		await playValidatedPrefixForTest(book, opened + 1);
+
+		expect(screen.getByLabelText('Service Queue')).not.toBeNull();
+		expect(screen.getByText('Italian READY')).not.toBeNull();
+
+		await playValidatedProductionBook(book);
+		expect(screen.getByText('Perfect Serve: 1500000')).not.toBeNull();
+		expect(productionState.roundWinAtomicUnits).toBe(productionState.finalWinAtomicUnits);
+	});
+
+	it.each([
+		[
+			'Perfect Serve before Pasta Pull',
+			(book: MutableBook) => {
+				const pasta = book.findIndex((event) => event.type === 'pastaPull');
+				const award = book.findIndex((event) => event.type === 'perfectServeAward');
+				if (pasta < 0 || award < 0) throw new Error('P3-02 special events are required');
+				const [perfectServeAward] = book.splice(award, 1);
+				if (!perfectServeAward) throw new Error('P3-02 Perfect Serve is required');
+				book.splice(pasta, 0, perfectServeAward);
+			},
+			'pastaPull',
+		],
+		[
+			'wrong Service Queue entry id',
+			(book: MutableBook) => {
+				const pasta = book.find((event) => event.type === 'pastaPull');
+				if (!pasta) throw new Error('P3-02 Pasta Pull is required');
+				pasta.queueEntryId = 'P3-02-service-01-french';
+			},
+			'queueEntryId',
+		],
+	])('rejects %s before frontend state mutation', async (_name, mutate, error) => {
+		productionState.roundId = 'keep-me';
+		const invalidBook = structuredClone(P302) as MutableBook;
+		mutate(invalidBook);
+		canonicalizeP302(invalidBook);
+
+		await expect(playProductionBook(invalidBook)).rejects.toThrow(error);
+		expect(productionState.roundId).toBe('keep-me');
+		expect(productionState.handledSequences).toEqual([]);
+	});
 });
+
+function canonicalizeP302(events: MutableBook): MutableBook {
+	events.forEach((event, index) => {
+		const sequence = index + 1;
+		event.sequence = sequence;
+		event.id = `P3-02-e${String(sequence).padStart(4, '0')}`;
+		event.roundId = 'P3-02';
+	});
+	return events;
+}

@@ -1,4 +1,4 @@
-import type { Board, GameMode, MeterValues } from './typesBookEvent';
+import type { Board, GameMode, MeterValues, ServiceQueueEntry } from './typesBookEvent';
 
 const emptyMeters = (): MeterValues => ({ italian: 0, french: 0, chinese: 0 });
 
@@ -10,6 +10,8 @@ const createInitialState = () => ({
 	maxWinAtomicUnits: 0,
 	meters: emptyMeters(),
 	board: [] as Board,
+	serviceQueue: [] as readonly ServiceQueueEntry[],
+	perfectServePayoutAtomicUnits: null as number | null,
 	roundWinAtomicUnits: 0,
 	cascadeIndex: 0,
 	totalWinAtomicUnits: 0,

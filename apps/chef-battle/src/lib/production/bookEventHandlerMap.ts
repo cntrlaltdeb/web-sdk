@@ -33,6 +33,20 @@ export const productionBookEventHandlerMap = {
 	boardSettled: (event) => {
 		productionState.board = event.board.map((reel) => [...reel]);
 	},
+	serviceQueueOpened: (event) => {
+		productionState.serviceQueue = event.entries.map((entry) => ({ ...entry }));
+	},
+	pastaPull: (event) => {
+		productionState.board = event.boardAfter.map((reel) => [...reel]);
+	},
+	perfectServeAward: (event) => {
+		productionState.perfectServePayoutAtomicUnits = event.payoutAtomicUnits;
+	},
+	serviceQueueClosed: (event) => {
+		productionState.meters = { ...productionState.meters, [event.chef]: 0 };
+		productionState.board = event.board.map((reel) => [...reel]);
+		productionState.serviceQueue = [];
+	},
 	setTotalWin: (event) => {
 		productionState.totalWinAtomicUnits = event.totalWinAtomicUnits;
 	},

@@ -11,7 +11,7 @@ export type GameMode =
 export type ChefId = 'italian' | 'french' | 'chinese';
 export type MeterValues = Readonly<Record<ChefId, number>>;
 export type Board = readonly (readonly SymbolId[])[];
-export const PRODUCTION_SCENARIO_IDS = ['P3-00', 'P3-01'] as const;
+export const PRODUCTION_SCENARIO_IDS = ['P3-00', 'P3-01', 'P3-02'] as const;
 export type ProductionScenarioId = (typeof PRODUCTION_SCENARIO_IDS)[number];
 
 type ProductionEventBase = {
@@ -21,6 +21,11 @@ type ProductionEventBase = {
 };
 
 export type SauceSpot = Readonly<{ position: Position; boost: number }>;
+export type ServiceQueueEntry = Readonly<{
+	id: string;
+	chef: ChefId;
+	perfectServeUnits: number;
+}>;
 
 export type ClusterWinEvent = ProductionEventBase & {
 	type: 'clusterWin';
@@ -65,6 +70,25 @@ export type ProductionBookEvent =
 	| (ProductionEventBase & { type: 'removeSymbols'; positions: readonly Position[] })
 	| (ProductionEventBase & { type: 'cascade'; index: number })
 	| (ProductionEventBase & { type: 'boardSettled'; board: Board })
+	| (ProductionEventBase & { type: 'serviceQueueOpened'; entries: readonly ServiceQueueEntry[] })
+	| (ProductionEventBase & {
+			type: 'pastaPull';
+			queueEntryId: string;
+			positions: readonly Position[];
+			boardAfter: Board;
+	  })
+	| (ProductionEventBase & {
+			type: 'perfectServeAward';
+			queueEntryId: string;
+			consumedOverflowUnits: number;
+			payoutAtomicUnits: number;
+	  })
+	| (ProductionEventBase & {
+			type: 'serviceQueueClosed';
+			queueEntryId: string;
+			chef: ChefId;
+			board: Board;
+	  })
 	| (ProductionEventBase & { type: 'setTotalWin'; totalWinAtomicUnits: number })
 	| (ProductionEventBase & { type: 'finalWin'; payoutAtomicUnits: number });
 

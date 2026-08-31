@@ -1,10 +1,14 @@
 <script lang="ts">
 	import { productionState } from '../stateGame.svelte';
+	import PerfectServeBanner from './PerfectServeBanner.svelte';
+	import ServiceQueue from './ServiceQueue.svelte';
 </script>
 
 <section aria-label="Production Chef Battle round">
 	<p class="round-win">Round ledger: {productionState.roundWinAtomicUnits}</p>
 	<p class="cascade">Cascade: {productionState.cascadeIndex}</p>
+	<ServiceQueue />
+	<PerfectServeBanner />
 	<p class="final-win">Final win: {productionState.finalWinAtomicUnits}</p>
 </section>
 
