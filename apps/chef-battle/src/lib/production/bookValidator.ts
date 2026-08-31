@@ -11,10 +11,7 @@ import type {
 	ValidatedProductionBook,
 } from './typesBookEvent';
 import type { Position, SymbolId } from '../typesBookEvent';
-import {
-	reduceProductionTransitions,
-	type ProductionReplayTransition,
-} from './checkpoint';
+import { reduceProductionTransitions, type ProductionReplayTransition } from './checkpoint';
 
 const MAX_SAFE_INTEGER = 9_007_199_254_740_991;
 const MAX_WIN_MULTIPLIER = 20_000;
@@ -551,9 +548,7 @@ function validateBaseLifecycle(
 			if (!ledger || ledger.type !== 'roundWinUpdate')
 				validationError('clusterWin requires immediate roundWinUpdate');
 			validateKnownPayload(ledger);
-			if (
-				ledger.sourceEventId !== cluster.id
-			)
+			if (ledger.sourceEventId !== cluster.id)
 				validationError('roundWinUpdate.sourceEventId must credit its cluster source');
 			const credit = requireSafeNonNegativeInteger(
 				ledger.creditAtomicUnits,
@@ -691,9 +686,7 @@ function validateBaseLifecycle(
 				const writes = requireSauceSpots(special.appliedSpots, 'sauceFinish.appliedSpots', 3);
 				const sauceBefore =
 					transitionFor(special, index)?.before?.activeSauceSpots ?? initialSauceSpots;
-				const replacements = new Map(
-					sauceBefore.map((spot) => [positionKey(spot.position), spot]),
-				);
+				const replacements = new Map(sauceBefore.map((spot) => [positionKey(spot.position), spot]));
 				writes.forEach((spot) => replacements.set(positionKey(spot.position), spot));
 				if (replacements.size > 5)
 					validationError('Sauce Finish cannot exceed five active positions');
@@ -759,16 +752,12 @@ function validateBaseLifecycle(
 					award.payoutAtomicUnits,
 					'perfectServeAward.payoutAtomicUnits',
 				);
-				if (typeof awardId !== 'string')
-					validationError('perfectServeAward ledger source');
+				if (typeof awardId !== 'string') validationError('perfectServeAward ledger source');
 				const ledger = events[index + 1];
 				if (!ledger || ledger.type !== 'roundWinUpdate')
 					validationError('perfectServeAward requires immediate roundWinUpdate');
 				validateKnownPayload(ledger);
-				if (
-					ledger.sourceEventId !== awardId ||
-					ledger.creditAtomicUnits !== awardPayout
-				)
+				if (ledger.sourceEventId !== awardId || ledger.creditAtomicUnits !== awardPayout)
 					validationError('roundWinUpdate must exactly credit perfectServeAward');
 				const ledgerState = transitionFor(ledger, index + 1)?.after;
 				if (ledgerState)
@@ -1291,7 +1280,11 @@ function validateShowdownLifecycle(
 		selectedMultiplier as CrownMultiplier,
 		maxWinAtomicUnits,
 	);
-	assertShowdownSnapshot(start, transitions[startIndex]?.after as ProductionReplayState, 'kitchenShowdownStart');
+	assertShowdownSnapshot(
+		start,
+		transitions[startIndex]?.after as ProductionReplayState,
+		'kitchenShowdownStart',
+	);
 
 	let cursor = startIndex + 1;
 	const consumedCourseMeta = new Set<EventRecord>();
@@ -1447,9 +1440,7 @@ function validateShowdownLifecycle(
 					if (starState.stars[expectedEntry.chef] === 3) {
 						const lock = boardPhase[phaseIndex + 2];
 						const expectedHeadliner =
-							roundStart.mode === 'mysteryTasting'
-								? starState.headliner
-								: expectedEntry.chef;
+							roundStart.mode === 'mysteryTasting' ? starState.headliner : expectedEntry.chef;
 						if (
 							!lock ||
 							lock.type !== 'kitchenWinnerLocked' ||
@@ -1607,10 +1598,7 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 			if (value === 0) validationError('Crown Course value must be positive');
 		}
 		if (event.type === 'maxWinReached')
-			requireSafeNonNegativeInteger(
-				event.maxWinAtomicUnits,
-				'maxWinReached.maxWinAtomicUnits',
-			);
+			requireSafeNonNegativeInteger(event.maxWinAtomicUnits, 'maxWinReached.maxWinAtomicUnits');
 		if (event.type === 'judgeStarUpdate' && events[index - 1]?.type !== 'crownCourseComplete')
 			validationError('every Judge Star must belong to one canonical Course chain');
 		if (event.type === 'kitchenWinnerLocked' && events[index - 1]?.type !== 'judgeStarUpdate')

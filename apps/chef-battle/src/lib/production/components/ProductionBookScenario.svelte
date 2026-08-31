@@ -1,8 +1,5 @@
 <script lang="ts">
-	import {
-		loadPreparedProductionBook,
-		loadProductionCheckpoint,
-	} from '../localBookAdapter';
+	import { loadPreparedProductionBook, loadProductionCheckpoint } from '../localBookAdapter';
 	import { playPreparedProductionBook, resumeProductionBook } from '../playback';
 	import { productionState } from '../stateGame.svelte';
 	import type { ProductionScenarioId } from '../typesBookEvent';

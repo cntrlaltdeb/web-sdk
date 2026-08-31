@@ -207,6 +207,36 @@ export type ProductionBookEvent =
 	| (ProductionEventBase & { type: 'setTotalWin'; totalWinAtomicUnits: number })
 	| (ProductionEventBase & { type: 'finalWin'; payoutAtomicUnits: number });
 
+export const PRODUCTION_EVENT_TYPES = [
+	'roundStart',
+	'revealBoard',
+	'kitchenShowdownTriggered',
+	'clusterWin',
+	'chefMeterUpdate',
+	'removeSymbols',
+	'cascade',
+	'boardSettled',
+	'serviceQueueOpened',
+	'serviceQueueClosed',
+	'pastaPull',
+	'sauceFinish',
+	'wokToss',
+	'perfectServeAward',
+	'roundWinUpdate',
+	'bonusBankUpdate',
+	'kitchenShowdownStart',
+	'freeSpinStart',
+	'freeSpinEnd',
+	'freeSpinRetrigger',
+	'crownCourseComplete',
+	'judgeStarUpdate',
+	'kitchenWinnerLocked',
+	'kitchenCrownReveal',
+	'maxWinReached',
+	'setTotalWin',
+	'finalWin',
+] as const satisfies readonly ProductionBookEvent['type'][];
+
 export type ValidatedProductionBook = Readonly<{
 	events: readonly ProductionBookEvent[];
 	finalWinAtomicUnits: number;

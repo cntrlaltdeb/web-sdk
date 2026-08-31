@@ -15,11 +15,7 @@ import {
 	reduceProductionTransitions,
 	safeDiagnostic,
 } from './checkpoint';
-import {
-	makeRecoveryRequest,
-	playPreparedProductionBook,
-	resumeProductionBook,
-} from './playback';
+import { makeRecoveryRequest, playPreparedProductionBook, resumeProductionBook } from './playback';
 import { validateProductionBook } from './bookValidator';
 import { loadPreparedProductionBook } from './localBookAdapter';
 import RecoveryNotice from './components/RecoveryNotice.svelte';
@@ -128,9 +124,7 @@ describe('production replay hashing and checkpoint contract', () => {
 		const value: Record<PropertyKey, unknown> = { visible: 1, [hidden]: 'not-canonical' };
 
 		expect(() => canonicalProductionJson(value)).toThrow(/INVALID_CANONICAL_JSON/);
-		await expect(hashCanonicalProductionValue(value)).rejects.toThrow(
-			/INVALID_CANONICAL_JSON/,
-		);
+		await expect(hashCanonicalProductionValue(value)).rejects.toThrow(/INVALID_CANONICAL_JSON/);
 	});
 
 	it('prepares the whole P3-12 Book before exposing matching Book/state hashes', async () => {
@@ -175,8 +169,7 @@ describe('production replay hashing and checkpoint contract', () => {
 		expect(transitions).toHaveLength(events.length);
 		expect(bankCredit?.before).not.toBeNull();
 		expect(bankCredit?.after.bonusBankAtomicUnits).toBe(
-			(bankCredit?.before?.bonusBankAtomicUnits ?? 0) +
-				Number(bankCredit?.event.creditAtomicUnits),
+			(bankCredit?.before?.bonusBankAtomicUnits ?? 0) + Number(bankCredit?.event.creditAtomicUnits),
 		);
 		expect(meterUpdate?.before).not.toBeNull();
 		expect(meterUpdate?.after.meters[String(meterUpdate.event.chef) as 'italian']).toBe(
@@ -188,17 +181,20 @@ describe('production replay hashing and checkpoint contract', () => {
 	it.each([
 		['natural', P305, 2_500_001],
 		['purchased', P306, 1],
-	] as const)('rejects a forged %s Showdown start Bank in the reducer', (_entry, source, forgedBank) => {
-		const events = clone(source) as Array<Record<string, unknown>>;
-		const startIndex = events.findIndex((event) => event.type === 'kitchenShowdownStart');
-		const before = reduceProductionEvents(events.slice(0, startIndex));
-		const start = events[startIndex];
-		if (!start) throw new Error('kitchenShowdownStart required');
-		expect(before.bonusBankAtomicUnits).not.toBe(forgedBank);
-		start.bonusBankAtomicUnits = forgedBank;
+	] as const)(
+		'rejects a forged %s Showdown start Bank in the reducer',
+		(_entry, source, forgedBank) => {
+			const events = clone(source) as Array<Record<string, unknown>>;
+			const startIndex = events.findIndex((event) => event.type === 'kitchenShowdownStart');
+			const before = reduceProductionEvents(events.slice(0, startIndex));
+			const start = events[startIndex];
+			if (!start) throw new Error('kitchenShowdownStart required');
+			expect(before.bonusBankAtomicUnits).not.toBe(forgedBank);
+			start.bonusBankAtomicUnits = forgedBank;
 
-		expect(() => reduceProductionEvents([start], before)).toThrow(/Bank.*continuity/);
-	});
+			expect(() => reduceProductionEvents([start], before)).toThrow(/Bank.*continuity/);
+		},
+	);
 
 	it('adds exactly three spins while preserving every persistent field and clearing Pasta', () => {
 		const events = clone(P312) as Array<Record<string, unknown>>;
@@ -324,10 +320,7 @@ describe('mandatory prepared production playback', () => {
 	beforeEach(resetProductionState);
 
 	it.each([
-		[
-			'whole-Book hash',
-			(book: PreparedProductionBook) => ({ ...book, bookHash: '0'.repeat(64) }),
-		],
+		['whole-Book hash', (book: PreparedProductionBook) => ({ ...book, bookHash: '0'.repeat(64) })],
 		[
 			'validated terminal payout',
 			(book: PreparedProductionBook) => ({ ...book, finalWinAtomicUnits: 1 }),
@@ -401,9 +394,7 @@ describe('production checkpoint resume', () => {
 		await playback;
 		expect(productionState.handledSequences[0]).toBe(41);
 		expect(productionState.handledSequences).toHaveLength(originalEventCount - 40);
-		expect(productionState.replayState).toEqual(
-			(await prepare()).finalState,
-		);
+		expect(productionState.replayState).toEqual((await prepare()).finalState);
 	});
 
 	it.each([

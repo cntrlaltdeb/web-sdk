@@ -316,8 +316,7 @@ export function reduceProductionEvent(
 				if (event.serviceQueueEntryId === null)
 					replayError('INVALID_BOOK', 'READY meter requires a Service Queue entry');
 				const existingForChef = next.serviceQueue.find((entry) => entry.chef === event.chef);
-				const expectedUnits =
-					(existingForChef?.perfectServeUnits ?? 0) + event.overflowCharge;
+				const expectedUnits = (existingForChef?.perfectServeUnits ?? 0) + event.overflowCharge;
 				if (event.perfectServeUnitsAfter !== expectedUnits)
 					replayError('INVALID_BOOK', 'Service Queue overflow snapshot is invalid');
 				const entry = {
@@ -364,10 +363,7 @@ export function reduceProductionEvent(
 		}
 		case 'kitchenShowdownStart':
 			if (event.bonusBankAtomicUnits !== next.bonusBankAtomicUnits)
-				replayError(
-					'INVALID_BOOK',
-					'kitchenShowdownStart Bank must preserve reducer continuity',
-				);
+				replayError('INVALID_BOOK', 'kitchenShowdownStart Bank must preserve reducer continuity');
 			const openingQueue = (['italian', 'french', 'chinese'] as const)
 				.filter((chef) => event.meters[chef] === 100)
 				.map((chef) => ({
@@ -437,9 +433,7 @@ export function reduceProductionEvent(
 				appended.chef !== event.chef ||
 				appended.sourceEventId !== event.sourceEventId ||
 				next.creditedSourceIds.includes(appended.sourceEventId) ||
-				next.completedCourses.some(
-					(course) => course.sourceEventId === appended.sourceEventId,
-				) ||
+				next.completedCourses.some((course) => course.sourceEventId === appended.sourceEventId) ||
 				event.crownPotAfterAtomicUnits !== expectedPot
 			)
 				replayError('INVALID_BOOK', 'Crown Course must append one unique exact Pot credit');
@@ -470,8 +464,7 @@ export function reduceProductionEvent(
 				event.bonusBankAtomicUnits !== next.bonusBankAtomicUnits ||
 				event.crownPotAtomicUnits !== next.crownPotAtomicUnits ||
 				event.crownPayoutAtomicUnits !== event.crownPotAtomicUnits * event.multiplier ||
-				event.finalWinAtomicUnits !==
-					event.bonusBankAtomicUnits + event.crownPayoutAtomicUnits
+				event.finalWinAtomicUnits !== event.bonusBankAtomicUnits + event.crownPayoutAtomicUnits
 			)
 				replayError('INVALID_BOOK', 'Kitchen Crown final payout does not match reducer state');
 			next.bonusBankAtomicUnits = event.bonusBankAtomicUnits;
@@ -485,10 +478,7 @@ export function reduceProductionEvent(
 			next.maxWinReached = true;
 			break;
 		case 'setTotalWin':
-			if (
-				event.totalWinAtomicUnits !==
-					(next.finalWinAtomicUnits || next.roundWinAtomicUnits)
-			)
+			if (event.totalWinAtomicUnits !== (next.finalWinAtomicUnits || next.roundWinAtomicUnits))
 				replayError('INVALID_BOOK', 'setTotalWin must equal the reducer ledger');
 			next.totalWinAtomicUnits = event.totalWinAtomicUnits;
 			break;
@@ -646,9 +636,7 @@ export async function validateReplayCheckpoint(
 	const actualStateHash = await hashProductionReplayState(checkpoint.state);
 	if (actualStateHash !== checkpoint.stateHash)
 		replayError('CHECKPOINT_STATE_HASH', 'checkpoint stateHash mismatch');
-	const expected = reduceProductionEvents(
-		preparedSnapshot.events.slice(0, checkpoint.sequence),
-	);
+	const expected = reduceProductionEvents(preparedSnapshot.events.slice(0, checkpoint.sequence));
 	if (canonicalProductionJson(checkpoint.state) !== canonicalProductionJson(expected))
 		replayError('CHECKPOINT_STATE', 'checkpoint full state mismatch');
 	if ((await hashProductionReplayState(expected)) !== checkpoint.stateHash)

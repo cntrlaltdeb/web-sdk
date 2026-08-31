@@ -246,7 +246,8 @@ describe('production Base cascade handlers', () => {
 	it('rejects an additional field in the Book-authored Service Queue entry', () => {
 		const invalidBook = structuredClone(P302) as MutableBook;
 		const opened = invalidBook.find((event) => event.type === 'serviceQueueOpened');
-		if (!opened || !Array.isArray(opened.entries)) throw new Error('P3-02 Service Queue is required');
+		if (!opened || !Array.isArray(opened.entries))
+			throw new Error('P3-02 Service Queue is required');
 		const entry = opened.entries[0] as Record<string, unknown> | undefined;
 		if (!entry) throw new Error('P3-02 Service Queue entry is required');
 		entry.forged = true;
