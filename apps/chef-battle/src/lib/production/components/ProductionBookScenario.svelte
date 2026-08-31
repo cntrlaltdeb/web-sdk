@@ -1,11 +1,9 @@
 <script lang="ts">
 	import {
 		loadPreparedProductionBook,
-		loadProductionBook,
 		loadProductionCheckpoint,
-		playValidatedProductionBook,
 	} from '../localBookAdapter';
-	import { resumeProductionBook } from '../playback';
+	import { playPreparedProductionBook, resumeProductionBook } from '../playback';
 	import { productionState } from '../stateGame.svelte';
 	import type { ProductionScenarioId } from '../typesBookEvent';
 	import ProductionRound from './ProductionRound.svelte';
@@ -16,15 +14,13 @@
 		let cancelled = false;
 		void (async () => {
 			try {
+				const book = await loadPreparedProductionBook(roundId);
+				if (cancelled) return;
 				const checkpoint = loadProductionCheckpoint(roundId);
 				if (checkpoint) {
-					const book = await loadPreparedProductionBook(roundId);
-					if (cancelled) return;
 					await resumeProductionBook(book, checkpoint, 'instant');
 				} else {
-					const book = await loadProductionBook(roundId);
-					if (cancelled) return;
-					await playValidatedProductionBook(book);
+					await playPreparedProductionBook(book, 'instant');
 				}
 			} catch {
 				if (!cancelled) productionState.recoveryPending = true;

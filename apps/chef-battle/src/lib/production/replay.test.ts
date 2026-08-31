@@ -5,16 +5,24 @@ import P312 from '../books/production/P3-12.json';
 import P312Checkpoint from '../books/production/checkpoints/P3-12-e0040.json';
 import {
 	canonicalProductionJson,
+	hashCanonicalProductionValue,
 	hashProductionBook,
 	hashProductionReplayState,
 	prepareProductionBook,
 	reduceProductionEvents,
+	reduceProductionTransitions,
 	safeDiagnostic,
 } from './checkpoint';
-import { makeRecoveryRequest, resumeProductionBook } from './playback';
+import {
+	makeRecoveryRequest,
+	playPreparedProductionBook,
+	resumeProductionBook,
+} from './playback';
 import { validateProductionBook } from './bookValidator';
+import { loadPreparedProductionBook } from './localBookAdapter';
 import RecoveryNotice from './components/RecoveryNotice.svelte';
 import { productionState, resetProductionState } from './stateGame.svelte';
+import { PRODUCTION_SCENARIO_IDS } from './typesBookEvent';
 import type {
 	PreparedProductionBook,
 	ProductionReplayState,
@@ -27,6 +35,14 @@ const snapshotUi = (): unknown => JSON.parse(JSON.stringify(productionState));
 const checkpoint = (): ReplayCheckpoint => clone(P312Checkpoint) as ReplayCheckpoint;
 
 const prepare = async (): Promise<PreparedProductionBook> => prepareProductionBook(clone(P312));
+
+function canonicalizeBook(events: Array<Record<string, unknown>>): void {
+	events.forEach((event, index) => {
+		event.sequence = index + 1;
+		event.id = `P3-12-e${String(index + 1).padStart(4, '0')}`;
+		event.roundId = 'P3-12';
+	});
+}
 
 function setMutationSentinel(): void {
 	productionState.roundId = 'keep-me';
@@ -83,6 +99,28 @@ describe('production replay hashing and checkpoint contract', () => {
 		);
 	});
 
+	it('uses UTF-16 key ordering and the signed safe-integer canonical domain', async () => {
+		const vector = {
+			'\ue000': { max: 9_007_199_254_740_991 },
+			'😀': { min: -9_007_199_254_740_991 },
+			nested: { '\ue000': 2, '😀': 1 },
+		};
+		const expected =
+			'{"nested":{"😀":1,"\ue000":2},"😀":{"min":-9007199254740991},"\ue000":{"max":9007199254740991}}';
+
+		expect(canonicalProductionJson(vector)).toBe(expected);
+		expect(await hashCanonicalProductionValue(vector)).toBe(
+			'1bf4c009468a207fdd79066d50664a68a7b82a7e3644424018b30837a410a3c4',
+		);
+	});
+
+	it.each([-9_007_199_254_740_992, 9_007_199_254_740_992])(
+		'rejects unsafe canonical integer %s',
+		(value) => {
+			expect(() => canonicalProductionJson({ value })).toThrow(/safe integer/i);
+		},
+	);
+
 	it('prepares the whole P3-12 Book before exposing matching Book/state hashes', async () => {
 		const prepared = await prepare();
 		const saved = checkpoint();
@@ -97,6 +135,42 @@ describe('production replay hashing and checkpoint contract', () => {
 		expect(await hashProductionBook(prepared.events)).toBe(saved.bookHash);
 		expect(await hashProductionReplayState(saved.state)).toBe(saved.stateHash);
 		expect(prepared.finalState.finalWinAtomicUnits).toBe(30_000_000);
+	});
+
+	it('rejects an unknown event in the reducer instead of treating it as a visual no-op', () => {
+		const events = clone(P312) as Array<Record<string, unknown>>;
+		const state = reduceProductionEvents(events.slice(0, 1));
+		const unknown = {
+			id: 'P3-12-e0002',
+			sequence: 2,
+			roundId: 'P3-12',
+			type: 'futureUnknownEvent',
+		};
+
+		expect(() => reduceProductionEvents([unknown], state)).toThrow(/unknown event/i);
+	});
+
+	it('uses one immutable reducer trace for every accounting transition', () => {
+		const events = clone(P312) as Array<Record<string, unknown>>;
+		const transitions = reduceProductionTransitions(events);
+		const bankCredit = transitions.find(
+			(transition) => transition.event.type === 'bonusBankUpdate',
+		);
+		const meterUpdate = transitions.find(
+			(transition) => transition.event.type === 'chefMeterUpdate',
+		);
+
+		expect(transitions).toHaveLength(events.length);
+		expect(bankCredit?.before).not.toBeNull();
+		expect(bankCredit?.after.bonusBankAtomicUnits).toBe(
+			(bankCredit?.before?.bonusBankAtomicUnits ?? 0) +
+				Number(bankCredit?.event.creditAtomicUnits),
+		);
+		expect(meterUpdate?.before).not.toBeNull();
+		expect(meterUpdate?.after.meters[String(meterUpdate.event.chef) as 'italian']).toBe(
+			meterUpdate?.event.meterAfter,
+		);
+		expect(transitions.at(-1)?.after).toEqual(reduceProductionEvents(events));
 	});
 
 	it('adds exactly three spins while preserving every persistent field and clearing Pasta', () => {
@@ -160,6 +234,42 @@ describe('production replay hashing and checkpoint contract', () => {
 		expect(() => validateProductionBook(drifted)).toThrow(/snapshot|state/i);
 	});
 
+	it('accepts direct retrigger when the freeSpinStart board has no clusters', () => {
+		const events = clone(P312) as Array<Record<string, unknown>>;
+		const retriggerIndex = events.findIndex((event) => event.type === 'freeSpinRetrigger');
+		const retrigger = events.splice(retriggerIndex, 1)[0];
+		if (!retrigger) throw new Error('P3-12 retrigger required');
+		const secondEnd = events.find(
+			(event) => event.type === 'freeSpinEnd' && event.currentFreeSpin === 2,
+		);
+		const thirdStartIndex = events.findIndex(
+			(event) => event.type === 'freeSpinStart' && event.currentFreeSpin === 3,
+		);
+		const thirdStart = events[thirdStartIndex];
+		if (!secondEnd || !thirdStart) throw new Error('P3-12 second/third spin boundary required');
+		Object.assign(secondEnd, { totalFreeSpins: 10, remainingFreeSpins: 8 });
+		Object.assign(thirdStart, {
+			remainingFreeSpins: 7,
+			board: [
+				['pizza', 'frog_legs', 'kitchen_crown_scatter', 'peking_duck', 'croissant'],
+				['croissant', 'peking_duck', 'kitchen_crown_scatter', 'pizza', 'frog_legs'],
+				['frog_legs', 'croissant', 'kitchen_crown_scatter', 'peking_duck', 'pizza'],
+				['peking_duck', 'pizza', 'frog_legs', 'croissant', 'peking_duck'],
+				['pizza', 'frog_legs', 'peking_duck', 'pizza', 'croissant'],
+			],
+		});
+		Object.assign(retrigger, { remainingFreeSpinsAfter: 10 });
+		events.splice(thirdStartIndex + 1, 0, retrigger);
+		canonicalizeBook(events);
+
+		expect(events.slice(thirdStartIndex, thirdStartIndex + 3).map((event) => event.type)).toEqual([
+			'freeSpinStart',
+			'freeSpinRetrigger',
+			'freeSpinEnd',
+		]);
+		expect(validateProductionBook(events).finalWinAtomicUnits).toBe(30_000_000);
+	});
+
 	it.each([
 		[
 			'unknown event',
@@ -180,6 +290,49 @@ describe('production replay hashing and checkpoint contract', () => {
 
 		await expect(prepareProductionBook(invalid)).rejects.toThrow();
 		expect(snapshotUi()).toEqual(before);
+	});
+});
+
+describe('mandatory prepared production playback', () => {
+	beforeEach(resetProductionState);
+
+	it.each([
+		[
+			'whole-Book hash',
+			(book: PreparedProductionBook) => ({ ...book, bookHash: '0'.repeat(64) }),
+		],
+		[
+			'validated terminal payout',
+			(book: PreparedProductionBook) => ({ ...book, finalWinAtomicUnits: 1 }),
+		],
+		[
+			'full reducer final state',
+			(book: PreparedProductionBook) => ({
+				...book,
+				finalState: { ...book.finalState, sequence: 0 },
+			}),
+		],
+	])('rejects an invalid prepared %s before reset or first handler', async (_name, alter) => {
+		const prepared = await prepare();
+		const forged = alter(prepared) as PreparedProductionBook;
+		setMutationSentinel();
+		const before = snapshotUi();
+
+		await expect(playPreparedProductionBook(forged, 'instant')).rejects.toThrow();
+		expect(snapshotUi()).toEqual(before);
+	});
+
+	it('plays every ordinary scenario only through a prepared canonical final state', async () => {
+		for (const scenarioId of PRODUCTION_SCENARIO_IDS) {
+			const prepared = await loadPreparedProductionBook(scenarioId);
+			await playPreparedProductionBook(prepared, 'instant');
+
+			expect(canonicalProductionJson(productionState.replayState)).toBe(
+				canonicalProductionJson(prepared.finalState),
+			);
+			expect(productionState.handledSequences[0]).toBe(1);
+			expect(productionState.handledSequences).toHaveLength(prepared.events.length);
+		}
 	});
 });
 
@@ -207,6 +360,23 @@ describe('production checkpoint resume', () => {
 
 		expect(results[1]).toEqual(results[0]);
 		expect(results[2]).toEqual(results[0]);
+	});
+
+	it('snapshots mutable resume inputs synchronously before the first digest await', async () => {
+		const prepared = clone(await prepare()) as PreparedProductionBook;
+		const saved = checkpoint();
+		const originalEventCount = prepared.events.length;
+
+		const playback = resumeProductionBook(prepared, saved, 'instant');
+		(prepared.events as Array<unknown>).splice(40, 1);
+		(saved as { sequence: number }).sequence = 41;
+
+		await playback;
+		expect(productionState.handledSequences[0]).toBe(41);
+		expect(productionState.handledSequences).toHaveLength(originalEventCount - 40);
+		expect(productionState.replayState).toEqual(
+			(await prepare()).finalState,
+		);
 	});
 
 	it.each([

@@ -6,10 +6,15 @@ import type {
 	GameMode,
 	MeterValues,
 	ProductionBookEvent,
+	ProductionReplayState,
 	SauceSpot,
 	ValidatedProductionBook,
 } from './typesBookEvent';
 import type { Position, SymbolId } from '../typesBookEvent';
+import {
+	reduceProductionTransitions,
+	type ProductionReplayTransition,
+} from './checkpoint';
 
 const MAX_SAFE_INTEGER = 9_007_199_254_740_991;
 const MAX_WIN_MULTIPLIER = 20_000;
@@ -55,6 +60,15 @@ const wildSymbols = new Set<SymbolId>(['golden_cloche_wild', 'pasta_wild']);
 const chineseSymbols = new Set<SymbolId>(['peking_duck', 'kung_pao_chicken', 'xiaolongbao']);
 
 type EventRecord = Record<string, unknown>;
+
+function transitionBefore(
+	transitions: readonly ProductionReplayTransition[],
+	index: number,
+): ProductionReplayState {
+	const state = transitions[index]?.before;
+	if (!state) validationError('lifecycle transition requires a reducer prefix');
+	return state;
+}
 export type CanonicalProductionCluster = Readonly<{
 	chef: ChefId;
 	symbol: SymbolId;
@@ -63,6 +77,10 @@ export type CanonicalProductionCluster = Readonly<{
 }>;
 
 const validatedBooks = new WeakSet<ValidatedProductionBook>();
+const validatedFinalStates = new WeakMap<
+	ValidatedProductionBook,
+	ProductionReplayTransition['after']
+>();
 
 const isRecord = (value: unknown): value is EventRecord =>
 	typeof value === 'object' && value !== null;
@@ -429,6 +447,7 @@ function validateBaseLifecycle(
 	events: EventRecord[],
 	initialSauceSpots: SauceSpot[] = [],
 	allowInitialMeters = false,
+	transitions: readonly ProductionReplayTransition[] = [],
 ): number {
 	const roundStart = events[0];
 	const revealBoard = events[1];
@@ -460,10 +479,17 @@ function validateBaseLifecycle(
 	if (!isBoard(revealBoard.board)) validationError('revealBoard.board');
 	let currentBoard: Board = revealBoard.board;
 	let remainingClusters = [...findCanonicalProductionClusters(currentBoard)];
+	const transitionFor = (
+		event: EventRecord,
+		index: number,
+	): ProductionReplayTransition | undefined => {
+		if (transitions.length === events.length) return transitions[index];
+		return transitions.find((transition) => transition.event.id === event.id);
+	};
 
-	const meters: Record<ChefId, number> = { ...roundStart.meters };
 	const readyEntries: Array<{ id: string; chef: ChefId; perfectServeUnits: number }> = [];
-	const initialReadyChefs = Array.from(chefIds).filter((chef) => meters[chef] === 100);
+	const initialMeters = requireChefValues(roundStart.meters, 'Base roundStart.meters', 100);
+	const initialReadyChefs = Array.from(chefIds).filter((chef) => initialMeters[chef] === 100);
 	if (roundStart.mode === 'signatureSpin' || allowInitialMeters) {
 		initialReadyChefs.forEach((chef) =>
 			readyEntries.push({
@@ -473,12 +499,6 @@ function validateBaseLifecycle(
 			}),
 		);
 	}
-	let activeSauceSpots: SauceSpot[] = initialSauceSpots.map((spot) => ({
-		position: { ...spot.position },
-		boost: spot.boost,
-	}));
-	const creditedSources = new Set<string>();
-	let balance = 0;
 	let index = 2;
 	let cascadeIndex = 0;
 	let serviceWindowIndex = 1;
@@ -500,6 +520,8 @@ function validateBaseLifecycle(
 			)
 				validationError('clusterWin must match the next canonical board cluster');
 			const chef = cluster.chef as ChefId;
+			const clusterState = transitionFor(cluster, index)?.before;
+			const activeSauceSpots = clusterState?.activeSauceSpots ?? initialSauceSpots;
 			const expectedAppliedSpots = activeSauceSpots.filter((spot) =>
 				expectedCluster.positions.some(
 					(position) => positionKey(position) === positionKey(spot.position),
@@ -530,36 +552,28 @@ function validateBaseLifecycle(
 				validationError('clusterWin requires immediate roundWinUpdate');
 			validateKnownPayload(ledger);
 			if (
-				ledger.sourceEventId !== cluster.id ||
-				creditedSources.has(ledger.sourceEventId as string)
+				ledger.sourceEventId !== cluster.id
 			)
-				validationError('roundWinUpdate.sourceEventId must credit one unique cluster source');
+				validationError('roundWinUpdate.sourceEventId must credit its cluster source');
 			const credit = requireSafeNonNegativeInteger(
 				ledger.creditAtomicUnits,
 				'roundWinUpdate.creditAtomicUnits',
 			);
-			const balanceAfter = requireSafeNonNegativeInteger(
-				ledger.balanceAfterAtomicUnits,
-				'roundWinUpdate.balanceAfterAtomicUnits',
-			);
-			if (credit !== payout || balanceAfter !== balance + credit)
+			if (credit !== payout)
 				validationError('roundWinUpdate.balanceAfterAtomicUnits must exactly credit the source');
-			creditedSources.add(ledger.sourceEventId as string);
-			balance = balanceAfter;
-			validateTotalPayout(balance, maxWinAtomicUnits);
+			const ledgerState = transitionFor(ledger, index + 1)?.after;
+			if (ledgerState)
+				validateTotalPayout(
+					ledger.type === 'roundWinUpdate'
+						? ledgerState.roundWinAtomicUnits
+						: ledgerState.bonusBankAtomicUnits,
+					maxWinAtomicUnits,
+				);
 			const meter = events[index + 2];
 			if (!meter || meter.type !== 'chefMeterUpdate')
 				validationError('roundWinUpdate requires chefMeterUpdate');
 			validateKnownPayload(meter);
 			if (meter.chef !== chef) validationError('chefMeterUpdate.chef');
-			const earned = requireSafeNonNegativeInteger(
-				meter.earnedCharge,
-				'chefMeterUpdate.earnedCharge',
-			);
-			const applied = requireSafeNonNegativeInteger(
-				meter.appliedCharge,
-				'chefMeterUpdate.appliedCharge',
-			);
 			const overflow = requireSafeNonNegativeInteger(
 				meter.overflowCharge,
 				'chefMeterUpdate.overflowCharge',
@@ -568,15 +582,6 @@ function validateBaseLifecycle(
 				meter.meterAfter,
 				'chefMeterUpdate.meterAfter',
 			);
-			const expectedApplied = Math.min(earned, 100 - meters[chef]);
-			const expectedOverflow = earned - expectedApplied;
-			const expectedMeterAfter = Math.min(100, meters[chef] + earned);
-			if (
-				applied !== expectedApplied ||
-				overflow !== expectedOverflow ||
-				meterAfter !== expectedMeterAfter
-			)
-				validationError('chefMeterUpdate charge fields');
 			const existingEntry = readyEntries.find((entry) => entry.chef === chef);
 			if (meterAfter === 100) {
 				const expectedId =
@@ -592,7 +597,6 @@ function validateBaseLifecycle(
 				else readyEntries.push({ id: expectedId, chef, perfectServeUnits: expectedUnits });
 			} else if (meter.serviceQueueEntryId !== null || meter.perfectServeUnitsAfter !== 0)
 				validationError('chefMeterUpdate service queue fields');
-			meters[chef] = meterAfter;
 			const removal = events[index + 3];
 			if (!removal || removal.type !== 'removeSymbols')
 				validationError('chefMeterUpdate requires removeSymbols');
@@ -685,8 +689,10 @@ function validateBaseLifecycle(
 					validationError('French Service Queue entry requires sauceFinish');
 				validateKnownPayload(special);
 				const writes = requireSauceSpots(special.appliedSpots, 'sauceFinish.appliedSpots', 3);
+				const sauceBefore =
+					transitionFor(special, index)?.before?.activeSauceSpots ?? initialSauceSpots;
 				const replacements = new Map(
-					activeSauceSpots.map((spot) => [positionKey(spot.position), spot]),
+					sauceBefore.map((spot) => [positionKey(spot.position), spot]),
 				);
 				writes.forEach((spot) => replacements.set(positionKey(spot.position), spot));
 				if (replacements.size > 5)
@@ -697,7 +703,6 @@ function validateBaseLifecycle(
 				const active = requireSauceSpots(special.activeSpots, 'sauceFinish.activeSpots');
 				if (!sameSauceSpots(active, expectedActive))
 					validationError('sauceFinish.activeSpots must be the sorted full active snapshot');
-				activeSauceSpots = active;
 			} else {
 				if (special.type !== 'wokToss')
 					validationError('Chinese Service Queue entry requires wokToss');
@@ -754,7 +759,7 @@ function validateBaseLifecycle(
 					award.payoutAtomicUnits,
 					'perfectServeAward.payoutAtomicUnits',
 				);
-				if (typeof awardId !== 'string' || creditedSources.has(awardId))
+				if (typeof awardId !== 'string')
 					validationError('perfectServeAward ledger source');
 				const ledger = events[index + 1];
 				if (!ledger || ledger.type !== 'roundWinUpdate')
@@ -762,18 +767,19 @@ function validateBaseLifecycle(
 				validateKnownPayload(ledger);
 				if (
 					ledger.sourceEventId !== awardId ||
-					ledger.creditAtomicUnits !== awardPayout ||
-					ledger.balanceAfterAtomicUnits !== balance + awardPayout
+					ledger.creditAtomicUnits !== awardPayout
 				)
 					validationError('roundWinUpdate must exactly credit perfectServeAward');
-				creditedSources.add(awardId);
-				balance += awardPayout;
-				validateTotalPayout(balance, maxWinAtomicUnits);
+				const ledgerState = transitionFor(ledger, index + 1)?.after;
+				if (ledgerState)
+					validateTotalPayout(
+						ledgerState.roundWinAtomicUnits || ledgerState.bonusBankAtomicUnits,
+						maxWinAtomicUnits,
+					);
 				index += 2;
 			} else if (events[index]?.type === 'perfectServeAward') {
 				validationError('Perfect Serve payout requires overflow units');
 			}
-			meters[entry.chef] = 0;
 		}
 		const closed = events[index];
 		if (!closed || closed.type !== 'serviceQueueClosed')
@@ -807,6 +813,13 @@ function validateBaseLifecycle(
 		remainingClusters = [...findCanonicalProductionClusters(currentBoard)];
 		index += 2;
 	}
+	const terminalState =
+		transitionFor(events[index] as EventRecord, index)?.before ?? transitions.at(-1)?.after;
+	const syntheticTotal = events.at(-2)?.totalWinAtomicUnits;
+	const balance =
+		transitions.length !== events.length && isSafeNonNegativeInteger(syntheticTotal)
+			? syntheticTotal
+			: terminalState?.roundWinAtomicUnits || terminalState?.bonusBankAtomicUnits || 0;
 	if (balance === maxWinAtomicUnits) {
 		const maxEvent = events[index];
 		if (!maxEvent || maxEvent.type !== 'maxWinReached')
@@ -973,12 +986,12 @@ function readShowdownSnapshot(event: EventRecord, field: string): MutableShowdow
 
 function assertShowdownSnapshot(
 	event: EventRecord,
-	expected: MutableShowdownState,
+	expected: ProductionReplayState,
 	field: string,
 ): void {
 	const actual = readShowdownSnapshot(event, field);
 	if (
-		actual.totalFreeSpins !== expected.totalFreeSpins ||
+		actual.totalFreeSpins !== expected.currentFreeSpin + expected.remainingFreeSpins ||
 		actual.currentFreeSpin !== expected.currentFreeSpin ||
 		actual.remainingFreeSpins !== expected.remainingFreeSpins ||
 		!Array.from(chefIds).every(
@@ -1003,8 +1016,8 @@ function validateShowdownBoardPhase(
 	initialMeters: Readonly<Record<ChefId, number>>,
 	initialSauceSpots: readonly SauceSpot[],
 	phaseId: string,
+	transitions: readonly ProductionReplayTransition[],
 ): void {
-	let localBalance = 0;
 	let localCascadeIndex = 0;
 	let localServiceWindowIndex = 1;
 	const serviceIds = new Map<string, string>();
@@ -1061,13 +1074,7 @@ function validateShowdownBoardPhase(
 			cloned.queueEntryId = mapped;
 		}
 		if (cloned.type === 'bonusBankUpdate') {
-			const credit = requireSafeNonNegativeInteger(
-				cloned.creditAtomicUnits,
-				'bonusBankUpdate.creditAtomicUnits',
-			);
-			localBalance += credit;
 			cloned.type = 'roundWinUpdate';
-			cloned.balanceAfterAtomicUnits = localBalance;
 		}
 		if (cloned.type === 'cascade') {
 			localCascadeIndex++;
@@ -1076,14 +1083,22 @@ function validateShowdownBoardPhase(
 		syntheticEvents.push(cloned);
 		if (cloned.type === 'serviceQueueClosed') localServiceWindowIndex++;
 	}
+	const phaseFinalState = [...phase]
+		.reverse()
+		.map((event) => transitions.find((transition) => transition.event.id === event.id)?.after)
+		.find((candidate) => candidate !== undefined);
+	const terminalBalance = phaseFinalState?.bonusBankAtomicUnits ?? 0;
 	syntheticEvents.push(
-		{ type: 'setTotalWin', totalWinAtomicUnits: localBalance },
-		{ type: 'finalWin', payoutAtomicUnits: localBalance },
+		{ type: 'setTotalWin', totalWinAtomicUnits: terminalBalance },
+		{ type: 'finalWin', payoutAtomicUnits: terminalBalance },
 	);
-	validateBaseLifecycle(syntheticEvents, [...initialSauceSpots], true);
+	validateBaseLifecycle(syntheticEvents, [...initialSauceSpots], true, transitions);
 }
 
-function validateShowdownLifecycle(events: EventRecord[]): number {
+function validateShowdownLifecycle(
+	events: EventRecord[],
+	transitions: readonly ProductionReplayTransition[],
+): number {
 	const roundStart = events[0];
 	if (!roundStart || roundStart.type !== 'roundStart') validationError('roundStart is required');
 	validateRoundStart(roundStart);
@@ -1102,33 +1117,17 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		!multipliers.has(selectedMultiplier as CrownMultiplier)
 	)
 		validationError('Showdown requires one valid Kitchen Crown multiplier');
-	let headroomBank = 0;
-	let headroomPot = 0;
-	events.forEach((bookEvent) => {
-		if (bookEvent.type === 'bonusBankUpdate')
-			headroomBank = requireSafeNonNegativeInteger(
-				bookEvent.balanceAfterAtomicUnits,
-				'bonusBankUpdate.balanceAfterAtomicUnits',
-			);
-		if (bookEvent.type === 'crownCourseComplete')
-			headroomPot = requireSafeNonNegativeInteger(
-				bookEvent.crownPotAfterAtomicUnits,
-				'crownCourseComplete.crownPotAfterAtomicUnits',
-			);
+	events.forEach((bookEvent, index) => {
 		if (bookEvent.type === 'bonusBankUpdate' || bookEvent.type === 'crownCourseComplete')
 			validateCrownHeadroom(
-				headroomBank,
-				headroomPot,
+				transitions[index]?.after.bonusBankAtomicUnits ?? 0,
+				transitions[index]?.after.crownPotAtomicUnits ?? 0,
 				selectedMultiplier as CrownMultiplier,
 				maxWinAtomicUnits,
 			);
 	});
 
-	const bankBeforeIndex: number[] = [];
-	let bank = 0;
-	const creditedSources = new Set<string>();
 	events.forEach((bookEvent, index) => {
-		bankBeforeIndex[index] = bank;
 		if (bookEvent.type === 'roundWinUpdate')
 			validationError('Showdown payout source cannot enter the round ledger');
 		if (bookEvent.type !== 'bonusBankUpdate') return;
@@ -1137,8 +1136,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 			!source ||
 			(source.type !== 'clusterWin' && source.type !== 'perfectServeAward') ||
 			bookEvent.sourceEventId !== source.id ||
-			typeof bookEvent.sourceEventId !== 'string' ||
-			creditedSources.has(bookEvent.sourceEventId)
+			typeof bookEvent.sourceEventId !== 'string'
 		)
 			validationError('Showdown ledger must credit one unique payout source immediately');
 		const credit = requireSafeNonNegativeInteger(
@@ -1149,14 +1147,8 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 			source.payoutAtomicUnits,
 			`${String(source.type)}.payoutAtomicUnits`,
 		);
-		const balanceAfter = requireSafeNonNegativeInteger(
-			bookEvent.balanceAfterAtomicUnits,
-			'bonusBankUpdate.balanceAfterAtomicUnits',
-		);
-		if (credit !== sourcePayout || balanceAfter !== bank + credit)
-			validationError('bonusBankUpdate must exactly replace the protected Bank balance');
-		creditedSources.add(bookEvent.sourceEventId);
-		bank = balanceAfter;
+		if (credit !== sourcePayout)
+			validationError('bonusBankUpdate must exactly credit its protected Bank source');
 	});
 	let serviceWindowIndex = 1;
 	events.forEach((bookEvent) => {
@@ -1218,6 +1210,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 			requireChefValues(roundStart.meters, 'roundStart.meters', 100),
 			[],
 			`${roundId}-trigger`,
+			transitions,
 		);
 		entryKind = 'natural';
 	} else if (
@@ -1243,7 +1236,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		state.currentFreeSpin !== 0 ||
 		state.remainingFreeSpins !== state.totalFreeSpins ||
 		state.winner !== null ||
-		state.bonusBankAtomicUnits !== bankBeforeIndex[startIndex] ||
+		state.bonusBankAtomicUnits !== transitionBefore(transitions, startIndex).bonusBankAtomicUnits ||
 		state.crownPotAtomicUnits !==
 			state.completedCourses.reduce((sum, course) => sum + course.valueAtomicUnits, 0) ||
 		(entryKind === 'natural' && state.activeSauceSpots.length !== 0)
@@ -1299,19 +1292,20 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		selectedMultiplier as CrownMultiplier,
 		maxWinAtomicUnits,
 	);
+	assertShowdownSnapshot(start, transitions[startIndex]?.after as ProductionReplayState, 'kitchenShowdownStart');
 
 	let cursor = startIndex + 1;
-	const courseSources = new Set<string>(
-		state.completedCourses.map((course) => course.sourceEventId),
-	);
 	const consumedCourseMeta = new Set<EventRecord>();
-	for (let spin = 1; spin <= state.totalFreeSpins; spin++) {
+	while (transitionBefore(transitions, cursor).remainingFreeSpins > 0) {
 		const spinStart = events[cursor];
 		if (!spinStart || spinStart.type !== 'freeSpinStart' || !isBoard(spinStart.board))
 			validationError('all Showdown free spins must play');
+		const spinState = transitions[cursor]?.after;
+		if (!spinState) validationError('freeSpinStart reducer transition is missing');
+		const spin = spinState.currentFreeSpin;
 		if (
-			spinStart.currentFreeSpin !== spin ||
-			spinStart.remainingFreeSpins !== state.totalFreeSpins - spin ||
+			spinStart.currentFreeSpin !== spinState.currentFreeSpin ||
+			spinStart.remainingFreeSpins !== spinState.remainingFreeSpins ||
 			spinStart.board.some((reel) => reel.includes('pasta_wild'))
 		)
 			validationError('freeSpinStart counters or temporary Pasta state');
@@ -1331,11 +1325,13 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 			roundStart,
 			spinStart.board,
 			boardPhase,
-			state.meters,
-			state.activeSauceSpots,
+			transitionBefore(transitions, cursor).meters,
+			transitionBefore(transitions, cursor).activeSauceSpots,
 			`${roundId}-spin-${String(spin).padStart(2, '0')}`,
+			transitions,
 		);
 		if (retrigger) {
+			const retriggerIndex = events.indexOf(retrigger);
 			const scatterPositions = requirePositions(
 				retrigger.scatterPositions,
 				'freeSpinRetrigger.scatterPositions',
@@ -1350,7 +1346,8 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 				scatterPositions.length !== 3 ||
 				!samePositions(scatterPositions, expectedScatters) ||
 				retrigger.awardedFreeSpins !== 3 ||
-				retrigger.remainingFreeSpinsAfter !== state.totalFreeSpins - spin + 3
+				retrigger.remainingFreeSpinsAfter !==
+					transitionBefore(transitions, retriggerIndex).remainingFreeSpins + 3
 			)
 				validationError(
 					'freeSpinRetrigger must preserve the scatter snapshot and add exactly three',
@@ -1362,20 +1359,8 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		const specialByEntry = new Map<string, { event: EventRecord; index: number }>();
 		const consumedMeta = new Set<number>();
 		boardPhase.forEach((bookEvent, phaseIndex) => {
+			const eventIndex = cursor + 1 + phaseIndex;
 			if (consumedMeta.has(phaseIndex)) return;
-			if (bookEvent.type === 'chefMeterUpdate') {
-				if (typeof bookEvent.chef !== 'string' || !chefIds.has(bookEvent.chef as ChefId))
-					validationError('chefMeterUpdate.chef');
-				state.meters[bookEvent.chef as ChefId] = requireSafeNonNegativeInteger(
-					bookEvent.meterAfter,
-					'chefMeterUpdate.meterAfter',
-				);
-			}
-			if (bookEvent.type === 'sauceFinish')
-				state.activeSauceSpots = requireSauceSpots(
-					bookEvent.activeSpots,
-					'sauceFinish.activeSpots',
-				);
 			if (bookEvent.type === 'serviceQueueOpened') {
 				if (!Array.isArray(bookEvent.entries)) validationError('serviceQueueOpened.entries');
 				openEntries = bookEvent.entries.map((rawEntry) => {
@@ -1419,10 +1404,10 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 					bookEvent.chef !== expectedEntry.chef ||
 					bookEvent.sourceEventId !== special.event.id ||
 					typeof bookEvent.sourceEventId !== 'string' ||
-					courseSources.has(bookEvent.sourceEventId) ||
-					creditedSources.has(bookEvent.sourceEventId) ||
 					bookEvent.courseId !==
-						`${roundId}-course-${String(state.completedCourses.length + 1).padStart(2, '0')}`
+						`${roundId}-course-${String(
+							transitionBefore(transitions, eventIndex).completedCourses.length + 1,
+						).padStart(2, '0')}`
 				)
 					validationError('Crown Course source or order');
 				const afterSpecial = boardPhase[special.index + 1];
@@ -1430,55 +1415,42 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 					afterSpecial?.type === 'perfectServeAward' ? special.index + 3 : special.index + 1;
 				if (phaseIndex !== expectedCourseIndex)
 					validationError('Crown Course must immediately follow its service payout chain');
-				courseSources.add(bookEvent.sourceEventId);
-				state.crownPotAtomicUnits += value;
+				const courseState = transitions[eventIndex]?.after;
+				if (!courseState) validationError('Crown Course reducer transition is missing');
 				validateCrownHeadroom(
-					state.bonusBankAtomicUnits,
-					state.crownPotAtomicUnits,
+					courseState.bonusBankAtomicUnits,
+					courseState.crownPotAtomicUnits,
 					selectedMultiplier as CrownMultiplier,
 					maxWinAtomicUnits,
 				);
-				state.completedCourses.push({
-					id: bookEvent.courseId as string,
-					chef: expectedEntry.chef,
-					sourceEventId: bookEvent.sourceEventId,
-					valueAtomicUnits: value,
-				});
-				if (
-					bookEvent.crownPotAfterAtomicUnits !== state.crownPotAtomicUnits ||
-					!sameCourses(
-						requireCourses(bookEvent.completedCourses, 'crownCourseComplete.completedCourses'),
-						state.completedCourses,
-					)
-				)
-					validationError('Crown Course Pot snapshot');
 				courseIndexInWindow++;
 
 				const next = boardPhase[phaseIndex + 1];
-				if (state.winner === null) {
+				if (courseState.winner === null) {
 					if (!next || next.type !== 'judgeStarUpdate')
 						validationError('each pre-lock Course requires one Judge Star');
 					if (consumedCourseMeta.has(next))
 						validationError('Showdown meta event cannot serve two canonical Course chains');
-					const expectedStars = { ...state.stars };
-					expectedStars[expectedEntry.chef]++;
+					const starState = transitions[eventIndex + 1]?.after;
+					if (!starState) validationError('Judge Star reducer transition is missing');
 					if (
 						next.chef !== expectedEntry.chef ||
-						next.starsAfter !== expectedStars[expectedEntry.chef] ||
+						next.starsAfter !== starState.stars[expectedEntry.chef] ||
 						!Array.from(chefIds).every(
 							(chef) =>
 								requireChefValues(next.stars, 'judgeStarUpdate.stars', 3)[chef] ===
-								expectedStars[chef],
+								starState.stars[chef],
 						)
 					)
 						validationError('Judge Star snapshot');
-					state.stars = expectedStars;
 					consumedCourseMeta.add(next);
 					consumedMeta.add(phaseIndex + 1);
-					if (expectedStars[expectedEntry.chef] === 3) {
+					if (starState.stars[expectedEntry.chef] === 3) {
 						const lock = boardPhase[phaseIndex + 2];
 						const expectedHeadliner =
-							roundStart.mode === 'mysteryTasting' ? state.headliner : expectedEntry.chef;
+							roundStart.mode === 'mysteryTasting'
+								? starState.headliner
+								: expectedEntry.chef;
 						if (
 							!lock ||
 							lock.type !== 'kitchenWinnerLocked' ||
@@ -1487,14 +1459,12 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 							!Array.from(chefIds).every(
 								(chef) =>
 									requireChefValues(lock.stars, 'kitchenWinnerLocked.stars', 3)[chef] ===
-									expectedStars[chef],
+									starState.stars[chef],
 							)
 						)
 							validationError('third Judge Star must immediately lock winner');
 						if (consumedCourseMeta.has(lock))
 							validationError('Showdown meta event cannot serve two canonical Course chains');
-						state.winner = expectedEntry.chef;
-						if (roundStart.mode !== 'mysteryTasting') state.headliner = expectedEntry.chef;
 						consumedCourseMeta.add(lock);
 						consumedMeta.add(phaseIndex + 2);
 					}
@@ -1504,20 +1474,13 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 			if (bookEvent.type === 'serviceQueueClosed') {
 				if (courseIndexInWindow !== openEntries.length)
 					validationError('every Showdown service requires one Crown Course');
-				openEntries.forEach((entry) => {
-					state.meters[entry.chef] = 0;
-				});
 				openEntries = [];
 			}
 		});
 
-		if (retrigger) state.totalFreeSpins += 3;
-		state.currentFreeSpin = spin;
-		state.remainingFreeSpins = state.totalFreeSpins - spin;
-		state.bonusBankAtomicUnits = bankBeforeIndex[endIndex] as number;
 		const spinEnd = events[endIndex];
 		if (!spinEnd) validationError('freeSpinEnd is required');
-		assertShowdownSnapshot(spinEnd, state, 'freeSpinEnd');
+		assertShowdownSnapshot(spinEnd, transitionBefore(transitions, endIndex), 'freeSpinEnd');
 		cursor = endIndex + 1;
 	}
 	if (
@@ -1542,13 +1505,14 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		crown.finalWinAtomicUnits,
 		'kitchenCrownReveal.finalWinAtomicUnits',
 	);
+	const crownState = transitionBefore(transitions, cursor);
 	if (
-		state.winner === null ||
-		crown.winner !== state.winner ||
-		crown.bonusBankAtomicUnits !== state.bonusBankAtomicUnits ||
-		crown.crownPotAtomicUnits !== state.crownPotAtomicUnits ||
-		crownPayout !== state.crownPotAtomicUnits * crown.multiplier ||
-		finalWin !== state.bonusBankAtomicUnits + crownPayout
+		crownState.winner === null ||
+		crown.winner !== crownState.winner ||
+		crown.bonusBankAtomicUnits !== crownState.bonusBankAtomicUnits ||
+		crown.crownPotAtomicUnits !== crownState.crownPotAtomicUnits ||
+		crownPayout !== crownState.crownPotAtomicUnits * crown.multiplier ||
+		finalWin !== crownState.bonusBankAtomicUnits + crownPayout
 	)
 		validationError('Kitchen Crown final payout must equal Bank plus Pot times multiplier');
 	cursor++;
@@ -1621,6 +1585,7 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 	if (roundIds.size !== 1) validationError('one roundId is required');
 	const roundStart = events[0];
 	if (!roundStart || roundStart.type !== 'roundStart') validationError('roundStart is required');
+	validateRoundStart(roundStart);
 	if (
 		roundStart.roundId === 'P3-00' &&
 		(events.length !== p300EventTypes.length ||
@@ -1634,9 +1599,57 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 		events.some(
 			(event) => event.type === 'kitchenShowdownTriggered' || event.type === 'kitchenShowdownStart',
 		);
+	events.forEach((event, index) => {
+		if (event.type === 'crownCourseComplete') {
+			const value = requireSafeNonNegativeInteger(
+				event.courseValueAtomicUnits,
+				'crownCourseComplete.courseValueAtomicUnits',
+			);
+			if (value === 0) validationError('Crown Course value must be positive');
+		}
+		if (event.type === 'maxWinReached')
+			requireSafeNonNegativeInteger(
+				event.maxWinAtomicUnits,
+				'maxWinReached.maxWinAtomicUnits',
+			);
+		if (event.type === 'judgeStarUpdate' && events[index - 1]?.type !== 'crownCourseComplete')
+			validationError('every Judge Star must belong to one canonical Course chain');
+		if (event.type === 'kitchenWinnerLocked' && events[index - 1]?.type !== 'judgeStarUpdate')
+			validationError('every winner lock must belong to one canonical Course chain');
+	});
+	if (hasShowdown) {
+		const start = events.find((event) => event.type === 'kitchenShowdownStart');
+		if (!start) validationError('kitchenShowdownStart is required');
+		const startState = readShowdownSnapshot(start, 'kitchenShowdownStart');
+		if (
+			roundStart.mode === 'grandShowdown' &&
+			(!Array.from(chefIds).every(
+				(chef) => startState.meters[chef] === 75 && startState.stars[chef] === 1,
+			) ||
+				startState.completedCourses.length !== 3)
+		)
+			validationError(
+				'Grand Showdown start requires meters 75, one star and one matching positive Course per chef',
+			);
+		if (roundStart.mode === 'mysteryTasting') {
+			const headliner = startState.headliner;
+			if (
+				headliner === null ||
+				!Array.from(chefIds).every(
+					(chef) =>
+						startState.meters[chef] === (chef === headliner ? 100 : 50) &&
+						startState.stars[chef] === (chef === headliner ? 1 : 0),
+				)
+			)
+				validationError(
+					'Mystery Tasting start requires Headliner meter 100, one star and one matching positive Course',
+				);
+		}
+	}
+	const transitions = reduceProductionTransitions(events);
 	const finalWinAtomicUnits = hasShowdown
-		? validateShowdownLifecycle(events)
-		: validateBaseLifecycle(events);
+		? validateShowdownLifecycle(events, transitions)
+		: validateBaseLifecycle(events, [], false, transitions);
 	const maxWinAtomicUnits = requireSafeNonNegativeInteger(
 		roundStart.maxWinAtomicUnits,
 		'roundStart.maxWinAtomicUnits',
@@ -1648,9 +1661,21 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 		finalWinAtomicUnits,
 	});
 	validatedBooks.add(validatedBook);
+	const finalState = transitions.at(-1)?.after;
+	if (!finalState) validationError('reducer trace did not produce a final state');
+	validatedFinalStates.set(validatedBook, finalState);
 	return validatedBook;
 }
 
 export function assertValidatedProductionBook(book: ValidatedProductionBook): void {
 	if (!validatedBooks.has(book)) validationError('Book must be returned by validateProductionBook');
+}
+
+export function getValidatedFinalState(
+	book: ValidatedProductionBook,
+): ProductionReplayTransition['after'] {
+	assertValidatedProductionBook(book);
+	const finalState = validatedFinalStates.get(book);
+	if (!finalState) validationError('validated Book is missing its reducer state');
+	return finalState;
 }

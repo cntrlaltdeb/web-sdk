@@ -1,4 +1,4 @@
-import { validateProductionBook } from './bookValidator';
+import { getValidatedFinalState, validateProductionBook } from './bookValidator';
 import type { Position } from '../typesBookEvent';
 import type {
 	CrownCourse,
@@ -60,6 +60,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
+function compareUtf16ObjectKeys(left: string, right: string): number {
+	return left < right ? -1 : left > right ? 1 : 0;
+}
+
 function canonicalFragment(value: unknown): string {
 	if (value === null || typeof value === 'boolean' || typeof value === 'string')
 		return JSON.stringify(value);
@@ -71,7 +75,7 @@ function canonicalFragment(value: unknown): string {
 	if (Array.isArray(value)) return `[${value.map(canonicalFragment).join(',')}]`;
 	if (isRecord(value))
 		return `{${Object.keys(value)
-			.sort()
+			.sort(compareUtf16ObjectKeys)
 			.map((key) => `${JSON.stringify(key)}:${canonicalFragment(value[key])}`)
 			.join(',')}}`;
 	replayError('INVALID_CANONICAL_JSON', `unsupported value ${typeof value}`);
@@ -91,6 +95,10 @@ async function hashCanonical(value: unknown): Promise<string> {
 	return sha256Text(canonicalProductionJson(value));
 }
 
+export async function hashCanonicalProductionValue(value: unknown): Promise<string> {
+	return hashCanonical(value);
+}
+
 export async function hashProductionBook(
 	events: readonly ProductionBookEvent[] | readonly JsonObject[],
 ): Promise<string> {
@@ -105,6 +113,16 @@ function freezeDeep<T>(value: T): T {
 	if (Array.isArray(value)) value.forEach(freezeDeep);
 	else if (isRecord(value)) Object.values(value).forEach(freezeDeep);
 	return Object.freeze(value);
+}
+
+export function snapshotPreparedProductionBook(
+	prepared: PreparedProductionBook,
+): PreparedProductionBook {
+	return freezeDeep(structuredClone(prepared));
+}
+
+export function snapshotReplayCheckpoint(checkpoint: ReplayCheckpoint): ReplayCheckpoint {
+	return freezeDeep(structuredClone(checkpoint));
 }
 
 function cloneBoard(board: ProductionReplayState['board']): ProductionReplayState['board'] {
@@ -174,6 +192,12 @@ function assertContinuation(state: ProductionReplayState, event: ProductionBookE
 		replayError('INVALID_SUFFIX', 'round and sequence must continue the restored prefix');
 }
 
+function safeSum(left: number, right: number, field: string): number {
+	const result = left + right;
+	if (!Number.isSafeInteger(result)) replayError('INVALID_BOOK', `${field} must remain safe money`);
+	return result;
+}
+
 function sameSnapshot(
 	state: ProductionReplayState,
 	event: Extract<ProductionBookEvent, { type: 'freeSpinEnd' }>,
@@ -201,6 +225,13 @@ export function reduceProductionEvent(
 	if (state === null) {
 		if (event.type !== 'roundStart' || event.sequence !== 1)
 			replayError('INVALID_BOOK', 'reduction must start with sequence 1 roundStart');
+		const startingQueue = (['italian', 'french', 'chinese'] as const)
+			.filter((chef) => event.meters[chef] === 100)
+			.map((chef) => ({
+				id: `${event.roundId}-service-01-${chef}`,
+				chef,
+				perfectServeUnits: 0,
+			}));
 		return freezeDeep({
 			roundId: event.roundId,
 			sequence: event.sequence,
@@ -213,7 +244,7 @@ export function reduceProductionEvent(
 			currentFreeSpin: 0,
 			remainingFreeSpins: 0,
 			meters: { ...event.meters },
-			serviceQueue: [],
+			serviceQueue: startingQueue,
 			activePastaPositions: [],
 			activeSauceSpots: [],
 			roundWinAtomicUnits: 0,
@@ -243,16 +274,49 @@ export function reduceProductionEvent(
 			next.board = cloneBoard(event.board);
 			break;
 		case 'roundWinUpdate':
+			if (next.creditedSourceIds.includes(event.sourceEventId))
+				replayError('INVALID_BOOK', 'roundWinUpdate sourceEventId must be unique');
+			if (
+				event.balanceAfterAtomicUnits !==
+				safeSum(next.roundWinAtomicUnits, event.creditAtomicUnits, 'roundWinUpdate balance')
+			)
+				replayError(
+					'INVALID_BOOK',
+					'roundWinUpdate balanceAfterAtomicUnits must add the exact credit',
+				);
 			next.roundWinAtomicUnits = event.balanceAfterAtomicUnits;
 			next.creditedSourceIds = [...next.creditedSourceIds, event.sourceEventId];
 			break;
 		case 'bonusBankUpdate':
+			if (
+				next.creditedSourceIds.includes(event.sourceEventId) ||
+				next.completedCourses.some((course) => course.sourceEventId === event.sourceEventId) ||
+				event.balanceAfterAtomicUnits !==
+					safeSum(next.bonusBankAtomicUnits, event.creditAtomicUnits, 'bonusBankUpdate balance')
+			)
+				replayError('INVALID_BOOK', 'bonusBankUpdate must add one unique exact credit');
 			next.bonusBankAtomicUnits = event.balanceAfterAtomicUnits;
 			next.creditedSourceIds = [...next.creditedSourceIds, event.sourceEventId];
 			break;
 		case 'chefMeterUpdate': {
+			const expectedApplied = Math.min(event.earnedCharge, 100 - next.meters[event.chef]);
+			const expectedOverflow = event.earnedCharge - expectedApplied;
+			const expectedMeterAfter = Math.min(100, next.meters[event.chef] + event.earnedCharge);
+			if (
+				event.appliedCharge !== expectedApplied ||
+				event.overflowCharge !== expectedOverflow ||
+				event.meterAfter !== expectedMeterAfter
+			)
+				replayError('INVALID_BOOK', 'chefMeterUpdate charge fields do not match the meter');
 			next.meters = { ...next.meters, [event.chef]: event.meterAfter };
-			if (event.serviceQueueEntryId !== null) {
+			if (event.meterAfter === 100) {
+				if (event.serviceQueueEntryId === null)
+					replayError('INVALID_BOOK', 'READY meter requires a Service Queue entry');
+				const existingForChef = next.serviceQueue.find((entry) => entry.chef === event.chef);
+				const expectedUnits =
+					(existingForChef?.perfectServeUnits ?? 0) + event.overflowCharge;
+				if (event.perfectServeUnitsAfter !== expectedUnits)
+					replayError('INVALID_BOOK', 'Service Queue overflow snapshot is invalid');
 				const entry = {
 					id: event.serviceQueueEntryId,
 					chef: event.chef,
@@ -263,14 +327,19 @@ export function reduceProductionEvent(
 				if (existing < 0) queue.push(entry);
 				else queue[existing] = entry;
 				next.serviceQueue = queue;
-			}
+			} else if (event.serviceQueueEntryId !== null || event.perfectServeUnitsAfter !== 0)
+				replayError('INVALID_BOOK', 'non-READY meter cannot carry a Service Queue entry');
 			break;
 		}
 		case 'cascade':
 			next.cascadeIndex = event.index;
 			break;
 		case 'serviceQueueOpened':
-			next.serviceQueue = cloneQueue(event.entries);
+			if (canonicalProductionJson(event.entries) !== canonicalProductionJson(next.serviceQueue))
+				replayError(
+					'INVALID_BOOK',
+					'serviceQueueOpened queue order does not match pending READY chefs',
+				);
 			break;
 		case 'pastaPull':
 			next.board = cloneBoard(event.boardAfter);
@@ -291,11 +360,18 @@ export function reduceProductionEvent(
 			break;
 		}
 		case 'kitchenShowdownStart':
+			const openingQueue = (['italian', 'french', 'chinese'] as const)
+				.filter((chef) => event.meters[chef] === 100)
+				.map((chef) => ({
+					id: `${event.roundId}-service-01-${chef}`,
+					chef,
+					perfectServeUnits: 0,
+				}));
 			next.board = [];
 			next.currentFreeSpin = event.currentFreeSpin;
 			next.remainingFreeSpins = event.remainingFreeSpins;
 			next.meters = { ...event.meters };
-			next.serviceQueue = [];
+			next.serviceQueue = openingQueue;
 			next.activePastaPositions = [];
 			next.activeSauceSpots = cloneSauceSpots(event.activeSauceSpots);
 			next.bonusBankAtomicUnits = event.bonusBankAtomicUnits;
@@ -306,6 +382,12 @@ export function reduceProductionEvent(
 			next.headliner = event.headliner;
 			break;
 		case 'freeSpinStart':
+			if (
+				event.currentFreeSpin !== next.currentFreeSpin + 1 ||
+				next.remainingFreeSpins === 0 ||
+				event.remainingFreeSpins !== next.remainingFreeSpins - 1
+			)
+				replayError('INVALID_BOOK', 'freeSpinStart counters must advance exactly once');
 			next.board = cloneBoard(event.board);
 			next.currentFreeSpin = event.currentFreeSpin;
 			next.remainingFreeSpins = event.remainingFreeSpins;
@@ -330,10 +412,43 @@ export function reduceProductionEvent(
 			next.activePastaPositions = [];
 			break;
 		case 'crownCourseComplete':
-			next.crownPotAtomicUnits = event.crownPotAfterAtomicUnits;
-			next.completedCourses = cloneCourses(event.completedCourses);
+			const completedCourses = cloneCourses(event.completedCourses);
+			const appended = completedCourses.at(-1);
+			const expectedPot = safeSum(
+				next.crownPotAtomicUnits,
+				event.courseValueAtomicUnits,
+				'Crown Pot',
+			);
+			if (
+				completedCourses.length !== next.completedCourses.length + 1 ||
+				canonicalProductionJson(completedCourses.slice(0, -1)) !==
+					canonicalProductionJson(next.completedCourses) ||
+				!appended ||
+				appended.valueAtomicUnits !== event.courseValueAtomicUnits ||
+				appended.id !== event.courseId ||
+				appended.chef !== event.chef ||
+				appended.sourceEventId !== event.sourceEventId ||
+				next.creditedSourceIds.includes(appended.sourceEventId) ||
+				next.completedCourses.some(
+					(course) => course.sourceEventId === appended.sourceEventId,
+				) ||
+				event.crownPotAfterAtomicUnits !== expectedPot
+			)
+				replayError('INVALID_BOOK', 'Crown Course must append one unique exact Pot credit');
+			next.crownPotAtomicUnits = expectedPot;
+			next.completedCourses = completedCourses;
 			break;
 		case 'judgeStarUpdate':
+			if (
+				next.winner !== null ||
+				event.starsAfter !== next.stars[event.chef] + 1 ||
+				event.stars[event.chef] !== event.starsAfter ||
+				event.starsAfter > 3 ||
+				(['italian', 'french', 'chinese'] as const).some(
+					(chef) => chef !== event.chef && event.stars[chef] !== next.stars[chef],
+				)
+			)
+				replayError('INVALID_BOOK', 'Judge Star snapshot must add exactly one star');
 			next.stars = { ...event.stars };
 			break;
 		case 'kitchenWinnerLocked':
@@ -342,18 +457,36 @@ export function reduceProductionEvent(
 			next.headliner = event.headliner;
 			break;
 		case 'kitchenCrownReveal':
+			if (
+				event.winner !== next.winner ||
+				event.bonusBankAtomicUnits !== next.bonusBankAtomicUnits ||
+				event.crownPotAtomicUnits !== next.crownPotAtomicUnits ||
+				event.crownPayoutAtomicUnits !== event.crownPotAtomicUnits * event.multiplier ||
+				event.finalWinAtomicUnits !==
+					event.bonusBankAtomicUnits + event.crownPayoutAtomicUnits
+			)
+				replayError('INVALID_BOOK', 'Kitchen Crown final payout does not match reducer state');
 			next.bonusBankAtomicUnits = event.bonusBankAtomicUnits;
 			next.crownPotAtomicUnits = event.crownPotAtomicUnits;
 			next.winner = event.winner;
 			next.finalWinAtomicUnits = event.finalWinAtomicUnits;
 			break;
 		case 'maxWinReached':
+			if (event.maxWinAtomicUnits !== next.maxWinAtomicUnits)
+				replayError('INVALID_BOOK', 'maxWinReached must announce the round cap');
 			next.maxWinReached = true;
 			break;
 		case 'setTotalWin':
+			if (
+				event.totalWinAtomicUnits !==
+					(next.finalWinAtomicUnits || next.roundWinAtomicUnits)
+			)
+				replayError('INVALID_BOOK', 'setTotalWin must equal the reducer ledger');
 			next.totalWinAtomicUnits = event.totalWinAtomicUnits;
 			break;
 		case 'finalWin':
+			if (event.payoutAtomicUnits !== next.totalWinAtomicUnits)
+				replayError('INVALID_BOOK', 'finalWin must equal setTotalWin');
 			next.finalWinAtomicUnits = event.payoutAtomicUnits;
 			next.serviceQueue = [];
 			next.activePastaPositions = [];
@@ -384,10 +517,56 @@ export function reduceProductionEvents(
 	return state;
 }
 
+export type ProductionReplayTransition = Readonly<{
+	event: Readonly<Record<string, unknown>>;
+	before: ProductionReplayState | null;
+	after: ProductionReplayState;
+}>;
+
+export function reduceProductionTransitions(
+	events: readonly ProductionBookEvent[] | readonly JsonObject[],
+	initialState: ProductionReplayState | null = null,
+): readonly ProductionReplayTransition[] {
+	if (events.length === 0) {
+		if (initialState === null) replayError('INVALID_BOOK', 'event sequence must not be empty');
+		return freezeDeep([]);
+	}
+	let state = initialState === null ? null : freezeDeep(cloneReplayState(initialState));
+	const transitions: ProductionReplayTransition[] = [];
+	const crown = events.find(
+		(event) => (event as Readonly<Record<string, unknown>>).type === 'kitchenCrownReveal',
+	) as Readonly<Record<string, unknown>> | undefined;
+	const multiplier = crown?.multiplier;
+	for (const rawEvent of events) {
+		const event = freezeDeep(structuredClone(rawEvent)) as ProductionBookEvent;
+		const before = state;
+		if (
+			before !== null &&
+			typeof multiplier === 'number' &&
+			Number.isSafeInteger(multiplier) &&
+			(event.type === 'bonusBankUpdate' || event.type === 'crownCourseComplete')
+		) {
+			const projectedBank =
+				event.type === 'bonusBankUpdate'
+					? event.balanceAfterAtomicUnits
+					: before.bonusBankAtomicUnits;
+			const projectedPot =
+				event.type === 'crownCourseComplete'
+					? safeSum(before.crownPotAtomicUnits, event.courseValueAtomicUnits, 'Crown Pot')
+					: before.crownPotAtomicUnits;
+			if (projectedBank + projectedPot * multiplier > before.maxWinAtomicUnits)
+				replayError('INVALID_BOOK', 'Crown outcome exceeds max win');
+		}
+		state = reduceProductionEvent(state, event);
+		transitions.push(freezeDeep({ event, before, after: state }));
+	}
+	return freezeDeep(transitions);
+}
+
 export async function prepareProductionBook(value: unknown): Promise<PreparedProductionBook> {
 	const validated = validateProductionBook(value);
 	const bookHash = await hashProductionBook(validated.events);
-	const finalState = reduceProductionEvents(validated.events);
+	const finalState = getValidatedFinalState(validated);
 	if (
 		finalState.finalWinAtomicUnits !== validated.finalWinAtomicUnits ||
 		finalState.sequence !== validated.events.length
@@ -423,13 +602,14 @@ function assertCheckpointEnvelope(value: unknown): asserts value is ReplayCheckp
 export async function validatePreparedProductionBook(
 	prepared: PreparedProductionBook,
 ): Promise<ProductionReplayState> {
-	const validated = validateProductionBook(prepared.events);
+	const snapshot = snapshotPreparedProductionBook(prepared);
+	const validated = validateProductionBook(snapshot.events);
 	const actualBookHash = await hashProductionBook(validated.events);
-	if (actualBookHash !== prepared.bookHash) replayError('BOOK_HASH', 'bookHash mismatch');
-	const finalState = reduceProductionEvents(validated.events);
+	if (actualBookHash !== snapshot.bookHash) replayError('BOOK_HASH', 'bookHash mismatch');
+	const finalState = getValidatedFinalState(validated);
 	if (
-		validated.finalWinAtomicUnits !== prepared.finalWinAtomicUnits ||
-		canonicalProductionJson(finalState) !== canonicalProductionJson(prepared.finalState)
+		validated.finalWinAtomicUnits !== snapshot.finalWinAtomicUnits ||
+		canonicalProductionJson(finalState) !== canonicalProductionJson(snapshot.finalState)
 	)
 		replayError('BOOK_STATE', 'prepared final reducer state mismatch');
 	return finalState;
@@ -439,33 +619,37 @@ export async function validateReplayCheckpoint(
 	prepared: PreparedProductionBook,
 	value: unknown,
 ): Promise<ProductionReplayState> {
-	await validatePreparedProductionBook(prepared);
-	assertCheckpointEnvelope(value);
-	const checkpoint = value;
-	if (checkpoint.bookHash !== prepared.bookHash)
+	const preparedSnapshot = snapshotPreparedProductionBook(prepared);
+	const checkpointSnapshot = freezeDeep(structuredClone(value));
+	await validatePreparedProductionBook(preparedSnapshot);
+	assertCheckpointEnvelope(checkpointSnapshot);
+	const checkpoint = checkpointSnapshot;
+	if (checkpoint.bookHash !== preparedSnapshot.bookHash)
 		replayError('CHECKPOINT_BOOK_HASH', 'checkpoint bookHash mismatch');
 	if (
 		checkpoint.sequence < 1 ||
-		checkpoint.sequence >= prepared.events.length ||
+		checkpoint.sequence >= preparedSnapshot.events.length ||
 		checkpoint.state.sequence !== checkpoint.sequence
 	)
 		replayError('CHECKPOINT_SEQUENCE', 'checkpoint sequence is not a resumable prefix');
-	const bookRoundId = prepared.events[0]?.roundId;
+	const bookRoundId = preparedSnapshot.events[0]?.roundId;
 	if (checkpoint.roundId !== bookRoundId || checkpoint.state.roundId !== checkpoint.roundId)
 		replayError('CHECKPOINT_STATE', 'checkpoint roundId mismatch');
 	const actualStateHash = await hashProductionReplayState(checkpoint.state);
 	if (actualStateHash !== checkpoint.stateHash)
 		replayError('CHECKPOINT_STATE_HASH', 'checkpoint stateHash mismatch');
-	const expected = reduceProductionEvents(prepared.events.slice(0, checkpoint.sequence));
+	const expected = reduceProductionEvents(
+		preparedSnapshot.events.slice(0, checkpoint.sequence),
+	);
 	if (canonicalProductionJson(checkpoint.state) !== canonicalProductionJson(expected))
 		replayError('CHECKPOINT_STATE', 'checkpoint full state mismatch');
 	if ((await hashProductionReplayState(expected)) !== checkpoint.stateHash)
 		replayError('CHECKPOINT_STATE_HASH', 'checkpoint canonical state fingerprint mismatch');
-	const suffix = prepared.events.slice(checkpoint.sequence);
+	const suffix = preparedSnapshot.events.slice(checkpoint.sequence);
 	if (suffix.length === 0 || suffix[0]?.sequence !== checkpoint.sequence + 1)
 		replayError('INVALID_SUFFIX', 'suffix must start at checkpoint sequence plus one');
 	const resumed = reduceProductionEvents(suffix, expected);
-	if (canonicalProductionJson(resumed) !== canonicalProductionJson(prepared.finalState))
+	if (canonicalProductionJson(resumed) !== canonicalProductionJson(preparedSnapshot.finalState))
 		replayError('INVALID_SUFFIX', 'suffix final state does not match the full reducer');
 	return expected;
 }

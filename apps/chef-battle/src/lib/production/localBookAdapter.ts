@@ -15,7 +15,7 @@ import P312Checkpoint from '../books/production/checkpoints/P3-12-e0040.json';
 import { assertValidatedProductionBook, validateProductionBook } from './bookValidator';
 import { playProductionBookEvent } from './bookEventHandlerMap';
 import { prepareProductionBook } from './checkpoint';
-import { resetProductionState } from './stateGame.svelte';
+import { playPreparedProductionBook } from './playback';
 import type {
 	PreparedProductionBook,
 	ProductionScenarioId,
@@ -59,8 +59,8 @@ export function loadProductionCheckpoint(
 
 export async function playValidatedProductionBook(book: ValidatedProductionBook): Promise<void> {
 	assertValidatedProductionBook(book);
-	resetProductionState();
-	for (const event of book.events) await playProductionBookEvent(event);
+	const prepared = await prepareProductionBook(book.events);
+	await playPreparedProductionBook(prepared, 'instant');
 }
 
 export async function playValidatedPrefixForTest(
@@ -72,6 +72,6 @@ export async function playValidatedPrefixForTest(
 }
 
 export async function playProductionBook(value: unknown): Promise<void> {
-	const book = validateProductionBook(value);
-	await playValidatedProductionBook(book);
+	const prepared = await prepareProductionBook(value);
+	await playPreparedProductionBook(prepared, 'instant');
 }
