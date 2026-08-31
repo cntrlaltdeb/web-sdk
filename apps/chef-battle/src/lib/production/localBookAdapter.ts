@@ -1,5 +1,5 @@
 import P300 from '../books/production/P3-00.json';
-import { validateProductionBook } from './bookValidator';
+import { assertValidatedProductionBook, validateProductionBook } from './bookValidator';
 import { playProductionBookEvent } from './bookEventHandlerMap';
 import { resetProductionState } from './stateGame.svelte';
 import type { ProductionScenarioId, ValidatedProductionBook } from './typesBookEvent';
@@ -13,6 +13,7 @@ export async function loadProductionBook(
 }
 
 export async function playValidatedProductionBook(book: ValidatedProductionBook): Promise<void> {
+	assertValidatedProductionBook(book);
 	resetProductionState();
 	for (const event of book.events) await playProductionBookEvent(event);
 }
@@ -21,6 +22,7 @@ export async function playValidatedPrefixForTest(
 	book: ValidatedProductionBook,
 	endExclusive: number,
 ): Promise<void> {
+	assertValidatedProductionBook(book);
 	for (const event of book.events.slice(0, endExclusive)) await playProductionBookEvent(event);
 }
 

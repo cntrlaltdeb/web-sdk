@@ -19,6 +19,7 @@ const modeCosts: Readonly<Record<GameMode, number>> = {
 };
 const modes = new Set<GameMode>(Object.keys(modeCosts) as GameMode[]);
 const chefIds = new Set<ChefId>(['italian', 'french', 'chinese']);
+const p300EventTypes = ['roundStart', 'revealBoard', 'setTotalWin', 'finalWin'] as const;
 const symbolIds = new Set([
 	'pizza',
 	'pasta_carbonara',
@@ -36,6 +37,8 @@ const symbolIds = new Set([
 
 type EventRecord = Record<string, unknown>;
 
+const validatedBooks = new WeakSet<ValidatedProductionBook>();
+
 const isRecord = (value: unknown): value is EventRecord => typeof value === 'object' && value !== null;
 const isSafeNonNegativeInteger = (value: unknown): value is number =>
 	typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 && value <= MAX_SAFE_INTEGER;
@@ -52,6 +55,7 @@ function requireSafeNonNegativeInteger(value: unknown, field: string): number {
 function isMeterValues(value: unknown): value is MeterValues {
 	return (
 		isRecord(value) &&
+		Object.keys(value).length === chefIds.size &&
 		Array.from(chefIds).every((chef) => isSafeNonNegativeInteger(value[chef]) && value[chef] <= 100)
 	);
 }
@@ -125,15 +129,18 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 		if (event.id !== `${event.roundId}-e${String(sequence).padStart(4, '0')}`)
 			validationError('id must match roundId and sequence suffix');
 		if (typeof event.type !== 'string') validationError('event type is required');
-		validateKnownPayload(event);
 	});
 
 	if (roundIds.size !== 1) validationError('one roundId is required');
-	if (events[0]?.type !== 'roundStart') validationError('roundStart must lead the Book');
-	const totalWin = events.at(-2);
-	const finalWin = events.at(-1);
-	if (totalWin?.type !== 'setTotalWin' || finalWin?.type !== 'finalWin')
-		validationError('setTotalWin then finalWin must terminate the Book');
+	if (
+		events.length !== p300EventTypes.length ||
+		events.some((event, index) => event.type !== p300EventTypes[index])
+	)
+		validationError('P3-00 must contain exactly roundStart → revealBoard → setTotalWin → finalWin');
+	events.forEach(validateKnownPayload);
+	const totalWin = events[2];
+	const finalWin = events[3];
+	if (!totalWin || !finalWin) validationError('P3-00 terminal events are required');
 	const totalWinAtomicUnits = requireSafeNonNegativeInteger(
 		totalWin.totalWinAtomicUnits,
 		'setTotalWin.totalWinAtomicUnits',
@@ -142,15 +149,23 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 		finalWin.payoutAtomicUnits,
 		'finalWin.payoutAtomicUnits',
 	);
+	const roundStart = events[0];
+	if (!roundStart) validationError('P3-00 roundStart is required');
 	const maxWinAtomicUnits = requireSafeNonNegativeInteger(
-		events[0].maxWinAtomicUnits,
+		roundStart.maxWinAtomicUnits,
 		'roundStart.maxWinAtomicUnits',
 	);
 	if (totalWinAtomicUnits !== finalWinAtomicUnits) validationError('setTotalWin must equal finalWin');
 	if (finalWinAtomicUnits > maxWinAtomicUnits) validationError('finalWin exceeds maxWinAtomicUnits');
 
-	return freezeDeep({
+	const validatedBook = freezeDeep({
 		events: events as ProductionBookEvent[],
 		finalWinAtomicUnits,
 	});
+	validatedBooks.add(validatedBook);
+	return validatedBook;
+}
+
+export function assertValidatedProductionBook(book: ValidatedProductionBook): void {
+	if (!validatedBooks.has(book)) validationError('Book must be returned by validateProductionBook');
 }
