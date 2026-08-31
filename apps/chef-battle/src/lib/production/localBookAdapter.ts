@@ -10,10 +10,18 @@ import P308 from '../books/production/P3-08.json';
 import P309 from '../books/production/P3-09.json';
 import P310 from '../books/production/P3-10.json';
 import P311 from '../books/production/P3-11.json';
+import P312 from '../books/production/P3-12.json';
+import P312Checkpoint from '../books/production/checkpoints/P3-12-e0040.json';
 import { assertValidatedProductionBook, validateProductionBook } from './bookValidator';
 import { playProductionBookEvent } from './bookEventHandlerMap';
+import { prepareProductionBook } from './checkpoint';
 import { resetProductionState } from './stateGame.svelte';
-import type { ProductionScenarioId, ValidatedProductionBook } from './typesBookEvent';
+import type {
+	PreparedProductionBook,
+	ProductionScenarioId,
+	ReplayCheckpoint,
+	ValidatedProductionBook,
+} from './typesBookEvent';
 
 const staticBooks: Record<ProductionScenarioId, unknown> = {
 	'P3-00': P300,
@@ -28,12 +36,25 @@ const staticBooks: Record<ProductionScenarioId, unknown> = {
 	'P3-09': P309,
 	'P3-10': P310,
 	'P3-11': P311,
+	'P3-12': P312,
 };
 
 export async function loadProductionBook(
 	scenarioId: ProductionScenarioId,
 ): Promise<ValidatedProductionBook> {
 	return validateProductionBook(staticBooks[scenarioId]);
+}
+
+export async function loadPreparedProductionBook(
+	scenarioId: ProductionScenarioId,
+): Promise<PreparedProductionBook> {
+	return prepareProductionBook(staticBooks[scenarioId]);
+}
+
+export function loadProductionCheckpoint(
+	scenarioId: ProductionScenarioId,
+): ReplayCheckpoint | null {
+	return scenarioId === 'P3-12' ? (structuredClone(P312Checkpoint) as ReplayCheckpoint) : null;
 }
 
 export async function playValidatedProductionBook(book: ValidatedProductionBook): Promise<void> {

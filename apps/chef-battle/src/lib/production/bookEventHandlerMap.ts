@@ -1,4 +1,5 @@
 import { productionState } from './stateGame.svelte';
+import { reduceProductionEvent } from './checkpoint';
 import type { ProductionBookEvent, ShowdownSnapshot } from './typesBookEvent';
 
 const cloneShowdownSnapshot = (snapshot: ShowdownSnapshot): ShowdownSnapshot => ({
@@ -124,6 +125,14 @@ export const productionBookEventHandlerMap = {
 		}
 		productionState.board = event.board.map((reel) => [...reel]);
 	},
+	freeSpinRetrigger: (event) => {
+		if (productionState.showdown) {
+			productionState.showdown.totalFreeSpins += event.awardedFreeSpins;
+			productionState.showdown.remainingFreeSpins = event.remainingFreeSpinsAfter;
+		}
+		productionState.pastaPullPositionKeys = [];
+		productionState.wokTossPositionKeys = [];
+	},
 	freeSpinEnd: (event) => {
 		const previous = productionState.showdown;
 		if (!previous) return;
@@ -182,5 +191,12 @@ export const productionBookEventHandlerMap = {
 export async function playProductionBookEvent(event: ProductionBookEvent): Promise<void> {
 	const handler = productionBookEventHandlerMap[event.type];
 	await handler(event as never);
+	const replayState = productionState.replayState;
+	if (
+		(replayState === null && event.sequence === 1) ||
+		(replayState !== null && event.sequence === replayState.sequence + 1)
+	)
+		productionState.replayState = reduceProductionEvent(replayState, event);
+	else productionState.replayState = null;
 	productionState.handledSequences.push(event.sequence);
 }

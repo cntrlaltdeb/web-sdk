@@ -1,5 +1,12 @@
 <script lang="ts">
-	import { loadProductionBook, playValidatedProductionBook } from '../localBookAdapter';
+	import {
+		loadPreparedProductionBook,
+		loadProductionBook,
+		loadProductionCheckpoint,
+		playValidatedProductionBook,
+	} from '../localBookAdapter';
+	import { resumeProductionBook } from '../playback';
+	import { productionState } from '../stateGame.svelte';
 	import type { ProductionScenarioId } from '../typesBookEvent';
 	import ProductionRound from './ProductionRound.svelte';
 
@@ -8,9 +15,20 @@
 	$effect(() => {
 		let cancelled = false;
 		void (async () => {
-			const book = await loadProductionBook(roundId);
-			if (cancelled) return;
-			await playValidatedProductionBook(book);
+			try {
+				const checkpoint = loadProductionCheckpoint(roundId);
+				if (checkpoint) {
+					const book = await loadPreparedProductionBook(roundId);
+					if (cancelled) return;
+					await resumeProductionBook(book, checkpoint, 'instant');
+				} else {
+					const book = await loadProductionBook(roundId);
+					if (cancelled) return;
+					await playValidatedProductionBook(book);
+				}
+			} catch {
+				if (!cancelled) productionState.recoveryPending = true;
+			}
 		})();
 		return () => {
 			cancelled = true;

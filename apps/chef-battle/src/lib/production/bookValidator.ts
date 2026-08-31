@@ -1320,20 +1320,48 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		);
 		if (endIndex < 0) validationError('free spin requires freeSpinEnd snapshot');
 		const phase = events.slice(cursor + 1, endIndex);
+		const retriggers = phase.filter((bookEvent) => bookEvent.type === 'freeSpinRetrigger');
+		if (retriggers.length > 1)
+			validationError('free spin accepts at most one retrigger after its settled flow');
+		const retrigger = retriggers[0];
+		if (retrigger && phase.at(-1) !== retrigger)
+			validationError('freeSpinRetrigger must follow the drained Service Queue and settled flow');
+		const boardPhase = retrigger ? phase.slice(0, -1) : phase;
 		validateShowdownBoardPhase(
 			roundStart,
 			spinStart.board,
-			phase,
+			boardPhase,
 			state.meters,
 			state.activeSauceSpots,
 			`${roundId}-spin-${String(spin).padStart(2, '0')}`,
 		);
+		if (retrigger) {
+			const scatterPositions = requirePositions(
+				retrigger.scatterPositions,
+				'freeSpinRetrigger.scatterPositions',
+			);
+			const expectedScatters: Position[] = [];
+			spinStart.board.forEach((reel, reelIndex) =>
+				reel.forEach((symbol, row) => {
+					if (symbol === 'kitchen_crown_scatter') expectedScatters.push({ reel: reelIndex, row });
+				}),
+			);
+			if (
+				scatterPositions.length !== 3 ||
+				!samePositions(scatterPositions, expectedScatters) ||
+				retrigger.awardedFreeSpins !== 3 ||
+				retrigger.remainingFreeSpinsAfter !== state.totalFreeSpins - spin + 3
+			)
+				validationError(
+					'freeSpinRetrigger must preserve the scatter snapshot and add exactly three',
+				);
+		}
 
 		let openEntries: Array<{ id: string; chef: ChefId; perfectServeUnits: number }> = [];
 		let courseIndexInWindow = 0;
 		const specialByEntry = new Map<string, { event: EventRecord; index: number }>();
 		const consumedMeta = new Set<number>();
-		phase.forEach((bookEvent, phaseIndex) => {
+		boardPhase.forEach((bookEvent, phaseIndex) => {
 			if (consumedMeta.has(phaseIndex)) return;
 			if (bookEvent.type === 'chefMeterUpdate') {
 				if (typeof bookEvent.chef !== 'string' || !chefIds.has(bookEvent.chef as ChefId))
@@ -1397,7 +1425,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 						`${roundId}-course-${String(state.completedCourses.length + 1).padStart(2, '0')}`
 				)
 					validationError('Crown Course source or order');
-				const afterSpecial = phase[special.index + 1];
+				const afterSpecial = boardPhase[special.index + 1];
 				const expectedCourseIndex =
 					afterSpecial?.type === 'perfectServeAward' ? special.index + 3 : special.index + 1;
 				if (phaseIndex !== expectedCourseIndex)
@@ -1426,7 +1454,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 					validationError('Crown Course Pot snapshot');
 				courseIndexInWindow++;
 
-				const next = phase[phaseIndex + 1];
+				const next = boardPhase[phaseIndex + 1];
 				if (state.winner === null) {
 					if (!next || next.type !== 'judgeStarUpdate')
 						validationError('each pre-lock Course requires one Judge Star');
@@ -1448,7 +1476,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 					consumedCourseMeta.add(next);
 					consumedMeta.add(phaseIndex + 1);
 					if (expectedStars[expectedEntry.chef] === 3) {
-						const lock = phase[phaseIndex + 2];
+						const lock = boardPhase[phaseIndex + 2];
 						const expectedHeadliner =
 							roundStart.mode === 'mysteryTasting' ? state.headliner : expectedEntry.chef;
 						if (
@@ -1483,6 +1511,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 			}
 		});
 
+		if (retrigger) state.totalFreeSpins += 3;
 		state.currentFreeSpin = spin;
 		state.remainingFreeSpins = state.totalFreeSpins - spin;
 		state.bonusBankAtomicUnits = bankBeforeIndex[endIndex] as number;

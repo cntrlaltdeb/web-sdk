@@ -25,3 +25,4 @@
 <Story name="P3-09 Signature Spin" args={{ roundId: 'P3-09' }} {template} />
 <Story name="P3-10 Grand Showdown" args={{ roundId: 'P3-10' }} {template} />
 <Story name="P3-11 Mystery Tasting" args={{ roundId: 'P3-11' }} {template} />
+<Story name="P3-12 Retrigger Replay" args={{ roundId: 'P3-12' }} {template} />

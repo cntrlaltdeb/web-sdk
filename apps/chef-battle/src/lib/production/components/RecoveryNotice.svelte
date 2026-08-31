@@ -2,6 +2,10 @@
 	import { productionState } from '../stateGame.svelte';
 </script>
 
+{#if productionState.recoveryPending}
+	<p class="recovery" role="status">Проверяем результат spin. Новая ставка не будет сделана.</p>
+{/if}
+
 {#if productionState.maxWinReachedAtomicUnits !== null}
 	<p class="terminal" role="status">MAX WIN REACHED — BONUS COMPLETE</p>
 {/if}
@@ -15,6 +19,16 @@
 		background: #fff4d8;
 		color: #442d1f;
 		font-weight: 900;
+		text-align: center;
+	}
+
+	.recovery {
+		margin: 0;
+		padding: 0.65rem 0.85rem;
+		border-radius: 0.65rem;
+		background: #edf4ff;
+		color: #18324f;
+		font-weight: 700;
 		text-align: center;
 	}
 </style>

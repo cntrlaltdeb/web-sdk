@@ -27,6 +27,7 @@ export const PRODUCTION_SCENARIO_IDS = [
 	'P3-09',
 	'P3-10',
 	'P3-11',
+	'P3-12',
 ] as const;
 export type ProductionScenarioId = (typeof PRODUCTION_SCENARIO_IDS)[number];
 
@@ -164,6 +165,12 @@ export type ProductionBookEvent =
 			remainingFreeSpins: number;
 			board: Board;
 	  })
+	| (ProductionEventBase & {
+			type: 'freeSpinRetrigger';
+			scatterPositions: readonly Position[];
+			awardedFreeSpins: number;
+			remainingFreeSpinsAfter: number;
+	  })
 	| (ProductionEventBase & ShowdownSnapshot & { type: 'freeSpinEnd' })
 	| (ProductionEventBase & {
 			type: 'crownCourseComplete';
@@ -203,4 +210,53 @@ export type ProductionBookEvent =
 export type ValidatedProductionBook = Readonly<{
 	events: readonly ProductionBookEvent[];
 	finalWinAtomicUnits: number;
+}>;
+
+export type ProductionReplayState = Readonly<{
+	roundId: string;
+	sequence: number;
+	mode: GameMode;
+	betAtomicUnits: number;
+	paidBetAtomicUnits: number;
+	maxWinAtomicUnits: number;
+	board: Board;
+	cascadeIndex: number;
+	currentFreeSpin: number;
+	remainingFreeSpins: number;
+	meters: MeterValues;
+	serviceQueue: readonly ServiceQueueEntry[];
+	activePastaPositions: readonly Readonly<Position>[];
+	activeSauceSpots: readonly SauceSpot[];
+	roundWinAtomicUnits: number;
+	bonusBankAtomicUnits: number;
+	crownPotAtomicUnits: number;
+	completedCourses: readonly CrownCourse[];
+	stars: StarValues;
+	winner: ChefId | null;
+	headliner: ChefId | null;
+	creditedSourceIds: readonly string[];
+	maxWinReached: boolean;
+	totalWinAtomicUnits: number;
+	finalWinAtomicUnits: number;
+}>;
+
+export type ReplayCheckpoint = Readonly<{
+	roundId: string;
+	sequence: number;
+	bookHash: string;
+	stateHash: string;
+	state: ProductionReplayState;
+}>;
+
+export type PreparedProductionBook = ValidatedProductionBook &
+	Readonly<{
+		bookHash: string;
+		finalState: ProductionReplayState;
+	}>;
+
+export type PlaybackSpeed = 'normal' | 'fast' | 'instant';
+
+export type RecoveryRequest = Readonly<{
+	roundId: string;
+	afterSequence: number;
 }>;

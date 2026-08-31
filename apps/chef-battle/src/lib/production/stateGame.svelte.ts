@@ -5,6 +5,7 @@ import type {
 	GameMode,
 	ChefId,
 	MeterValues,
+	ProductionReplayState,
 	SauceSpot,
 	ServiceQueueEntry,
 	ShowdownSnapshot,
@@ -47,6 +48,8 @@ const createInitialState = () => ({
 	totalWinAtomicUnits: 0,
 	finalWinAtomicUnits: 0,
 	handledSequences: [] as number[],
+	replayState: null as ProductionReplayState | null,
+	recoveryPending: false,
 });
 
 export const productionState = $state(createInitialState());
