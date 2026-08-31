@@ -19,6 +19,20 @@ export const productionBookEventHandlerMap = {
 	revealBoard: (event) => {
 		productionState.board = event.board.map((reel) => [...reel]);
 	},
+	clusterWin: () => {},
+	roundWinUpdate: (event) => {
+		productionState.roundWinAtomicUnits = event.balanceAfterAtomicUnits;
+	},
+	chefMeterUpdate: (event) => {
+		productionState.meters = { ...productionState.meters, [event.chef]: event.meterAfter };
+	},
+	removeSymbols: () => {},
+	cascade: (event) => {
+		productionState.cascadeIndex = event.index;
+	},
+	boardSettled: (event) => {
+		productionState.board = event.board.map((reel) => [...reel]);
+	},
 	setTotalWin: (event) => {
 		productionState.totalWinAtomicUnits = event.totalWinAtomicUnits;
 	},

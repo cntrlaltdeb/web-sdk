@@ -25,7 +25,7 @@ function applyCanonicalEnvelope(events: MutableBook): void {
 
 function forgedValidatedBook(): ValidatedProductionBook {
 	return {
-		events: cloneBook() as ValidatedProductionBook['events'],
+		events: cloneBook() as unknown as ValidatedProductionBook['events'],
 		finalWinAtomicUnits: 0,
 	};
 }

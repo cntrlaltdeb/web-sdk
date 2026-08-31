@@ -10,6 +10,8 @@ const createInitialState = () => ({
 	maxWinAtomicUnits: 0,
 	meters: emptyMeters(),
 	board: [] as Board,
+	roundWinAtomicUnits: 0,
+	cascadeIndex: 0,
 	totalWinAtomicUnits: 0,
 	finalWinAtomicUnits: 0,
 	handledSequences: [] as number[],

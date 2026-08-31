@@ -1,10 +1,11 @@
 import P300 from '../books/production/P3-00.json';
+import P301 from '../books/production/P3-01.json';
 import { assertValidatedProductionBook, validateProductionBook } from './bookValidator';
 import { playProductionBookEvent } from './bookEventHandlerMap';
 import { resetProductionState } from './stateGame.svelte';
 import type { ProductionScenarioId, ValidatedProductionBook } from './typesBookEvent';
 
-const staticBooks: Record<ProductionScenarioId, unknown> = { 'P3-00': P300 };
+const staticBooks: Record<ProductionScenarioId, unknown> = { 'P3-00': P300, 'P3-01': P301 };
 
 export async function loadProductionBook(
 	scenarioId: ProductionScenarioId,

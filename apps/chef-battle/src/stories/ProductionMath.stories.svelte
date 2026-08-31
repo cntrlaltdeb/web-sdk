@@ -6,10 +6,12 @@
 
 <script lang="ts">
 	import ProductionBookScenario from '../lib/production/components/ProductionBookScenario.svelte';
+	import type { ProductionScenarioId } from '../lib/production/typesBookEvent';
 </script>
 
-{#snippet template()}
-	<ProductionBookScenario roundId="P3-00" />
+{#snippet template(args: { roundId: ProductionScenarioId })}
+	<ProductionBookScenario roundId={args.roundId} />
 {/snippet}
 
-<Story name="P3-00 Zero Win" {template} />
+<Story name="P3-00 Zero Win" args={{ roundId: 'P3-00' }} {template} />
+<Story name="P3-01 Base Cascade Ledger" args={{ roundId: 'P3-01' }} {template} />
