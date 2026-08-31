@@ -163,6 +163,9 @@ export const productionBookEventHandlerMap = {
 		productionState.showdown.crownPayoutAtomicUnits = event.crownPayoutAtomicUnits;
 		productionState.showdown.finalWinAtomicUnits = event.finalWinAtomicUnits;
 	},
+	maxWinReached: (event) => {
+		productionState.maxWinReachedAtomicUnits = event.maxWinAtomicUnits;
+	},
 	setTotalWin: (event) => {
 		productionState.totalWinAtomicUnits = event.totalWinAtomicUnits;
 	},

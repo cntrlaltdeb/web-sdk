@@ -20,3 +20,4 @@
 <Story name="P3-04 Multi-Chef Service" args={{ roundId: 'P3-04' }} {template} />
 <Story name="P3-05 Natural Showdown" args={{ roundId: 'P3-05' }} {template} />
 <Story name="P3-06 Purchased Showdown" args={{ roundId: 'P3-06' }} {template} />
+<Story name="P3-07 Exact Max Win" args={{ roundId: 'P3-07' }} {template} />

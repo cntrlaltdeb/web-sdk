@@ -3,6 +3,7 @@
 	import Board from '../../components/Board.svelte';
 	import PerfectServeBanner from './PerfectServeBanner.svelte';
 	import ProductionShowdownOverlay from './ProductionShowdownOverlay.svelte';
+	import RecoveryNotice from './RecoveryNotice.svelte';
 	import ServiceQueue from './ServiceQueue.svelte';
 </script>
 
@@ -10,6 +11,7 @@
 	<p class="round-win">Round ledger: {productionState.roundWinAtomicUnits}</p>
 	<p class="cascade">Cascade: {productionState.cascadeIndex}</p>
 	<ProductionShowdownOverlay />
+	<RecoveryNotice />
 	<ServiceQueue />
 	<PerfectServeBanner />
 	<Board

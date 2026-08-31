@@ -26,6 +26,7 @@ const createInitialState = () => ({
 	betAtomicUnits: 0,
 	paidBetAtomicUnits: 0,
 	maxWinAtomicUnits: 0,
+	maxWinReachedAtomicUnits: null as number | null,
 	meters: emptyMeters(),
 	board: [] as Board,
 	serviceQueue: [] as readonly ServiceQueueEntry[],

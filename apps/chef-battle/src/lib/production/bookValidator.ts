@@ -82,6 +82,21 @@ function requireSafeNonNegativeInteger(value: unknown, field: string): number {
 	return value;
 }
 
+function validateTotalPayout(payout: number, maxWin: number): void {
+	if (payout > maxWin) validationError('payout exceeds maxWinAtomicUnits');
+}
+
+function validateCrownHeadroom(
+	bonusBank: number,
+	crownPot: number,
+	multiplier: CrownMultiplier,
+	maxWin: number,
+): void {
+	const finalWin = bonusBank + crownPot * multiplier;
+	requireSafeNonNegativeInteger(finalWin, 'Crown outcome');
+	if (finalWin > maxWin) validationError('Crown outcome exceeds maxWinAtomicUnits');
+}
+
 function isMeterValues(value: unknown): value is MeterValues {
 	return (
 		isRecord(value) &&
@@ -378,6 +393,9 @@ function validateKnownPayload(event: EventRecord): void {
 		case 'serviceQueueClosed':
 			if (!isBoard(event.finalBoard)) validationError('serviceQueueClosed.finalBoard');
 			return;
+		case 'maxWinReached':
+			requireSafeNonNegativeInteger(event.maxWinAtomicUnits, 'maxWinReached.maxWinAtomicUnits');
+			return;
 		case 'setTotalWin':
 			requireSafeNonNegativeInteger(event.totalWinAtomicUnits, 'setTotalWin.totalWinAtomicUnits');
 			return;
@@ -404,6 +422,10 @@ function validateBaseLifecycle(
 	)
 		validationError('Base round must start roundStart → revealBoard');
 	validateRoundStart(roundStart);
+	const maxWinAtomicUnits = requireSafeNonNegativeInteger(
+		roundStart.maxWinAtomicUnits,
+		'roundStart.maxWinAtomicUnits',
+	);
 	if (roundStart.mode !== 'base') validationError('Task 2 supports Base production rounds only');
 	if (!isMeterValues(roundStart.meters)) validationError('Base roundStart.meters');
 	if (!allowInitialMeters && Object.values(roundStart.meters).some((meter) => meter !== 0))
@@ -487,6 +509,7 @@ function validateBaseLifecycle(
 				validationError('roundWinUpdate.balanceAfterAtomicUnits must exactly credit the source');
 			creditedSources.add(ledger.sourceEventId as string);
 			balance = balanceAfter;
+			validateTotalPayout(balance, maxWinAtomicUnits);
 			const meter = events[index + 2];
 			if (!meter || meter.type !== 'chefMeterUpdate')
 				validationError('roundWinUpdate requires chefMeterUpdate');
@@ -700,6 +723,7 @@ function validateBaseLifecycle(
 					validationError('roundWinUpdate must exactly credit perfectServeAward');
 				creditedSources.add(awardId);
 				balance += awardPayout;
+				validateTotalPayout(balance, maxWinAtomicUnits);
 				index += 2;
 			} else if (events[index]?.type === 'perfectServeAward') {
 				validationError('Perfect Serve payout requires overflow units');
@@ -738,6 +762,16 @@ function validateBaseLifecycle(
 		remainingClusters = [...findCanonicalProductionClusters(currentBoard)];
 		index += 2;
 	}
+	if (balance === maxWinAtomicUnits) {
+		const maxEvent = events[index];
+		if (!maxEvent || maxEvent.type !== 'maxWinReached')
+			validationError('exact cap requires maxWinReached after the drained Service Queue');
+		validateKnownPayload(maxEvent);
+		if (maxEvent.maxWinAtomicUnits !== maxWinAtomicUnits)
+			validationError('maxWinReached must announce the exact round cap');
+		index++;
+	} else if (events[index]?.type === 'maxWinReached')
+		validationError('maxWinReached requires the exact cap');
 	const total = events[index];
 	const final = events[index + 1];
 	if (
@@ -747,7 +781,7 @@ function validateBaseLifecycle(
 		total.type !== 'setTotalWin' ||
 		final.type !== 'finalWin'
 	)
-		validationError('Base round must end setTotalWin → finalWin');
+		validationError('Base round must end maxWinReached? → setTotalWin → finalWin');
 	validateKnownPayload(total);
 	validateKnownPayload(final);
 	const totalWin = requireSafeNonNegativeInteger(
@@ -1010,10 +1044,40 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 	validateRoundStart(roundStart);
 	const roundId = roundStart.roundId;
 	if (typeof roundId !== 'string') validationError('roundStart.roundId');
-	const betAtomicUnits = requireSafeNonNegativeInteger(
-		roundStart.betAtomicUnits,
-		'roundStart.betAtomicUnits',
+	const maxWinAtomicUnits = requireSafeNonNegativeInteger(
+		roundStart.maxWinAtomicUnits,
+		'roundStart.maxWinAtomicUnits',
 	);
+	const crowns = events.filter((bookEvent) => bookEvent.type === 'kitchenCrownReveal');
+	const selectedMultiplier = crowns[0]?.multiplier;
+	const multipliers = new Set<CrownMultiplier>([2, 3, 4, 5, 10, 20, 50, 100]);
+	if (
+		crowns.length !== 1 ||
+		typeof selectedMultiplier !== 'number' ||
+		!multipliers.has(selectedMultiplier as CrownMultiplier)
+	)
+		validationError('Showdown requires one valid Kitchen Crown multiplier');
+	let headroomBank = 0;
+	let headroomPot = 0;
+	events.forEach((bookEvent) => {
+		if (bookEvent.type === 'bonusBankUpdate')
+			headroomBank = requireSafeNonNegativeInteger(
+				bookEvent.balanceAfterAtomicUnits,
+				'bonusBankUpdate.balanceAfterAtomicUnits',
+			);
+		if (bookEvent.type === 'crownCourseComplete')
+			headroomPot = requireSafeNonNegativeInteger(
+				bookEvent.crownPotAfterAtomicUnits,
+				'crownCourseComplete.crownPotAfterAtomicUnits',
+			);
+		if (bookEvent.type === 'bonusBankUpdate' || bookEvent.type === 'crownCourseComplete')
+			validateCrownHeadroom(
+				headroomBank,
+				headroomPot,
+				selectedMultiplier as CrownMultiplier,
+				maxWinAtomicUnits,
+			);
+	});
 
 	const bankBeforeIndex: number[] = [];
 	let bank = 0;
@@ -1242,6 +1306,12 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 					validationError('Crown Course must immediately follow its service payout chain');
 				courseSources.add(bookEvent.sourceEventId);
 				state.crownPotAtomicUnits += value;
+				validateCrownHeadroom(
+					state.bonusBankAtomicUnits,
+					state.crownPotAtomicUnits,
+					selectedMultiplier as CrownMultiplier,
+					maxWinAtomicUnits,
+				);
 				state.completedCourses.push({
 					id: bookEvent.courseId as string,
 					chef: expectedEntry.chef,
@@ -1331,19 +1401,8 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		validationError('every Judge Star and winner lock must belong to one canonical Course chain');
 
 	const crown = events[cursor];
-	const total = events[cursor + 1];
-	const final = events[cursor + 2];
-	if (
-		!crown ||
-		crown.type !== 'kitchenCrownReveal' ||
-		!total ||
-		total.type !== 'setTotalWin' ||
-		!final ||
-		final.type !== 'finalWin' ||
-		cursor + 3 !== events.length
-	)
-		validationError('Kitchen Crown must be followed only by setTotalWin → finalWin');
-	const multipliers = new Set<CrownMultiplier>([2, 3, 4, 5, 10, 20, 50, 100]);
+	if (!crown || crown.type !== 'kitchenCrownReveal')
+		validationError('Showdown must end with kitchenCrownReveal');
 	if (typeof crown.multiplier !== 'number' || !multipliers.has(crown.multiplier as CrownMultiplier))
 		validationError('Kitchen Crown multiplier');
 	const crownPayout = requireSafeNonNegativeInteger(
@@ -1363,10 +1422,34 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		finalWin !== state.bonusBankAtomicUnits + crownPayout
 	)
 		validationError('Kitchen Crown final payout must equal Bank plus Pot times multiplier');
+	cursor++;
+	if (finalWin === maxWinAtomicUnits) {
+		const maxEvent = events[cursor];
+		if (!maxEvent || maxEvent.type !== 'maxWinReached')
+			validationError(
+				'exact Crown cap requires maxWinReached immediately after kitchenCrownReveal',
+			);
+		validateKnownPayload(maxEvent);
+		if (maxEvent.maxWinAtomicUnits !== maxWinAtomicUnits)
+			validationError('maxWinReached must announce the exact round cap');
+		cursor++;
+	} else if (events[cursor]?.type === 'maxWinReached')
+		validationError('maxWinReached requires the exact cap');
+	const total = events[cursor];
+	const final = events[cursor + 1];
+	if (
+		!total ||
+		total.type !== 'setTotalWin' ||
+		!final ||
+		final.type !== 'finalWin' ||
+		cursor + 2 !== events.length
+	)
+		validationError(
+			'Kitchen Crown must be followed only by maxWinReached? → setTotalWin → finalWin',
+		);
 	if (total.totalWinAtomicUnits !== finalWin || final.payoutAtomicUnits !== finalWin)
 		validationError('Showdown terminal payout');
-	if (finalWin > betAtomicUnits * MAX_WIN_MULTIPLIER)
-		validationError('finalWin exceeds maxWinAtomicUnits');
+	validateTotalPayout(finalWin, maxWinAtomicUnits);
 	return finalWin;
 }
 
@@ -1384,6 +1467,7 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 	});
 	const ids = new Set<string>();
 	const roundIds = new Set<string>();
+	let maxSeen = false;
 
 	events.forEach((event, index) => {
 		const sequence = requireSafeNonNegativeInteger(event.sequence, 'event.sequence');
@@ -1400,6 +1484,9 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 		if (event.id !== `${event.roundId}-e${String(sequence).padStart(4, '0')}`)
 			validationError('id must match roundId and sequence suffix');
 		if (typeof event.type !== 'string') validationError('event type is required');
+		if (maxSeen && event.type !== 'setTotalWin' && event.type !== 'finalWin')
+			validationError('event after maxWinReached must be setTotalWin or finalWin');
+		if (event.type === 'maxWinReached') maxSeen = true;
 	});
 
 	if (roundIds.size !== 1) validationError('one roundId is required');
@@ -1423,8 +1510,7 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 		roundStart.maxWinAtomicUnits,
 		'roundStart.maxWinAtomicUnits',
 	);
-	if (finalWinAtomicUnits > maxWinAtomicUnits)
-		validationError('finalWin exceeds maxWinAtomicUnits');
+	validateTotalPayout(finalWinAtomicUnits, maxWinAtomicUnits);
 
 	const validatedBook = freezeDeep({
 		events: events as ProductionBookEvent[],

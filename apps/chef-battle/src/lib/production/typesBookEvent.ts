@@ -22,6 +22,7 @@ export const PRODUCTION_SCENARIO_IDS = [
 	'P3-04',
 	'P3-05',
 	'P3-06',
+	'P3-07',
 ] as const;
 export type ProductionScenarioId = (typeof PRODUCTION_SCENARIO_IDS)[number];
 
@@ -185,6 +186,7 @@ export type ProductionBookEvent =
 			crownPayoutAtomicUnits: number;
 			finalWinAtomicUnits: number;
 	  })
+	| (ProductionEventBase & { type: 'maxWinReached'; maxWinAtomicUnits: number })
 	| (ProductionEventBase & { type: 'setTotalWin'; totalWinAtomicUnits: number })
 	| (ProductionEventBase & { type: 'finalWin'; payoutAtomicUnits: number });
 
