@@ -1142,6 +1142,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 
 	let cursor = startIndex + 1;
 	const courseSources = new Set<string>();
+	const consumedCourseMeta = new Set<EventRecord>();
 	for (let spin = 1; spin <= state.totalFreeSpins; spin++) {
 		const spinStart = events[cursor];
 		if (!spinStart || spinStart.type !== 'freeSpinStart' || !isBoard(spinStart.board))
@@ -1261,6 +1262,8 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 				if (state.winner === null) {
 					if (!next || next.type !== 'judgeStarUpdate')
 						validationError('each pre-lock Course requires one Judge Star');
+					if (consumedCourseMeta.has(next))
+						validationError('Showdown meta event cannot serve two canonical Course chains');
 					const expectedStars = { ...state.stars };
 					expectedStars[expectedEntry.chef]++;
 					if (
@@ -1274,6 +1277,7 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 					)
 						validationError('Judge Star snapshot');
 					state.stars = expectedStars;
+					consumedCourseMeta.add(next);
 					consumedMeta.add(phaseIndex + 1);
 					if (expectedStars[expectedEntry.chef] === 3) {
 						const lock = phase[phaseIndex + 2];
@@ -1289,8 +1293,11 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 							)
 						)
 							validationError('third Judge Star must immediately lock winner');
+						if (consumedCourseMeta.has(lock))
+							validationError('Showdown meta event cannot serve two canonical Course chains');
 						state.winner = expectedEntry.chef;
 						state.headliner = expectedEntry.chef;
+						consumedCourseMeta.add(lock);
 						consumedMeta.add(phaseIndex + 2);
 					}
 				} else if (next?.type === 'judgeStarUpdate')
@@ -1314,6 +1321,14 @@ function validateShowdownLifecycle(events: EventRecord[]): number {
 		assertShowdownSnapshot(spinEnd, state, 'freeSpinEnd');
 		cursor = endIndex + 1;
 	}
+	if (
+		events.some(
+			(bookEvent) =>
+				(bookEvent.type === 'judgeStarUpdate' || bookEvent.type === 'kitchenWinnerLocked') &&
+				!consumedCourseMeta.has(bookEvent),
+		)
+	)
+		validationError('every Judge Star and winner lock must belong to one canonical Course chain');
 
 	const crown = events[cursor];
 	const total = events[cursor + 1];

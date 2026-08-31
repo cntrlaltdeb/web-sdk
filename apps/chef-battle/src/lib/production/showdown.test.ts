@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import P305 from '../books/production/P3-05.json';
 import P306 from '../books/production/P3-06.json';
+import { validateProductionBook } from './bookValidator';
 import ProductionRound from './components/ProductionRound.svelte';
 import {
 	loadProductionBook,
@@ -21,13 +22,54 @@ const event = (events: MutableBook, type: string, occurrence = 0): Record<string
 };
 
 function canonicalize(events: MutableBook, roundId: string): MutableBook {
+	const idMap = new Map(
+		events.flatMap((bookEvent, index) =>
+			typeof bookEvent.id === 'string'
+				? [[bookEvent.id, `${roundId}-e${String(index + 1).padStart(4, '0')}`] as const]
+				: [],
+		),
+	);
 	events.forEach((bookEvent, index) => {
 		const sequence = index + 1;
+		if (typeof bookEvent.sourceEventId === 'string' && idMap.has(bookEvent.sourceEventId))
+			bookEvent.sourceEventId = idMap.get(bookEvent.sourceEventId);
+		if (Array.isArray(bookEvent.completedCourses))
+			bookEvent.completedCourses.forEach((course) => {
+				if (
+					typeof course === 'object' &&
+					course !== null &&
+					'sourceEventId' in course &&
+					typeof course.sourceEventId === 'string' &&
+					idMap.has(course.sourceEventId)
+				)
+					course.sourceEventId = idMap.get(course.sourceEventId);
+			});
 		bookEvent.sequence = sequence;
 		bookEvent.id = `${roundId}-e${String(sequence).padStart(4, '0')}`;
 		bookEvent.roundId = roundId;
 	});
 	return events;
+}
+
+function addFourthScatter(events: MutableBook, includeInTrigger: boolean): void {
+	const board = event(events, 'revealBoard').board;
+	if (!Array.isArray(board) || !Array.isArray(board[2]))
+		throw new Error('P3-05 reveal board is required');
+	board[2][4] = 'kitchen_crown_scatter';
+	if (!includeInTrigger) return;
+	const positions = event(events, 'kitchenShowdownTriggered').scatterPositions;
+	if (!Array.isArray(positions)) throw new Error('P3-05 Scatter positions are required');
+	positions.splice(2, 0, { reel: 2, row: 4 });
+}
+
+function insertOrphanMeta(
+	events: MutableBook,
+	metaType: 'judgeStarUpdate' | 'kitchenWinnerLocked',
+	closedOccurrence: number,
+): void {
+	const orphan = structuredClone(event(events, metaType));
+	const closed = event(events, 'serviceQueueClosed', closedOccurrence);
+	events.splice(events.indexOf(closed) + 1, 0, orphan);
 }
 
 describe('production Kitchen Showdown', () => {
@@ -77,6 +119,23 @@ describe('production Kitchen Showdown', () => {
 		expect(productionState.pastaPullPositionKeys).toEqual([]);
 	});
 
+	it('accepts a canonical payload containing all four initial-reveal Scatters', () => {
+		const book = structuredClone(P305) as MutableBook;
+		addFourthScatter(book, true);
+
+		expect(validateProductionBook(book).finalWinAtomicUnits).toBe(14_500_000);
+	});
+
+	it('rejects a three-Scatter subset on a four-Scatter reveal before state mutation', async () => {
+		productionState.roundId = 'keep-me';
+		const book = structuredClone(P305) as MutableBook;
+		addFourthScatter(book, false);
+
+		await expect(playProductionBook(book)).rejects.toThrow('scatter snapshot');
+		expect(productionState.roundId).toBe('keep-me');
+		expect(productionState.handledSequences).toEqual([]);
+	});
+
 	it.each([
 		[
 			'zero Course value',
@@ -120,6 +179,21 @@ describe('production Kitchen Showdown', () => {
 				});
 			},
 			'queue identity',
+		],
+		[
+			'orphan pre-lock Judge Star',
+			(book: MutableBook) => insertOrphanMeta(book, 'judgeStarUpdate', 0),
+			'canonical Course chain',
+		],
+		[
+			'orphan post-lock Judge Star',
+			(book: MutableBook) => insertOrphanMeta(book, 'judgeStarUpdate', 3),
+			'canonical Course chain',
+		],
+		[
+			'orphan winner lock',
+			(book: MutableBook) => insertOrphanMeta(book, 'kitchenWinnerLocked', 0),
+			'canonical Course chain',
 		],
 	])('rejects %s before frontend state mutation', async (name, mutate, error) => {
 		void name;
