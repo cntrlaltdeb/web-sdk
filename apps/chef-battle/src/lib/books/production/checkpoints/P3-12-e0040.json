@@ -1,0 +1,115 @@
+{
+	"roundId": "P3-12",
+	"sequence": 40,
+	"bookHash": "3034c13c38b435eb4c06d226f19976a17968a48ae060edb31a91e403a171c709",
+	"stateHash": "7a73984954822d501001dd6ab1adfe272a013a5e4f141862c7c4b764a089c47f",
+	"state": {
+		"roundId": "P3-12",
+		"sequence": 40,
+		"mode": "grandShowdown",
+		"selectedChef": null,
+		"showdownTriggered": true,
+		"entryKind": "purchase",
+		"betAtomicUnits": 1000000,
+		"paidBetAtomicUnits": 250000000,
+		"maxWinAtomicUnits": 20000000000,
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "kitchen_crown_scatter"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "kitchen_crown_scatter"],
+			["pizza", "peking_duck", "kitchen_crown_scatter", "pizza", "peking_duck"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "pizza"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "peking_duck"]
+		],
+		"cascadeIndex": 2,
+		"currentFreeSpin": 2,
+		"remainingFreeSpins": 8,
+		"meters": {
+			"italian": 75,
+			"french": 0,
+			"chinese": 75
+		},
+		"serviceQueue": [],
+		"activePastaPositions": [],
+		"activeWokPositions": [],
+		"activeSauceSpots": [
+			{
+				"position": {
+					"reel": 0,
+					"row": 0
+				},
+				"boost": 3
+			},
+			{
+				"position": {
+					"reel": 2,
+					"row": 2
+				},
+				"boost": 4
+			},
+			{
+				"position": {
+					"reel": 4,
+					"row": 4
+				},
+				"boost": 5
+			}
+		],
+		"roundWinAtomicUnits": 0,
+		"lastClusterWinAtomicUnits": 0,
+		"lastSauceFlightMultiplier": 1,
+		"perfectServePayoutAtomicUnits": null,
+		"bonusBankAtomicUnits": 0,
+		"crownPotAtomicUnits": 15000000,
+		"crownMultiplier": null,
+		"crownPayoutAtomicUnits": 0,
+		"completedCourses": [
+			{
+				"id": "P3-12-course-01",
+				"chef": "italian",
+				"sourceEventId": "P3-12-grand-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"id": "P3-12-course-02",
+				"chef": "french",
+				"sourceEventId": "P3-12-grand-start-french",
+				"valueAtomicUnits": 2000000
+			},
+			{
+				"id": "P3-12-course-03",
+				"chef": "chinese",
+				"sourceEventId": "P3-12-grand-start-chinese",
+				"valueAtomicUnits": 3000000
+			},
+			{
+				"id": "P3-12-course-04",
+				"chef": "french",
+				"sourceEventId": "P3-12-e0011",
+				"valueAtomicUnits": 4000000
+			},
+			{
+				"id": "P3-12-course-05",
+				"chef": "french",
+				"sourceEventId": "P3-12-e0036",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"stars": {
+			"italian": 1,
+			"french": 3,
+			"chinese": 1
+		},
+		"winner": "french",
+		"headliner": null,
+		"creditedSourceIds": [
+			"P3-12-e0004",
+			"P3-12-e0017",
+			"P3-12-e0021",
+			"P3-12-e0025",
+			"P3-12-e0029"
+		],
+		"maxWinReached": false,
+		"totalWinAtomicUnits": 0,
+		"finalWinAtomicUnits": 0
+	}
+}

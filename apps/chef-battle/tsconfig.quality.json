@@ -1,0 +1,10 @@
+{
+	"extends": "./.svelte-kit/tsconfig.json",
+	"compilerOptions": {
+		"resolveJsonModule": true,
+		"strict": true,
+		"types": ["node"]
+	},
+	"include": ["src/**/*.ts", "src/**/*.svelte"],
+	"exclude": ["src/**/*.test.ts", "src/stories/**"]
+}

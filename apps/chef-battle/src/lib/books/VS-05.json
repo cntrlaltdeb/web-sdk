@@ -1,0 +1,135 @@
+[
+	{
+		"id": "VS-05-e01",
+		"roundId": "VS-05",
+		"type": "roundStart",
+		"betAtomicUnits": 1000000,
+		"meters": { "italian": 0, "french": 0, "chinese": 0 }
+	},
+	{
+		"id": "VS-05-e02",
+		"roundId": "VS-05",
+		"type": "revealBoard",
+		"board": [
+			["pizza", "pasta_carbonara", "kitchen_crown_scatter", "croissant", "peking_duck"],
+			["tiramisu", "french_onion_soup", "kung_pao_chicken", "kitchen_crown_scatter", "xiaolongbao"],
+			["pizza", "frog_legs", "kitchen_crown_scatter", "croissant", "peking_duck"],
+			["pasta_carbonara", "tiramisu", "kung_pao_chicken", "french_onion_soup", "xiaolongbao"],
+			["pizza", "frog_legs", "croissant", "peking_duck", "kung_pao_chicken"]
+		]
+	},
+	{
+		"id": "VS-05-e03",
+		"roundId": "VS-05",
+		"type": "kitchenShowdownStart",
+		"totalFreeSpins": 10,
+		"meters": { "italian": 50, "french": 50, "chinese": 50 }
+	},
+	{
+		"id": "VS-05-e04",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 1,
+		"remainingFreeSpins": 10
+	},
+	{
+		"id": "VS-05-e05",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 2,
+		"remainingFreeSpins": 9
+	},
+	{
+		"id": "VS-05-e06",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 3,
+		"remainingFreeSpins": 8
+	},
+	{
+		"id": "VS-05-e07",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 4,
+		"remainingFreeSpins": 7
+	},
+	{
+		"id": "VS-05-e08",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 5,
+		"remainingFreeSpins": 6
+	},
+	{
+		"id": "VS-05-e09",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 6,
+		"remainingFreeSpins": 5
+	},
+	{
+		"id": "VS-05-e10",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 7,
+		"remainingFreeSpins": 4
+	},
+	{
+		"id": "VS-05-e11",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 8,
+		"remainingFreeSpins": 3
+	},
+	{
+		"id": "VS-05-e12",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 9,
+		"remainingFreeSpins": 2
+	},
+	{
+		"id": "VS-05-e13",
+		"roundId": "VS-05",
+		"type": "freeSpinStart",
+		"spin": 10,
+		"remainingFreeSpins": 1
+	},
+	{
+		"id": "VS-05-e14",
+		"roundId": "VS-05",
+		"type": "judgeStarUpdate",
+		"chef": "italian",
+		"stars": 1
+	},
+	{
+		"id": "VS-05-e15",
+		"roundId": "VS-05",
+		"type": "judgeStarUpdate",
+		"chef": "italian",
+		"stars": 2
+	},
+	{
+		"id": "VS-05-e16",
+		"roundId": "VS-05",
+		"type": "judgeStarUpdate",
+		"chef": "italian",
+		"stars": 3
+	},
+	{
+		"id": "VS-05-e17",
+		"roundId": "VS-05",
+		"type": "kitchenCrownReveal",
+		"chef": "italian",
+		"multiplier": 100,
+		"bonusWinAtomicUnits": 200000000,
+		"finalBonusWinAtomicUnits": 20000000000
+	},
+	{
+		"id": "VS-05-e18",
+		"roundId": "VS-05",
+		"type": "setTotalWin",
+		"totalWinAtomicUnits": 20000000000
+	},
+	{ "id": "VS-05-e19", "roundId": "VS-05", "type": "finalWin", "payoutAtomicUnits": 20000000000 }
+]

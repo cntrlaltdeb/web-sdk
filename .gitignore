@@ -24,6 +24,9 @@ yarn-error.log*
 # turbo
 .turbo
 
+# Local isolated workspaces
+.worktrees/
+
 #svelte-kit
 .svelte-kit
 build

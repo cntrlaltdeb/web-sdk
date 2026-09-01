@@ -1,0 +1,44 @@
+[
+	{
+		"id": "P3-00-e0001",
+		"sequence": 1,
+		"roundId": "P3-00",
+		"type": "roundStart",
+		"mode": "base",
+		"betAtomicUnits": 1000000,
+		"paidBetAtomicUnits": 1000000,
+		"maxWinAtomicUnits": 20000000000,
+		"meters": {
+			"italian": 0,
+			"french": 0,
+			"chinese": 0
+		}
+	},
+	{
+		"id": "P3-00-e0002",
+		"sequence": 2,
+		"roundId": "P3-00",
+		"type": "revealBoard",
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "golden_cloche_wild"],
+			["kitchen_crown_scatter", "xiaolongbao", "pizza", "pasta_carbonara", "tiramisu"],
+			["frog_legs", "french_onion_soup", "croissant", "peking_duck", "kung_pao_chicken"],
+			["xiaolongbao", "golden_cloche_wild", "kitchen_crown_scatter", "tiramisu", "pizza"]
+		]
+	},
+	{
+		"id": "P3-00-e0003",
+		"sequence": 3,
+		"roundId": "P3-00",
+		"type": "setTotalWin",
+		"totalWinAtomicUnits": 0
+	},
+	{
+		"id": "P3-00-e0004",
+		"sequence": 4,
+		"roundId": "P3-00",
+		"type": "finalWin",
+		"payoutAtomicUnits": 0
+	}
+]
