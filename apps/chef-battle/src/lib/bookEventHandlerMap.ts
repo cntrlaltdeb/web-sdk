@@ -12,6 +12,7 @@ export const bookEventHandlerMap = {
 		resetGameState();
 		stateGame.roundId = event.roundId;
 		stateGame.betAtomicUnits = event.betAtomicUnits;
+		stateGame.meters = { ...event.meters };
 	},
 	revealBoard: (event) => {
 		stateGame.board.splice(

@@ -1,5 +1,11 @@
 [
-	{ "id": "VS-05-e01", "roundId": "VS-05", "type": "roundStart", "betAtomicUnits": 1000000 },
+	{
+		"id": "VS-05-e01",
+		"roundId": "VS-05",
+		"type": "roundStart",
+		"betAtomicUnits": 1000000,
+		"meters": { "italian": 0, "french": 0, "chinese": 0 }
+	},
 	{
 		"id": "VS-05-e02",
 		"roundId": "VS-05",

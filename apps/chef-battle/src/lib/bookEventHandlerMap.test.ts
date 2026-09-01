@@ -108,11 +108,28 @@ describe('local Chef Battle books', () => {
 		},
 	);
 
+	it('hydrates initial meters before applying the VS-04 meter delta', async () => {
+		const book = await loadLocalBook('VS-04');
+
+		await playBookEvent(book[0]);
+		expect(stateGame.meters).toEqual({ italian: 0, french: 0, chinese: 50 });
+
+		await playBookEvents(book.slice(1, 4));
+		expect(stateGame.lastMeterAmount).toBe(50);
+		expect(stateGame.meters.chinese).toBe(100);
+	});
+
 	it('renders the payload final win, board, and Italian meter without recomputing them', async () => {
 		render(ChefBattleRound);
 
 		await playBookEvents([
-			{ type: 'roundStart', id: 'e01', roundId: 'render', betAtomicUnits: 1_000_000 },
+			{
+				type: 'roundStart',
+				id: 'e01',
+				roundId: 'render',
+				betAtomicUnits: 1_000_000,
+				meters: { italian: 0, french: 0, chinese: 0 },
+			},
 			{ type: 'revealBoard', id: 'e02', roundId: 'render', board },
 			{
 				type: 'chefMeterUpdate',
@@ -403,6 +420,7 @@ describe('local Chef Battle books', () => {
 		['VS-02', 'roundStart', 'betAtomicUnits', -1, 'betAtomicUnits'],
 		['VS-02', 'roundStart', 'betAtomicUnits', 1.5, 'betAtomicUnits'],
 		['VS-02', 'roundStart', 'betAtomicUnits', Number.MAX_SAFE_INTEGER + 1, 'betAtomicUnits'],
+		['VS-04', 'roundStart', 'meters', { italian: 0, french: 0, chinese: 101 }, 'meters'],
 		['VS-02', 'chefMeterUpdate', 'amount', 40.5, 'amount'],
 		['VS-02', 'chefMeterUpdate', 'total', 101, 'total'],
 		['VS-03', 'sauceFinish', 'spots', [{ position: { reel: 0, row: 0 }, multiplier: 11 }], 'spots'],
@@ -446,6 +464,7 @@ describe('local Chef Battle books', () => {
 
 	it.each([
 		['VS-01', 'roundStart', 'betAtomicUnits'],
+		['VS-01', 'roundStart', 'meters'],
 		['VS-01', 'revealBoard', 'board'],
 		['VS-02', 'clusterWin', 'chef'],
 		['VS-02', 'removeSymbols', 'positions'],

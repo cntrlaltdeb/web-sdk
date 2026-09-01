@@ -21,7 +21,7 @@ export type SauceSpot = { position: Position; multiplier: number };
 type BaseBookEvent = { id: string; roundId: string };
 
 export type BookEvent =
-	| (BaseBookEvent & { type: 'roundStart'; betAtomicUnits: number })
+	| (BaseBookEvent & { type: 'roundStart'; betAtomicUnits: number; meters: MeterValues })
 	| (BaseBookEvent & { type: 'revealBoard'; board: readonly (readonly SymbolId[])[] })
 	| (BaseBookEvent & {
 			type: 'clusterWin';

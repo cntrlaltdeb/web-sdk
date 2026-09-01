@@ -127,8 +127,12 @@ function validateStaticEvent(value: unknown): BookEvent {
 
 	switch (value.type) {
 		case 'roundStart':
-			if (!hasFields(value, ['betAtomicUnits']) || !isNonNegativeSafeInteger(value.betAtomicUnits))
-				return invalidEvent(value.type, 'betAtomicUnits');
+			if (
+				!hasFields(value, ['betAtomicUnits', 'meters']) ||
+				!isNonNegativeSafeInteger(value.betAtomicUnits) ||
+				!isMeterValues(value.meters)
+			)
+				return invalidEvent(value.type, 'betAtomicUnits and meters');
 			break;
 		case 'revealBoard':
 			if (!hasFields(value, ['board']) || !isBoard(value.board))
