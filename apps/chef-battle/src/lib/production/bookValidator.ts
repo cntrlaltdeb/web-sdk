@@ -1732,7 +1732,14 @@ function freezeDeep<T>(value: T): T {
 
 export function validateProductionBook(value: unknown): ValidatedProductionBook {
 	if (!Array.isArray(value) || value.length === 0) validationError('event array is required');
-	const events = value.map((event, index) => {
+	let ownedValue: unknown;
+	try {
+		ownedValue = structuredClone(value);
+	} catch {
+		validationError('event array must contain cloneable transport values');
+	}
+	if (!Array.isArray(ownedValue)) validationError('event array is required');
+	const events = ownedValue.map((event, index) => {
 		if (!isRecord(event)) validationError(`events[${index}] must be an object`);
 		return event;
 	});

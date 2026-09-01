@@ -27,6 +27,8 @@ export const bookEventHandlerMap = {
 			),
 		);
 		stateGame.boardVersion += 1;
+		stateGame.clusterPositionKeys = [];
+		stateGame.clusterWinAtomicUnits = 0;
 		stateGame.removedPositionKeys = [];
 		stateGame.pastaPullPositionKeys = [];
 		stateGame.wokTossPositionKeys = [];

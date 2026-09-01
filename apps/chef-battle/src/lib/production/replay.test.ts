@@ -459,6 +459,24 @@ describe('mandatory prepared production playback', () => {
 			expect(productionState.handledSequences).toHaveLength(prepared.events.length);
 		}
 	});
+
+	it('aborts an in-flight playback before a replacement round can interleave', async () => {
+		const prepared = await prepare();
+		const controller = new AbortController();
+		const playback = playPreparedProductionBook(prepared, 'normal', controller.signal);
+
+		for (
+			let attempt = 0;
+			attempt < 50 && productionState.handledSequences.length === 0;
+			attempt += 1
+		)
+			await new Promise((resolve) => setTimeout(resolve, 0));
+		expect(productionState.handledSequences.length).toBeGreaterThan(0);
+
+		controller.abort();
+		await expect(playback).rejects.toMatchObject({ name: 'AbortError' });
+		expect(productionState.handledSequences.length).toBeLessThan(prepared.events.length);
+	});
 });
 
 describe('production checkpoint resume', () => {
@@ -616,9 +634,7 @@ describe('production recovery surface', () => {
 		productionState.maxWinReachedAtomicUnits = 20_000_000_000;
 		render(RecoveryNotice);
 
-		expect(
-			screen.getByText('Проверяем результат spin. Новая ставка не будет сделана.'),
-		).not.toBeNull();
+		expect(screen.getByText('Checking the spin result. No new bet will be placed.')).not.toBeNull();
 		expect(screen.getByText('MAX WIN REACHED — BONUS COMPLETE')).not.toBeNull();
 	});
 

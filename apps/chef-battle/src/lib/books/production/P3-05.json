@@ -227,11 +227,17 @@
 		"roundId": "P3-05",
 		"type": "boardSettled",
 		"board": [
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+			["pizza", "frog_legs", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			[
+				"pizza",
+				"kitchen_crown_scatter",
+				"pasta_carbonara",
+				"kitchen_crown_scatter",
+				"french_onion_soup"
+			],
+			["croissant", "peking_duck", "peking_duck", "kung_pao_chicken", "xiaolongbao"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "kitchen_crown_scatter"]
 		]
 	},
 	{
@@ -243,11 +249,17 @@
 		"phase": null,
 		"source": null,
 		"board": [
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+			["pizza", "frog_legs", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			[
+				"pizza",
+				"kitchen_crown_scatter",
+				"pasta_carbonara",
+				"kitchen_crown_scatter",
+				"french_onion_soup"
+			],
+			["croissant", "peking_duck", "peking_duck", "kung_pao_chicken", "xiaolongbao"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "kitchen_crown_scatter"]
 		],
 		"entries": [
 			{
@@ -276,10 +288,16 @@
 			}
 		],
 		"boardAfter": [
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			[
+				"pizza",
+				"kitchen_crown_scatter",
+				"pasta_carbonara",
+				"kitchen_crown_scatter",
+				"french_onion_soup"
+			],
+			["croissant", "peking_duck", "peking_duck", "kung_pao_chicken", "xiaolongbao"],
 			["pizza", "frog_legs", "pizza", "pasta_wild", "pasta_wild"]
 		],
 		"meterAfter": 0
@@ -311,10 +329,16 @@
 		"windowIndex": 1,
 		"entryIds": ["P3-05-service-01-italian"],
 		"finalBoard": [
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			[
+				"pizza",
+				"kitchen_crown_scatter",
+				"pasta_carbonara",
+				"kitchen_crown_scatter",
+				"french_onion_soup"
+			],
+			["croissant", "peking_duck", "peking_duck", "kung_pao_chicken", "xiaolongbao"],
 			["pizza", "frog_legs", "pizza", "pasta_wild", "pasta_wild"]
 		]
 	},

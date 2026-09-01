@@ -9,15 +9,16 @@
 
 	$effect(() => {
 		let cancelled = false;
+		const controller = new AbortController();
 		void (async () => {
 			try {
 				const book = await loadPreparedProductionBook(roundId);
 				if (cancelled) return;
 				const checkpoint = loadProductionCheckpoint(roundId);
 				if (checkpoint) {
-					await resumeProductionBook(book, checkpoint, 'instant');
+					await resumeProductionBook(book, checkpoint, 'instant', controller.signal);
 				} else {
-					await playPreparedProductionBook(book, 'instant');
+					await playPreparedProductionBook(book, 'instant', controller.signal);
 				}
 			} catch {
 				if (!cancelled) productionState.recoveryPending = true;
@@ -25,6 +26,7 @@
 		})();
 		return () => {
 			cancelled = true;
+			controller.abort();
 		};
 	});
 </script>

@@ -141,6 +141,24 @@ describe('local Chef Battle books', () => {
 		expect(screen.getByLabelText('Cell 6: pizza')).not.toBeNull();
 	});
 
+	it('clears stale cluster highlights when a new board is revealed', async () => {
+		await playBookEvents([
+			{
+				type: 'clusterWin',
+				id: 'e01',
+				roundId: 'clear-cluster',
+				chef: 'italian',
+				symbol: 'pizza',
+				positions: [{ reel: 0, row: 0 }],
+				payoutAtomicUnits: 123,
+			},
+			{ type: 'revealBoard', id: 'e02', roundId: 'clear-cluster', board },
+		]);
+
+		expect(stateGame.clusterPositionKeys).toEqual([]);
+		expect(stateGame.clusterWinAtomicUnits).toBe(0);
+	});
+
 	it('renders Pasta Pull highlights and resets only the meter supplied by its payload', async () => {
 		render(ChefBattleRound);
 		await playBookEvents([

@@ -743,11 +743,11 @@
 		"roundId": "P3-12",
 		"type": "boardSettled",
 		"board": [
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+			["pizza", "frog_legs", "pizza", "frog_legs", "kitchen_crown_scatter"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "kitchen_crown_scatter"],
+			["pizza", "peking_duck", "kitchen_crown_scatter", "pizza", "peking_duck"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "pizza"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "peking_duck"]
 		]
 	},
 	{
@@ -759,11 +759,11 @@
 		"phase": null,
 		"source": null,
 		"board": [
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+			["pizza", "frog_legs", "pizza", "frog_legs", "kitchen_crown_scatter"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "kitchen_crown_scatter"],
+			["pizza", "peking_duck", "kitchen_crown_scatter", "pizza", "peking_duck"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "pizza"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "peking_duck"]
 		],
 		"entries": [
 			{
@@ -907,11 +907,11 @@
 		"windowIndex": 2,
 		"entryIds": ["P3-12-service-02-french"],
 		"finalBoard": [
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+			["pizza", "frog_legs", "pizza", "frog_legs", "kitchen_crown_scatter"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "kitchen_crown_scatter"],
+			["pizza", "peking_duck", "kitchen_crown_scatter", "pizza", "peking_duck"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "pizza"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "peking_duck"]
 		]
 	},
 	{

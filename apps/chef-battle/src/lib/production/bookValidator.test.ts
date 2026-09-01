@@ -295,6 +295,19 @@ describe('production Book validation', () => {
 		expect(productionState.handledSequences).toEqual([]);
 	});
 
+	it('owns the validated snapshot without freezing the caller input', () => {
+		const input = cloneBook();
+		const validated = validateProductionBook(input);
+
+		expect(Object.isFrozen(input)).toBe(false);
+		expect(Object.isFrozen(input[0])).toBe(false);
+		input[0]!.mode = 'extraReservation';
+
+		expect(validated.events[0].type).toBe('roundStart');
+		if (validated.events[0].type !== 'roundStart') throw new Error('roundStart expected');
+		expect(validated.events[0].mode).toBe('base');
+	});
+
 	it.each([
 		['missing revealBoard', (book: MutableBook) => book.splice(1, 1)],
 		['duplicate roundStart', (book: MutableBook) => book.splice(1, 0, { ...book[0] })],

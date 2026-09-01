@@ -1,8 +1,8 @@
 {
 	"roundId": "P3-12",
 	"sequence": 40,
-	"bookHash": "0db25ba76a36af2fcc7370899d5d9397b6a9b899af2a21038d299317f495563d",
-	"stateHash": "e980b61665b37cba6ce79c8d337c7e7e8116e04428dbcb5fd36a8bac536426b8",
+	"bookHash": "3034c13c38b435eb4c06d226f19976a17968a48ae060edb31a91e403a171c709",
+	"stateHash": "7a73984954822d501001dd6ab1adfe272a013a5e4f141862c7c4b764a089c47f",
 	"state": {
 		"roundId": "P3-12",
 		"sequence": 40,
@@ -14,11 +14,11 @@
 		"paidBetAtomicUnits": 250000000,
 		"maxWinAtomicUnits": 20000000000,
 		"board": [
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+			["pizza", "frog_legs", "pizza", "frog_legs", "kitchen_crown_scatter"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "kitchen_crown_scatter"],
+			["pizza", "peking_duck", "kitchen_crown_scatter", "pizza", "peking_duck"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "pizza"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "peking_duck"]
 		],
 		"cascadeIndex": 2,
 		"currentFreeSpin": 2,

@@ -201,10 +201,10 @@
 		"type": "boardSettled",
 		"board": [
 			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
-			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "golden_cloche_wild"],
-			["kitchen_crown_scatter", "xiaolongbao", "pizza", "pasta_carbonara", "tiramisu"],
-			["frog_legs", "french_onion_soup", "croissant", "peking_duck", "kung_pao_chicken"],
-			["xiaolongbao", "golden_cloche_wild", "kitchen_crown_scatter", "tiramisu", "pizza"]
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			["kitchen_crown_scatter", "tiramisu", "pasta_carbonara", "frog_legs", "french_onion_soup"],
+			["frog_legs", "french_onion_soup", "peking_duck", "kung_pao_chicken", "xiaolongbao"],
+			["xiaolongbao", "golden_cloche_wild", "pizza", "frog_legs", "french_onion_soup"]
 		]
 	},
 	{

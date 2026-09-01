@@ -286,6 +286,8 @@ export function reduceProductionEvent(
 	}
 
 	assertContinuation(state, event);
+	if (state.maxWinReached && event.type !== 'setTotalWin' && event.type !== 'finalWin')
+		replayError('INVALID_BOOK', 'event after maxWinReached must be setTotalWin or finalWin');
 	const next = cloneReplayState(state) as MutableProductionReplayState;
 	next.sequence = event.sequence;
 	switch (event.type) {
@@ -407,7 +409,7 @@ export function reduceProductionEvent(
 			next.board = cloneBoard(event.finalBoard);
 			break;
 		}
-		case 'kitchenShowdownStart':
+		case 'kitchenShowdownStart': {
 			if (event.bonusBankAtomicUnits !== next.bonusBankAtomicUnits)
 				replayError('INVALID_BOOK', 'kitchenShowdownStart Bank must preserve reducer continuity');
 			const openingQueue = (['italian', 'french', 'chinese'] as const)
@@ -435,6 +437,7 @@ export function reduceProductionEvent(
 			next.winner = event.winner;
 			next.headliner = event.headliner;
 			break;
+		}
 		case 'freeSpinStart':
 			if (
 				event.currentFreeSpin !== next.currentFreeSpin + 1 ||
@@ -442,6 +445,8 @@ export function reduceProductionEvent(
 				event.remainingFreeSpins !== next.remainingFreeSpins - 1
 			)
 				replayError('INVALID_BOOK', 'freeSpinStart counters must advance exactly once');
+			if (pastaPositionsFromBoard(event.board).length > 0)
+				replayError('INVALID_BOOK', 'temporary Pasta Wild cannot appear on freeSpinStart');
 			next.board = cloneBoard(event.board);
 			next.currentFreeSpin = event.currentFreeSpin;
 			next.remainingFreeSpins = event.remainingFreeSpins;
@@ -468,7 +473,7 @@ export function reduceProductionEvent(
 			next.activePastaPositions = [];
 			next.activeWokPositions = [];
 			break;
-		case 'crownCourseComplete':
+		case 'crownCourseComplete': {
 			const completedCourses = cloneCourses(event.completedCoursesAfter);
 			const appended = completedCourses.at(-1);
 			const expectedPot = safeSum(
@@ -493,6 +498,7 @@ export function reduceProductionEvent(
 			next.crownPotAtomicUnits = expectedPot;
 			next.completedCourses = completedCourses;
 			break;
+		}
 		case 'judgeStarUpdate':
 			if (
 				next.winner !== null ||
@@ -512,6 +518,7 @@ export function reduceProductionEvent(
 			break;
 		case 'kitchenCrownReveal':
 			if (
+				![2, 3, 4, 5, 10, 20, 50, 100].includes(event.multiplier) ||
 				event.winner !== next.winner ||
 				event.bonusBankAtomicUnits !== next.bonusBankAtomicUnits ||
 				event.crownPotAtomicUnits !== next.crownPotAtomicUnits ||
@@ -529,6 +536,10 @@ export function reduceProductionEvent(
 		case 'maxWinReached':
 			if (event.maxWinAtomicUnits !== next.maxWinAtomicUnits)
 				replayError('INVALID_BOOK', 'maxWinReached must announce the round cap');
+			if ((next.finalWinAtomicUnits || next.roundWinAtomicUnits) !== next.maxWinAtomicUnits)
+				replayError('INVALID_BOOK', 'maxWinReached requires the exact cap');
+			if (next.serviceQueue.length !== 0)
+				replayError('INVALID_BOOK', 'maxWinReached requires a drained Service Queue');
 			next.maxWinReached = true;
 			break;
 		case 'setTotalWin':

@@ -21,9 +21,25 @@ const delayBySpeed: Readonly<Record<PlaybackSpeed, number>> = {
 	instant: 0,
 };
 
-function waitForPlaybackDelay(speed: PlaybackSpeed): Promise<void> {
+function throwIfPlaybackAborted(signal?: AbortSignal): void {
+	if (signal?.aborted) throw new DOMException('Production playback aborted', 'AbortError');
+}
+
+function waitForPlaybackDelay(speed: PlaybackSpeed, signal?: AbortSignal): Promise<void> {
 	const delay = delayBySpeed[speed];
-	return delay === 0 ? Promise.resolve() : new Promise((resolve) => setTimeout(resolve, delay));
+	throwIfPlaybackAborted(signal);
+	if (delay === 0) return Promise.resolve();
+	return new Promise((resolve, reject) => {
+		const onAbort = () => {
+			clearTimeout(timeout);
+			reject(new DOMException('Production playback aborted', 'AbortError'));
+		};
+		const timeout = setTimeout(() => {
+			signal?.removeEventListener('abort', onAbort);
+			resolve();
+		}, delay);
+		signal?.addEventListener('abort', onAbort, { once: true });
+	});
 }
 
 export function restoreProductionState(state: ProductionReplayState): void {
@@ -98,11 +114,13 @@ export async function resumeProductionBook(
 	prepared: PreparedProductionBook,
 	checkpoint: ReplayCheckpoint,
 	speed: PlaybackSpeed,
+	signal?: AbortSignal,
 ): Promise<void> {
 	if (!Object.hasOwn(delayBySpeed, speed)) throw new Error('INVALID_PLAYBACK_SPEED');
 	const preparedSnapshot = snapshotPreparedProductionBook(prepared);
 	const checkpointSnapshot = snapshotReplayCheckpoint(checkpoint);
 	const restored = await validateReplayCheckpoint(preparedSnapshot, checkpointSnapshot);
+	throwIfPlaybackAborted(signal);
 	const suffix = preparedSnapshot.events.slice(restored.sequence);
 	if (suffix.length === 0 || suffix[0]?.sequence !== restored.sequence + 1)
 		throw new Error('INVALID_SUFFIX: first event must follow the checkpoint');
@@ -110,8 +128,9 @@ export async function resumeProductionBook(
 	resetProductionState();
 	restoreProductionState(restored);
 	for (const event of suffix) {
+		throwIfPlaybackAborted(signal);
 		await playProductionBookEvent(event);
-		await waitForPlaybackDelay(speed);
+		await waitForPlaybackDelay(speed, signal);
 	}
 	if (
 		productionState.replayState === null ||
@@ -124,15 +143,18 @@ export async function resumeProductionBook(
 export async function playPreparedProductionBook(
 	prepared: PreparedProductionBook,
 	speed: PlaybackSpeed,
+	signal?: AbortSignal,
 ): Promise<void> {
 	if (!Object.hasOwn(delayBySpeed, speed)) throw new Error('INVALID_PLAYBACK_SPEED');
 	const preparedSnapshot = snapshotPreparedProductionBook(prepared);
 	const expectedFinalState = await validatePreparedProductionBook(preparedSnapshot);
+	throwIfPlaybackAborted(signal);
 
 	resetProductionState();
 	for (const event of preparedSnapshot.events) {
+		throwIfPlaybackAborted(signal);
 		await playProductionBookEvent(event);
-		await waitForPlaybackDelay(speed);
+		await waitForPlaybackDelay(speed, signal);
 	}
 	if (
 		productionState.replayState === null ||

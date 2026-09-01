@@ -201,10 +201,10 @@
 		"type": "boardSettled",
 		"board": [
 			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
-			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "golden_cloche_wild"],
-			["kitchen_crown_scatter", "xiaolongbao", "pizza", "pasta_carbonara", "tiramisu"],
-			["frog_legs", "french_onion_soup", "croissant", "peking_duck", "kung_pao_chicken"],
-			["xiaolongbao", "golden_cloche_wild", "kitchen_crown_scatter", "tiramisu", "pizza"]
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			["kitchen_crown_scatter", "xiaolongbao", "pizza", "tiramisu", "french_onion_soup"],
+			["frog_legs", "french_onion_soup", "peking_duck", "croissant", "xiaolongbao"],
+			["pizza", "croissant", "croissant", "frog_legs", "french_onion_soup"]
 		]
 	},
 	{
@@ -217,10 +217,10 @@
 		"source": null,
 		"board": [
 			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
-			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "golden_cloche_wild"],
-			["kitchen_crown_scatter", "xiaolongbao", "pizza", "pasta_carbonara", "tiramisu"],
-			["frog_legs", "french_onion_soup", "croissant", "peking_duck", "kung_pao_chicken"],
-			["xiaolongbao", "golden_cloche_wild", "kitchen_crown_scatter", "tiramisu", "pizza"]
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			["kitchen_crown_scatter", "xiaolongbao", "pizza", "tiramisu", "french_onion_soup"],
+			["frog_legs", "french_onion_soup", "peking_duck", "croissant", "xiaolongbao"],
+			["pizza", "croissant", "croissant", "frog_legs", "french_onion_soup"]
 		],
 		"entries": [
 			{
@@ -254,10 +254,10 @@
 		],
 		"boardAfter": [
 			["pasta_wild", "pasta_wild", "tiramisu", "frog_legs", "french_onion_soup"],
-			["croissant", "pasta_wild", "kung_pao_chicken", "xiaolongbao", "golden_cloche_wild"],
-			["kitchen_crown_scatter", "xiaolongbao", "pizza", "pasta_carbonara", "tiramisu"],
-			["frog_legs", "french_onion_soup", "croissant", "peking_duck", "kung_pao_chicken"],
-			["xiaolongbao", "golden_cloche_wild", "kitchen_crown_scatter", "tiramisu", "pizza"]
+			["croissant", "pasta_wild", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			["kitchen_crown_scatter", "xiaolongbao", "pizza", "tiramisu", "french_onion_soup"],
+			["frog_legs", "french_onion_soup", "peking_duck", "croissant", "xiaolongbao"],
+			["pizza", "croissant", "croissant", "frog_legs", "french_onion_soup"]
 		],
 		"meterAfter": 0
 	},
@@ -289,10 +289,10 @@
 		"entryIds": ["P3-02-service-01-italian"],
 		"finalBoard": [
 			["pasta_wild", "pasta_wild", "tiramisu", "frog_legs", "french_onion_soup"],
-			["croissant", "pasta_wild", "kung_pao_chicken", "xiaolongbao", "golden_cloche_wild"],
-			["kitchen_crown_scatter", "xiaolongbao", "pizza", "pasta_carbonara", "tiramisu"],
-			["frog_legs", "french_onion_soup", "croissant", "peking_duck", "kung_pao_chicken"],
-			["xiaolongbao", "golden_cloche_wild", "kitchen_crown_scatter", "tiramisu", "pizza"]
+			["croissant", "pasta_wild", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			["kitchen_crown_scatter", "xiaolongbao", "pizza", "tiramisu", "french_onion_soup"],
+			["frog_legs", "french_onion_soup", "peking_duck", "croissant", "xiaolongbao"],
+			["pizza", "croissant", "croissant", "frog_legs", "french_onion_soup"]
 		]
 	},
 	{
@@ -385,10 +385,10 @@
 		"type": "boardSettled",
 		"board": [
 			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
-			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "golden_cloche_wild"],
-			["kitchen_crown_scatter", "xiaolongbao", "pizza", "pasta_carbonara", "tiramisu"],
-			["frog_legs", "french_onion_soup", "croissant", "peking_duck", "kung_pao_chicken"],
-			["xiaolongbao", "golden_cloche_wild", "kitchen_crown_scatter", "tiramisu", "pizza"]
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "peking_duck"],
+			["kitchen_crown_scatter", "xiaolongbao", "pizza", "tiramisu", "french_onion_soup"],
+			["frog_legs", "french_onion_soup", "peking_duck", "croissant", "xiaolongbao"],
+			["pizza", "croissant", "croissant", "frog_legs", "french_onion_soup"]
 		]
 	},
 	{

@@ -36,7 +36,7 @@ describe('production Chef Specials', () => {
 
 		await playValidatedPrefixForTest(book, flight + 1);
 
-		expect(screen.getByText('BOOST +3×')).not.toBeNull();
+		expect(screen.getAllByText('BOOST +3×')).toHaveLength(2);
 		expect(screen.getByText('BOOST +4×')).not.toBeNull();
 		expect(screen.getByText('SAUCE FLIGHT ×8')).not.toBeNull();
 		expect(productionState.lastClusterWinAtomicUnits).toBe(16_000_000);
@@ -90,7 +90,7 @@ describe('production Chef Specials', () => {
 		const beforeFinal = book.events.length - 1;
 
 		await playValidatedPrefixForTest(book, beforeFinal);
-		expect(productionState.activeSauceSpots).toHaveLength(3);
+		expect(productionState.activeSauceSpots).toHaveLength(5);
 
 		await playValidatedProductionBook(book);
 		expect(productionState.activeSauceSpots).toEqual([]);

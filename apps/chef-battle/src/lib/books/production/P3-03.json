@@ -20,11 +20,11 @@
 		"roundId": "P3-03",
 		"type": "revealBoard",
 		"board": [
+			["croissant", "croissant", "pizza", "frog_legs", "pizza"],
+			["croissant", "croissant", "peking_duck", "pizza", "frog_legs"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "croissant", "croissant"],
-			["pizza", "frog_legs", "pizza", "croissant", "croissant"]
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
 		]
 	},
 	{
@@ -36,24 +36,20 @@
 		"symbol": "croissant",
 		"positions": [
 			{
-				"reel": 3,
-				"row": 2
+				"reel": 0,
+				"row": 0
 			},
 			{
-				"reel": 3,
-				"row": 3
+				"reel": 0,
+				"row": 1
 			},
 			{
-				"reel": 3,
-				"row": 4
+				"reel": 1,
+				"row": 0
 			},
 			{
-				"reel": 4,
-				"row": 3
-			},
-			{
-				"reel": 4,
-				"row": 4
+				"reel": 1,
+				"row": 1
 			}
 		],
 		"basePayoutAtomicUnits": 1000000,
@@ -90,24 +86,20 @@
 		"type": "removeSymbols",
 		"positions": [
 			{
-				"reel": 3,
-				"row": 2
+				"reel": 0,
+				"row": 0
 			},
 			{
-				"reel": 3,
-				"row": 3
+				"reel": 0,
+				"row": 1
 			},
 			{
-				"reel": 3,
-				"row": 4
+				"reel": 1,
+				"row": 0
 			},
 			{
-				"reel": 4,
-				"row": 3
-			},
-			{
-				"reel": 4,
-				"row": 4
+				"reel": 1,
+				"row": 1
 			}
 		]
 	},
@@ -124,11 +116,11 @@
 		"roundId": "P3-03",
 		"type": "boardSettled",
 		"board": [
+			["croissant", "croissant", "pizza", "frog_legs", "pizza"],
+			["croissant", "croissant", "peking_duck", "pizza", "frog_legs"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "croissant", "croissant"],
-			["pizza", "frog_legs", "pizza", "croissant", "croissant"]
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
 		]
 	},
 	{
@@ -140,11 +132,11 @@
 		"phase": null,
 		"source": null,
 		"board": [
+			["croissant", "croissant", "pizza", "frog_legs", "pizza"],
+			["croissant", "croissant", "peking_duck", "pizza", "frog_legs"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "croissant", "croissant"],
-			["pizza", "frog_legs", "pizza", "croissant", "croissant"]
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
 		],
 		"entries": [
 			{
@@ -165,22 +157,22 @@
 		"appliedSpots": [
 			{
 				"position": {
-					"reel": 0,
-					"row": 0
+					"reel": 2,
+					"row": 2
 				},
 				"boost": 1
 			},
 			{
 				"position": {
-					"reel": 1,
-					"row": 0
+					"reel": 3,
+					"row": 2
 				},
 				"boost": 2
 			},
 			{
 				"position": {
-					"reel": 2,
-					"row": 2
+					"reel": 4,
+					"row": 4
 				},
 				"boost": 3
 			}
@@ -188,22 +180,22 @@
 		"activeSpots": [
 			{
 				"position": {
-					"reel": 0,
-					"row": 0
+					"reel": 2,
+					"row": 2
 				},
 				"boost": 1
 			},
 			{
 				"position": {
-					"reel": 1,
-					"row": 0
+					"reel": 3,
+					"row": 2
 				},
 				"boost": 2
 			},
 			{
 				"position": {
-					"reel": 2,
-					"row": 2
+					"reel": 4,
+					"row": 4
 				},
 				"boost": 3
 			}
@@ -218,11 +210,11 @@
 		"windowIndex": 1,
 		"entryIds": ["P3-03-service-01-french"],
 		"finalBoard": [
+			["croissant", "croissant", "pizza", "frog_legs", "pizza"],
+			["croissant", "croissant", "peking_duck", "pizza", "frog_legs"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
-			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "croissant", "croissant"],
-			["pizza", "frog_legs", "pizza", "croissant", "croissant"]
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
 		]
 	},
 	{
@@ -234,24 +226,20 @@
 		"symbol": "croissant",
 		"positions": [
 			{
-				"reel": 3,
-				"row": 2
+				"reel": 0,
+				"row": 0
 			},
 			{
-				"reel": 3,
-				"row": 3
+				"reel": 0,
+				"row": 1
 			},
 			{
-				"reel": 3,
-				"row": 4
+				"reel": 1,
+				"row": 0
 			},
 			{
-				"reel": 4,
-				"row": 3
-			},
-			{
-				"reel": 4,
-				"row": 4
+				"reel": 1,
+				"row": 1
 			}
 		],
 		"basePayoutAtomicUnits": 1000000,
@@ -288,24 +276,20 @@
 		"type": "removeSymbols",
 		"positions": [
 			{
-				"reel": 3,
-				"row": 2
+				"reel": 0,
+				"row": 0
 			},
 			{
-				"reel": 3,
-				"row": 3
+				"reel": 0,
+				"row": 1
 			},
 			{
-				"reel": 3,
-				"row": 4
+				"reel": 1,
+				"row": 0
 			},
 			{
-				"reel": 4,
-				"row": 3
-			},
-			{
-				"reel": 4,
-				"row": 4
+				"reel": 1,
+				"row": 1
 			}
 		]
 	},
@@ -323,7 +307,7 @@
 		"type": "boardSettled",
 		"board": [
 			["pizza", "pizza", "pizza", "frog_legs", "pizza"],
-			["pizza", "pizza", "croissant", "peking_duck", "croissant"],
+			["pizza", "pizza", "peking_duck", "pizza", "frog_legs"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
@@ -339,7 +323,7 @@
 		"source": null,
 		"board": [
 			["pizza", "pizza", "pizza", "frog_legs", "pizza"],
-			["pizza", "pizza", "croissant", "peking_duck", "croissant"],
+			["pizza", "pizza", "peking_duck", "pizza", "frog_legs"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
@@ -404,6 +388,20 @@
 					"row": 2
 				},
 				"boost": 2
+			},
+			{
+				"position": {
+					"reel": 3,
+					"row": 2
+				},
+				"boost": 2
+			},
+			{
+				"position": {
+					"reel": 4,
+					"row": 4
+				},
+				"boost": 3
 			}
 		],
 		"meterAfter": 0
@@ -417,7 +415,7 @@
 		"entryIds": ["P3-03-service-02-french"],
 		"finalBoard": [
 			["pizza", "pizza", "pizza", "frog_legs", "pizza"],
-			["pizza", "pizza", "croissant", "peking_duck", "croissant"],
+			["pizza", "pizza", "peking_duck", "pizza", "frog_legs"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
@@ -544,7 +542,7 @@
 		"type": "boardSettled",
 		"board": [
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
-			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["croissant", "peking_duck", "peking_duck", "pizza", "frog_legs"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]

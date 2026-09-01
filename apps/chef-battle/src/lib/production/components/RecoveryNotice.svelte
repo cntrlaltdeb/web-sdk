@@ -3,7 +3,7 @@
 </script>
 
 {#if productionState.recoveryPending}
-	<p class="recovery" role="status">Проверяем результат spin. Новая ставка не будет сделана.</p>
+	<p class="recovery" role="status">Checking the spin result. No new bet will be placed.</p>
 {/if}
 
 {#if productionState.maxWinReachedAtomicUnits !== null}
