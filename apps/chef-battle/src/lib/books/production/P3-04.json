@@ -288,20 +288,33 @@
 		"sequence": 17,
 		"roundId": "P3-04",
 		"type": "serviceQueueOpened",
+		"windowIndex": 1,
+		"phase": null,
+		"source": null,
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
 		"entries": [
 			{
 				"id": "P3-04-service-01-french",
 				"chef": "french",
+				"readySequence": 5,
 				"perfectServeUnits": 20
 			},
 			{
 				"id": "P3-04-service-01-italian",
 				"chef": "italian",
+				"readySequence": 9,
 				"perfectServeUnits": 0
 			},
 			{
 				"id": "P3-04-service-01-chinese",
 				"chef": "chinese",
+				"readySequence": 13,
 				"perfectServeUnits": 30
 			}
 		]
@@ -312,6 +325,7 @@
 		"roundId": "P3-04",
 		"type": "sauceFinish",
 		"queueEntryId": "P3-04-service-01-french",
+		"chef": "french",
 		"appliedSpots": [
 			{
 				"position": {
@@ -357,7 +371,8 @@
 				},
 				"boost": 3
 			}
-		]
+		],
+		"meterAfter": 0
 	},
 	{
 		"id": "P3-04-e0019",
@@ -365,6 +380,7 @@
 		"roundId": "P3-04",
 		"type": "perfectServeAward",
 		"queueEntryId": "P3-04-service-01-french",
+		"chef": "french",
 		"consumedOverflowUnits": 20,
 		"payoutAtomicUnits": 500000
 	},
@@ -383,6 +399,7 @@
 		"roundId": "P3-04",
 		"type": "pastaPull",
 		"queueEntryId": "P3-04-service-01-italian",
+		"chef": "italian",
 		"positions": [
 			{
 				"reel": 4,
@@ -399,7 +416,8 @@
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
 			["pizza", "frog_legs", "pizza", "pasta_wild", "pasta_wild"]
-		]
+		],
+		"meterAfter": 0
 	},
 	{
 		"id": "P3-04-e0022",
@@ -407,6 +425,7 @@
 		"roundId": "P3-04",
 		"type": "wokToss",
 		"queueEntryId": "P3-04-service-01-chinese",
+		"chef": "chinese",
 		"positions": [
 			{
 				"reel": 0,
@@ -432,7 +451,8 @@
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
 			["pizza", "frog_legs", "pizza", "pasta_wild", "pasta_wild"]
-		]
+		],
+		"meterAfter": 0
 	},
 	{
 		"id": "P3-04-e0023",
@@ -440,6 +460,7 @@
 		"roundId": "P3-04",
 		"type": "perfectServeAward",
 		"queueEntryId": "P3-04-service-01-chinese",
+		"chef": "chinese",
 		"consumedOverflowUnits": 30,
 		"payoutAtomicUnits": 750000
 	},
@@ -457,6 +478,8 @@
 		"sequence": 25,
 		"roundId": "P3-04",
 		"type": "serviceQueueClosed",
+		"windowIndex": 1,
+		"entryIds": ["P3-04-service-01-french", "P3-04-service-01-italian", "P3-04-service-01-chinese"],
 		"finalBoard": [
 			["kung_pao_chicken", "kung_pao_chicken", "pizza", "frog_legs", "pizza"],
 			["kung_pao_chicken", "kung_pao_chicken", "croissant", "peking_duck", "croissant"],

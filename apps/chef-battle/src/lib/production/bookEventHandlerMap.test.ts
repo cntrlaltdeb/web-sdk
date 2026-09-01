@@ -190,7 +190,7 @@ describe('production Base cascade handlers', () => {
 				if (!perfectServeAward) throw new Error('P3-02 Perfect Serve is required');
 				book.splice(pasta, 0, perfectServeAward);
 			},
-			'pastaPull',
+			/pastaPull|Chef Special/,
 		],
 		[
 			'wrong Service Queue entry id',
@@ -199,7 +199,7 @@ describe('production Base cascade handlers', () => {
 				if (!pasta) throw new Error('P3-02 Pasta Pull is required');
 				pasta.queueEntryId = 'P3-02-service-01-french';
 			},
-			'queueEntryId',
+			/queueEntryId|Chef special/,
 		],
 	])('rejects %s before frontend state mutation', async (_name, mutate, error) => {
 		productionState.roundId = 'keep-me';
@@ -252,7 +252,9 @@ describe('production Base cascade handlers', () => {
 		if (!entry) throw new Error('P3-02 Service Queue entry is required');
 		entry.forged = true;
 
-		expect(() => validateProductionBook(canonicalizeP302(invalidBook))).toThrow('queue order');
+		expect(() => validateProductionBook(canonicalizeP302(invalidBook))).toThrow(
+			'exact approved payload',
+		);
 	});
 });
 

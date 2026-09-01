@@ -41,6 +41,7 @@ export type SauceSpot = Readonly<{ position: Position; boost: number }>;
 export type ServiceQueueEntry = Readonly<{
 	id: string;
 	chef: ChefId;
+	readySequence: number;
 	perfectServeUnits: number;
 }>;
 export type CrownCourse = Readonly<{
@@ -110,37 +111,48 @@ export type ProductionBookEvent =
 	| (ProductionEventBase & { type: 'boardSettled'; board: Board })
 	| (ProductionEventBase & {
 			type: 'serviceQueueOpened';
+			windowIndex: number;
+			phase: 'opening' | null;
+			source: 'initialReady' | null;
+			board: Board;
 			entries: readonly ServiceQueueEntry[];
-			phase?: 'opening';
-			source?: 'initialReady';
 	  })
 	| (ProductionEventBase & {
 			type: 'pastaPull';
 			queueEntryId: string;
+			chef: ChefId;
 			positions: readonly Position[];
 			boardAfter: Board;
+			meterAfter: number;
 	  })
 	| (ProductionEventBase & {
 			type: 'sauceFinish';
 			queueEntryId: string;
+			chef: ChefId;
 			appliedSpots: readonly SauceSpot[];
 			activeSpots: readonly SauceSpot[];
+			meterAfter: number;
 	  })
 	| (ProductionEventBase & {
 			type: 'wokToss';
 			queueEntryId: string;
+			chef: ChefId;
 			positions: readonly Position[];
 			targetSymbol: SymbolId;
 			boardAfter: Board;
+			meterAfter: number;
 	  })
 	| (ProductionEventBase & {
 			type: 'perfectServeAward';
 			queueEntryId: string;
+			chef: ChefId;
 			consumedOverflowUnits: number;
 			payoutAtomicUnits: number;
 	  })
 	| (ProductionEventBase & {
 			type: 'serviceQueueClosed';
+			windowIndex: number;
+			entryIds: readonly string[];
 			finalBoard: Board;
 	  })
 	| (ProductionEventBase & {
@@ -174,25 +186,25 @@ export type ProductionBookEvent =
 	| (ProductionEventBase & ShowdownSnapshot & { type: 'freeSpinEnd' })
 	| (ProductionEventBase & {
 			type: 'crownCourseComplete';
-			queueEntryId: string;
 			chef: ChefId;
 			sourceEventId: string;
 			courseId: string;
 			courseValueAtomicUnits: number;
 			crownPotAfterAtomicUnits: number;
-			completedCourses: readonly CrownCourse[];
+			completedCoursesAfter: readonly CrownCourse[];
 	  })
 	| (ProductionEventBase & {
 			type: 'judgeStarUpdate';
+			sourceEventId: string;
 			chef: ChefId;
 			starsAfter: number;
 			stars: StarValues;
 	  })
 	| (ProductionEventBase & {
 			type: 'kitchenWinnerLocked';
+			sourceEventId: string;
 			winner: ChefId;
 			stars: StarValues;
-			headliner: ChefId;
 	  })
 	| (ProductionEventBase & {
 			type: 'kitchenCrownReveal';
@@ -246,6 +258,9 @@ export type ProductionReplayState = Readonly<{
 	roundId: string;
 	sequence: number;
 	mode: GameMode;
+	selectedChef: ChefId | null;
+	showdownTriggered: boolean;
+	entryKind: EntryKind | null;
 	betAtomicUnits: number;
 	paidBetAtomicUnits: number;
 	maxWinAtomicUnits: number;
@@ -256,10 +271,16 @@ export type ProductionReplayState = Readonly<{
 	meters: MeterValues;
 	serviceQueue: readonly ServiceQueueEntry[];
 	activePastaPositions: readonly Readonly<Position>[];
+	activeWokPositions: readonly Readonly<Position>[];
 	activeSauceSpots: readonly SauceSpot[];
 	roundWinAtomicUnits: number;
+	lastClusterWinAtomicUnits: number;
+	lastSauceFlightMultiplier: number;
+	perfectServePayoutAtomicUnits: number | null;
 	bonusBankAtomicUnits: number;
 	crownPotAtomicUnits: number;
+	crownMultiplier: CrownMultiplier | null;
+	crownPayoutAtomicUnits: number;
 	completedCourses: readonly CrownCourse[];
 	stars: StarValues;
 	winner: ChefId | null;

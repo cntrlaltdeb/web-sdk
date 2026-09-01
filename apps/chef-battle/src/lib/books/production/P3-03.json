@@ -136,10 +136,21 @@
 		"sequence": 9,
 		"roundId": "P3-03",
 		"type": "serviceQueueOpened",
+		"windowIndex": 1,
+		"phase": null,
+		"source": null,
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "croissant", "croissant"],
+			["pizza", "frog_legs", "pizza", "croissant", "croissant"]
+		],
 		"entries": [
 			{
 				"id": "P3-03-service-01-french",
 				"chef": "french",
+				"readySequence": 5,
 				"perfectServeUnits": 0
 			}
 		]
@@ -150,6 +161,7 @@
 		"roundId": "P3-03",
 		"type": "sauceFinish",
 		"queueEntryId": "P3-03-service-01-french",
+		"chef": "french",
 		"appliedSpots": [
 			{
 				"position": {
@@ -195,13 +207,16 @@
 				},
 				"boost": 3
 			}
-		]
+		],
+		"meterAfter": 0
 	},
 	{
 		"id": "P3-03-e0011",
 		"sequence": 11,
 		"roundId": "P3-03",
 		"type": "serviceQueueClosed",
+		"windowIndex": 1,
+		"entryIds": ["P3-03-service-01-french"],
 		"finalBoard": [
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
@@ -319,10 +334,21 @@
 		"sequence": 18,
 		"roundId": "P3-03",
 		"type": "serviceQueueOpened",
+		"windowIndex": 2,
+		"phase": null,
+		"source": null,
+		"board": [
+			["pizza", "pizza", "pizza", "frog_legs", "pizza"],
+			["pizza", "pizza", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
 		"entries": [
 			{
 				"id": "P3-03-service-02-french",
 				"chef": "french",
+				"readySequence": 14,
 				"perfectServeUnits": 0
 			}
 		]
@@ -333,6 +359,7 @@
 		"roundId": "P3-03",
 		"type": "sauceFinish",
 		"queueEntryId": "P3-03-service-02-french",
+		"chef": "french",
 		"appliedSpots": [
 			{
 				"position": {
@@ -378,13 +405,16 @@
 				},
 				"boost": 2
 			}
-		]
+		],
+		"meterAfter": 0
 	},
 	{
 		"id": "P3-03-e0020",
 		"sequence": 20,
 		"roundId": "P3-03",
 		"type": "serviceQueueClosed",
+		"windowIndex": 2,
+		"entryIds": ["P3-03-service-02-french"],
 		"finalBoard": [
 			["pizza", "pizza", "pizza", "frog_legs", "pizza"],
 			["pizza", "pizza", "croissant", "peking_duck", "croissant"],

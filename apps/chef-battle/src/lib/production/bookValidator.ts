@@ -25,7 +25,6 @@ const modeCosts: Readonly<Record<GameMode, number>> = {
 };
 const modes = new Set<GameMode>(Object.keys(modeCosts) as GameMode[]);
 const chefIds = new Set<ChefId>(['italian', 'french', 'chinese']);
-const p300EventTypes = ['roundStart', 'revealBoard', 'setTotalWin', 'finalWin'] as const;
 const symbolIds = new Set([
 	'pizza',
 	'pasta_carbonara',
@@ -57,6 +56,118 @@ const wildSymbols = new Set<SymbolId>(['golden_cloche_wild', 'pasta_wild']);
 const chineseSymbols = new Set<SymbolId>(['peking_duck', 'kung_pao_chicken', 'xiaolongbao']);
 
 type EventRecord = Record<string, unknown>;
+
+const exactApprovedPayloadKeys: Readonly<Record<string, readonly string[]>> = {
+	serviceQueueOpened: [
+		'id',
+		'sequence',
+		'roundId',
+		'type',
+		'windowIndex',
+		'phase',
+		'source',
+		'board',
+		'entries',
+	],
+	serviceQueueClosed: [
+		'id',
+		'sequence',
+		'roundId',
+		'type',
+		'windowIndex',
+		'entryIds',
+		'finalBoard',
+	],
+	pastaPull: [
+		'id',
+		'sequence',
+		'roundId',
+		'type',
+		'queueEntryId',
+		'chef',
+		'positions',
+		'boardAfter',
+		'meterAfter',
+	],
+	sauceFinish: [
+		'id',
+		'sequence',
+		'roundId',
+		'type',
+		'queueEntryId',
+		'chef',
+		'appliedSpots',
+		'activeSpots',
+		'meterAfter',
+	],
+	wokToss: [
+		'id',
+		'sequence',
+		'roundId',
+		'type',
+		'queueEntryId',
+		'chef',
+		'positions',
+		'targetSymbol',
+		'boardAfter',
+		'meterAfter',
+	],
+	perfectServeAward: [
+		'id',
+		'sequence',
+		'roundId',
+		'type',
+		'queueEntryId',
+		'chef',
+		'consumedOverflowUnits',
+		'payoutAtomicUnits',
+	],
+	crownCourseComplete: [
+		'id',
+		'sequence',
+		'roundId',
+		'type',
+		'sourceEventId',
+		'courseId',
+		'chef',
+		'courseValueAtomicUnits',
+		'completedCoursesAfter',
+		'crownPotAfterAtomicUnits',
+	],
+	judgeStarUpdate: [
+		'id',
+		'sequence',
+		'roundId',
+		'type',
+		'sourceEventId',
+		'chef',
+		'starsAfter',
+		'stars',
+	],
+	kitchenWinnerLocked: ['id', 'sequence', 'roundId', 'type', 'sourceEventId', 'winner', 'stars'],
+};
+
+function validateExactApprovedPayload(event: EventRecord): void {
+	const expected = exactApprovedPayloadKeys[String(event.type)];
+	if (expected === undefined) return;
+	const actual = Object.keys(event).sort();
+	const sortedExpected = [...expected].sort();
+	if (
+		actual.length !== sortedExpected.length ||
+		actual.some((key, index) => key !== sortedExpected[index])
+	)
+		validationError(`${String(event.type)} must use the exact approved payload`);
+	if (event.type === 'serviceQueueOpened' && Array.isArray(event.entries)) {
+		for (const entry of event.entries) {
+			if (
+				!isRecord(entry) ||
+				Object.keys(entry).sort().join(',') !==
+					['id', 'chef', 'readySequence', 'perfectServeUnits'].sort().join(',')
+			)
+				validationError('serviceQueueOpened entry must use the exact approved payload');
+		}
+	}
+}
 
 function transitionBefore(
 	transitions: readonly ProductionReplayTransition[],
@@ -386,19 +497,29 @@ function validateKnownPayload(event: EventRecord): void {
 			if (!isBoard(event.board)) validationError('boardSettled.board');
 			return;
 		case 'serviceQueueOpened':
-			if (!Array.isArray(event.entries)) validationError('serviceQueueOpened.entries');
+			if (
+				!Array.isArray(event.entries) ||
+				!isSafeNonNegativeInteger(event.windowIndex) ||
+				event.windowIndex === 0 ||
+				!isBoard(event.board)
+			)
+				validationError('serviceQueueOpened payload');
 			return;
 		case 'pastaPull':
 			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
 				validationError('pastaPull.queueEntryId');
 			requirePositions(event.positions, 'pastaPull.positions');
 			if (!isBoard(event.boardAfter)) validationError('pastaPull.boardAfter');
+			if (!chefIds.has(event.chef as ChefId) || event.meterAfter !== 0)
+				validationError('pastaPull chef or meterAfter');
 			return;
 		case 'sauceFinish':
 			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
 				validationError('sauceFinish.queueEntryId');
 			requireSauceSpots(event.appliedSpots, 'sauceFinish.appliedSpots', 3);
 			requireSauceSpots(event.activeSpots, 'sauceFinish.activeSpots');
+			if (!chefIds.has(event.chef as ChefId) || event.meterAfter !== 0)
+				validationError('sauceFinish chef or meterAfter');
 			return;
 		case 'wokToss':
 			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
@@ -413,6 +534,8 @@ function validateKnownPayload(event: EventRecord): void {
 			)
 				validationError('wokToss.targetSymbol must be a Chinese dish');
 			if (!isBoard(event.boardAfter)) validationError('wokToss.boardAfter');
+			if (!chefIds.has(event.chef as ChefId) || event.meterAfter !== 0)
+				validationError('wokToss chef or meterAfter');
 			return;
 		case 'perfectServeAward':
 			if (typeof event.queueEntryId !== 'string' || event.queueEntryId.length === 0)
@@ -422,9 +545,17 @@ function validateKnownPayload(event: EventRecord): void {
 				'perfectServeAward.consumedOverflowUnits',
 			);
 			requireSafeNonNegativeInteger(event.payoutAtomicUnits, 'perfectServeAward.payoutAtomicUnits');
+			if (!chefIds.has(event.chef as ChefId)) validationError('perfectServeAward.chef');
 			return;
 		case 'serviceQueueClosed':
-			if (!isBoard(event.finalBoard)) validationError('serviceQueueClosed.finalBoard');
+			if (
+				!isBoard(event.finalBoard) ||
+				!isSafeNonNegativeInteger(event.windowIndex) ||
+				event.windowIndex === 0 ||
+				!Array.isArray(event.entryIds) ||
+				event.entryIds.length === 0
+			)
+				validationError('serviceQueueClosed payload');
 			return;
 		case 'maxWinReached':
 			requireSafeNonNegativeInteger(event.maxWinAtomicUnits, 'maxWinReached.maxWinAtomicUnits');
@@ -484,14 +615,27 @@ function validateBaseLifecycle(
 		return transitions.find((transition) => transition.event.id === event.id);
 	};
 
-	const readyEntries: Array<{ id: string; chef: ChefId; perfectServeUnits: number }> = [];
+	const readyEntries: Array<{
+		id: string;
+		chef: ChefId;
+		readySequence: number;
+		perfectServeUnits: number;
+	}> = [];
 	const initialMeters = requireChefValues(roundStart.meters, 'Base roundStart.meters', 100);
 	const initialReadyChefs = Array.from(chefIds).filter((chef) => initialMeters[chef] === 100);
 	if (roundStart.mode === 'signatureSpin' || allowInitialMeters) {
+		const initialOpened = events.find((event) => event.type === 'serviceQueueOpened');
 		initialReadyChefs.forEach((chef) =>
 			readyEntries.push({
 				id: `${String(roundStart.roundId)}-service-01-${chef}`,
 				chef,
+				readySequence:
+					allowInitialMeters && Array.isArray(initialOpened?.entries)
+						? Number(
+								initialOpened.entries.find((entry) => isRecord(entry) && entry.chef === chef)
+									?.readySequence,
+							)
+						: 1,
 				perfectServeUnits: 0,
 			}),
 		);
@@ -589,7 +733,13 @@ function validateBaseLifecycle(
 				)
 					validationError('chefMeterUpdate service queue fields');
 				if (existingEntry) existingEntry.perfectServeUnits = expectedUnits;
-				else readyEntries.push({ id: expectedId, chef, perfectServeUnits: expectedUnits });
+				else
+					readyEntries.push({
+						id: expectedId,
+						chef,
+						readySequence: Number(meter.sequence),
+						perfectServeUnits: expectedUnits,
+					});
 			} else if (meter.serviceQueueEntryId !== null || meter.perfectServeUnitsAfter !== 0)
 				validationError('chefMeterUpdate service queue fields');
 			const removal = events[index + 3];
@@ -616,9 +766,11 @@ function validateBaseLifecycle(
 		if (openingExpected) {
 			if (opened.phase !== 'opening' || opened.source !== 'initialReady')
 				validationError('opening Service requires phase=opening and source=initialReady');
-		} else if (opened.phase !== undefined || opened.source !== undefined)
+		} else if (opened.phase !== null || opened.source !== null)
 			validationError('opening Service metadata is only valid for initialReady');
 		if (
+			opened.windowIndex !== serviceWindowIndex ||
+			JSON.stringify(opened.board) !== JSON.stringify(currentBoard) ||
 			!Array.isArray(opened.entries) ||
 			opened.entries.length !== readyEntries.length ||
 			opened.entries.some((entry, entryIndex) => {
@@ -626,9 +778,10 @@ function validateBaseLifecycle(
 				return (
 					!isRecord(entry) ||
 					!expected ||
-					Object.keys(entry).length !== 3 ||
+					Object.keys(entry).length !== 4 ||
 					entry.id !== expected.id ||
 					entry.chef !== expected.chef ||
+					entry.readySequence !== expected.readySequence ||
 					entry.perfectServeUnits !== expected.perfectServeUnits
 				);
 			})
@@ -640,7 +793,12 @@ function validateBaseLifecycle(
 		for (const entry of readyEntries) {
 			const special = events[index];
 			if (!special) validationError('Service Queue entry requires a Chef Special');
-			if (special.queueEntryId !== entry.id) validationError('Chef Special queueEntryId');
+			if (
+				special.queueEntryId !== entry.id ||
+				special.chef !== entry.chef ||
+				special.meterAfter !== 0
+			)
+				validationError('Chef Special queue identity or meterAfter');
 
 			if (entry.chef === 'italian') {
 				if (special.type !== 'pastaPull')
@@ -744,6 +902,7 @@ function validateBaseLifecycle(
 				validateKnownPayload(award);
 				if (
 					award.queueEntryId !== entry.id ||
+					award.chef !== entry.chef ||
 					award.consumedOverflowUnits !== entry.perfectServeUnits
 				)
 					validationError('perfectServeAward must consume all overflow units');
@@ -774,7 +933,11 @@ function validateBaseLifecycle(
 		if (!closed || closed.type !== 'serviceQueueClosed')
 			validationError('Service Queue requires serviceQueueClosed');
 		validateKnownPayload(closed);
-		if (JSON.stringify(closed.finalBoard) !== JSON.stringify(currentBoard))
+		if (
+			closed.windowIndex !== serviceWindowIndex ||
+			JSON.stringify(closed.entryIds) !== JSON.stringify(readyEntries.map((entry) => entry.id)) ||
+			JSON.stringify(closed.finalBoard) !== JSON.stringify(currentBoard)
+		)
 			validationError('serviceQueueClosed.finalBoard must repeat the final board');
 		index++;
 		readyEntries.splice(0);
@@ -1043,6 +1206,7 @@ function validateShowdownBoardPhase(
 			cloned.serviceQueueEntryId = mapServiceId(cloned.serviceQueueEntryId, cloned.chef as ChefId);
 		}
 		if (cloned.type === 'serviceQueueOpened' && Array.isArray(cloned.entries)) {
+			cloned.windowIndex = localServiceWindowIndex;
 			cloned.entries = cloned.entries.map((rawEntry) => {
 				if (
 					!isRecord(rawEntry) ||
@@ -1056,6 +1220,17 @@ function validateShowdownBoardPhase(
 					id: mapServiceId(rawEntry.id, rawEntry.chef as ChefId),
 				};
 			});
+		}
+		if (cloned.type === 'serviceQueueClosed') {
+			cloned.windowIndex = localServiceWindowIndex;
+			if (Array.isArray(cloned.entryIds)) {
+				cloned.entryIds = cloned.entryIds.map((entryId) => {
+					if (typeof entryId !== 'string') validationError('serviceQueueClosed.entryIds');
+					const mapped = serviceIds.get(entryId);
+					if (!mapped) validationError('serviceQueueClosed.entryIds');
+					return mapped;
+				});
+			}
 		}
 		if (typeof cloned.queueEntryId === 'string') {
 			const mapped = serviceIds.get(cloned.queueEntryId);
@@ -1346,7 +1521,12 @@ function validateShowdownLifecycle(
 				);
 		}
 
-		let openEntries: Array<{ id: string; chef: ChefId; perfectServeUnits: number }> = [];
+		let openEntries: Array<{
+			id: string;
+			chef: ChefId;
+			readySequence: number;
+			perfectServeUnits: number;
+		}> = [];
 		let courseIndexInWindow = 0;
 		const specialByEntry = new Map<string, { event: EventRecord; index: number }>();
 		const consumedMeta = new Set<number>();
@@ -1361,12 +1541,15 @@ function validateShowdownLifecycle(
 						typeof rawEntry.id !== 'string' ||
 						typeof rawEntry.chef !== 'string' ||
 						!chefIds.has(rawEntry.chef as ChefId) ||
+						!isSafeNonNegativeInteger(rawEntry.readySequence) ||
+						rawEntry.readySequence === 0 ||
 						!isSafeNonNegativeInteger(rawEntry.perfectServeUnits)
 					)
 						validationError('serviceQueueOpened.entries');
 					return {
 						id: rawEntry.id,
 						chef: rawEntry.chef as ChefId,
+						readySequence: rawEntry.readySequence,
 						perfectServeUnits: rawEntry.perfectServeUnits,
 					};
 				});
@@ -1392,14 +1575,20 @@ function validateShowdownLifecycle(
 				if (
 					!expectedEntry ||
 					!special ||
-					bookEvent.queueEntryId !== expectedEntry.id ||
 					bookEvent.chef !== expectedEntry.chef ||
 					bookEvent.sourceEventId !== special.event.id ||
 					typeof bookEvent.sourceEventId !== 'string' ||
 					bookEvent.courseId !==
 						`${roundId}-course-${String(
 							transitionBefore(transitions, eventIndex).completedCourses.length + 1,
-						).padStart(2, '0')}`
+						).padStart(2, '0')}` ||
+					!sameCourses(
+						requireCourses(
+							bookEvent.completedCoursesAfter,
+							'crownCourseComplete.completedCoursesAfter',
+						),
+						transitions[eventIndex]?.after.completedCourses ?? [],
+					)
 				)
 					validationError('Crown Course source or order');
 				const afterSpecial = boardPhase[special.index + 1];
@@ -1427,6 +1616,7 @@ function validateShowdownLifecycle(
 					if (!starState) validationError('Judge Star reducer transition is missing');
 					if (
 						next.chef !== expectedEntry.chef ||
+						next.sourceEventId !== bookEvent.id ||
 						next.starsAfter !== starState.stars[expectedEntry.chef] ||
 						!Array.from(chefIds).every(
 							(chef) =>
@@ -1439,13 +1629,11 @@ function validateShowdownLifecycle(
 					consumedMeta.add(phaseIndex + 1);
 					if (starState.stars[expectedEntry.chef] === 3) {
 						const lock = boardPhase[phaseIndex + 2];
-						const expectedHeadliner =
-							roundStart.mode === 'mysteryTasting' ? starState.headliner : expectedEntry.chef;
 						if (
 							!lock ||
 							lock.type !== 'kitchenWinnerLocked' ||
 							lock.winner !== expectedEntry.chef ||
-							lock.headliner !== expectedHeadliner ||
+							lock.sourceEventId !== next.id ||
 							!Array.from(chefIds).every(
 								(chef) =>
 									requireChefValues(lock.stars, 'kitchenWinnerLocked.stars', 3)[chef] ===
@@ -1567,6 +1755,7 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 		if (event.id !== `${event.roundId}-e${String(sequence).padStart(4, '0')}`)
 			validationError('id must match roundId and sequence suffix');
 		if (typeof event.type !== 'string') validationError('event type is required');
+		validateExactApprovedPayload(event);
 		if (maxSeen && event.type !== 'setTotalWin' && event.type !== 'finalWin')
 			validationError('event after maxWinReached must be setTotalWin or finalWin');
 		if (event.type === 'maxWinReached') maxSeen = true;
@@ -1576,12 +1765,6 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 	const roundStart = events[0];
 	if (!roundStart || roundStart.type !== 'roundStart') validationError('roundStart is required');
 	validateRoundStart(roundStart);
-	if (
-		roundStart.roundId === 'P3-00' &&
-		(events.length !== p300EventTypes.length ||
-			events.some((event, index) => event.type !== p300EventTypes[index]))
-	)
-		validationError('P3-00 must contain exactly roundStart → revealBoard → setTotalWin → finalWin');
 	const hasShowdown =
 		roundStart.mode === 'kitchenShowdown' ||
 		roundStart.mode === 'grandShowdown' ||
@@ -1601,8 +1784,12 @@ export function validateProductionBook(value: unknown): ValidatedProductionBook 
 			requireSafeNonNegativeInteger(event.maxWinAtomicUnits, 'maxWinReached.maxWinAtomicUnits');
 		if (event.type === 'judgeStarUpdate' && events[index - 1]?.type !== 'crownCourseComplete')
 			validationError('every Judge Star must belong to one canonical Course chain');
+		if (event.type === 'judgeStarUpdate' && event.sourceEventId !== events[index - 1]?.id)
+			validationError('Judge Star sourceEventId must reference its Crown Course');
 		if (event.type === 'kitchenWinnerLocked' && events[index - 1]?.type !== 'judgeStarUpdate')
 			validationError('every winner lock must belong to one canonical Course chain');
+		if (event.type === 'kitchenWinnerLocked' && event.sourceEventId !== events[index - 1]?.id)
+			validationError('winner lock sourceEventId must reference the third Judge Star');
 	});
 	if (hasShowdown) {
 		const start = events.find((event) => event.type === 'kitchenShowdownStart');

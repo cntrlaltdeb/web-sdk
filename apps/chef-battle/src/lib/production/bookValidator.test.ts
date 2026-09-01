@@ -1,6 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import P300 from '../books/production/P3-00.json';
+import P301 from '../books/production/P3-01.json';
+import P304 from '../books/production/P3-04.json';
+import P306 from '../books/production/P3-06.json';
 import { validateProductionBook } from './bookValidator';
 import { productionBookEventHandlerMap } from './bookEventHandlerMap';
 import { canonicalProductionJson } from './checkpoint';
@@ -119,6 +122,117 @@ describe('production Book validation', () => {
 		);
 	});
 
+	it('accepts only the approved exact Service and Showdown payload keys', () => {
+		const expected = {
+			serviceQueueOpened: [
+				'id',
+				'sequence',
+				'roundId',
+				'type',
+				'windowIndex',
+				'phase',
+				'source',
+				'board',
+				'entries',
+			],
+			serviceQueueClosed: [
+				'id',
+				'sequence',
+				'roundId',
+				'type',
+				'windowIndex',
+				'entryIds',
+				'finalBoard',
+			],
+			pastaPull: [
+				'id',
+				'sequence',
+				'roundId',
+				'type',
+				'queueEntryId',
+				'chef',
+				'positions',
+				'boardAfter',
+				'meterAfter',
+			],
+			sauceFinish: [
+				'id',
+				'sequence',
+				'roundId',
+				'type',
+				'queueEntryId',
+				'chef',
+				'appliedSpots',
+				'activeSpots',
+				'meterAfter',
+			],
+			wokToss: [
+				'id',
+				'sequence',
+				'roundId',
+				'type',
+				'queueEntryId',
+				'chef',
+				'positions',
+				'targetSymbol',
+				'boardAfter',
+				'meterAfter',
+			],
+			perfectServeAward: [
+				'id',
+				'sequence',
+				'roundId',
+				'type',
+				'queueEntryId',
+				'chef',
+				'consumedOverflowUnits',
+				'payoutAtomicUnits',
+			],
+			crownCourseComplete: [
+				'id',
+				'sequence',
+				'roundId',
+				'type',
+				'sourceEventId',
+				'courseId',
+				'chef',
+				'courseValueAtomicUnits',
+				'completedCoursesAfter',
+				'crownPotAfterAtomicUnits',
+			],
+			judgeStarUpdate: [
+				'id',
+				'sequence',
+				'roundId',
+				'type',
+				'sourceEventId',
+				'chef',
+				'starsAfter',
+				'stars',
+			],
+			kitchenWinnerLocked: [
+				'id',
+				'sequence',
+				'roundId',
+				'type',
+				'sourceEventId',
+				'winner',
+				'stars',
+			],
+		} as const;
+		const events = [...P304, ...P306] as Array<Record<string, unknown>>;
+		for (const [type, keys] of Object.entries(expected)) {
+			const event = events.find((candidate) => candidate.type === type);
+			expect(event, `missing ${type}`).toBeDefined();
+			expect(Object.keys(event ?? {}).sort()).toEqual([...keys].sort());
+		}
+		const opened = events.find((event) => event.type === 'serviceQueueOpened');
+		const entries = opened?.entries as Array<Record<string, unknown>>;
+		expect(Object.keys(entries[0] ?? {}).sort()).toEqual(
+			['id', 'chef', 'readySequence', 'perfectServeUnits'].sort(),
+		);
+	});
+
 	it.each(PRODUCTION_SCENARIO_IDS)(
 		'%s executes every handler with one exact final state in normal, fast and instant playback',
 		async (scenarioId) => {
@@ -185,12 +299,22 @@ describe('production Book validation', () => {
 		['missing revealBoard', (book: MutableBook) => book.splice(1, 1)],
 		['duplicate roundStart', (book: MutableBook) => book.splice(1, 0, { ...book[0] })],
 		['early finalWin', (book: MutableBook) => book.splice(2, 0, { ...book.at(-1) })],
-	])('rejects a noncanonical P3-00 lifecycle with %s', (_name, mutate) => {
+	])('rejects an invalid Base lifecycle with %s', (_name, mutate) => {
 		const invalidBook = cloneBook();
 		mutate(invalidBook);
 		applyCanonicalEnvelope(invalidBook);
 
-		expect(() => validateProductionBook(invalidBook)).toThrow('exactly');
+		expect(() => validateProductionBook(invalidBook)).toThrow();
+	});
+
+	it('does not select validation behavior from the fixture round id', () => {
+		const renamed = structuredClone(P301) as MutableBook;
+		for (const event of renamed) {
+			for (const [field, value] of Object.entries(event)) {
+				if (typeof value === 'string') event[field] = value.replace('P3-01', 'P3-00');
+			}
+		}
+		expect(validateProductionBook(renamed).finalWinAtomicUnits).toBe(7_000_000);
 	});
 
 	it.each([

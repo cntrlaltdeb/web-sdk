@@ -1,12 +1,15 @@
 {
 	"roundId": "P3-12",
 	"sequence": 40,
-	"bookHash": "8714e7f07879c0adfa9bccac88d4a9997005a06149622828dbe923dcac881503",
-	"stateHash": "2626ef0ab883fcdd93ce644d47cb588b42bc4ba07da67238e9492677a6c5f85d",
+	"bookHash": "0db25ba76a36af2fcc7370899d5d9397b6a9b899af2a21038d299317f495563d",
+	"stateHash": "e980b61665b37cba6ce79c8d337c7e7e8116e04428dbcb5fd36a8bac536426b8",
 	"state": {
 		"roundId": "P3-12",
 		"sequence": 40,
 		"mode": "grandShowdown",
+		"selectedChef": null,
+		"showdownTriggered": true,
+		"entryKind": "purchase",
 		"betAtomicUnits": 1000000,
 		"paidBetAtomicUnits": 250000000,
 		"maxWinAtomicUnits": 20000000000,
@@ -27,6 +30,7 @@
 		},
 		"serviceQueue": [],
 		"activePastaPositions": [],
+		"activeWokPositions": [],
 		"activeSauceSpots": [
 			{
 				"position": {
@@ -51,8 +55,13 @@
 			}
 		],
 		"roundWinAtomicUnits": 0,
+		"lastClusterWinAtomicUnits": 0,
+		"lastSauceFlightMultiplier": 1,
+		"perfectServePayoutAtomicUnits": null,
 		"bonusBankAtomicUnits": 0,
 		"crownPotAtomicUnits": 15000000,
+		"crownMultiplier": null,
+		"crownPayoutAtomicUnits": 0,
 		"completedCourses": [
 			{
 				"id": "P3-12-course-01",
@@ -91,7 +100,7 @@
 			"chinese": 1
 		},
 		"winner": "french",
-		"headliner": "french",
+		"headliner": null,
 		"creditedSourceIds": [
 			"P3-12-e0004",
 			"P3-12-e0017",

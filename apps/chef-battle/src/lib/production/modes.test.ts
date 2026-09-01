@@ -126,7 +126,7 @@ describe('production paid modes', () => {
 			(book: MutableBook) => {
 				delete event(book, 'serviceQueueOpened').phase;
 			},
-			'opening',
+			'serviceQueueOpened',
 		],
 		[
 			'Signature selected chef',

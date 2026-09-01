@@ -33,15 +33,24 @@
 		"sequence": 3,
 		"roundId": "P3-09",
 		"type": "serviceQueueOpened",
+		"windowIndex": 1,
+		"phase": "opening",
+		"source": "initialReady",
+		"board": [
+			["croissant", "croissant", "pizza", "frog_legs", "pizza"],
+			["croissant", "croissant", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
 		"entries": [
 			{
 				"id": "P3-09-service-01-french",
 				"chef": "french",
+				"readySequence": 1,
 				"perfectServeUnits": 0
 			}
-		],
-		"phase": "opening",
-		"source": "initialReady"
+		]
 	},
 	{
 		"id": "P3-09-e0004",
@@ -49,6 +58,7 @@
 		"roundId": "P3-09",
 		"type": "sauceFinish",
 		"queueEntryId": "P3-09-service-01-french",
+		"chef": "french",
 		"appliedSpots": [
 			{
 				"position": {
@@ -94,13 +104,16 @@
 				},
 				"boost": 3
 			}
-		]
+		],
+		"meterAfter": 0
 	},
 	{
 		"id": "P3-09-e0005",
 		"sequence": 5,
 		"roundId": "P3-09",
 		"type": "serviceQueueClosed",
+		"windowIndex": 1,
+		"entryIds": ["P3-09-service-01-french"],
 		"finalBoard": [
 			["croissant", "croissant", "pizza", "frog_legs", "pizza"],
 			["croissant", "croissant", "croissant", "peking_duck", "croissant"],

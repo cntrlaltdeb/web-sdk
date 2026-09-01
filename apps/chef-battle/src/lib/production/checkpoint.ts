@@ -109,6 +109,14 @@ function clonePositions(positions: readonly Position[]): readonly Readonly<Posit
 	return positions.map((position) => ({ reel: position.reel, row: position.row }));
 }
 
+function pastaPositionsFromBoard(
+	board: ProductionReplayState['board'],
+): readonly Readonly<Position>[] {
+	return board.flatMap((reel, reelIndex) =>
+		reel.flatMap((symbol, row) => (symbol === 'pasta_wild' ? [{ reel: reelIndex, row }] : [])),
+	);
+}
+
 function cloneSauceSpots(spots: readonly SauceSpot[]): readonly SauceSpot[] {
 	return spots.map((spot) => ({
 		position: { reel: spot.position.reel, row: spot.position.row },
@@ -120,6 +128,7 @@ function cloneQueue(entries: readonly ServiceQueueEntry[]): readonly ServiceQueu
 	return entries.map((entry) => ({
 		id: entry.id,
 		chef: entry.chef,
+		readySequence: entry.readySequence,
 		perfectServeUnits: entry.perfectServeUnits,
 	}));
 }
@@ -138,6 +147,9 @@ function cloneReplayState(state: ProductionReplayState): ProductionReplayState {
 		roundId: state.roundId,
 		sequence: state.sequence,
 		mode: state.mode,
+		selectedChef: state.selectedChef,
+		showdownTriggered: state.showdownTriggered,
+		entryKind: state.entryKind,
 		betAtomicUnits: state.betAtomicUnits,
 		paidBetAtomicUnits: state.paidBetAtomicUnits,
 		maxWinAtomicUnits: state.maxWinAtomicUnits,
@@ -148,10 +160,16 @@ function cloneReplayState(state: ProductionReplayState): ProductionReplayState {
 		meters: { ...state.meters },
 		serviceQueue: cloneQueue(state.serviceQueue),
 		activePastaPositions: clonePositions(state.activePastaPositions),
+		activeWokPositions: clonePositions(state.activeWokPositions),
 		activeSauceSpots: cloneSauceSpots(state.activeSauceSpots),
 		roundWinAtomicUnits: state.roundWinAtomicUnits,
+		lastClusterWinAtomicUnits: state.lastClusterWinAtomicUnits,
+		lastSauceFlightMultiplier: state.lastSauceFlightMultiplier,
+		perfectServePayoutAtomicUnits: state.perfectServePayoutAtomicUnits,
 		bonusBankAtomicUnits: state.bonusBankAtomicUnits,
 		crownPotAtomicUnits: state.crownPotAtomicUnits,
+		crownMultiplier: state.crownMultiplier,
+		crownPayoutAtomicUnits: state.crownPayoutAtomicUnits,
 		completedCourses: cloneCourses(state.completedCourses),
 		stars: { ...state.stars },
 		winner: state.winner,
@@ -172,6 +190,26 @@ function safeSum(left: number, right: number, field: string): number {
 	const result = left + right;
 	if (!Number.isSafeInteger(result)) replayError('INVALID_BOOK', `${field} must remain safe money`);
 	return result;
+}
+
+type MutableProductionReplayState = {
+	-readonly [TKey in keyof ProductionReplayState]: ProductionReplayState[TKey];
+};
+
+function completeServiceEntry(
+	state: MutableProductionReplayState,
+	event: Extract<ProductionBookEvent, { type: 'pastaPull' | 'sauceFinish' | 'wokToss' }>,
+): void {
+	const entry = state.serviceQueue[0];
+	if (
+		entry === undefined ||
+		entry.id !== event.queueEntryId ||
+		entry.chef !== event.chef ||
+		event.meterAfter !== 0
+	)
+		replayError('INVALID_BOOK', 'Chef special must complete the next Service Queue entry');
+	state.meters = { ...state.meters, [event.chef]: 0 };
+	state.serviceQueue = cloneQueue(state.serviceQueue.slice(1));
 }
 
 function sameSnapshot(
@@ -206,12 +244,16 @@ export function reduceProductionEvent(
 			.map((chef) => ({
 				id: `${event.roundId}-service-01-${chef}`,
 				chef,
+				readySequence: event.sequence,
 				perfectServeUnits: 0,
 			}));
 		return freezeDeep({
 			roundId: event.roundId,
 			sequence: event.sequence,
 			mode: event.mode,
+			selectedChef: event.selectedChef ?? null,
+			showdownTriggered: false,
+			entryKind: null,
 			betAtomicUnits: event.betAtomicUnits,
 			paidBetAtomicUnits: event.paidBetAtomicUnits,
 			maxWinAtomicUnits: event.maxWinAtomicUnits,
@@ -222,10 +264,16 @@ export function reduceProductionEvent(
 			meters: { ...event.meters },
 			serviceQueue: startingQueue,
 			activePastaPositions: [],
+			activeWokPositions: [],
 			activeSauceSpots: [],
 			roundWinAtomicUnits: 0,
+			lastClusterWinAtomicUnits: 0,
+			lastSauceFlightMultiplier: 1,
+			perfectServePayoutAtomicUnits: null,
 			bonusBankAtomicUnits: 0,
 			crownPotAtomicUnits: 0,
+			crownMultiplier: null,
+			crownPayoutAtomicUnits: 0,
 			completedCourses: [],
 			stars: { italian: 0, french: 0, chinese: 0 },
 			winner: null,
@@ -238,17 +286,28 @@ export function reduceProductionEvent(
 	}
 
 	assertContinuation(state, event);
-	const next = cloneReplayState(state) as {
-		-readonly [TKey in keyof ProductionReplayState]: ProductionReplayState[TKey];
-	};
+	const next = cloneReplayState(state) as MutableProductionReplayState;
 	next.sequence = event.sequence;
 	switch (event.type) {
 		case 'roundStart':
 			replayError('INVALID_BOOK', 'roundStart may appear only at sequence 1');
 		case 'revealBoard':
-		case 'boardSettled':
+		case 'boardSettled': {
+			const pastaPositions = pastaPositionsFromBoard(event.board);
+			if (event.type === 'revealBoard' && pastaPositions.length > 0)
+				replayError('INVALID_BOOK', 'temporary Pasta Wild cannot appear on a paid reveal');
+			const activeKeys = new Set(
+				next.activePastaPositions.map((position) => `${position.reel}:${position.row}`),
+			);
+			if (
+				event.type === 'boardSettled' &&
+				pastaPositions.some((position) => !activeKeys.has(`${position.reel}:${position.row}`))
+			)
+				replayError('INVALID_BOOK', 'boardSettled contains an unsourced temporary Pasta Wild');
 			next.board = cloneBoard(event.board);
+			next.activePastaPositions = clonePositions(pastaPositions);
 			break;
+		}
 		case 'roundWinUpdate':
 			if (next.creditedSourceIds.includes(event.sourceEventId))
 				replayError('INVALID_BOOK', 'roundWinUpdate sourceEventId must be unique');
@@ -262,6 +321,13 @@ export function reduceProductionEvent(
 				);
 			next.roundWinAtomicUnits = event.balanceAfterAtomicUnits;
 			next.creditedSourceIds = [...next.creditedSourceIds, event.sourceEventId];
+			break;
+		case 'clusterWin':
+			next.lastClusterWinAtomicUnits = event.payoutAtomicUnits;
+			next.lastSauceFlightMultiplier = event.sauceFlightMultiplier;
+			break;
+		case 'perfectServeAward':
+			next.perfectServePayoutAtomicUnits = event.payoutAtomicUnits;
 			break;
 		case 'bonusBankUpdate':
 			if (
@@ -295,6 +361,7 @@ export function reduceProductionEvent(
 				const entry = {
 					id: event.serviceQueueEntryId,
 					chef: event.chef,
+					readySequence: existingForChef?.readySequence ?? event.sequence,
 					perfectServeUnits: event.perfectServeUnitsAfter,
 				};
 				const queue = cloneQueue(next.serviceQueue) as ServiceQueueEntry[];
@@ -310,28 +377,34 @@ export function reduceProductionEvent(
 			next.cascadeIndex = event.index;
 			break;
 		case 'serviceQueueOpened':
-			if (canonicalProductionJson(event.entries) !== canonicalProductionJson(next.serviceQueue))
+			if (
+				event.windowIndex <= 0 ||
+				canonicalProductionJson(event.board) !== canonicalProductionJson(next.board) ||
+				canonicalProductionJson(event.entries) !== canonicalProductionJson(next.serviceQueue)
+			)
 				replayError(
 					'INVALID_BOOK',
 					'serviceQueueOpened queue order does not match pending READY chefs',
 				);
 			break;
 		case 'pastaPull':
+			completeServiceEntry(next, event);
 			next.board = cloneBoard(event.boardAfter);
-			next.activePastaPositions = clonePositions(event.positions);
+			next.activePastaPositions = pastaPositionsFromBoard(event.boardAfter);
 			break;
 		case 'sauceFinish':
+			completeServiceEntry(next, event);
 			next.activeSauceSpots = cloneSauceSpots(event.activeSpots);
 			break;
 		case 'wokToss':
+			completeServiceEntry(next, event);
 			next.board = cloneBoard(event.boardAfter);
+			next.activeWokPositions = clonePositions(event.positions);
 			break;
 		case 'serviceQueueClosed': {
-			const meters = { ...next.meters };
-			for (const entry of next.serviceQueue) meters[entry.chef] = 0;
+			if (next.serviceQueue.length !== 0 || event.windowIndex <= 0 || event.entryIds.length === 0)
+				replayError('INVALID_BOOK', 'serviceQueueClosed requires an already drained queue');
 			next.board = cloneBoard(event.finalBoard);
-			next.meters = meters;
-			next.serviceQueue = [];
 			break;
 		}
 		case 'kitchenShowdownStart':
@@ -342,14 +415,18 @@ export function reduceProductionEvent(
 				.map((chef) => ({
 					id: `${event.roundId}-service-01-${chef}`,
 					chef,
+					readySequence: event.sequence,
 					perfectServeUnits: 0,
 				}));
 			next.board = [];
+			next.showdownTriggered = true;
+			next.entryKind = event.entryKind;
 			next.currentFreeSpin = event.currentFreeSpin;
 			next.remainingFreeSpins = event.remainingFreeSpins;
 			next.meters = { ...event.meters };
 			next.serviceQueue = openingQueue;
 			next.activePastaPositions = [];
+			next.activeWokPositions = [];
 			next.activeSauceSpots = cloneSauceSpots(event.activeSauceSpots);
 			next.bonusBankAtomicUnits = event.bonusBankAtomicUnits;
 			next.crownPotAtomicUnits = event.crownPotAtomicUnits;
@@ -369,6 +446,7 @@ export function reduceProductionEvent(
 			next.currentFreeSpin = event.currentFreeSpin;
 			next.remainingFreeSpins = event.remainingFreeSpins;
 			next.activePastaPositions = [];
+			next.activeWokPositions = [];
 			break;
 		case 'freeSpinRetrigger':
 			if (
@@ -382,14 +460,16 @@ export function reduceProductionEvent(
 				);
 			next.remainingFreeSpins = event.remainingFreeSpinsAfter;
 			next.activePastaPositions = [];
+			next.activeWokPositions = [];
 			break;
 		case 'freeSpinEnd':
 			if (!sameSnapshot(next, event))
 				replayError('INVALID_BOOK', 'freeSpinEnd snapshot does not match reducer state');
 			next.activePastaPositions = [];
+			next.activeWokPositions = [];
 			break;
 		case 'crownCourseComplete':
-			const completedCourses = cloneCourses(event.completedCourses);
+			const completedCourses = cloneCourses(event.completedCoursesAfter);
 			const appended = completedCourses.at(-1);
 			const expectedPot = safeSum(
 				next.crownPotAtomicUnits,
@@ -429,7 +509,6 @@ export function reduceProductionEvent(
 		case 'kitchenWinnerLocked':
 			next.stars = { ...event.stars };
 			next.winner = event.winner;
-			next.headliner = event.headliner;
 			break;
 		case 'kitchenCrownReveal':
 			if (
@@ -442,6 +521,8 @@ export function reduceProductionEvent(
 				replayError('INVALID_BOOK', 'Kitchen Crown final payout does not match reducer state');
 			next.bonusBankAtomicUnits = event.bonusBankAtomicUnits;
 			next.crownPotAtomicUnits = event.crownPotAtomicUnits;
+			next.crownMultiplier = event.multiplier;
+			next.crownPayoutAtomicUnits = event.crownPayoutAtomicUnits;
 			next.winner = event.winner;
 			next.finalWinAtomicUnits = event.finalWinAtomicUnits;
 			break;
@@ -461,12 +542,14 @@ export function reduceProductionEvent(
 			next.finalWinAtomicUnits = event.payoutAtomicUnits;
 			next.serviceQueue = [];
 			next.activePastaPositions = [];
+			next.activeWokPositions = [];
 			next.activeSauceSpots = [];
 			break;
-		case 'clusterWin':
 		case 'removeSymbols':
-		case 'perfectServeAward':
+			break;
 		case 'kitchenShowdownTriggered':
+			next.showdownTriggered = true;
+			next.entryKind = 'natural';
 			break;
 		default:
 			replayError('INVALID_BOOK', `unknown event type ${(event as ProductionBookEvent).type}`);

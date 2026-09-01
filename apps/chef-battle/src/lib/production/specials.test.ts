@@ -9,7 +9,7 @@ import {
 	playValidatedPrefixForTest,
 	playValidatedProductionBook,
 } from './localBookAdapter';
-import { playProductionBookEvent } from './bookEventHandlerMap';
+import { playProductionBookEvent, productionBookEventHandlerMap } from './bookEventHandlerMap';
 import ProductionRound from './components/ProductionRound.svelte';
 import { productionState, resetProductionState } from './stateGame.svelte';
 
@@ -55,7 +55,7 @@ describe('production Chef Specials', () => {
 		);
 	});
 
-	it('resets every served P3-04 meter immediately when Service Queue closes', async () => {
+	it('resets every served P3-04 meter as each Chef Special completes', async () => {
 		const book = await loadProductionBook('P3-04');
 		const closed = book.events.findIndex((candidate) => candidate.type === 'serviceQueueClosed');
 		if (closed < 0) throw new Error('P3-04 must close Service Queue');
@@ -63,7 +63,7 @@ describe('production Chef Specials', () => {
 		if (!closedEvent) throw new Error('P3-04 Service Queue close event is required');
 
 		await playValidatedPrefixForTest(book, closed);
-		expect(productionState.meters).toEqual({ italian: 100, french: 100, chinese: 100 });
+		expect(productionState.meters).toEqual({ italian: 0, french: 0, chinese: 0 });
 
 		await playProductionBookEvent(closedEvent);
 		expect(productionState.meters).toEqual({ italian: 0, french: 0, chinese: 0 });
@@ -82,7 +82,7 @@ describe('production Chef Specials', () => {
 		productionState.meters = { italian: 37, french: 100, chinese: 100 };
 
 		await playProductionBookEvent(closed);
-		expect(productionState.meters).toEqual({ italian: 37, french: 0, chinese: 0 });
+		expect(productionState.meters).toEqual({ italian: 37, french: 100, chinese: 100 });
 	});
 
 	it('expires Base Pasta and Sauce overlays only when finalWin closes the round', async () => {
@@ -96,6 +96,48 @@ describe('production Chef Specials', () => {
 		expect(productionState.activeSauceSpots).toEqual([]);
 		expect(productionState.pastaPullPositionKeys).toEqual([]);
 		expect(productionState.wokTossPositionKeys).toEqual([]);
+	});
+
+	it('keeps prior Pasta Wild overlays on a second activation and prunes them with the board', () => {
+		productionState.meters = { italian: 100, french: 0, chinese: 0 };
+		productionState.serviceQueue = [
+			{
+				id: 'repeat-italian',
+				chef: 'italian',
+				readySequence: 1,
+				perfectServeUnits: 0,
+			},
+		];
+		productionState.pastaPullPositionKeys = ['0:0'];
+		const boardAfter = [
+			['pasta_wild', 'pizza'],
+			['pasta_wild', 'croissant'],
+		];
+
+		productionBookEventHandlerMap.pastaPull({
+			id: 'repeat-pasta',
+			sequence: 2,
+			roundId: 'repeat-round',
+			type: 'pastaPull',
+			queueEntryId: 'repeat-italian',
+			chef: 'italian',
+			positions: [{ reel: 1, row: 0 }],
+			boardAfter,
+			meterAfter: 0,
+		});
+
+		expect(productionState.pastaPullPositionKeys).toEqual(['0:0', '1:0']);
+		productionBookEventHandlerMap.boardSettled({
+			id: 'repeat-settled',
+			sequence: 3,
+			roundId: 'repeat-round',
+			type: 'boardSettled',
+			board: [
+				['pizza', 'pizza'],
+				['pasta_wild', 'croissant'],
+			],
+		});
+		expect(productionState.pastaPullPositionKeys).toEqual(['1:0']);
 	});
 
 	it.each([

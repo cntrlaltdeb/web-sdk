@@ -67,15 +67,24 @@
 		"sequence": 4,
 		"roundId": "P3-11",
 		"type": "serviceQueueOpened",
+		"windowIndex": 1,
+		"phase": "opening",
+		"source": "initialReady",
+		"board": [
+			["croissant", "croissant", "pizza", "frog_legs", "pizza"],
+			["croissant", "croissant", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
 		"entries": [
 			{
 				"id": "P3-11-service-01-french",
 				"chef": "french",
+				"readySequence": 2,
 				"perfectServeUnits": 0
 			}
-		],
-		"phase": "opening",
-		"source": "initialReady"
+		]
 	},
 	{
 		"id": "P3-11-e0005",
@@ -83,6 +92,7 @@
 		"roundId": "P3-11",
 		"type": "sauceFinish",
 		"queueEntryId": "P3-11-service-01-french",
+		"chef": "french",
 		"appliedSpots": [
 			{
 				"position": {
@@ -128,20 +138,20 @@
 				},
 				"boost": 3
 			}
-		]
+		],
+		"meterAfter": 0
 	},
 	{
 		"id": "P3-11-e0006",
 		"sequence": 6,
 		"roundId": "P3-11",
 		"type": "crownCourseComplete",
-		"queueEntryId": "P3-11-service-01-french",
 		"chef": "french",
 		"sourceEventId": "P3-11-e0005",
 		"courseId": "P3-11-course-02",
 		"courseValueAtomicUnits": 2000000,
 		"crownPotAfterAtomicUnits": 3000000,
-		"completedCourses": [
+		"completedCoursesAfter": [
 			{
 				"id": "P3-11-course-01",
 				"chef": "french",
@@ -161,6 +171,7 @@
 		"sequence": 7,
 		"roundId": "P3-11",
 		"type": "judgeStarUpdate",
+		"sourceEventId": "P3-11-e0006",
 		"chef": "french",
 		"starsAfter": 2,
 		"stars": {
@@ -174,6 +185,8 @@
 		"sequence": 8,
 		"roundId": "P3-11",
 		"type": "serviceQueueClosed",
+		"windowIndex": 1,
+		"entryIds": ["P3-11-service-01-french"],
 		"finalBoard": [
 			["croissant", "croissant", "pizza", "frog_legs", "pizza"],
 			["croissant", "croissant", "croissant", "peking_duck", "croissant"],
@@ -299,10 +312,21 @@
 		"sequence": 15,
 		"roundId": "P3-11",
 		"type": "serviceQueueOpened",
+		"windowIndex": 2,
+		"phase": null,
+		"source": null,
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
 		"entries": [
 			{
 				"id": "P3-11-service-02-french",
 				"chef": "french",
+				"readySequence": 11,
 				"perfectServeUnits": 0
 			}
 		]
@@ -313,6 +337,7 @@
 		"roundId": "P3-11",
 		"type": "sauceFinish",
 		"queueEntryId": "P3-11-service-02-french",
+		"chef": "french",
 		"appliedSpots": [
 			{
 				"position": {
@@ -358,20 +383,20 @@
 				},
 				"boost": 5
 			}
-		]
+		],
+		"meterAfter": 0
 	},
 	{
 		"id": "P3-11-e0017",
 		"sequence": 17,
 		"roundId": "P3-11",
 		"type": "crownCourseComplete",
-		"queueEntryId": "P3-11-service-02-french",
 		"chef": "french",
 		"sourceEventId": "P3-11-e0016",
 		"courseId": "P3-11-course-03",
 		"courseValueAtomicUnits": 3000000,
 		"crownPotAfterAtomicUnits": 6000000,
-		"completedCourses": [
+		"completedCoursesAfter": [
 			{
 				"id": "P3-11-course-01",
 				"chef": "french",
@@ -397,6 +422,7 @@
 		"sequence": 18,
 		"roundId": "P3-11",
 		"type": "judgeStarUpdate",
+		"sourceEventId": "P3-11-e0017",
 		"chef": "french",
 		"starsAfter": 3,
 		"stars": {
@@ -410,19 +436,21 @@
 		"sequence": 19,
 		"roundId": "P3-11",
 		"type": "kitchenWinnerLocked",
+		"sourceEventId": "P3-11-e0018",
 		"winner": "french",
 		"stars": {
 			"italian": 0,
 			"french": 3,
 			"chinese": 0
-		},
-		"headliner": "french"
+		}
 	},
 	{
 		"id": "P3-11-e0020",
 		"sequence": 20,
 		"roundId": "P3-11",
 		"type": "serviceQueueClosed",
+		"windowIndex": 2,
+		"entryIds": ["P3-11-service-02-french"],
 		"finalBoard": [
 			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
 			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],

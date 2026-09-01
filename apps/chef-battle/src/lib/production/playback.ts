@@ -26,22 +26,20 @@ function waitForPlaybackDelay(speed: PlaybackSpeed): Promise<void> {
 	return delay === 0 ? Promise.resolve() : new Promise((resolve) => setTimeout(resolve, delay));
 }
 
-function isShowdownState(state: ProductionReplayState): boolean {
-	return (
-		state.mode === 'kitchenShowdown' ||
-		state.mode === 'grandShowdown' ||
-		state.mode === 'mysteryTasting' ||
-		state.currentFreeSpin > 0 ||
-		state.remainingFreeSpins > 0 ||
-		state.completedCourses.length > 0 ||
-		state.winner !== null
-	);
-}
-
-function restoreProductionState(state: ProductionReplayState): void {
+export function restoreProductionState(state: ProductionReplayState): void {
+	const showdownStarted =
+		state.entryKind !== null &&
+		(state.mode === 'kitchenShowdown' ||
+			state.mode === 'grandShowdown' ||
+			state.mode === 'mysteryTasting' ||
+			state.currentFreeSpin > 0 ||
+			state.remainingFreeSpins > 0 ||
+			state.completedCourses.length > 0 ||
+			state.winner !== null ||
+			state.crownMultiplier !== null);
 	productionState.roundId = state.roundId;
 	productionState.mode = state.mode;
-	productionState.selectedChef = null;
+	productionState.selectedChef = state.selectedChef;
 	productionState.headliner = state.headliner;
 	productionState.betAtomicUnits = state.betAtomicUnits;
 	productionState.paidBetAtomicUnits = state.paidBetAtomicUnits;
@@ -57,10 +55,15 @@ function restoreProductionState(state: ProductionReplayState): void {
 	productionState.pastaPullPositionKeys = state.activePastaPositions.map(
 		(position) => `${position.reel}:${position.row}`,
 	);
-	productionState.wokTossPositionKeys = [];
+	productionState.wokTossPositionKeys = state.activeWokPositions.map(
+		(position) => `${position.reel}:${position.row}`,
+	);
 	productionState.bonusBankAtomicUnits = state.bonusBankAtomicUnits;
-	productionState.showdownTriggered = isShowdownState(state);
-	productionState.showdown = isShowdownState(state)
+	productionState.lastClusterWinAtomicUnits = state.lastClusterWinAtomicUnits;
+	productionState.lastSauceFlightMultiplier = state.lastSauceFlightMultiplier;
+	productionState.perfectServePayoutAtomicUnits = state.perfectServePayoutAtomicUnits;
+	productionState.showdownTriggered = state.showdownTriggered;
+	productionState.showdown = showdownStarted
 		? {
 				totalFreeSpins: state.currentFreeSpin + state.remainingFreeSpins,
 				currentFreeSpin: state.currentFreeSpin,
@@ -76,10 +79,10 @@ function restoreProductionState(state: ProductionReplayState): void {
 				})),
 				winner: state.winner,
 				headliner: state.headliner,
-				entryKind:
-					state.mode === 'base' || state.mode === 'extraReservation' ? 'natural' : 'purchase',
-				crownMultiplier: null,
-				crownPayoutAtomicUnits: null,
+				entryKind: state.entryKind,
+				crownMultiplier: state.crownMultiplier,
+				crownPayoutAtomicUnits:
+					state.crownMultiplier === null ? null : state.crownPayoutAtomicUnits,
 				finalWinAtomicUnits: state.finalWinAtomicUnits || null,
 			}
 		: null;

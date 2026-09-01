@@ -3,6 +3,10 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import P305 from '../books/production/P3-05.json';
 import P306 from '../books/production/P3-06.json';
+import P304 from '../books/production/P3-04.json';
+import P302 from '../books/production/P3-02.json';
+import P301 from '../books/production/P3-01.json';
+import P309 from '../books/production/P3-09.json';
 import P312 from '../books/production/P3-12.json';
 import P312Checkpoint from '../books/production/checkpoints/P3-12-e0040.json';
 import {
@@ -11,11 +15,18 @@ import {
 	hashProductionBook,
 	hashProductionReplayState,
 	prepareProductionBook,
+	reduceProductionEvent,
 	reduceProductionEvents,
 	reduceProductionTransitions,
 	safeDiagnostic,
 } from './checkpoint';
-import { makeRecoveryRequest, playPreparedProductionBook, resumeProductionBook } from './playback';
+import {
+	makeRecoveryRequest,
+	playPreparedProductionBook,
+	restoreProductionState,
+	resumeProductionBook,
+} from './playback';
+import { playProductionBookEvent } from './bookEventHandlerMap';
 import { validateProductionBook } from './bookValidator';
 import { loadPreparedProductionBook } from './localBookAdapter';
 import RecoveryNotice from './components/RecoveryNotice.svelte';
@@ -24,11 +35,19 @@ import { PRODUCTION_EVENT_TYPES, PRODUCTION_SCENARIO_IDS } from './typesBookEven
 import type {
 	PreparedProductionBook,
 	ProductionReplayState,
+	ProductionBookEvent,
 	ReplayCheckpoint,
 } from './typesBookEvent';
 
 const clone = <T>(value: T): T => structuredClone(value);
 const snapshotUi = (): unknown => JSON.parse(JSON.stringify(productionState));
+const snapshotVisibleUi = (): unknown => {
+	const snapshot = snapshotUi() as Record<string, unknown>;
+	delete snapshot.handledSequences;
+	delete snapshot.replayState;
+	delete snapshot.recoveryPending;
+	return snapshot;
+};
 
 const checkpoint = (): ReplayCheckpoint => clone(P312Checkpoint) as ReplayCheckpoint;
 
@@ -53,6 +72,9 @@ function unicodeVectorState(): ProductionReplayState {
 		roundId: 'раунд-🍳',
 		sequence: 7,
 		mode: 'grandShowdown',
+		selectedChef: null,
+		showdownTriggered: true,
+		entryKind: 'purchase',
 		betAtomicUnits: 1_000_000,
 		paidBetAtomicUnits: 250_000_000,
 		maxWinAtomicUnits: 20_000_000_000,
@@ -61,12 +83,18 @@ function unicodeVectorState(): ProductionReplayState {
 		currentFreeSpin: 1,
 		remainingFreeSpins: 12,
 		meters: { chinese: 75, french: 75, italian: 75 },
-		serviceQueue: [{ perfectServeUnits: 4, chef: 'french', id: 'entrée-🍜' }],
+		serviceQueue: [{ perfectServeUnits: 4, readySequence: 5, chef: 'french', id: 'entrée-🍜' }],
 		activePastaPositions: [{ row: 2, reel: 1 }],
+		activeWokPositions: [{ row: 1, reel: 0 }],
 		activeSauceSpots: [{ boost: 9, position: { row: 4, reel: 3 } }],
 		roundWinAtomicUnits: 0,
+		lastClusterWinAtomicUnits: 321,
+		lastSauceFlightMultiplier: 7,
+		perfectServePayoutAtomicUnits: 654,
 		bonusBankAtomicUnits: 123,
 		crownPotAtomicUnits: 456,
+		crownMultiplier: 10,
+		crownPayoutAtomicUnits: 4_560,
 		completedCourses: [
 			{
 				valueAtomicUnits: 456,
@@ -93,7 +121,7 @@ describe('production replay hashing and checkpoint contract', () => {
 		const state = unicodeVectorState();
 		expect(canonicalProductionJson(state)).toContain('раунд-🍳');
 		expect(await hashProductionReplayState(state)).toBe(
-			'36016118dbcd1578960c9e252b6cadfdb70e5bd207fb71bf4988367e25b91236',
+			'4ca81ef5f1db0449a87c2122b76f278c394471acb3dcc4e0e29a7d2781f0a934',
 		);
 	});
 
@@ -156,6 +184,53 @@ describe('production replay hashing and checkpoint contract', () => {
 		expect(() => reduceProductionEvents([unknown], state)).toThrow(/unknown event/i);
 	});
 
+	it('preserves prior Pasta Wilds across a second activation and the next settled board', () => {
+		const firstPastaIndex = P302.findIndex((event) => event.type === 'pastaPull');
+		if (firstPastaIndex < 0) throw new Error('P3-02 Pasta Pull is required');
+		const afterFirst = reduceProductionEvents(
+			clone(P302.slice(0, firstPastaIndex + 1)) as ProductionBookEvent[],
+		);
+		const repeatEntry = {
+			id: 'P3-02-service-repeat-italian',
+			chef: 'italian' as const,
+			readySequence: afterFirst.sequence,
+			perfectServeUnits: 0,
+		};
+		const beforeSecond: ProductionReplayState = {
+			...afterFirst,
+			meters: { ...afterFirst.meters, italian: 100 },
+			serviceQueue: [repeatEntry],
+		};
+		const boardAfter = clone(beforeSecond.board);
+		boardAfter[1][0] = 'pasta_wild';
+		const afterSecond = reduceProductionEvent(beforeSecond, {
+			id: 'P3-02-e-repeat-pasta',
+			sequence: beforeSecond.sequence + 1,
+			roundId: beforeSecond.roundId,
+			type: 'pastaPull',
+			queueEntryId: repeatEntry.id,
+			chef: 'italian',
+			positions: [{ reel: 1, row: 0 }],
+			boardAfter,
+			meterAfter: 0,
+		});
+
+		expect(afterSecond.activePastaPositions).toEqual([
+			{ reel: 0, row: 0 },
+			{ reel: 0, row: 1 },
+			{ reel: 1, row: 0 },
+			{ reel: 1, row: 1 },
+		]);
+		const settled = reduceProductionEvent(afterSecond, {
+			id: 'P3-02-e-repeat-settled',
+			sequence: afterSecond.sequence + 1,
+			roundId: afterSecond.roundId,
+			type: 'boardSettled',
+			board: boardAfter,
+		});
+		expect(settled.activePastaPositions).toEqual(afterSecond.activePastaPositions);
+	});
+
 	it('uses one immutable reducer trace for every accounting transition', () => {
 		const events = clone(P312) as Array<Record<string, unknown>>;
 		const transitions = reduceProductionTransitions(events);
@@ -216,6 +291,36 @@ describe('production replay hashing and checkpoint contract', () => {
 			expect(after[field]).toEqual(before[field]);
 		expect(after.activePastaPositions).toEqual([]);
 	});
+
+	it('preserves every mode and revealed Crown decision in reducer state', () => {
+		const signature = reduceProductionEvents(clone(P309).slice(0, 3));
+		expect(signature.selectedChef).toBe('french');
+		expect(signature.showdownTriggered).toBe(false);
+		expect(signature.entryKind).toBeNull();
+
+		const naturalTrigger = reduceProductionEvents(clone(P305).slice(0, 3));
+		expect(naturalTrigger.showdownTriggered).toBe(true);
+		expect(naturalTrigger.entryKind).toBe('natural');
+
+		const crown = reduceProductionEvents(clone(P306).slice(0, 85));
+		expect(crown.entryKind).toBe('purchase');
+		expect(crown.crownMultiplier).toBe(3);
+		expect(crown.crownPayoutAtomicUnits).toBe(45_000_000);
+		expect(crown.finalWinAtomicUnits).toBe(45_750_000);
+	});
+
+	it.each(['revealBoard', 'boardSettled'] as const)(
+		'rejects an unsourced Pasta Wild on %s static transport',
+		(eventType) => {
+			const events = clone(P301) as Array<Record<string, unknown>>;
+			const targetIndex = events.findIndex((event) => event.type === eventType);
+			const target = events[targetIndex];
+			if (!target || !Array.isArray(target.board)) throw new Error(`${eventType} board required`);
+			(target.board[4] as string[])[4] = 'pasta_wild';
+			const before = reduceProductionEvents(events.slice(0, targetIndex));
+			expect(() => reduceProductionEvents([target], before)).toThrow(/Pasta|pasta|temporary/);
+		},
+	);
 
 	it.each([2, 4])('rejects a retrigger award of %i instead of exactly three', (awarded) => {
 		const events = clone(P312) as Array<Record<string, unknown>>;
@@ -368,6 +473,25 @@ describe('production checkpoint resume', () => {
 		);
 		expect(productionState.finalWinAtomicUnits).toBe(prepared.finalState.finalWinAtomicUnits);
 		expect(productionState.showdown?.winner).toBe(prepared.finalState.winner);
+	});
+
+	it.each([
+		['P3-04 e20', P304, 20],
+		['P3-04 e21', P304, 21],
+		['P3-04 e24', P304, 24],
+		['P3-09 e3', P309, 3],
+		['P3-05 trigger e3', P305, 3],
+		['P3-06 Crown e85', P306, 85],
+	] as const)('restores the exact visible UI at %s', async (_name, source, sequence) => {
+		const prepared = await prepareProductionBook(clone(source));
+		resetProductionState();
+		for (const event of prepared.events.slice(0, sequence)) await playProductionBookEvent(event);
+		const uninterrupted = snapshotVisibleUi();
+		const restored = reduceProductionEvents(prepared.events.slice(0, sequence));
+
+		resetProductionState();
+		restoreProductionState(restored);
+		expect(snapshotVisibleUi()).toEqual(uninterrupted);
 	});
 
 	it('normal, fast and instant change only delay, never transitions or final state', async () => {

@@ -25,6 +25,20 @@ type ProductionBookEventHandlerMap = {
 	) => void | Promise<void>;
 };
 
+function completeVisibleService(chef: keyof typeof productionState.meters): void {
+	productionState.meters = { ...productionState.meters, [chef]: 0 };
+	productionState.serviceQueue = productionState.serviceQueue.slice(1);
+	if (productionState.showdown) {
+		productionState.showdown.meters = { ...productionState.showdown.meters, [chef]: 0 };
+	}
+}
+
+function pastaPositionKeysFromBoard(board: readonly (readonly string[])[]): string[] {
+	return board.flatMap((reel, reelIndex) =>
+		reel.flatMap((symbol, row) => (symbol === 'pasta_wild' ? [`${reelIndex}:${row}`] : [])),
+	);
+}
+
 export const productionBookEventHandlerMap = {
 	roundStart: (event) => {
 		productionState.roundId = event.roundId;
@@ -37,6 +51,7 @@ export const productionBookEventHandlerMap = {
 	},
 	revealBoard: (event) => {
 		productionState.board = event.board.map((reel) => [...reel]);
+		productionState.pastaPullPositionKeys = [];
 	},
 	clusterWin: (event) => {
 		productionState.lastSauceFlightMultiplier = event.sauceFlightMultiplier;
@@ -59,17 +74,18 @@ export const productionBookEventHandlerMap = {
 	},
 	boardSettled: (event) => {
 		productionState.board = event.board.map((reel) => [...reel]);
+		productionState.pastaPullPositionKeys = pastaPositionKeysFromBoard(event.board);
 	},
 	serviceQueueOpened: (event) => {
 		productionState.serviceQueue = event.entries.map((entry) => ({ ...entry }));
 	},
 	pastaPull: (event) => {
+		completeVisibleService(event.chef);
 		productionState.board = event.boardAfter.map((reel) => [...reel]);
-		productionState.pastaPullPositionKeys = event.positions.map(
-			(position) => `${position.reel}:${position.row}`,
-		);
+		productionState.pastaPullPositionKeys = pastaPositionKeysFromBoard(event.boardAfter);
 	},
 	sauceFinish: (event) => {
+		completeVisibleService(event.chef);
 		productionState.activeSauceSpots = event.activeSpots.map((spot) => ({
 			position: { ...spot.position },
 			boost: spot.boost,
@@ -78,6 +94,7 @@ export const productionBookEventHandlerMap = {
 			productionState.showdown.activeSauceSpots = productionState.activeSauceSpots;
 	},
 	wokToss: (event) => {
+		completeVisibleService(event.chef);
 		productionState.board = event.boardAfter.map((reel) => [...reel]);
 		productionState.wokTossPositionKeys = event.positions.map(
 			(position) => `${position.reel}:${position.row}`,
@@ -87,12 +104,7 @@ export const productionBookEventHandlerMap = {
 		productionState.perfectServePayoutAtomicUnits = event.payoutAtomicUnits;
 	},
 	serviceQueueClosed: (event) => {
-		const meters = { ...productionState.meters };
-		for (const entry of productionState.serviceQueue) meters[entry.chef] = 0;
-		productionState.meters = meters;
-		if (productionState.showdown) productionState.showdown.meters = { ...meters };
 		productionState.board = event.finalBoard.map((reel) => [...reel]);
-		productionState.serviceQueue = [];
 	},
 	kitchenShowdownTriggered: () => {
 		productionState.showdownTriggered = true;
@@ -111,6 +123,7 @@ export const productionBookEventHandlerMap = {
 			crownPayoutAtomicUnits: null,
 			finalWinAtomicUnits: null,
 		};
+		productionState.showdownTriggered = true;
 		productionState.headliner = snapshot.headliner;
 		productionState.bonusBankAtomicUnits = snapshot.bonusBankAtomicUnits;
 		productionState.meters = { ...snapshot.meters };
@@ -151,7 +164,7 @@ export const productionBookEventHandlerMap = {
 	},
 	crownCourseComplete: (event) => {
 		if (!productionState.showdown) return;
-		productionState.showdown.completedCourses = event.completedCourses.map((course) => ({
+		productionState.showdown.completedCourses = event.completedCoursesAfter.map((course) => ({
 			...course,
 		}));
 		productionState.showdown.crownPotAtomicUnits = event.crownPotAfterAtomicUnits;
@@ -162,7 +175,6 @@ export const productionBookEventHandlerMap = {
 	kitchenWinnerLocked: (event) => {
 		if (!productionState.showdown) return;
 		productionState.showdown.winner = event.winner;
-		productionState.showdown.headliner = event.headliner;
 		productionState.showdown.stars = { ...event.stars };
 	},
 	kitchenCrownReveal: (event) => {
@@ -173,6 +185,7 @@ export const productionBookEventHandlerMap = {
 		productionState.showdown.crownMultiplier = event.multiplier;
 		productionState.showdown.crownPayoutAtomicUnits = event.crownPayoutAtomicUnits;
 		productionState.showdown.finalWinAtomicUnits = event.finalWinAtomicUnits;
+		productionState.finalWinAtomicUnits = event.finalWinAtomicUnits;
 	},
 	maxWinReached: (event) => {
 		productionState.maxWinReachedAtomicUnits = event.maxWinAtomicUnits;
