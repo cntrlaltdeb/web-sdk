@@ -82,7 +82,9 @@ const isBoard = (value: unknown) =>
 	value.every((reel) => Array.isArray(reel) && reel.length === 5 && reel.every(isSymbolId));
 const isMeterValue = (value: unknown) => isNonNegativeSafeInteger(value) && value <= 100;
 const isMeterValues = (value: unknown) =>
-	isRecord(value) && Array.from(chefIds).every((chef) => isMeterValue(value[chef]));
+	isRecord(value) &&
+	Object.keys(value).length === chefIds.size &&
+	Array.from(chefIds).every((chef) => isMeterValue(value[chef]));
 const isSauceSpots = (value: unknown) =>
 	Array.isArray(value) &&
 	value.length >= 3 &&

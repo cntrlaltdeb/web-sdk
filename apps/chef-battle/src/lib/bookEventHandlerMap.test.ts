@@ -421,6 +421,7 @@ describe('local Chef Battle books', () => {
 		['VS-02', 'roundStart', 'betAtomicUnits', 1.5, 'betAtomicUnits'],
 		['VS-02', 'roundStart', 'betAtomicUnits', Number.MAX_SAFE_INTEGER + 1, 'betAtomicUnits'],
 		['VS-04', 'roundStart', 'meters', { italian: 0, french: 0, chinese: 101 }, 'meters'],
+		['VS-04', 'roundStart', 'meters', { italian: 0, french: 0, chinese: 50, pastry: 1 }, 'meters'],
 		['VS-02', 'chefMeterUpdate', 'amount', 40.5, 'amount'],
 		['VS-02', 'chefMeterUpdate', 'total', 101, 'total'],
 		['VS-03', 'sauceFinish', 'spots', [{ position: { reel: 0, row: 0 }, multiplier: 11 }], 'spots'],
