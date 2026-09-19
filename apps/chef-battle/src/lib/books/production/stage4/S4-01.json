@@ -1,0 +1,200 @@
+[
+  {
+    "betAtomicUnits": 1000000,
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0001",
+    "maxWinAtomicUnits": 20000000000,
+    "meters": {
+      "chinese": 0,
+      "french": 0,
+      "italian": 0
+    },
+    "mode": "base",
+    "paidBetAtomicUnits": 1000000,
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sequence": 1,
+    "type": "roundStart"
+  },
+  {
+    "board": [
+      [
+        "tiramisu",
+        "peking_duck",
+        "pasta_carbonara",
+        "frog_legs",
+        "pizza"
+      ],
+      [
+        "kung_pao_chicken",
+        "french_onion_soup",
+        "tiramisu",
+        "peking_duck",
+        "pasta_carbonara"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "french_onion_soup",
+        "tiramisu"
+      ],
+      [
+        "croissant",
+        "croissant",
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken"
+      ],
+      [
+        "croissant",
+        "croissant",
+        "pasta_carbonara",
+        "frog_legs",
+        "pizza"
+      ]
+    ],
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0002",
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sequence": 2,
+    "type": "revealBoard"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 300000,
+    "chef": "french",
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0003",
+    "payoutAtomicUnits": 300000,
+    "positions": [
+      {
+        "reel": 3,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 4,
+        "row": 0
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ],
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sauceFlightMultiplier": 1,
+    "sequence": 3,
+    "symbol": "croissant",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 300000,
+    "creditAtomicUnits": 300000,
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0004",
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sequence": 4,
+    "sourceEventId": "s4-8f1c0ba370e467fa0f938fd7-e0003",
+    "type": "roundWinUpdate"
+  },
+  {
+    "appliedCharge": 40,
+    "chef": "french",
+    "earnedCharge": 40,
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0005",
+    "meterAfter": 40,
+    "overflowCharge": 0,
+    "perfectServeUnitsAfter": 0,
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sequence": 5,
+    "serviceQueueEntryId": null,
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0006",
+    "positions": [
+      {
+        "reel": 3,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 4,
+        "row": 0
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ],
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sequence": 6,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0007",
+    "index": 1,
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sequence": 7,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "tiramisu",
+        "peking_duck",
+        "pasta_carbonara",
+        "frog_legs",
+        "pizza"
+      ],
+      [
+        "kung_pao_chicken",
+        "french_onion_soup",
+        "tiramisu",
+        "peking_duck",
+        "pasta_carbonara"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "french_onion_soup",
+        "tiramisu"
+      ],
+      [
+        "pizza",
+        "croissant",
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken"
+      ],
+      [
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "frog_legs",
+        "pizza"
+      ]
+    ],
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0008",
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sequence": 8,
+    "type": "boardSettled"
+  },
+  {
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0009",
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sequence": 9,
+    "totalWinAtomicUnits": 300000,
+    "type": "setTotalWin"
+  },
+  {
+    "id": "s4-8f1c0ba370e467fa0f938fd7-e0010",
+    "payoutAtomicUnits": 300000,
+    "roundId": "s4-8f1c0ba370e467fa0f938fd7",
+    "sequence": 10,
+    "type": "finalWin"
+  }
+]

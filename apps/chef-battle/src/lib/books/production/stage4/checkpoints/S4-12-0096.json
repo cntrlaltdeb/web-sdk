@@ -1,0 +1,147 @@
+{
+  "bookHash": "7b045cb4db2f93b6be99a287d7749593a5d4a40345613c080a7461e4911dceff",
+  "roundId": "s4-ef72c72957df4d0389b9550e",
+  "sequence": 96,
+  "state": {
+    "activePastaPositions": [],
+    "activeSauceSpots": [
+      {
+        "boost": 3,
+        "position": {
+          "reel": 0,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 3,
+          "row": 0
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 4,
+          "row": 4
+        }
+      }
+    ],
+    "activeWokPositions": [],
+    "betAtomicUnits": 1000000,
+    "board": [
+      [
+        "french_onion_soup",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "croissant"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "pizza",
+        "kitchen_crown_scatter",
+        "xiaolongbao"
+      ],
+      [
+        "croissant",
+        "french_onion_soup",
+        "pasta_carbonara",
+        "pizza",
+        "croissant"
+      ],
+      [
+        "kung_pao_chicken",
+        "french_onion_soup",
+        "kung_pao_chicken",
+        "kitchen_crown_scatter",
+        "french_onion_soup"
+      ],
+      [
+        "french_onion_soup",
+        "croissant",
+        "kitchen_crown_scatter",
+        "pizza",
+        "kung_pao_chicken"
+      ]
+    ],
+    "bonusBankAtomicUnits": 8300000,
+    "cascadeIndex": 7,
+    "completedCourses": [
+      {
+        "chef": "chinese",
+        "id": "s4-ef72c72957df4d0389b9550e-course-01",
+        "sourceEventId": "s4-ef72c72957df4d0389b9550e-e0013",
+        "valueAtomicUnits": 300000
+      },
+      {
+        "chef": "chinese",
+        "id": "s4-ef72c72957df4d0389b9550e-course-02",
+        "sourceEventId": "s4-ef72c72957df4d0389b9550e-e0040",
+        "valueAtomicUnits": 300000
+      },
+      {
+        "chef": "chinese",
+        "id": "s4-ef72c72957df4d0389b9550e-course-03",
+        "sourceEventId": "s4-ef72c72957df4d0389b9550e-e0061",
+        "valueAtomicUnits": 300000
+      },
+      {
+        "chef": "french",
+        "id": "s4-ef72c72957df4d0389b9550e-course-04",
+        "sourceEventId": "s4-ef72c72957df4d0389b9550e-e0087",
+        "valueAtomicUnits": 300000
+      }
+    ],
+    "creditedSourceIds": [
+      "s4-ef72c72957df4d0389b9550e-e0006",
+      "s4-ef72c72957df4d0389b9550e-e0014",
+      "s4-ef72c72957df4d0389b9550e-e0019",
+      "s4-ef72c72957df4d0389b9550e-e0023",
+      "s4-ef72c72957df4d0389b9550e-e0029",
+      "s4-ef72c72957df4d0389b9550e-e0033",
+      "s4-ef72c72957df4d0389b9550e-e0041",
+      "s4-ef72c72957df4d0389b9550e-e0046",
+      "s4-ef72c72957df4d0389b9550e-e0054",
+      "s4-ef72c72957df4d0389b9550e-e0062",
+      "s4-ef72c72957df4d0389b9550e-e0068",
+      "s4-ef72c72957df4d0389b9550e-e0080",
+      "s4-ef72c72957df4d0389b9550e-e0088"
+    ],
+    "crownMultiplier": null,
+    "crownPayoutAtomicUnits": 0,
+    "crownPotAtomicUnits": 1200000,
+    "currentFreeSpin": 7,
+    "entryKind": "natural",
+    "finalWinAtomicUnits": 0,
+    "headliner": null,
+    "lastClusterWinAtomicUnits": 500000,
+    "lastSauceFlightMultiplier": 1,
+    "maxWinAtomicUnits": 20000000000,
+    "maxWinReached": false,
+    "meters": {
+      "chinese": 32,
+      "french": 0,
+      "italian": 50
+    },
+    "mode": "base",
+    "paidBetAtomicUnits": 1000000,
+    "perfectServePayoutAtomicUnits": 600000,
+    "remainingFreeSpins": 6,
+    "roundId": "s4-ef72c72957df4d0389b9550e",
+    "roundWinAtomicUnits": 0,
+    "selectedChef": null,
+    "sequence": 96,
+    "serviceQueue": [],
+    "showdownTriggered": true,
+    "stars": {
+      "chinese": 3,
+      "french": 0,
+      "italian": 0
+    },
+    "totalWinAtomicUnits": 0,
+    "winner": "chinese"
+  },
+  "stateHash": "782e6d644533621c913e8259023fdf5ba6a76c24ade9d9c8ca23563e6bb3d924"
+}

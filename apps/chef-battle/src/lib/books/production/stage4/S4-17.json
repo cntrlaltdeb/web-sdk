@@ -1,0 +1,5163 @@
+[
+  {
+    "betAtomicUnits": 1000000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0001",
+    "maxWinAtomicUnits": 20000000000,
+    "meters": {
+      "chinese": 0,
+      "french": 0,
+      "italian": 0
+    },
+    "mode": "base",
+    "paidBetAtomicUnits": 1000000,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 1,
+    "type": "roundStart"
+  },
+  {
+    "board": [
+      [
+        "french_onion_soup",
+        "xiaolongbao",
+        "frog_legs",
+        "kung_pao_chicken",
+        "kitchen_crown_scatter"
+      ],
+      [
+        "kitchen_crown_scatter",
+        "peking_duck",
+        "pasta_carbonara",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "pizza",
+        "french_onion_soup",
+        "xiaolongbao",
+        "frog_legs",
+        "kung_pao_chicken"
+      ],
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "kitchen_crown_scatter",
+        "pasta_carbonara",
+        "croissant"
+      ],
+      [
+        "croissant",
+        "pizza",
+        "french_onion_soup",
+        "xiaolongbao",
+        "frog_legs"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0002",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 2,
+    "type": "revealBoard"
+  },
+  {
+    "awardedFreeSpins": 10,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0003",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "scatterPositions": [
+      {
+        "reel": 0,
+        "row": 4
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 2
+      }
+    ],
+    "sequence": 3,
+    "type": "kitchenShowdownTriggered"
+  },
+  {
+    "activeSauceSpots": [],
+    "bonusBankAtomicUnits": 0,
+    "completedCourses": [],
+    "crownPotAtomicUnits": 0,
+    "currentFreeSpin": 0,
+    "entryKind": "natural",
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0004",
+    "meters": {
+      "chinese": 50,
+      "french": 50,
+      "italian": 50
+    },
+    "remainingFreeSpins": 10,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 4,
+    "stars": {
+      "chinese": 0,
+      "french": 0,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "kitchenShowdownStart",
+    "winner": null
+  },
+  {
+    "board": [
+      [
+        "tiramisu",
+        "croissant",
+        "croissant",
+        "croissant",
+        "kung_pao_chicken"
+      ],
+      [
+        "french_onion_soup",
+        "croissant",
+        "croissant",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "croissant",
+        "xiaolongbao",
+        "tiramisu"
+      ],
+      [
+        "pizza",
+        "frog_legs",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "tiramisu",
+        "peking_duck",
+        "pizza",
+        "frog_legs",
+        "kung_pao_chicken"
+      ]
+    ],
+    "currentFreeSpin": 1,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0005",
+    "remainingFreeSpins": 9,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 5,
+    "type": "freeSpinStart"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 1300000,
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0006",
+    "payoutAtomicUnits": 1300000,
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 2,
+        "row": 2
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sauceFlightMultiplier": 1,
+    "sequence": 6,
+    "symbol": "croissant",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 1300000,
+    "creditAtomicUnits": 1300000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0007",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 7,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0006",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "appliedCharge": 50,
+    "chef": "french",
+    "earnedCharge": 56,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0008",
+    "meterAfter": 100,
+    "overflowCharge": 6,
+    "perfectServeUnitsAfter": 6,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 8,
+    "serviceQueueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-01-french",
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0009",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 2,
+        "row": 2
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 9,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0010",
+    "index": 1,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 10,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "kung_pao_chicken",
+        "french_onion_soup",
+        "tiramisu",
+        "french_onion_soup",
+        "pizza"
+      ],
+      [
+        "tiramisu",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "xiaolongbao",
+        "tiramisu"
+      ],
+      [
+        "pizza",
+        "frog_legs",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "tiramisu",
+        "peking_duck",
+        "pizza",
+        "frog_legs",
+        "kung_pao_chicken"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0011",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 11,
+    "type": "boardSettled"
+  },
+  {
+    "board": [
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "kung_pao_chicken",
+        "french_onion_soup",
+        "tiramisu",
+        "french_onion_soup",
+        "pizza"
+      ],
+      [
+        "tiramisu",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "xiaolongbao",
+        "tiramisu"
+      ],
+      [
+        "pizza",
+        "frog_legs",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "tiramisu",
+        "peking_duck",
+        "pizza",
+        "frog_legs",
+        "kung_pao_chicken"
+      ]
+    ],
+    "entries": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-service-01-french",
+        "perfectServeUnits": 6,
+        "readySequence": 8
+      }
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0012",
+    "phase": null,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 12,
+    "source": null,
+    "type": "serviceQueueOpened",
+    "windowIndex": 1
+  },
+  {
+    "activeSpots": [
+      {
+        "boost": 4,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "appliedSpots": [
+      {
+        "boost": 4,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+    "meterAfter": 0,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-01-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 13,
+    "type": "sauceFinish"
+  },
+  {
+    "chef": "french",
+    "consumedOverflowUnits": 6,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0014",
+    "payoutAtomicUnits": 200000,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-01-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 14,
+    "type": "perfectServeAward"
+  },
+  {
+    "balanceAfterAtomicUnits": 1500000,
+    "creditAtomicUnits": 200000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0015",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 15,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0014",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "chef": "french",
+    "completedCoursesAfter": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      }
+    ],
+    "courseId": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+    "courseValueAtomicUnits": 500000,
+    "crownPotAfterAtomicUnits": 500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0016",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 16,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+    "type": "crownCourseComplete"
+  },
+  {
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0017",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 17,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0016",
+    "stars": {
+      "chinese": 0,
+      "french": 1,
+      "italian": 0
+    },
+    "starsAfter": 1,
+    "type": "judgeStarUpdate"
+  },
+  {
+    "entryIds": [
+      "s4-a68ac23aab9e02f036dfd2ab-service-01-french"
+    ],
+    "finalBoard": [
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "kung_pao_chicken",
+        "french_onion_soup",
+        "tiramisu",
+        "french_onion_soup",
+        "pizza"
+      ],
+      [
+        "tiramisu",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "xiaolongbao",
+        "tiramisu"
+      ],
+      [
+        "pizza",
+        "frog_legs",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "tiramisu",
+        "peking_duck",
+        "pizza",
+        "frog_legs",
+        "kung_pao_chicken"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0018",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 18,
+    "type": "serviceQueueClosed",
+    "windowIndex": 1
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 4,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 1500000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      }
+    ],
+    "crownPotAtomicUnits": 500000,
+    "currentFreeSpin": 1,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0019",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 9,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 19,
+    "stars": {
+      "chinese": 0,
+      "french": 1,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": null
+  },
+  {
+    "board": [
+      [
+        "peking_duck",
+        "french_onion_soup",
+        "croissant",
+        "croissant",
+        "croissant"
+      ],
+      [
+        "kung_pao_chicken",
+        "peking_duck",
+        "croissant",
+        "croissant",
+        "golden_cloche_wild"
+      ],
+      [
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck",
+        "croissant",
+        "frog_legs"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck",
+        "french_onion_soup"
+      ],
+      [
+        "pasta_carbonara",
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck"
+      ]
+    ],
+    "currentFreeSpin": 2,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0020",
+    "remainingFreeSpins": 8,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 20,
+    "type": "freeSpinStart"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 1300000,
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0021",
+    "payoutAtomicUnits": 1300000,
+    "positions": [
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 0,
+        "row": 4
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 4
+      },
+      {
+        "reel": 2,
+        "row": 3
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sauceFlightMultiplier": 1,
+    "sequence": 21,
+    "symbol": "croissant",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 2800000,
+    "creditAtomicUnits": 1300000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0022",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 22,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0021",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "appliedCharge": 100,
+    "chef": "french",
+    "earnedCharge": 112,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0023",
+    "meterAfter": 100,
+    "overflowCharge": 12,
+    "perfectServeUnitsAfter": 12,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 23,
+    "serviceQueueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-02-french",
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0024",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 0,
+        "row": 4
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 4
+      },
+      {
+        "reel": 2,
+        "row": 3
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 24,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0025",
+    "index": 2,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 25,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "french_onion_soup",
+        "tiramisu",
+        "pizza",
+        "peking_duck",
+        "french_onion_soup"
+      ],
+      [
+        "peking_duck",
+        "frog_legs",
+        "pasta_carbonara",
+        "kung_pao_chicken",
+        "peking_duck"
+      ],
+      [
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck",
+        "frog_legs"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck",
+        "french_onion_soup"
+      ],
+      [
+        "pasta_carbonara",
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0026",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 26,
+    "type": "boardSettled"
+  },
+  {
+    "board": [
+      [
+        "french_onion_soup",
+        "tiramisu",
+        "pizza",
+        "peking_duck",
+        "french_onion_soup"
+      ],
+      [
+        "peking_duck",
+        "frog_legs",
+        "pasta_carbonara",
+        "kung_pao_chicken",
+        "peking_duck"
+      ],
+      [
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck",
+        "frog_legs"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck",
+        "french_onion_soup"
+      ],
+      [
+        "pasta_carbonara",
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck"
+      ]
+    ],
+    "entries": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-service-02-french",
+        "perfectServeUnits": 12,
+        "readySequence": 23
+      }
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0027",
+    "phase": null,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 27,
+    "source": null,
+    "type": "serviceQueueOpened",
+    "windowIndex": 2
+  },
+  {
+    "activeSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "appliedSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+    "meterAfter": 0,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-02-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 28,
+    "type": "sauceFinish"
+  },
+  {
+    "chef": "french",
+    "consumedOverflowUnits": 12,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0029",
+    "payoutAtomicUnits": 300000,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-02-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 29,
+    "type": "perfectServeAward"
+  },
+  {
+    "balanceAfterAtomicUnits": 3100000,
+    "creditAtomicUnits": 300000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0030",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 30,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0029",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "chef": "french",
+    "completedCoursesAfter": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      }
+    ],
+    "courseId": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+    "courseValueAtomicUnits": 1000000,
+    "crownPotAfterAtomicUnits": 1500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0031",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 31,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+    "type": "crownCourseComplete"
+  },
+  {
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0032",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 32,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0031",
+    "stars": {
+      "chinese": 0,
+      "french": 2,
+      "italian": 0
+    },
+    "starsAfter": 2,
+    "type": "judgeStarUpdate"
+  },
+  {
+    "entryIds": [
+      "s4-a68ac23aab9e02f036dfd2ab-service-02-french"
+    ],
+    "finalBoard": [
+      [
+        "french_onion_soup",
+        "tiramisu",
+        "pizza",
+        "peking_duck",
+        "french_onion_soup"
+      ],
+      [
+        "peking_duck",
+        "frog_legs",
+        "pasta_carbonara",
+        "kung_pao_chicken",
+        "peking_duck"
+      ],
+      [
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck",
+        "frog_legs"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck",
+        "french_onion_soup"
+      ],
+      [
+        "pasta_carbonara",
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "peking_duck"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0033",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 33,
+    "type": "serviceQueueClosed",
+    "windowIndex": 2
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 3100000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      }
+    ],
+    "crownPotAtomicUnits": 1500000,
+    "currentFreeSpin": 2,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0034",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 8,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 34,
+    "stars": {
+      "chinese": 0,
+      "french": 2,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": null
+  },
+  {
+    "board": [
+      [
+        "frog_legs",
+        "croissant",
+        "croissant",
+        "croissant",
+        "croissant"
+      ],
+      [
+        "peking_duck",
+        "xiaolongbao",
+        "croissant",
+        "golden_cloche_wild",
+        "croissant"
+      ],
+      [
+        "xiaolongbao",
+        "pasta_carbonara",
+        "frog_legs",
+        "croissant",
+        "croissant"
+      ],
+      [
+        "pasta_carbonara",
+        "frog_legs",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "frog_legs",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "frog_legs"
+      ]
+    ],
+    "currentFreeSpin": 3,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0035",
+    "remainingFreeSpins": 7,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 35,
+    "type": "freeSpinStart"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 2000000,
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0036",
+    "payoutAtomicUnits": 2000000,
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 0,
+        "row": 4
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 4
+      },
+      {
+        "reel": 2,
+        "row": 3
+      },
+      {
+        "reel": 2,
+        "row": 4
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sauceFlightMultiplier": 1,
+    "sequence": 36,
+    "symbol": "croissant",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 5100000,
+    "creditAtomicUnits": 2000000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0037",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 37,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0036",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "appliedCharge": 100,
+    "chef": "french",
+    "earnedCharge": 144,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0038",
+    "meterAfter": 100,
+    "overflowCharge": 44,
+    "perfectServeUnitsAfter": 44,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 38,
+    "serviceQueueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-03-french",
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0039",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 0,
+        "row": 4
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 4
+      },
+      {
+        "reel": 2,
+        "row": 3
+      },
+      {
+        "reel": 2,
+        "row": 4
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 39,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0040",
+    "index": 3,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 40,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "tiramisu",
+        "frog_legs",
+        "french_onion_soup",
+        "frog_legs"
+      ],
+      [
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "pasta_carbonara",
+        "tiramisu",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "frog_legs"
+      ],
+      [
+        "pasta_carbonara",
+        "frog_legs",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "frog_legs",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "frog_legs"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0041",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 41,
+    "type": "boardSettled"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "tiramisu",
+        "frog_legs",
+        "french_onion_soup",
+        "frog_legs"
+      ],
+      [
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "pasta_carbonara",
+        "tiramisu",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "frog_legs"
+      ],
+      [
+        "pasta_carbonara",
+        "frog_legs",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "frog_legs",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "frog_legs"
+      ]
+    ],
+    "entries": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-service-03-french",
+        "perfectServeUnits": 44,
+        "readySequence": 38
+      }
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0042",
+    "phase": null,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 42,
+    "source": null,
+    "type": "serviceQueueOpened",
+    "windowIndex": 3
+  },
+  {
+    "activeSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "appliedSpots": [
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+    "meterAfter": 0,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-03-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 43,
+    "type": "sauceFinish"
+  },
+  {
+    "chef": "french",
+    "consumedOverflowUnits": 44,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0044",
+    "payoutAtomicUnits": 1100000,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-03-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 44,
+    "type": "perfectServeAward"
+  },
+  {
+    "balanceAfterAtomicUnits": 6200000,
+    "creditAtomicUnits": 1100000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0045",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 45,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0044",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "chef": "french",
+    "completedCoursesAfter": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      }
+    ],
+    "courseId": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+    "courseValueAtomicUnits": 3000000,
+    "crownPotAfterAtomicUnits": 4500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0046",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 46,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+    "type": "crownCourseComplete"
+  },
+  {
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0047",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 47,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0046",
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "starsAfter": 3,
+    "type": "judgeStarUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0048",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 48,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0047",
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "type": "kitchenWinnerLocked",
+    "winner": "french"
+  },
+  {
+    "entryIds": [
+      "s4-a68ac23aab9e02f036dfd2ab-service-03-french"
+    ],
+    "finalBoard": [
+      [
+        "pasta_carbonara",
+        "tiramisu",
+        "frog_legs",
+        "french_onion_soup",
+        "frog_legs"
+      ],
+      [
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "pasta_carbonara",
+        "tiramisu",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "frog_legs"
+      ],
+      [
+        "pasta_carbonara",
+        "frog_legs",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "frog_legs",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "frog_legs"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0049",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 49,
+    "type": "serviceQueueClosed",
+    "windowIndex": 3
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 6200000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      }
+    ],
+    "crownPotAtomicUnits": 4500000,
+    "currentFreeSpin": 3,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0050",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 7,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 50,
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": "french"
+  },
+  {
+    "board": [
+      [
+        "tiramisu",
+        "frog_legs",
+        "frog_legs",
+        "golden_cloche_wild",
+        "tiramisu"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "peking_duck"
+      ],
+      [
+        "frog_legs",
+        "croissant",
+        "pizza",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "frog_legs",
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup"
+      ],
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ]
+    ],
+    "currentFreeSpin": 4,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0051",
+    "remainingFreeSpins": 6,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 51,
+    "type": "freeSpinStart"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 6000000,
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0052",
+    "payoutAtomicUnits": 6000000,
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 2,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 0
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sauceFlightMultiplier": 1,
+    "sequence": 52,
+    "symbol": "frog_legs",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 12200000,
+    "creditAtomicUnits": 6000000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0053",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 53,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0052",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "appliedCharge": 100,
+    "chef": "french",
+    "earnedCharge": 144,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0054",
+    "meterAfter": 100,
+    "overflowCharge": 44,
+    "perfectServeUnitsAfter": 44,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 54,
+    "serviceQueueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-04-french",
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0055",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 2,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 0
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 55,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0056",
+    "index": 4,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 56,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "tiramisu",
+        "tiramisu"
+      ],
+      [
+        "peking_duck",
+        "french_onion_soup",
+        "pasta_carbonara",
+        "xiaolongbao",
+        "peking_duck"
+      ],
+      [
+        "pizza",
+        "croissant",
+        "pizza",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup"
+      ],
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0057",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 57,
+    "type": "boardSettled"
+  },
+  {
+    "board": [
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "tiramisu",
+        "tiramisu"
+      ],
+      [
+        "peking_duck",
+        "french_onion_soup",
+        "pasta_carbonara",
+        "xiaolongbao",
+        "peking_duck"
+      ],
+      [
+        "pizza",
+        "croissant",
+        "pizza",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup"
+      ],
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ]
+    ],
+    "entries": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-service-04-french",
+        "perfectServeUnits": 44,
+        "readySequence": 54
+      }
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0058",
+    "phase": null,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 58,
+    "source": null,
+    "type": "serviceQueueOpened",
+    "windowIndex": 4
+  },
+  {
+    "activeSpots": [
+      {
+        "boost": 4,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "appliedSpots": [
+      {
+        "boost": 4,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+    "meterAfter": 0,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-04-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 59,
+    "type": "sauceFinish"
+  },
+  {
+    "chef": "french",
+    "consumedOverflowUnits": 44,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0060",
+    "payoutAtomicUnits": 1100000,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-04-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 60,
+    "type": "perfectServeAward"
+  },
+  {
+    "balanceAfterAtomicUnits": 13300000,
+    "creditAtomicUnits": 1100000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0061",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 61,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0060",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "chef": "french",
+    "completedCoursesAfter": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      }
+    ],
+    "courseId": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+    "courseValueAtomicUnits": 10000000,
+    "crownPotAfterAtomicUnits": 14500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0062",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 62,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+    "type": "crownCourseComplete"
+  },
+  {
+    "entryIds": [
+      "s4-a68ac23aab9e02f036dfd2ab-service-04-french"
+    ],
+    "finalBoard": [
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "tiramisu",
+        "tiramisu"
+      ],
+      [
+        "peking_duck",
+        "french_onion_soup",
+        "pasta_carbonara",
+        "xiaolongbao",
+        "peking_duck"
+      ],
+      [
+        "pizza",
+        "croissant",
+        "pizza",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup"
+      ],
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0063",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 63,
+    "type": "serviceQueueClosed",
+    "windowIndex": 4
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 4,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 5,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 13300000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      }
+    ],
+    "crownPotAtomicUnits": 14500000,
+    "currentFreeSpin": 4,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0064",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 6,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 64,
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": "french"
+  },
+  {
+    "board": [
+      [
+        "kung_pao_chicken",
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "frog_legs"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "golden_cloche_wild"
+      ],
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu"
+      ],
+      [
+        "pizza",
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu",
+        "pizza"
+      ],
+      [
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken"
+      ]
+    ],
+    "currentFreeSpin": 5,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0065",
+    "remainingFreeSpins": 5,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 65,
+    "type": "freeSpinStart"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 6000000,
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0066",
+    "payoutAtomicUnits": 6000000,
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 0,
+        "row": 4
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 4
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sauceFlightMultiplier": 1,
+    "sequence": 66,
+    "symbol": "frog_legs",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 19300000,
+    "creditAtomicUnits": 6000000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0067",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 67,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0066",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "appliedCharge": 100,
+    "chef": "french",
+    "earnedCharge": 144,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0068",
+    "meterAfter": 100,
+    "overflowCharge": 44,
+    "perfectServeUnitsAfter": 44,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 68,
+    "serviceQueueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-05-french",
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0069",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 0,
+        "row": 4
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 4
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 69,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0070",
+    "index": 5,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 70,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "peking_duck",
+        "pasta_carbonara",
+        "peking_duck",
+        "kung_pao_chicken"
+      ],
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu"
+      ],
+      [
+        "pizza",
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu",
+        "pizza"
+      ],
+      [
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0071",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 71,
+    "type": "boardSettled"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "peking_duck",
+        "pasta_carbonara",
+        "peking_duck",
+        "kung_pao_chicken"
+      ],
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu"
+      ],
+      [
+        "pizza",
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu",
+        "pizza"
+      ],
+      [
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken"
+      ]
+    ],
+    "entries": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-service-05-french",
+        "perfectServeUnits": 44,
+        "readySequence": 68
+      }
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0072",
+    "phase": null,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 72,
+    "source": null,
+    "type": "serviceQueueOpened",
+    "windowIndex": 5
+  },
+  {
+    "activeSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "appliedSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      }
+    ],
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+    "meterAfter": 0,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-05-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 73,
+    "type": "sauceFinish"
+  },
+  {
+    "chef": "french",
+    "consumedOverflowUnits": 44,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0074",
+    "payoutAtomicUnits": 1100000,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-05-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 74,
+    "type": "perfectServeAward"
+  },
+  {
+    "balanceAfterAtomicUnits": 20400000,
+    "creditAtomicUnits": 1100000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0075",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 75,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0074",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "chef": "french",
+    "completedCoursesAfter": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      }
+    ],
+    "courseId": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+    "courseValueAtomicUnits": 50000000,
+    "crownPotAfterAtomicUnits": 64500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0076",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 76,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+    "type": "crownCourseComplete"
+  },
+  {
+    "entryIds": [
+      "s4-a68ac23aab9e02f036dfd2ab-service-05-french"
+    ],
+    "finalBoard": [
+      [
+        "pasta_carbonara",
+        "peking_duck",
+        "pasta_carbonara",
+        "peking_duck",
+        "kung_pao_chicken"
+      ],
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu"
+      ],
+      [
+        "pizza",
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu",
+        "pizza"
+      ],
+      [
+        "kung_pao_chicken",
+        "croissant",
+        "tiramisu",
+        "pizza",
+        "kung_pao_chicken"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0077",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 77,
+    "type": "serviceQueueClosed",
+    "windowIndex": 5
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 20400000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      }
+    ],
+    "crownPotAtomicUnits": 64500000,
+    "currentFreeSpin": 5,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0078",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 5,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 78,
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": "french"
+  },
+  {
+    "board": [
+      [
+        "pizza",
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "frog_legs"
+      ],
+      [
+        "golden_cloche_wild",
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "frog_legs"
+      ],
+      [
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ],
+      [
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao"
+      ],
+      [
+        "croissant",
+        "pizza",
+        "croissant",
+        "pizza",
+        "croissant"
+      ]
+    ],
+    "currentFreeSpin": 6,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0079",
+    "remainingFreeSpins": 4,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 79,
+    "type": "freeSpinStart"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 6000000,
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0080",
+    "payoutAtomicUnits": 6000000,
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 0,
+        "row": 4
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 4
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sauceFlightMultiplier": 1,
+    "sequence": 80,
+    "symbol": "frog_legs",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 26400000,
+    "creditAtomicUnits": 6000000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0081",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 81,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0080",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "appliedCharge": 100,
+    "chef": "french",
+    "earnedCharge": 144,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0082",
+    "meterAfter": 100,
+    "overflowCharge": 44,
+    "perfectServeUnitsAfter": 44,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 82,
+    "serviceQueueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-06-french",
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0083",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 0,
+        "row": 2
+      },
+      {
+        "reel": 0,
+        "row": 3
+      },
+      {
+        "reel": 0,
+        "row": 4
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 1,
+        "row": 3
+      },
+      {
+        "reel": 1,
+        "row": 4
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 83,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0084",
+    "index": 6,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 84,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "tiramisu",
+        "french_onion_soup",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "pizza",
+        "pasta_carbonara"
+      ],
+      [
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ],
+      [
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao"
+      ],
+      [
+        "croissant",
+        "pizza",
+        "croissant",
+        "pizza",
+        "croissant"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0085",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 85,
+    "type": "boardSettled"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "tiramisu",
+        "french_onion_soup",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "pizza",
+        "pasta_carbonara"
+      ],
+      [
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ],
+      [
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao"
+      ],
+      [
+        "croissant",
+        "pizza",
+        "croissant",
+        "pizza",
+        "croissant"
+      ]
+    ],
+    "entries": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-service-06-french",
+        "perfectServeUnits": 44,
+        "readySequence": 82
+      }
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0086",
+    "phase": null,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 86,
+    "source": null,
+    "type": "serviceQueueOpened",
+    "windowIndex": 6
+  },
+  {
+    "activeSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "appliedSpots": [
+      {
+        "boost": 3,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      }
+    ],
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+    "meterAfter": 0,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-06-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 87,
+    "type": "sauceFinish"
+  },
+  {
+    "chef": "french",
+    "consumedOverflowUnits": 44,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0088",
+    "payoutAtomicUnits": 1100000,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-06-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 88,
+    "type": "perfectServeAward"
+  },
+  {
+    "balanceAfterAtomicUnits": 27500000,
+    "creditAtomicUnits": 1100000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0089",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 89,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0088",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "chef": "french",
+    "completedCoursesAfter": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+        "valueAtomicUnits": 10000000
+      }
+    ],
+    "courseId": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+    "courseValueAtomicUnits": 10000000,
+    "crownPotAfterAtomicUnits": 74500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0090",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 90,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+    "type": "crownCourseComplete"
+  },
+  {
+    "entryIds": [
+      "s4-a68ac23aab9e02f036dfd2ab-service-06-french"
+    ],
+    "finalBoard": [
+      [
+        "pasta_carbonara",
+        "tiramisu",
+        "french_onion_soup",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "pizza",
+        "pasta_carbonara"
+      ],
+      [
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ],
+      [
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao",
+        "french_onion_soup",
+        "xiaolongbao"
+      ],
+      [
+        "croissant",
+        "pizza",
+        "croissant",
+        "pizza",
+        "croissant"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0091",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 91,
+    "type": "serviceQueueClosed",
+    "windowIndex": 6
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 27500000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+        "valueAtomicUnits": 10000000
+      }
+    ],
+    "crownPotAtomicUnits": 74500000,
+    "currentFreeSpin": 6,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0092",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 4,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 92,
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": "french"
+  },
+  {
+    "board": [
+      [
+        "peking_duck",
+        "frog_legs",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "frog_legs",
+        "french_onion_soup",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "golden_cloche_wild",
+        "frog_legs",
+        "frog_legs",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck"
+      ]
+    ],
+    "currentFreeSpin": 7,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0093",
+    "remainingFreeSpins": 3,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 93,
+    "type": "freeSpinStart"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 6000000,
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0094",
+    "payoutAtomicUnits": 6000000,
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 2,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 3,
+        "row": 2
+      },
+      {
+        "reel": 4,
+        "row": 0
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sauceFlightMultiplier": 1,
+    "sequence": 94,
+    "symbol": "frog_legs",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 33500000,
+    "creditAtomicUnits": 6000000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0095",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 95,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0094",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "appliedCharge": 100,
+    "chef": "french",
+    "earnedCharge": 160,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0096",
+    "meterAfter": 100,
+    "overflowCharge": 60,
+    "perfectServeUnitsAfter": 60,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 96,
+    "serviceQueueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-07-french",
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0097",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 2,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 3,
+        "row": 2
+      },
+      {
+        "reel": 4,
+        "row": 0
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 97,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0098",
+    "index": 7,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 98,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "peking_duck",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "xiaolongbao",
+        "french_onion_soup",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "kung_pao_chicken",
+        "peking_duck",
+        "croissant",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "peking_duck",
+        "croissant",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0099",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 99,
+    "type": "boardSettled"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "peking_duck",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "xiaolongbao",
+        "french_onion_soup",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "kung_pao_chicken",
+        "peking_duck",
+        "croissant",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "peking_duck",
+        "croissant",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck"
+      ]
+    ],
+    "entries": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-service-07-french",
+        "perfectServeUnits": 60,
+        "readySequence": 96
+      }
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0100",
+    "phase": null,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 100,
+    "source": null,
+    "type": "serviceQueueOpened",
+    "windowIndex": 7
+  },
+  {
+    "activeSpots": [
+      {
+        "boost": 3,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "appliedSpots": [
+      {
+        "boost": 3,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0101",
+    "meterAfter": 0,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-07-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 101,
+    "type": "sauceFinish"
+  },
+  {
+    "chef": "french",
+    "consumedOverflowUnits": 60,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0102",
+    "payoutAtomicUnits": 1500000,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-07-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 102,
+    "type": "perfectServeAward"
+  },
+  {
+    "balanceAfterAtomicUnits": 35000000,
+    "creditAtomicUnits": 1500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0103",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 103,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0102",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "chef": "french",
+    "completedCoursesAfter": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-07",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0101",
+        "valueAtomicUnits": 50000000
+      }
+    ],
+    "courseId": "s4-a68ac23aab9e02f036dfd2ab-course-07",
+    "courseValueAtomicUnits": 50000000,
+    "crownPotAfterAtomicUnits": 124500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0104",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 104,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0101",
+    "type": "crownCourseComplete"
+  },
+  {
+    "entryIds": [
+      "s4-a68ac23aab9e02f036dfd2ab-service-07-french"
+    ],
+    "finalBoard": [
+      [
+        "pasta_carbonara",
+        "peking_duck",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck"
+      ],
+      [
+        "pizza",
+        "xiaolongbao",
+        "kung_pao_chicken",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "xiaolongbao",
+        "french_onion_soup",
+        "peking_duck",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "kung_pao_chicken",
+        "peking_duck",
+        "croissant",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "peking_duck",
+        "croissant",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0105",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 105,
+    "type": "serviceQueueClosed",
+    "windowIndex": 7
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 3,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 35000000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-07",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0101",
+        "valueAtomicUnits": 50000000
+      }
+    ],
+    "crownPotAtomicUnits": 124500000,
+    "currentFreeSpin": 7,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0106",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 3,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 106,
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": "french"
+  },
+  {
+    "board": [
+      [
+        "tiramisu",
+        "frog_legs",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "croissant",
+        "pizza",
+        "croissant"
+      ],
+      [
+        "golden_cloche_wild",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "pizza"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ]
+    ],
+    "currentFreeSpin": 8,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0107",
+    "remainingFreeSpins": 2,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 107,
+    "type": "freeSpinStart"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 6000000,
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0108",
+    "payoutAtomicUnits": 6000000,
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 2,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 3,
+        "row": 2
+      },
+      {
+        "reel": 3,
+        "row": 3
+      },
+      {
+        "reel": 4,
+        "row": 0
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sauceFlightMultiplier": 1,
+    "sequence": 108,
+    "symbol": "frog_legs",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 41000000,
+    "creditAtomicUnits": 6000000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0109",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 109,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0108",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "appliedCharge": 100,
+    "chef": "french",
+    "earnedCharge": 160,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0110",
+    "meterAfter": 100,
+    "overflowCharge": 60,
+    "perfectServeUnitsAfter": 60,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 110,
+    "serviceQueueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-08-french",
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0111",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 2,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 3,
+        "row": 2
+      },
+      {
+        "reel": 3,
+        "row": 3
+      },
+      {
+        "reel": 4,
+        "row": 0
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 111,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0112",
+    "index": 8,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 112,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ],
+      [
+        "pasta_carbonara",
+        "french_onion_soup",
+        "croissant",
+        "pizza",
+        "croissant"
+      ],
+      [
+        "croissant",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck",
+        "pizza"
+      ],
+      [
+        "tiramisu",
+        "croissant",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0113",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 113,
+    "type": "boardSettled"
+  },
+  {
+    "board": [
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ],
+      [
+        "pasta_carbonara",
+        "french_onion_soup",
+        "croissant",
+        "pizza",
+        "croissant"
+      ],
+      [
+        "croissant",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck",
+        "pizza"
+      ],
+      [
+        "tiramisu",
+        "croissant",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ]
+    ],
+    "entries": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-service-08-french",
+        "perfectServeUnits": 60,
+        "readySequence": 110
+      }
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0114",
+    "phase": null,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 114,
+    "source": null,
+    "type": "serviceQueueOpened",
+    "windowIndex": 8
+  },
+  {
+    "activeSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "appliedSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      }
+    ],
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0115",
+    "meterAfter": 0,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-08-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 115,
+    "type": "sauceFinish"
+  },
+  {
+    "chef": "french",
+    "consumedOverflowUnits": 60,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0116",
+    "payoutAtomicUnits": 1500000,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-08-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 116,
+    "type": "perfectServeAward"
+  },
+  {
+    "balanceAfterAtomicUnits": 42500000,
+    "creditAtomicUnits": 1500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0117",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 117,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0116",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "chef": "french",
+    "completedCoursesAfter": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-07",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0101",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-08",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0115",
+        "valueAtomicUnits": 25000000
+      }
+    ],
+    "courseId": "s4-a68ac23aab9e02f036dfd2ab-course-08",
+    "courseValueAtomicUnits": 25000000,
+    "crownPotAfterAtomicUnits": 149500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0118",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 118,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0115",
+    "type": "crownCourseComplete"
+  },
+  {
+    "entryIds": [
+      "s4-a68ac23aab9e02f036dfd2ab-service-08-french"
+    ],
+    "finalBoard": [
+      [
+        "kung_pao_chicken",
+        "tiramisu",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ],
+      [
+        "pasta_carbonara",
+        "french_onion_soup",
+        "croissant",
+        "pizza",
+        "croissant"
+      ],
+      [
+        "croissant",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu",
+        "kung_pao_chicken"
+      ],
+      [
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck",
+        "pizza"
+      ],
+      [
+        "tiramisu",
+        "croissant",
+        "tiramisu",
+        "kung_pao_chicken",
+        "tiramisu"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0119",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 119,
+    "type": "serviceQueueClosed",
+    "windowIndex": 8
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 3,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 42500000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-07",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0101",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-08",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0115",
+        "valueAtomicUnits": 25000000
+      }
+    ],
+    "crownPotAtomicUnits": 149500000,
+    "currentFreeSpin": 8,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0120",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 2,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 120,
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": "french"
+  },
+  {
+    "board": [
+      [
+        "french_onion_soup",
+        "frog_legs",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "frog_legs",
+        "french_onion_soup",
+        "peking_duck"
+      ],
+      [
+        "frog_legs",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "golden_cloche_wild",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "frog_legs",
+        "frog_legs",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ]
+    ],
+    "currentFreeSpin": 9,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0121",
+    "remainingFreeSpins": 1,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 121,
+    "type": "freeSpinStart"
+  },
+  {
+    "appliedSauceSpots": [],
+    "basePayoutAtomicUnits": 6000000,
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0122",
+    "payoutAtomicUnits": 6000000,
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 2,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 3,
+        "row": 2
+      },
+      {
+        "reel": 4,
+        "row": 0
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sauceFlightMultiplier": 1,
+    "sequence": 122,
+    "symbol": "frog_legs",
+    "type": "clusterWin"
+  },
+  {
+    "balanceAfterAtomicUnits": 48500000,
+    "creditAtomicUnits": 6000000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0123",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 123,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0122",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "appliedCharge": 100,
+    "chef": "french",
+    "earnedCharge": 160,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0124",
+    "meterAfter": 100,
+    "overflowCharge": 60,
+    "perfectServeUnitsAfter": 60,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 124,
+    "serviceQueueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-09-french",
+    "type": "chefMeterUpdate"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0125",
+    "positions": [
+      {
+        "reel": 0,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 0
+      },
+      {
+        "reel": 1,
+        "row": 1
+      },
+      {
+        "reel": 1,
+        "row": 2
+      },
+      {
+        "reel": 2,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 0
+      },
+      {
+        "reel": 3,
+        "row": 1
+      },
+      {
+        "reel": 3,
+        "row": 2
+      },
+      {
+        "reel": 4,
+        "row": 0
+      },
+      {
+        "reel": 4,
+        "row": 1
+      }
+    ],
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 125,
+    "type": "removeSymbols"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0126",
+    "index": 9,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 126,
+    "type": "cascade"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "french_onion_soup",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "pizza",
+        "pasta_carbonara",
+        "tiramisu",
+        "french_onion_soup",
+        "peking_duck"
+      ],
+      [
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "pizza",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0127",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 127,
+    "type": "boardSettled"
+  },
+  {
+    "board": [
+      [
+        "pasta_carbonara",
+        "french_onion_soup",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "pizza",
+        "pasta_carbonara",
+        "tiramisu",
+        "french_onion_soup",
+        "peking_duck"
+      ],
+      [
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "pizza",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ]
+    ],
+    "entries": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-service-09-french",
+        "perfectServeUnits": 60,
+        "readySequence": 124
+      }
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0128",
+    "phase": null,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 128,
+    "source": null,
+    "type": "serviceQueueOpened",
+    "windowIndex": 9
+  },
+  {
+    "activeSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "appliedSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      }
+    ],
+    "chef": "french",
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0129",
+    "meterAfter": 0,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-09-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 129,
+    "type": "sauceFinish"
+  },
+  {
+    "chef": "french",
+    "consumedOverflowUnits": 60,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0130",
+    "payoutAtomicUnits": 1500000,
+    "queueEntryId": "s4-a68ac23aab9e02f036dfd2ab-service-09-french",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 130,
+    "type": "perfectServeAward"
+  },
+  {
+    "balanceAfterAtomicUnits": 50000000,
+    "creditAtomicUnits": 1500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0131",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 131,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0130",
+    "type": "bonusBankUpdate"
+  },
+  {
+    "chef": "french",
+    "completedCoursesAfter": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-07",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0101",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-08",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0115",
+        "valueAtomicUnits": 25000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-09",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0129",
+        "valueAtomicUnits": 50000000
+      }
+    ],
+    "courseId": "s4-a68ac23aab9e02f036dfd2ab-course-09",
+    "courseValueAtomicUnits": 50000000,
+    "crownPotAfterAtomicUnits": 199500000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0132",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 132,
+    "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0129",
+    "type": "crownCourseComplete"
+  },
+  {
+    "entryIds": [
+      "s4-a68ac23aab9e02f036dfd2ab-service-09-french"
+    ],
+    "finalBoard": [
+      [
+        "pasta_carbonara",
+        "french_onion_soup",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ],
+      [
+        "pizza",
+        "pasta_carbonara",
+        "tiramisu",
+        "french_onion_soup",
+        "peking_duck"
+      ],
+      [
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup",
+        "peking_duck",
+        "xiaolongbao"
+      ],
+      [
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "pizza",
+        "xiaolongbao",
+        "pasta_carbonara"
+      ],
+      [
+        "peking_duck",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "pasta_carbonara",
+        "french_onion_soup"
+      ]
+    ],
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0133",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 133,
+    "type": "serviceQueueClosed",
+    "windowIndex": 9
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 50000000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-07",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0101",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-08",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0115",
+        "valueAtomicUnits": 25000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-09",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0129",
+        "valueAtomicUnits": 50000000
+      }
+    ],
+    "crownPotAtomicUnits": 199500000,
+    "currentFreeSpin": 9,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0134",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 1,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 134,
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": "french"
+  },
+  {
+    "board": [
+      [
+        "pizza",
+        "croissant",
+        "pasta_carbonara",
+        "peking_duck",
+        "tiramisu"
+      ],
+      [
+        "pasta_carbonara",
+        "peking_duck",
+        "tiramisu",
+        "kung_pao_chicken",
+        "frog_legs"
+      ],
+      [
+        "tiramisu",
+        "kung_pao_chicken",
+        "frog_legs",
+        "xiaolongbao",
+        "french_onion_soup"
+      ],
+      [
+        "frog_legs",
+        "xiaolongbao",
+        "french_onion_soup",
+        "pizza",
+        "croissant"
+      ],
+      [
+        "french_onion_soup",
+        "pizza",
+        "croissant",
+        "pasta_carbonara",
+        "peking_duck"
+      ]
+    ],
+    "currentFreeSpin": 10,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0135",
+    "remainingFreeSpins": 0,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 135,
+    "type": "freeSpinStart"
+  },
+  {
+    "activeSauceSpots": [
+      {
+        "boost": 1,
+        "position": {
+          "reel": 0,
+          "row": 0
+        }
+      },
+      {
+        "boost": 4,
+        "position": {
+          "reel": 2,
+          "row": 1
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 2,
+          "row": 2
+        }
+      },
+      {
+        "boost": 2,
+        "position": {
+          "reel": 3,
+          "row": 4
+        }
+      },
+      {
+        "boost": 1,
+        "position": {
+          "reel": 4,
+          "row": 2
+        }
+      }
+    ],
+    "bonusBankAtomicUnits": 50000000,
+    "completedCourses": [
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-01",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0013",
+        "valueAtomicUnits": 500000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-02",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0028",
+        "valueAtomicUnits": 1000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-03",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0043",
+        "valueAtomicUnits": 3000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-04",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0059",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-05",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0073",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-06",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0087",
+        "valueAtomicUnits": 10000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-07",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0101",
+        "valueAtomicUnits": 50000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-08",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0115",
+        "valueAtomicUnits": 25000000
+      },
+      {
+        "chef": "french",
+        "id": "s4-a68ac23aab9e02f036dfd2ab-course-09",
+        "sourceEventId": "s4-a68ac23aab9e02f036dfd2ab-e0129",
+        "valueAtomicUnits": 50000000
+      }
+    ],
+    "crownPotAtomicUnits": 199500000,
+    "currentFreeSpin": 10,
+    "headliner": null,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0136",
+    "meters": {
+      "chinese": 50,
+      "french": 0,
+      "italian": 50
+    },
+    "remainingFreeSpins": 0,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 136,
+    "stars": {
+      "chinese": 0,
+      "french": 3,
+      "italian": 0
+    },
+    "totalFreeSpins": 10,
+    "type": "freeSpinEnd",
+    "winner": "french"
+  },
+  {
+    "bonusBankAtomicUnits": 50000000,
+    "crownPayoutAtomicUnits": 19950000000,
+    "crownPotAtomicUnits": 199500000,
+    "finalWinAtomicUnits": 20000000000,
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0137",
+    "multiplier": 100,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 137,
+    "type": "kitchenCrownReveal",
+    "winner": "french"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0138",
+    "maxWinAtomicUnits": 20000000000,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 138,
+    "type": "maxWinReached"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0139",
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 139,
+    "totalWinAtomicUnits": 20000000000,
+    "type": "setTotalWin"
+  },
+  {
+    "id": "s4-a68ac23aab9e02f036dfd2ab-e0140",
+    "payoutAtomicUnits": 20000000000,
+    "roundId": "s4-a68ac23aab9e02f036dfd2ab",
+    "sequence": 140,
+    "type": "finalWin"
+  }
+]
