@@ -1,0 +1,74 @@
+[
+  {
+    "betAtomicUnits": 1000000,
+    "id": "s4-238d4589e8b009bce19158ba-e0001",
+    "maxWinAtomicUnits": 20000000000,
+    "meters": {
+      "chinese": 0,
+      "french": 0,
+      "italian": 0
+    },
+    "mode": "base",
+    "paidBetAtomicUnits": 1000000,
+    "roundId": "s4-238d4589e8b009bce19158ba",
+    "sequence": 1,
+    "type": "roundStart"
+  },
+  {
+    "board": [
+      [
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "croissant",
+        "pizza",
+        "tiramisu"
+      ],
+      [
+        "tiramisu",
+        "peking_duck",
+        "pasta_carbonara",
+        "frog_legs",
+        "french_onion_soup"
+      ],
+      [
+        "french_onion_soup",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "croissant",
+        "pizza"
+      ],
+      [
+        "pizza",
+        "tiramisu",
+        "peking_duck",
+        "pasta_carbonara",
+        "frog_legs"
+      ],
+      [
+        "frog_legs",
+        "french_onion_soup",
+        "kung_pao_chicken",
+        "xiaolongbao",
+        "croissant"
+      ]
+    ],
+    "id": "s4-238d4589e8b009bce19158ba-e0002",
+    "roundId": "s4-238d4589e8b009bce19158ba",
+    "sequence": 2,
+    "type": "revealBoard"
+  },
+  {
+    "id": "s4-238d4589e8b009bce19158ba-e0003",
+    "roundId": "s4-238d4589e8b009bce19158ba",
+    "sequence": 3,
+    "totalWinAtomicUnits": 0,
+    "type": "setTotalWin"
+  },
+  {
+    "id": "s4-238d4589e8b009bce19158ba-e0004",
+    "payoutAtomicUnits": 0,
+    "roundId": "s4-238d4589e8b009bce19158ba",
+    "sequence": 4,
+    "type": "finalWin"
+  }
+]

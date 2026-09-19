@@ -1,3 +1,22 @@
+import S400 from '../books/production/stage4/S4-00.json';
+import S401 from '../books/production/stage4/S4-01.json';
+import S402 from '../books/production/stage4/S4-02.json';
+import S403 from '../books/production/stage4/S4-03.json';
+import S404 from '../books/production/stage4/S4-04.json';
+import S405 from '../books/production/stage4/S4-05.json';
+import S406 from '../books/production/stage4/S4-06.json';
+import S407 from '../books/production/stage4/S4-07.json';
+import S408 from '../books/production/stage4/S4-08.json';
+import S409 from '../books/production/stage4/S4-09.json';
+import S410 from '../books/production/stage4/S4-10.json';
+import S411 from '../books/production/stage4/S4-11.json';
+import S412 from '../books/production/stage4/S4-12.json';
+import S413 from '../books/production/stage4/S4-13.json';
+import S414 from '../books/production/stage4/S4-14.json';
+import S415 from '../books/production/stage4/S4-15.json';
+import S416 from '../books/production/stage4/S4-16.json';
+import S417 from '../books/production/stage4/S4-17.json';
+import S412Checkpoint from '../books/production/stage4/checkpoints/S4-12-0096.json';
 import P300 from '../books/production/P3-00.json';
 import P301 from '../books/production/P3-01.json';
 import P302 from '../books/production/P3-02.json';
@@ -37,6 +56,24 @@ const staticBooks: Record<ProductionScenarioId, unknown> = {
 	'P3-10': P310,
 	'P3-11': P311,
 	'P3-12': P312,
+	'S4-00': S400,
+	'S4-01': S401,
+	'S4-02': S402,
+	'S4-03': S403,
+	'S4-04': S404,
+	'S4-05': S405,
+	'S4-06': S406,
+	'S4-07': S407,
+	'S4-08': S408,
+	'S4-09': S409,
+	'S4-10': S410,
+	'S4-11': S411,
+	'S4-12': S412,
+	'S4-13': S413,
+	'S4-14': S414,
+	'S4-15': S415,
+	'S4-16': S416,
+	'S4-17': S417,
 };
 
 export async function loadProductionBook(
@@ -54,7 +91,9 @@ export async function loadPreparedProductionBook(
 export function loadProductionCheckpoint(
 	scenarioId: ProductionScenarioId,
 ): ReplayCheckpoint | null {
-	return scenarioId === 'P3-12' ? (structuredClone(P312Checkpoint) as ReplayCheckpoint) : null;
+	if (scenarioId === 'P3-12') return structuredClone(P312Checkpoint) as ReplayCheckpoint;
+	if (scenarioId === 'S4-12') return structuredClone(S412Checkpoint) as ReplayCheckpoint;
+	return null;
 }
 
 export async function playValidatedProductionBook(book: ValidatedProductionBook): Promise<void> {

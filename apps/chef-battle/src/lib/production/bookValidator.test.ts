@@ -16,7 +16,7 @@ import {
 } from './localBookAdapter';
 import { playPreparedProductionBook, resumeProductionBook } from './playback';
 import { productionState, resetProductionState } from './stateGame.svelte';
-import { PRODUCTION_EVENT_TYPES, PRODUCTION_SCENARIO_IDS } from './typesBookEvent';
+import { PRODUCTION_EVENT_TYPES } from './typesBookEvent';
 import type {
 	PlaybackSpeed,
 	ProductionScenarioId,
@@ -69,7 +69,7 @@ const EXPECTED_FINAL_PAYOUT_ATOMIC_UNITS = {
 	'P3-10': 30_000_000,
 	'P3-11': 12_000_000,
 	'P3-12': 30_000_000,
-} as const satisfies Readonly<Record<ProductionScenarioId, number>>;
+} as const satisfies Readonly<Record<Extract<ProductionScenarioId, `P3-${string}`>, number>>;
 
 const PLAYBACK_SPEEDS = ['normal', 'fast', 'instant'] as const satisfies readonly PlaybackSpeed[];
 const EXPECTED_PRODUCTION_CHECKPOINTS = [{ scenarioId: 'P3-12', sequence: 40 }] as const;
@@ -233,7 +233,11 @@ describe('production Book validation', () => {
 		);
 	});
 
-	it.each(PRODUCTION_SCENARIO_IDS)(
+	it.each(
+		Object.keys(EXPECTED_FINAL_PAYOUT_ATOMIC_UNITS) as Array<
+			keyof typeof EXPECTED_FINAL_PAYOUT_ATOMIC_UNITS
+		>,
+	)(
 		'%s executes every handler with one exact final state in normal, fast and instant playback',
 		async (scenarioId) => {
 			const snapshots = [];

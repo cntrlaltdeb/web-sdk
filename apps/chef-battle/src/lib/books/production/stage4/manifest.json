@@ -1,0 +1,436 @@
+{
+  "books": {
+    "S4-00": {
+      "eventCount": 4,
+      "eventHash": "472be87fbf965a38e093627338473fbeaebf699dd3beb5b65e4b16adf7d4ab72",
+      "fixture": "S4-00.json",
+      "labels": [
+        "zero"
+      ],
+      "lookupWeight": 4353479640,
+      "payoutTenths": 0,
+      "selectionLabel": "zero",
+      "sourceBookId": 0
+    },
+    "S4-01": {
+      "eventCount": 10,
+      "eventHash": "ac614fd99f6d4f7e3ca94a5fa4cf1701b3ad1cd38e2fb6cdb0f4afac350ac80b",
+      "fixture": "S4-01.json",
+      "labels": [
+        "partial_return"
+      ],
+      "lookupWeight": 2603316482,
+      "payoutTenths": 3,
+      "selectionLabel": "partial_return",
+      "sourceBookId": 150003
+    },
+    "S4-02": {
+      "eventCount": 14,
+      "eventHash": "b3334bfa64df8c7d9e0ab0fbe43d91102e011c9b975b38ec980ff13fc293bc85",
+      "fixture": "S4-02.json",
+      "labels": [
+        "exact_break_even"
+      ],
+      "lookupWeight": 250541380,
+      "payoutTenths": 10,
+      "selectionLabel": "exact_break_even",
+      "sourceBookId": 150000
+    },
+    "S4-03": {
+      "eventCount": 14,
+      "eventHash": "4da444c71bb823979edc94cfb4408c8cc159b1e7e9bae1b969f24699c97769c9",
+      "fixture": "S4-03.json",
+      "labels": [
+        "small_profit_base"
+      ],
+      "lookupWeight": 845560954,
+      "payoutTenths": 16,
+      "selectionLabel": "small_profit_base",
+      "sourceBookId": 300000
+    },
+    "S4-04": {
+      "eventCount": 20,
+      "eventHash": "25bfb78c262881708b69850d584d0eb7c60942d8daf30496ab7cfb5be4b618a0",
+      "fixture": "S4-04.json",
+      "labels": [
+        "medium_base"
+      ],
+      "lookupWeight": 1701591835,
+      "payoutTenths": 51,
+      "selectionLabel": "medium_base",
+      "sourceBookId": 382873
+    },
+    "S4-05": {
+      "eventCount": 19,
+      "eventHash": "63720d6a18a1d2ff3dbd25d75a59582b9d0371c076ca1711b5de99f29a727aa6",
+      "fixture": "S4-05.json",
+      "labels": [
+        "pasta_pull"
+      ],
+      "lookupWeight": 35742690343,
+      "payoutTenths": 8,
+      "selectionLabel": "pasta_pull",
+      "sourceBookId": 174099
+    },
+    "S4-06": {
+      "eventCount": 19,
+      "eventHash": "0a6723aa1220ce426031a6b7ba827b227bc039fa44bdb7b4a3b3351f9b8da1f9",
+      "fixture": "S4-06.json",
+      "labels": [
+        "sauce_finish_flight"
+      ],
+      "lookupWeight": 35742690343,
+      "payoutTenths": 8,
+      "selectionLabel": "sauce_finish_flight",
+      "sourceBookId": 155803
+    },
+    "S4-07": {
+      "eventCount": 29,
+      "eventHash": "4211d391e8ef8263f666a97c34ca63d31b9620682053020fb9cd294c66a1d9aa",
+      "fixture": "S4-07.json",
+      "labels": [
+        "wok_toss"
+      ],
+      "lookupWeight": 31174423,
+      "payoutTenths": 24,
+      "selectionLabel": "wok_toss",
+      "sourceBookId": 307639
+    },
+    "S4-08": {
+      "eventCount": 25,
+      "eventHash": "ddcf311a710ad5a4963273edddbf93361277658836b5baf59841aee7cbdbbd23",
+      "fixture": "S4-08.json",
+      "labels": [
+        "sauce_finish_flight",
+        "perfect_serve"
+      ],
+      "lookupWeight": 31174423,
+      "payoutTenths": 24,
+      "selectionLabel": "perfect_serve",
+      "sourceBookId": 300017
+    },
+    "S4-09": {
+      "eventCount": 44,
+      "eventHash": "f38375c39c0fb13829cb8224276a89d08ccfd57bb719b77299aed755348905fb",
+      "fixture": "S4-09.json",
+      "labels": [
+        "medium_base",
+        "pasta_pull",
+        "wok_toss",
+        "perfect_serve",
+        "multi_service"
+      ],
+      "lookupWeight": 1607859850,
+      "payoutTenths": 106,
+      "selectionLabel": "multi_service",
+      "sourceBookId": 518207
+    },
+    "S4-10": {
+      "eventCount": 103,
+      "eventHash": "6f8308c13e482fc7a329cdde7b05ece05911488e1429c08cc226e578076c5249",
+      "fixture": "S4-10.json",
+      "labels": [
+        "wok_toss",
+        "perfect_serve",
+        "weak_regular_showdown"
+      ],
+      "lookupWeight": 1,
+      "payoutTenths": 83,
+      "selectionLabel": "weak_regular_showdown",
+      "sourceBookId": 613549
+    },
+    "S4-11": {
+      "eventCount": 79,
+      "eventHash": "ba9a4a2e8b9d689e1b8df76bbd46a4e55c2bda6b936fa951d92a29290bf0f259",
+      "fixture": "S4-11.json",
+      "labels": [
+        "sauce_finish_flight",
+        "perfect_serve",
+        "median_regular_showdown"
+      ],
+      "lookupWeight": 7452907,
+      "payoutTenths": 450,
+      "selectionLabel": "median_regular_showdown",
+      "sourceBookId": 641551
+    },
+    "S4-12": {
+      "checkpoint": "checkpoints/S4-12-0096.json",
+      "checkpointSequence": 96,
+      "eventCount": 112,
+      "eventHash": "7b045cb4db2f93b6be99a287d7749593a5d4a40345613c080a7461e4911dceff",
+      "finalStateHash": "046f7bfd9ed359001781369c3002023889ac7a62ed44958946a231d9e656bf4f",
+      "finalWinAtomicUnits": 10700000,
+      "fixture": "S4-12.json",
+      "labels": [
+        "sauce_finish_flight",
+        "wok_toss",
+        "perfect_serve",
+        "retrigger_resume"
+      ],
+      "lookupWeight": 433537667,
+      "payoutTenths": 107,
+      "selectionLabel": "retrigger_resume",
+      "sourceBookId": 574137
+    },
+    "S4-13": {
+      "eventCount": 79,
+      "eventHash": "dec17a128b872dfb3fb3dfdcd3fe97aee8104c4e3aa46c6545ee0c415b77017c",
+      "fixture": "S4-13.json",
+      "labels": [
+        "sauce_finish_flight",
+        "perfect_serve",
+        "tail_100"
+      ],
+      "lookupWeight": 37065804,
+      "payoutTenths": 1000,
+      "selectionLabel": "tail_100",
+      "sourceBookId": 614629
+    },
+    "S4-14": {
+      "eventCount": 152,
+      "eventHash": "45c93fe35daabde7262611ece834ff40e35a134c43b1c9ca28ee859557c3e8f4",
+      "fixture": "S4-14.json",
+      "labels": [
+        "pasta_pull",
+        "wok_toss",
+        "perfect_serve",
+        "tail_100",
+        "tail_500"
+      ],
+      "lookupWeight": 1,
+      "payoutTenths": 5000,
+      "selectionLabel": "tail_500",
+      "sourceBookId": 664344
+    },
+    "S4-15": {
+      "eventCount": 110,
+      "eventHash": "aefe4fd0744dc9878e61583852a5aca40d78582f066c657affceb0ad757c7cda",
+      "fixture": "S4-15.json",
+      "labels": [
+        "sauce_finish_flight",
+        "wok_toss",
+        "perfect_serve",
+        "tail_100",
+        "tail_500",
+        "tail_1000"
+      ],
+      "lookupWeight": 1,
+      "payoutTenths": 10020,
+      "selectionLabel": "tail_1000",
+      "sourceBookId": 556736
+    },
+    "S4-16": {
+      "eventCount": 97,
+      "eventHash": "24562734dc9552a5ead93e7e549705a7f42d7fa2812422c165cb3a8530e2481c",
+      "fixture": "S4-16.json",
+      "labels": [
+        "wok_toss",
+        "perfect_serve",
+        "tail_100",
+        "tail_500",
+        "tail_1000",
+        "tail_5000"
+      ],
+      "lookupWeight": 1,
+      "payoutTenths": 50694,
+      "selectionLabel": "tail_5000",
+      "sourceBookId": 580592
+    },
+    "S4-17": {
+      "eventCount": 140,
+      "eventHash": "8ed20b44dd31016201b269072904a98144a6989af1626115ee6121e7a8e0e8ad",
+      "fixture": "S4-17.json",
+      "labels": [
+        "sauce_finish_flight",
+        "perfect_serve",
+        "tail_100",
+        "tail_500",
+        "tail_1000",
+        "tail_5000",
+        "exact_max"
+      ],
+      "lookupWeight": 225180,
+      "payoutTenths": 200000,
+      "selectionLabel": "exact_max",
+      "sourceBookId": 749900
+    }
+  },
+  "exporter": "chef-battle-stage4-representatives-v1",
+  "releaseStatus": "PRODUCTION_SOURCE_VERIFIED",
+  "schemaVersion": 1,
+  "selection": "minimum (payoutTenths,eventCount,bookId); median uses distance first; positive weights only",
+  "source": {
+    "acceptedRejectedCounts": {
+      "non_profit": {
+        "accepted": 150000,
+        "attempted": 158073,
+        "rejected": 8073
+      },
+      "profitable_base": {
+        "accepted": 250000,
+        "attempted": 250190,
+        "rejected": 190
+      },
+      "showdown_max": {
+        "accepted": 100,
+        "attempted": 100,
+        "rejected": 0
+      },
+      "showdown_regular": {
+        "accepted": 199900,
+        "attempted": 204384,
+        "rejected": 4484
+      },
+      "zero": {
+        "accepted": 150000,
+        "attempted": 150000,
+        "rejected": 0
+      }
+    },
+    "booksSha256": "4524d5841409ceb83e7dba4f5f01ccd5e73c6234f7e7fc3a1323093ae9a9887b",
+    "configSha256": "dcc1783e60f5cecd5ed02191cab058101718ffa73800aaf35426fc48501189ad",
+    "exporterPythonSourceFileCount": 117,
+    "exporterPythonSourceSha256": "3cc201b02d28dffadf8791dde5653d763a4893d0f24dc83c7aeeb84e2386638c",
+    "generationCommand": [
+      "math/chef_battle/run.py",
+      "--profile",
+      "production",
+      "--stage",
+      "generate",
+      "--threads",
+      "10",
+      "--batch-size",
+      "1000",
+      "--optimizer-seed",
+      "0",
+      "--library-dir",
+      "/Users/danyil/Desktop/Slot Game/.sdk/math-sdk/games/chef-battle-production-a-78c83614c2dd4f01a630e8de1ac42693/library"
+    ],
+    "generationSeedRanges": [
+      [
+        "zero",
+        273887085722089,
+        273887085872088
+      ],
+      [
+        "non_profit",
+        129130523821396,
+        129130523971395
+      ],
+      [
+        "profitable_base",
+        134945290694756,
+        134945290944755
+      ],
+      [
+        "showdown_regular",
+        158493975535744,
+        158493975735643
+      ],
+      [
+        "showdown_max",
+        153417441221249,
+        153417441221348
+      ]
+    ],
+    "generationSourceRevision": {
+      "headCommit": "eee81bf77617828d50b1148a462e011c9a96fb83",
+      "pythonSourceFileCount": 117,
+      "pythonSourceSha256": "3cc201b02d28dffadf8791dde5653d763a4893d0f24dc83c7aeeb84e2386638c"
+    },
+    "lookupSha256": "192ddf3430487ee8bc9b3c4db4e8fe968c7df903ab88681db575bdedc6bdb1f6",
+    "manifestSha256": "5a4a0f591731ceb497cf16f7d5d269889bd2b9d02bf3127bb0fa5f4a9060a422",
+    "optimizationCommand": [
+      "math/chef_battle/run.py",
+      "--profile",
+      "production",
+      "--stage",
+      "optimize",
+      "--rust-threads",
+      "10",
+      "--optimizer-seed",
+      "0",
+      "--library-dir",
+      "/Users/danyil/Desktop/Slot Game/.sdk/math-sdk/games/chef-battle-production-a-78c83614c2dd4f01a630e8de1ac42693/library",
+      "--rejection-investigations",
+      "/Users/danyil/Desktop/Slot Game/.worktrees/stage-4-production-math/.sdk/task10-production-a-rejection-investigation-uebry_kb/request.json"
+    ],
+    "optimizationSourceRevision": {
+      "headCommit": "eee81bf77617828d50b1148a462e011c9a96fb83",
+      "pythonSourceFileCount": 117,
+      "pythonSourceSha256": "3cc201b02d28dffadf8791dde5653d763a4893d0f24dc83c7aeeb84e2386638c"
+    },
+    "optimizerIdentity": {
+      "algorithmVersion": "chef-battle-constrained-refinement-v1",
+      "referenceOptimizerIdentity": {
+        "algorithmVersion": "chef-battle-optimizer-v1",
+        "baseSdkCommit": "e2f0db9cf04cb3b0202fa3747ce173a46ac0aa7f",
+        "cargoLockSha256": "198a5e711a15a764a0dea680ab4154bdd5266364671e4d339e4ab49d010cf4b8",
+        "cargoVersion": "cargo 1.90.0 (840b83a10 2025-07-30)",
+        "effectiveSourceSha256": "74ef17d53d94415a7d9a00de6f2632bc0fae38921eeaa58c42f77172ee3f61e0",
+        "llvmVersion": "20.1.8",
+        "logicalShards": 10,
+        "patchSha256": "dbfc7fd8de7d358ec620a9c539fb4d973d934464f3c359cda775ab4e3192f069",
+        "rustcCommitHash": "1159e78c4747b02ef996e55082b704c09b970588",
+        "rustcHost": "aarch64-apple-darwin",
+        "rustcVersion": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+        "seed": 0
+      },
+      "refinerIdentity": {
+        "algorithmVersion": "chef-battle-refiner-v1",
+        "featureSchemaSha256": "92459752ac657e9f310ea37650430302ed46d32ad3c51ffa79098e154c63cd1f",
+        "integerization": "equal-group-half-up-support-v1",
+        "limits": {
+          "max_groups": 65536,
+          "max_nonzero": 16000000,
+          "max_payload_bytes": 268435456,
+          "max_rows": 256,
+          "max_seconds": 1800,
+          "solver_seconds": 300
+        },
+        "objective": "group-total-variation-v1",
+        "runtimeContentSha256": "474278e83e02e4455debb115d36b79c080459fa3cde2f4c4c0e57e9cc3a905bd",
+        "scales": [
+          1125899906842624,
+          72057594037927936,
+          4611686018427387904
+        ],
+        "solver": {
+          "dualTolerance": "1/1000000000",
+          "maxIterations": 100000,
+          "method": "highs-ds",
+          "primalTolerance": "1/1000000000",
+          "threads": 1
+        },
+        "sourceSha256": "a8b299b666e311a4890d9c4956a31b919525e5c2711b582671050beb8cfd518b"
+      }
+    },
+    "ownerSha256": "77f99ee99fb637c52e5b9b98ade108a37688199780dd9a00e7af088c09469306",
+    "producerRunId": "20260915T094100775406Z-refine-0825826217bc",
+    "profile": "production",
+    "referenceLookupSha256": "7786b8ddab41ae4e564854c86f6c794e0092cd00d2ef3ce57e54f12c2a6b2c2e",
+    "refinementCommand": [
+      "/Users/danyil/Desktop/Slot Game/.sdk/math-sdk/env/bin/python",
+      "-m",
+      "chef_battle.production_math.refinement_pipeline",
+      "--profile",
+      "production",
+      "--library-dir",
+      "/Users/danyil/Desktop/Slot Game/.sdk/math-sdk/games/chef-battle-production-a-78c83614c2dd4f01a630e8de1ac42693/library",
+      "--refinement-output-dir",
+      "/Users/danyil/Desktop/Slot Game/.sdk/math-sdk/games/chef-battle-production-a-refined-78c83614c2dd4f01a630e8de1ac42693/library",
+      "--refinement-runtime-manifest",
+      "/Users/danyil/Desktop/Slot Game/.worktrees/stage-4-production-math/.sdk/task10-refinement-runtime-8y3zgptp/runtime-manifest.json",
+      "--refinement-runtime-sha256",
+      "a9453c8667e7500a240e22db30b522f4036256dd511d4049c43eae312af6d7cb"
+    ],
+    "refinementEvidenceSha256": "6b6954b8058296110d2f7388d9d23be4b0b6a3a37d03fefe0e5a6c175f26e32f",
+    "refinementSourceRevision": {
+      "headCommit": "eee81bf77617828d50b1148a462e011c9a96fb83",
+      "pythonSourceFileCount": 117,
+      "pythonSourceSha256": "3cc201b02d28dffadf8791dde5653d763a4893d0f24dc83c7aeeb84e2386638c"
+    },
+    "sdkCommit": "e2f0db9cf04cb3b0202fa3747ce173a46ac0aa7f"
+  },
+  "weightedShowdownMedianTenths": 450
+}

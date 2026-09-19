@@ -40,3 +40,6 @@ storybook-static
 **/src/game/assets/**/*.json
 packages/**/assets/**/*.json
 packages/shared-assets/src/**/*.json
+
+# Preserve canonical Stage 4 generated fixture bytes
+apps/chef-battle/src/lib/books/production/stage4/**/*.json
