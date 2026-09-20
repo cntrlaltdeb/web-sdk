@@ -46,7 +46,7 @@ describe('Purchased Showdown mechanical Math/Web parity (NON_RELEASE)', () => {
 	beforeEach(resetProductionState);
 	afterEach(cleanup);
 
-	it('binds twelve accepted Books and753 Python checkpoints without production weights', () => {
+	it('binds twelve accepted Books and 753 Python checkpoints without production weights', () => {
 		expect(index.classification).toBe('NON_RELEASE_MECHANICAL_FIXTURES');
 		expect(index.productionWeights).toBe(false);
 		expect(Object.keys(index.books).sort()).toEqual([...NAMES].sort());
