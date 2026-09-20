@@ -1,0 +1,993 @@
+[
+	{
+		"betAtomicUnits": 1000000,
+		"id": "purchased-m0-mysteryTasting-partial-e0001",
+		"maxWinAtomicUnits": 20000000000,
+		"meters": { "chinese": 0, "french": 0, "italian": 0 },
+		"mode": "mysteryTasting",
+		"paidBetAtomicUnits": 250000000,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 1,
+		"type": "roundStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 0,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			}
+		],
+		"crownPotAtomicUnits": 25000000,
+		"currentFreeSpin": 0,
+		"entryKind": "purchase",
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0002",
+		"meters": { "chinese": 50, "french": 100, "italian": 50 },
+		"remainingFreeSpins": 12,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 2,
+		"stars": { "chinese": 0, "french": 1, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "kitchenShowdownStart",
+		"winner": null
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 1,
+		"id": "purchased-m0-mysteryTasting-partial-e0003",
+		"remainingFreeSpins": 11,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 3,
+		"type": "freeSpinStart"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-service-01-french",
+				"perfectServeUnits": 0,
+				"readySequence": 2
+			}
+		],
+		"id": "purchased-m0-mysteryTasting-partial-e0004",
+		"phase": "opening",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 4,
+		"source": "initialReady",
+		"type": "serviceQueueOpened",
+		"windowIndex": 1
+	},
+	{
+		"activeSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"appliedSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0005",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-mysteryTasting-partial-service-01-french",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 5,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"courseId": "purchased-m0-mysteryTasting-partial-course-02",
+		"courseValueAtomicUnits": 10000000,
+		"crownPotAfterAtomicUnits": 35000000,
+		"id": "purchased-m0-mysteryTasting-partial-e0006",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 6,
+		"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0007",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 7,
+		"sourceEventId": "purchased-m0-mysteryTasting-partial-e0006",
+		"stars": { "chinese": 0, "french": 2, "italian": 0 },
+		"starsAfter": 2,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"entryIds": ["purchased-m0-mysteryTasting-partial-service-01-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-mysteryTasting-partial-e0008",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 8,
+		"type": "serviceQueueClosed",
+		"windowIndex": 1
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 0,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 35000000,
+		"currentFreeSpin": 1,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0009",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 11,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 9,
+		"stars": { "chinese": 0, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": null
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "croissant", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "croissant", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["croissant", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 2,
+		"id": "purchased-m0-mysteryTasting-partial-e0010",
+		"remainingFreeSpins": 10,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 10,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0011",
+		"payoutAtomicUnits": 500000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sauceFlightMultiplier": 1,
+		"sequence": 11,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 500000,
+		"creditAtomicUnits": 500000,
+		"id": "purchased-m0-mysteryTasting-partial-e0012",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 12,
+		"sourceEventId": "purchased-m0-mysteryTasting-partial-e0011",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 100,
+		"id": "purchased-m0-mysteryTasting-partial-e0013",
+		"meterAfter": 100,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 13,
+		"serviceQueueEntryId": "purchased-m0-mysteryTasting-partial-service-02-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "purchased-m0-mysteryTasting-partial-e0014",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 14,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "purchased-m0-mysteryTasting-partial-e0015",
+		"index": 1,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 15,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-mysteryTasting-partial-e0016",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 16,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-service-02-french",
+				"perfectServeUnits": 0,
+				"readySequence": 13
+			}
+		],
+		"id": "purchased-m0-mysteryTasting-partial-e0017",
+		"phase": null,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 17,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 2
+	},
+	{
+		"activeSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"appliedSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0018",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-mysteryTasting-partial-service-02-french",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 18,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"courseId": "purchased-m0-mysteryTasting-partial-course-03",
+		"courseValueAtomicUnits": 10000000,
+		"crownPotAfterAtomicUnits": 45000000,
+		"id": "purchased-m0-mysteryTasting-partial-e0019",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 19,
+		"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0020",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 20,
+		"sourceEventId": "purchased-m0-mysteryTasting-partial-e0019",
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"starsAfter": 3,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"id": "purchased-m0-mysteryTasting-partial-e0021",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 21,
+		"sourceEventId": "purchased-m0-mysteryTasting-partial-e0020",
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"type": "kitchenWinnerLocked",
+		"winner": "french"
+	},
+	{
+		"entryIds": ["purchased-m0-mysteryTasting-partial-service-02-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-mysteryTasting-partial-e0022",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 22,
+		"type": "serviceQueueClosed",
+		"windowIndex": 2
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 2,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0023",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 10,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 23,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 3,
+		"id": "purchased-m0-mysteryTasting-partial-e0024",
+		"remainingFreeSpins": 9,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 24,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 3,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0025",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 9,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 25,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 4,
+		"id": "purchased-m0-mysteryTasting-partial-e0026",
+		"remainingFreeSpins": 8,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 26,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 4,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0027",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 8,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 27,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 5,
+		"id": "purchased-m0-mysteryTasting-partial-e0028",
+		"remainingFreeSpins": 7,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 28,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 5,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0029",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 7,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 29,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 6,
+		"id": "purchased-m0-mysteryTasting-partial-e0030",
+		"remainingFreeSpins": 6,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 30,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 6,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0031",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 6,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 31,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 7,
+		"id": "purchased-m0-mysteryTasting-partial-e0032",
+		"remainingFreeSpins": 5,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 32,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 7,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0033",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 5,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 33,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 8,
+		"id": "purchased-m0-mysteryTasting-partial-e0034",
+		"remainingFreeSpins": 4,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 34,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 8,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0035",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 4,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 35,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 9,
+		"id": "purchased-m0-mysteryTasting-partial-e0036",
+		"remainingFreeSpins": 3,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 36,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 9,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0037",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 3,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 37,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 10,
+		"id": "purchased-m0-mysteryTasting-partial-e0038",
+		"remainingFreeSpins": 2,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 38,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 10,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0039",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 2,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 39,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 11,
+		"id": "purchased-m0-mysteryTasting-partial-e0040",
+		"remainingFreeSpins": 1,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 40,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 11,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0041",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 1,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 41,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 12,
+		"id": "purchased-m0-mysteryTasting-partial-e0042",
+		"remainingFreeSpins": 0,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 42,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-starter-1",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-purchase-start-french",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-02",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0005",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-mysteryTasting-partial-course-03",
+				"sourceEventId": "purchased-m0-mysteryTasting-partial-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 45000000,
+		"currentFreeSpin": 12,
+		"headliner": "french",
+		"id": "purchased-m0-mysteryTasting-partial-e0043",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 0,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 43,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"bonusBankAtomicUnits": 500000,
+		"crownPayoutAtomicUnits": 90000000,
+		"crownPotAtomicUnits": 45000000,
+		"finalWinAtomicUnits": 90500000,
+		"id": "purchased-m0-mysteryTasting-partial-e0044",
+		"multiplier": 2,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 44,
+		"type": "kitchenCrownReveal",
+		"winner": "french"
+	},
+	{
+		"id": "purchased-m0-mysteryTasting-partial-e0045",
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 45,
+		"totalWinAtomicUnits": 90500000,
+		"type": "setTotalWin"
+	},
+	{
+		"id": "purchased-m0-mysteryTasting-partial-e0046",
+		"payoutAtomicUnits": 90500000,
+		"roundId": "purchased-m0-mysteryTasting-partial",
+		"sequence": 46,
+		"type": "finalWin"
+	}
+]

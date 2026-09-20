@@ -1,0 +1,2248 @@
+[
+	{
+		"betAtomicUnits": 1000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0001",
+		"maxWinAtomicUnits": 20000000000,
+		"meters": { "chinese": 0, "french": 0, "italian": 0 },
+		"mode": "kitchenShowdown",
+		"paidBetAtomicUnits": 100000000,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 1,
+		"type": "roundStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 0,
+		"completedCourses": [],
+		"crownPotAtomicUnits": 0,
+		"currentFreeSpin": 0,
+		"entryKind": "purchase",
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0002",
+		"meters": { "chinese": 50, "french": 50, "italian": 50 },
+		"remainingFreeSpins": 10,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 2,
+		"stars": { "chinese": 0, "french": 0, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "kitchenShowdownStart",
+		"winner": null
+	},
+	{
+		"board": [
+			["croissant", "croissant", "croissant", "croissant", "croissant"],
+			["croissant", "croissant", "croissant", "croissant", "croissant"],
+			["croissant", "croissant", "croissant", "croissant", "croissant"],
+			["croissant", "croissant", "croissant", "croissant", "croissant"],
+			["croissant", "croissant", "croissant", "croissant", "croissant"]
+		],
+		"currentFreeSpin": 1,
+		"id": "purchased-m0-kitchenShowdown-cap-e0003",
+		"remainingFreeSpins": 9,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 3,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 75000000,
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0004",
+		"payoutAtomicUnits": 75000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 },
+			{ "reel": 2, "row": 1 },
+			{ "reel": 2, "row": 2 },
+			{ "reel": 2, "row": 3 },
+			{ "reel": 2, "row": 4 },
+			{ "reel": 3, "row": 0 },
+			{ "reel": 3, "row": 1 },
+			{ "reel": 3, "row": 2 },
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 0 },
+			{ "reel": 4, "row": 1 },
+			{ "reel": 4, "row": 2 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sauceFlightMultiplier": 1,
+		"sequence": 4,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 75000000,
+		"creditAtomicUnits": 75000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0005",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 5,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0004",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 50,
+		"chef": "french",
+		"earnedCharge": 250,
+		"id": "purchased-m0-kitchenShowdown-cap-e0006",
+		"meterAfter": 100,
+		"overflowCharge": 200,
+		"perfectServeUnitsAfter": 200,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 6,
+		"serviceQueueEntryId": "purchased-m0-kitchenShowdown-cap-service-01-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0007",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 },
+			{ "reel": 2, "row": 1 },
+			{ "reel": 2, "row": 2 },
+			{ "reel": 2, "row": 3 },
+			{ "reel": 2, "row": 4 },
+			{ "reel": 3, "row": 0 },
+			{ "reel": 3, "row": 1 },
+			{ "reel": 3, "row": 2 },
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 0 },
+			{ "reel": 4, "row": 1 },
+			{ "reel": 4, "row": 2 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 7,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0008",
+		"index": 1,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 8,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0009",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 9,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-service-01-french",
+				"perfectServeUnits": 200,
+				"readySequence": 6
+			}
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0010",
+		"phase": null,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 10,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 1
+	},
+	{
+		"activeSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0011",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-kitchenShowdown-cap-service-01-french",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 11,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"consumedOverflowUnits": 200,
+		"id": "purchased-m0-kitchenShowdown-cap-e0012",
+		"payoutAtomicUnits": 5000000,
+		"queueEntryId": "purchased-m0-kitchenShowdown-cap-service-01-french",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 12,
+		"type": "perfectServeAward"
+	},
+	{
+		"balanceAfterAtomicUnits": 80000000,
+		"creditAtomicUnits": 5000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0013",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 13,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0012",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			}
+		],
+		"courseId": "purchased-m0-kitchenShowdown-cap-course-01",
+		"courseValueAtomicUnits": 50000000,
+		"crownPotAfterAtomicUnits": 50000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0014",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 14,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0015",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 15,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0014",
+		"stars": { "chinese": 0, "french": 1, "italian": 0 },
+		"starsAfter": 1,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"entryIds": ["purchased-m0-kitchenShowdown-cap-service-01-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0016",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 16,
+		"type": "serviceQueueClosed",
+		"windowIndex": 1
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 80000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			}
+		],
+		"crownPotAtomicUnits": 50000000,
+		"currentFreeSpin": 1,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0017",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 9,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 17,
+		"stars": { "chinese": 0, "french": 1, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": null
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "croissant", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "croissant", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["croissant", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 2,
+		"id": "purchased-m0-kitchenShowdown-cap-e0018",
+		"remainingFreeSpins": 8,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 18,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0019",
+		"payoutAtomicUnits": 3000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sauceFlightMultiplier": 6,
+		"sequence": 19,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 83000000,
+		"creditAtomicUnits": 3000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0020",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 20,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0019",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 100,
+		"id": "purchased-m0-kitchenShowdown-cap-e0021",
+		"meterAfter": 100,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 21,
+		"serviceQueueEntryId": "purchased-m0-kitchenShowdown-cap-service-02-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0022",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 22,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0023",
+		"index": 2,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 23,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0024",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 24,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-service-02-french",
+				"perfectServeUnits": 0,
+				"readySequence": 21
+			}
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0025",
+		"phase": null,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 25,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 2
+	},
+	{
+		"activeSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0026",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-kitchenShowdown-cap-service-02-french",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 26,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			}
+		],
+		"courseId": "purchased-m0-kitchenShowdown-cap-course-02",
+		"courseValueAtomicUnits": 50000000,
+		"crownPotAfterAtomicUnits": 100000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0027",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 27,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0028",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 28,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0027",
+		"stars": { "chinese": 0, "french": 2, "italian": 0 },
+		"starsAfter": 2,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"entryIds": ["purchased-m0-kitchenShowdown-cap-service-02-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0029",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 29,
+		"type": "serviceQueueClosed",
+		"windowIndex": 2
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 83000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			}
+		],
+		"crownPotAtomicUnits": 100000000,
+		"currentFreeSpin": 2,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0030",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 8,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 30,
+		"stars": { "chinese": 0, "french": 2, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": null
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "croissant", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "croissant", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["croissant", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 3,
+		"id": "purchased-m0-kitchenShowdown-cap-e0031",
+		"remainingFreeSpins": 7,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 31,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0032",
+		"payoutAtomicUnits": 3000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sauceFlightMultiplier": 6,
+		"sequence": 32,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 86000000,
+		"creditAtomicUnits": 3000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0033",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 33,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0032",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 100,
+		"id": "purchased-m0-kitchenShowdown-cap-e0034",
+		"meterAfter": 100,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 34,
+		"serviceQueueEntryId": "purchased-m0-kitchenShowdown-cap-service-03-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0035",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 35,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0036",
+		"index": 3,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 36,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0037",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 37,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-service-03-french",
+				"perfectServeUnits": 0,
+				"readySequence": 34
+			}
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0038",
+		"phase": null,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 38,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 3
+	},
+	{
+		"activeSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0039",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-kitchenShowdown-cap-service-03-french",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 39,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			}
+		],
+		"courseId": "purchased-m0-kitchenShowdown-cap-course-03",
+		"courseValueAtomicUnits": 50000000,
+		"crownPotAfterAtomicUnits": 150000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0040",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 40,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0041",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 41,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0040",
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"starsAfter": 3,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0042",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 42,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0041",
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"type": "kitchenWinnerLocked",
+		"winner": "french"
+	},
+	{
+		"entryIds": ["purchased-m0-kitchenShowdown-cap-service-03-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0043",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 43,
+		"type": "serviceQueueClosed",
+		"windowIndex": 3
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 86000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			}
+		],
+		"crownPotAtomicUnits": 150000000,
+		"currentFreeSpin": 3,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0044",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 7,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 44,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "croissant", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "croissant", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["croissant", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 4,
+		"id": "purchased-m0-kitchenShowdown-cap-e0045",
+		"remainingFreeSpins": 6,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 45,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0046",
+		"payoutAtomicUnits": 3000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sauceFlightMultiplier": 6,
+		"sequence": 46,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 89000000,
+		"creditAtomicUnits": 3000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0047",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 47,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0046",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 100,
+		"id": "purchased-m0-kitchenShowdown-cap-e0048",
+		"meterAfter": 100,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 48,
+		"serviceQueueEntryId": "purchased-m0-kitchenShowdown-cap-service-04-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0049",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 49,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0050",
+		"index": 4,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 50,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0051",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 51,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-service-04-french",
+				"perfectServeUnits": 0,
+				"readySequence": 48
+			}
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0052",
+		"phase": null,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 52,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 4
+	},
+	{
+		"activeSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0053",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-kitchenShowdown-cap-service-04-french",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 53,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			}
+		],
+		"courseId": "purchased-m0-kitchenShowdown-cap-course-04",
+		"courseValueAtomicUnits": 25000000,
+		"crownPotAfterAtomicUnits": 175000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0054",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 54,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+		"type": "crownCourseComplete"
+	},
+	{
+		"entryIds": ["purchased-m0-kitchenShowdown-cap-service-04-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0055",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 55,
+		"type": "serviceQueueClosed",
+		"windowIndex": 4
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 89000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			}
+		],
+		"crownPotAtomicUnits": 175000000,
+		"currentFreeSpin": 4,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0056",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 6,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 56,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "croissant", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "croissant", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["croissant", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 5,
+		"id": "purchased-m0-kitchenShowdown-cap-e0057",
+		"remainingFreeSpins": 5,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 57,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0058",
+		"payoutAtomicUnits": 3000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sauceFlightMultiplier": 6,
+		"sequence": 58,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 92000000,
+		"creditAtomicUnits": 3000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0059",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 59,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0058",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 100,
+		"id": "purchased-m0-kitchenShowdown-cap-e0060",
+		"meterAfter": 100,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 60,
+		"serviceQueueEntryId": "purchased-m0-kitchenShowdown-cap-service-05-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0061",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 61,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0062",
+		"index": 5,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 62,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0063",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 63,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-service-05-french",
+				"perfectServeUnits": 0,
+				"readySequence": 60
+			}
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0064",
+		"phase": null,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 64,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 5
+	},
+	{
+		"activeSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0065",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-kitchenShowdown-cap-service-05-french",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 65,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"courseId": "purchased-m0-kitchenShowdown-cap-course-05",
+		"courseValueAtomicUnits": 10000000,
+		"crownPotAfterAtomicUnits": 185000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0066",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 66,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+		"type": "crownCourseComplete"
+	},
+	{
+		"entryIds": ["purchased-m0-kitchenShowdown-cap-service-05-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0067",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 67,
+		"type": "serviceQueueClosed",
+		"windowIndex": 5
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 92000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 185000000,
+		"currentFreeSpin": 5,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0068",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 5,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 68,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "croissant", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "croissant", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["croissant", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 6,
+		"id": "purchased-m0-kitchenShowdown-cap-e0069",
+		"remainingFreeSpins": 4,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 69,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 2, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0070",
+		"payoutAtomicUnits": 3000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sauceFlightMultiplier": 6,
+		"sequence": 70,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 95000000,
+		"creditAtomicUnits": 3000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0071",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 71,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0070",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 100,
+		"id": "purchased-m0-kitchenShowdown-cap-e0072",
+		"meterAfter": 100,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 72,
+		"serviceQueueEntryId": "purchased-m0-kitchenShowdown-cap-service-06-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0073",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 73,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0074",
+		"index": 6,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 74,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0075",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 75,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-service-06-french",
+				"perfectServeUnits": 0,
+				"readySequence": 72
+			}
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0076",
+		"phase": null,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 76,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 6
+	},
+	{
+		"activeSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0077",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-kitchenShowdown-cap-service-06-french",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 77,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-06",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0077",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"courseId": "purchased-m0-kitchenShowdown-cap-course-06",
+		"courseValueAtomicUnits": 10000000,
+		"crownPotAfterAtomicUnits": 195000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0078",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 78,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0077",
+		"type": "crownCourseComplete"
+	},
+	{
+		"entryIds": ["purchased-m0-kitchenShowdown-cap-service-06-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0079",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 79,
+		"type": "serviceQueueClosed",
+		"windowIndex": 6
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 95000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-06",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0077",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 195000000,
+		"currentFreeSpin": 6,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0080",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 4,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 80,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "croissant", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "croissant", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["croissant", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 7,
+		"id": "purchased-m0-kitchenShowdown-cap-e0081",
+		"remainingFreeSpins": 3,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 81,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0082",
+		"payoutAtomicUnits": 2500000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sauceFlightMultiplier": 5,
+		"sequence": 82,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 97500000,
+		"creditAtomicUnits": 2500000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0083",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 83,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0082",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 100,
+		"id": "purchased-m0-kitchenShowdown-cap-e0084",
+		"meterAfter": 100,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 84,
+		"serviceQueueEntryId": "purchased-m0-kitchenShowdown-cap-service-07-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0085",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 85,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0086",
+		"index": 7,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 86,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0087",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 87,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-service-07-french",
+				"perfectServeUnits": 0,
+				"readySequence": 84
+			}
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0088",
+		"phase": null,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 88,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 7
+	},
+	{
+		"activeSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0089",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-kitchenShowdown-cap-service-07-french",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 89,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-06",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0077",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-07",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0089",
+				"valueAtomicUnits": 3000000
+			}
+		],
+		"courseId": "purchased-m0-kitchenShowdown-cap-course-07",
+		"courseValueAtomicUnits": 3000000,
+		"crownPotAfterAtomicUnits": 198000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0090",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 90,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0089",
+		"type": "crownCourseComplete"
+	},
+	{
+		"entryIds": ["purchased-m0-kitchenShowdown-cap-service-07-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0091",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 91,
+		"type": "serviceQueueClosed",
+		"windowIndex": 7
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 97500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-06",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0077",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-07",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0089",
+				"valueAtomicUnits": 3000000
+			}
+		],
+		"crownPotAtomicUnits": 198000000,
+		"currentFreeSpin": 7,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0092",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 3,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 92,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "croissant", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "croissant", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["croissant", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 8,
+		"id": "purchased-m0-kitchenShowdown-cap-e0093",
+		"remainingFreeSpins": 2,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 93,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0094",
+		"payoutAtomicUnits": 2500000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sauceFlightMultiplier": 5,
+		"sequence": 94,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 100000000,
+		"creditAtomicUnits": 2500000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0095",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 95,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0094",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 100,
+		"id": "purchased-m0-kitchenShowdown-cap-e0096",
+		"meterAfter": 100,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 96,
+		"serviceQueueEntryId": "purchased-m0-kitchenShowdown-cap-service-08-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0097",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 97,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0098",
+		"index": 8,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 98,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0099",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 99,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-service-08-french",
+				"perfectServeUnits": 0,
+				"readySequence": 96
+			}
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0100",
+		"phase": null,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 100,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 8
+	},
+	{
+		"activeSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"chef": "french",
+		"id": "purchased-m0-kitchenShowdown-cap-e0101",
+		"meterAfter": 0,
+		"queueEntryId": "purchased-m0-kitchenShowdown-cap-service-08-french",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 101,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-06",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0077",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-07",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0089",
+				"valueAtomicUnits": 3000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-08",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0101",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"courseId": "purchased-m0-kitchenShowdown-cap-course-08",
+		"courseValueAtomicUnits": 1000000,
+		"crownPotAfterAtomicUnits": 199000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0102",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 102,
+		"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0101",
+		"type": "crownCourseComplete"
+	},
+	{
+		"entryIds": ["purchased-m0-kitchenShowdown-cap-service-08-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "purchased-m0-kitchenShowdown-cap-e0103",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 103,
+		"type": "serviceQueueClosed",
+		"windowIndex": 8
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 100000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-06",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0077",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-07",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0089",
+				"valueAtomicUnits": 3000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-08",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0101",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 199000000,
+		"currentFreeSpin": 8,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0104",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 2,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 104,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 9,
+		"id": "purchased-m0-kitchenShowdown-cap-e0105",
+		"remainingFreeSpins": 1,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 105,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 100000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-06",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0077",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-07",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0089",
+				"valueAtomicUnits": 3000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-08",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0101",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 199000000,
+		"currentFreeSpin": 9,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0106",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 1,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 106,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 10,
+		"id": "purchased-m0-kitchenShowdown-cap-e0107",
+		"remainingFreeSpins": 0,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 107,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 2, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 0, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 0 } }
+		],
+		"bonusBankAtomicUnits": 100000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-01",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0011",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-02",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0026",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-03",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0039",
+				"valueAtomicUnits": 50000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-04",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0053",
+				"valueAtomicUnits": 25000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-05",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0065",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-06",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0077",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-07",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0089",
+				"valueAtomicUnits": 3000000
+			},
+			{
+				"chef": "french",
+				"id": "purchased-m0-kitchenShowdown-cap-course-08",
+				"sourceEventId": "purchased-m0-kitchenShowdown-cap-e0101",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 199000000,
+		"currentFreeSpin": 10,
+		"headliner": null,
+		"id": "purchased-m0-kitchenShowdown-cap-e0108",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 0,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 108,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"bonusBankAtomicUnits": 100000000,
+		"crownPayoutAtomicUnits": 19900000000,
+		"crownPotAtomicUnits": 199000000,
+		"finalWinAtomicUnits": 20000000000,
+		"id": "purchased-m0-kitchenShowdown-cap-e0109",
+		"multiplier": 100,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 109,
+		"type": "kitchenCrownReveal",
+		"winner": "french"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0110",
+		"maxWinAtomicUnits": 20000000000,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 110,
+		"type": "maxWinReached"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0111",
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 111,
+		"totalWinAtomicUnits": 20000000000,
+		"type": "setTotalWin"
+	},
+	{
+		"id": "purchased-m0-kitchenShowdown-cap-e0112",
+		"payoutAtomicUnits": 20000000000,
+		"roundId": "purchased-m0-kitchenShowdown-cap",
+		"sequence": 112,
+		"type": "finalWin"
+	}
+]
