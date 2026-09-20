@@ -1,0 +1,342 @@
+[
+	{
+		"betAtomicUnits": 1000000,
+		"id": "signature-m0-high-chinese-e0001",
+		"maxWinAtomicUnits": 20000000000,
+		"meters": { "chinese": 100, "french": 0, "italian": 0 },
+		"mode": "signatureSpin",
+		"paidBetAtomicUnits": 50000000,
+		"roundId": "signature-m0-high-chinese",
+		"selectedChef": "chinese",
+		"sequence": 1,
+		"type": "roundStart"
+	},
+	{
+		"board": [
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"]
+		],
+		"id": "signature-m0-high-chinese-e0002",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 2,
+		"type": "revealBoard"
+	},
+	{
+		"board": [
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"]
+		],
+		"entries": [
+			{
+				"chef": "chinese",
+				"id": "signature-m0-high-chinese-service-01-chinese",
+				"perfectServeUnits": 0,
+				"readySequence": 1
+			}
+		],
+		"id": "signature-m0-high-chinese-e0003",
+		"phase": "opening",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 3,
+		"source": "initialReady",
+		"type": "serviceQueueOpened",
+		"windowIndex": 1
+	},
+	{
+		"boardAfter": [
+			["xiaolongbao", "xiaolongbao", "frog_legs", "frog_legs", "frog_legs"],
+			["xiaolongbao", "xiaolongbao", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"]
+		],
+		"chef": "chinese",
+		"id": "signature-m0-high-chinese-e0004",
+		"meterAfter": 0,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 }
+		],
+		"queueEntryId": "signature-m0-high-chinese-service-01-chinese",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 4,
+		"targetSymbol": "xiaolongbao",
+		"type": "wokToss"
+	},
+	{
+		"entryIds": ["signature-m0-high-chinese-service-01-chinese"],
+		"finalBoard": [
+			["xiaolongbao", "xiaolongbao", "frog_legs", "frog_legs", "frog_legs"],
+			["xiaolongbao", "xiaolongbao", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"]
+		],
+		"id": "signature-m0-high-chinese-e0005",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 5,
+		"type": "serviceQueueClosed",
+		"windowIndex": 1
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 70000000,
+		"chef": "french",
+		"id": "signature-m0-high-chinese-e0006",
+		"payoutAtomicUnits": 70000000,
+		"positions": [
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 },
+			{ "reel": 2, "row": 1 },
+			{ "reel": 2, "row": 2 },
+			{ "reel": 2, "row": 3 },
+			{ "reel": 2, "row": 4 },
+			{ "reel": 3, "row": 0 },
+			{ "reel": 3, "row": 1 },
+			{ "reel": 3, "row": 2 },
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 0 },
+			{ "reel": 4, "row": 1 },
+			{ "reel": 4, "row": 2 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "signature-m0-high-chinese",
+		"sauceFlightMultiplier": 1,
+		"sequence": 6,
+		"symbol": "frog_legs",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 70000000,
+		"creditAtomicUnits": 70000000,
+		"id": "signature-m0-high-chinese-e0007",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 7,
+		"sourceEventId": "signature-m0-high-chinese-e0006",
+		"type": "roundWinUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 210,
+		"id": "signature-m0-high-chinese-e0008",
+		"meterAfter": 100,
+		"overflowCharge": 110,
+		"perfectServeUnitsAfter": 110,
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 8,
+		"serviceQueueEntryId": "signature-m0-high-chinese-service-02-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "signature-m0-high-chinese-e0009",
+		"positions": [
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 },
+			{ "reel": 2, "row": 1 },
+			{ "reel": 2, "row": 2 },
+			{ "reel": 2, "row": 3 },
+			{ "reel": 2, "row": 4 },
+			{ "reel": 3, "row": 0 },
+			{ "reel": 3, "row": 1 },
+			{ "reel": 3, "row": 2 },
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 0 },
+			{ "reel": 4, "row": 1 },
+			{ "reel": 4, "row": 2 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 9,
+		"type": "removeSymbols"
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 300000,
+		"chef": "chinese",
+		"id": "signature-m0-high-chinese-e0010",
+		"payoutAtomicUnits": 300000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 }
+		],
+		"roundId": "signature-m0-high-chinese",
+		"sauceFlightMultiplier": 1,
+		"sequence": 10,
+		"symbol": "xiaolongbao",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 70300000,
+		"creditAtomicUnits": 300000,
+		"id": "signature-m0-high-chinese-e0011",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 11,
+		"sourceEventId": "signature-m0-high-chinese-e0010",
+		"type": "roundWinUpdate"
+	},
+	{
+		"appliedCharge": 40,
+		"chef": "chinese",
+		"earnedCharge": 40,
+		"id": "signature-m0-high-chinese-e0012",
+		"meterAfter": 40,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 12,
+		"serviceQueueEntryId": null,
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "signature-m0-high-chinese-e0013",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 }
+		],
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 13,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "signature-m0-high-chinese-e0014",
+		"index": 1,
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 14,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "signature-m0-high-chinese-e0015",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 15,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "signature-m0-high-chinese-service-02-french",
+				"perfectServeUnits": 110,
+				"readySequence": 8
+			}
+		],
+		"id": "signature-m0-high-chinese-e0016",
+		"phase": null,
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 16,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 2
+	},
+	{
+		"activeSpots": [
+			{ "boost": 1, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 1, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } }
+		],
+		"chef": "french",
+		"id": "signature-m0-high-chinese-e0017",
+		"meterAfter": 0,
+		"queueEntryId": "signature-m0-high-chinese-service-02-french",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 17,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"consumedOverflowUnits": 110,
+		"id": "signature-m0-high-chinese-e0018",
+		"payoutAtomicUnits": 2800000,
+		"queueEntryId": "signature-m0-high-chinese-service-02-french",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 18,
+		"type": "perfectServeAward"
+	},
+	{
+		"balanceAfterAtomicUnits": 73100000,
+		"creditAtomicUnits": 2800000,
+		"id": "signature-m0-high-chinese-e0019",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 19,
+		"sourceEventId": "signature-m0-high-chinese-e0018",
+		"type": "roundWinUpdate"
+	},
+	{
+		"entryIds": ["signature-m0-high-chinese-service-02-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "signature-m0-high-chinese-e0020",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 20,
+		"type": "serviceQueueClosed",
+		"windowIndex": 2
+	},
+	{
+		"id": "signature-m0-high-chinese-e0021",
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 21,
+		"totalWinAtomicUnits": 73100000,
+		"type": "setTotalWin"
+	},
+	{
+		"id": "signature-m0-high-chinese-e0022",
+		"payoutAtomicUnits": 73100000,
+		"roundId": "signature-m0-high-chinese",
+		"sequence": 22,
+		"type": "finalWin"
+	}
+]

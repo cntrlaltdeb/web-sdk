@@ -1,0 +1,304 @@
+[
+	{
+		"betAtomicUnits": 1000000,
+		"id": "signature-m0-high-french-e0001",
+		"maxWinAtomicUnits": 20000000000,
+		"meters": { "chinese": 0, "french": 100, "italian": 0 },
+		"mode": "signatureSpin",
+		"paidBetAtomicUnits": 50000000,
+		"roundId": "signature-m0-high-french",
+		"selectedChef": "french",
+		"sequence": 1,
+		"type": "roundStart"
+	},
+	{
+		"board": [
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"]
+		],
+		"id": "signature-m0-high-french-e0002",
+		"roundId": "signature-m0-high-french",
+		"sequence": 2,
+		"type": "revealBoard"
+	},
+	{
+		"board": [
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "signature-m0-high-french-service-01-french",
+				"perfectServeUnits": 0,
+				"readySequence": 1
+			}
+		],
+		"id": "signature-m0-high-french-e0003",
+		"phase": "opening",
+		"roundId": "signature-m0-high-french",
+		"sequence": 3,
+		"source": "initialReady",
+		"type": "serviceQueueOpened",
+		"windowIndex": 1
+	},
+	{
+		"activeSpots": [
+			{ "boost": 9, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 9, "position": { "reel": 1, "row": 4 } },
+			{ "boost": 9, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 2, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 9, "position": { "reel": 4, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 9, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 9, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 9, "position": { "reel": 1, "row": 4 } },
+			{ "boost": 9, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 2, "position": { "reel": 3, "row": 4 } }
+		],
+		"chef": "french",
+		"id": "signature-m0-high-french-e0004",
+		"meterAfter": 0,
+		"queueEntryId": "signature-m0-high-french-service-01-french",
+		"roundId": "signature-m0-high-french",
+		"sequence": 4,
+		"type": "sauceFinish"
+	},
+	{
+		"entryIds": ["signature-m0-high-french-service-01-french"],
+		"finalBoard": [
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"],
+			["frog_legs", "frog_legs", "frog_legs", "frog_legs", "frog_legs"]
+		],
+		"id": "signature-m0-high-french-e0005",
+		"roundId": "signature-m0-high-french",
+		"sequence": 5,
+		"type": "serviceQueueClosed",
+		"windowIndex": 1
+	},
+	{
+		"appliedSauceSpots": [
+			{ "boost": 9, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 9, "position": { "reel": 1, "row": 4 } },
+			{ "boost": 9, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 2, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 9, "position": { "reel": 4, "row": 0 } }
+		],
+		"basePayoutAtomicUnits": 250000000,
+		"chef": "french",
+		"id": "signature-m0-high-french-e0006",
+		"payoutAtomicUnits": 9750000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 },
+			{ "reel": 2, "row": 1 },
+			{ "reel": 2, "row": 2 },
+			{ "reel": 2, "row": 3 },
+			{ "reel": 2, "row": 4 },
+			{ "reel": 3, "row": 0 },
+			{ "reel": 3, "row": 1 },
+			{ "reel": 3, "row": 2 },
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 0 },
+			{ "reel": 4, "row": 1 },
+			{ "reel": 4, "row": 2 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "signature-m0-high-french",
+		"sauceFlightMultiplier": 39,
+		"sequence": 6,
+		"symbol": "frog_legs",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 9750000000,
+		"creditAtomicUnits": 9750000000,
+		"id": "signature-m0-high-french-e0007",
+		"roundId": "signature-m0-high-french",
+		"sequence": 7,
+		"sourceEventId": "signature-m0-high-french-e0006",
+		"type": "roundWinUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 250,
+		"id": "signature-m0-high-french-e0008",
+		"meterAfter": 100,
+		"overflowCharge": 150,
+		"perfectServeUnitsAfter": 150,
+		"roundId": "signature-m0-high-french",
+		"sequence": 8,
+		"serviceQueueEntryId": "signature-m0-high-french-service-02-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "signature-m0-high-french-e0009",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 },
+			{ "reel": 2, "row": 1 },
+			{ "reel": 2, "row": 2 },
+			{ "reel": 2, "row": 3 },
+			{ "reel": 2, "row": 4 },
+			{ "reel": 3, "row": 0 },
+			{ "reel": 3, "row": 1 },
+			{ "reel": 3, "row": 2 },
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 0 },
+			{ "reel": 4, "row": 1 },
+			{ "reel": 4, "row": 2 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "signature-m0-high-french",
+		"sequence": 9,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "signature-m0-high-french-e0010",
+		"index": 1,
+		"roundId": "signature-m0-high-french",
+		"sequence": 10,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "signature-m0-high-french-e0011",
+		"roundId": "signature-m0-high-french",
+		"sequence": 11,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "signature-m0-high-french-service-02-french",
+				"perfectServeUnits": 150,
+				"readySequence": 8
+			}
+		],
+		"id": "signature-m0-high-french-e0012",
+		"phase": null,
+		"roundId": "signature-m0-high-french",
+		"sequence": 12,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 2
+	},
+	{
+		"activeSpots": [
+			{ "boost": 1, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } }
+		],
+		"appliedSpots": [
+			{ "boost": 1, "position": { "reel": 0, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 1, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } }
+		],
+		"chef": "french",
+		"id": "signature-m0-high-french-e0013",
+		"meterAfter": 0,
+		"queueEntryId": "signature-m0-high-french-service-02-french",
+		"roundId": "signature-m0-high-french",
+		"sequence": 13,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"consumedOverflowUnits": 150,
+		"id": "signature-m0-high-french-e0014",
+		"payoutAtomicUnits": 3800000,
+		"queueEntryId": "signature-m0-high-french-service-02-french",
+		"roundId": "signature-m0-high-french",
+		"sequence": 14,
+		"type": "perfectServeAward"
+	},
+	{
+		"balanceAfterAtomicUnits": 9753800000,
+		"creditAtomicUnits": 3800000,
+		"id": "signature-m0-high-french-e0015",
+		"roundId": "signature-m0-high-french",
+		"sequence": 15,
+		"sourceEventId": "signature-m0-high-french-e0014",
+		"type": "roundWinUpdate"
+	},
+	{
+		"entryIds": ["signature-m0-high-french-service-02-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "signature-m0-high-french-e0016",
+		"roundId": "signature-m0-high-french",
+		"sequence": 16,
+		"type": "serviceQueueClosed",
+		"windowIndex": 2
+	},
+	{
+		"id": "signature-m0-high-french-e0017",
+		"roundId": "signature-m0-high-french",
+		"sequence": 17,
+		"totalWinAtomicUnits": 9753800000,
+		"type": "setTotalWin"
+	},
+	{
+		"id": "signature-m0-high-french-e0018",
+		"payoutAtomicUnits": 9753800000,
+		"roundId": "signature-m0-high-french",
+		"sequence": 18,
+		"type": "finalWin"
+	}
+]
