@@ -33,6 +33,7 @@ const NAMES = [
 ] as const;
 const SPEEDS = ['normal', 'fast', 'instant'] as const;
 
+/** Load a fresh local copy of an approved NON_RELEASE mechanical fixture. */
 function literalBook(name: (typeof NAMES)[number]): unknown {
 	const raw = literalBooks[`./__fixtures__/signature-mechanical/books/${name}.json`];
 	if (typeof raw !== 'string') throw new Error(`Missing literal fixture: ${name}`);
