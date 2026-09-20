@@ -1,0 +1,1794 @@
+[
+	{
+		"betAtomicUnits": 1000000,
+		"id": "mystery-profit-c10-different-winner-e0001",
+		"maxWinAtomicUnits": 20000000000,
+		"meters": { "chinese": 0, "french": 0, "italian": 0 },
+		"mode": "mysteryTasting",
+		"paidBetAtomicUnits": 250000000,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 1,
+		"type": "roundStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 0,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 0,
+		"entryKind": "purchase",
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0002",
+		"meters": { "chinese": 50, "french": 100, "italian": 50 },
+		"remainingFreeSpins": 12,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 2,
+		"stars": { "chinese": 0, "french": 1, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "kitchenShowdownStart",
+		"winner": null
+	},
+	{
+		"board": [
+			["pizza", "xiaolongbao", "pizza", "xiaolongbao", "pizza"],
+			["xiaolongbao", "pizza", "xiaolongbao", "pizza", "xiaolongbao"],
+			["pizza", "xiaolongbao", "pizza", "xiaolongbao", "pizza"],
+			["xiaolongbao", "pizza", "xiaolongbao", "pizza", "xiaolongbao"],
+			["pizza", "xiaolongbao", "pizza", "xiaolongbao", "pizza"]
+		],
+		"currentFreeSpin": 1,
+		"id": "mystery-profit-c10-different-winner-e0003",
+		"remainingFreeSpins": 11,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 3,
+		"type": "freeSpinStart"
+	},
+	{
+		"board": [
+			["pizza", "xiaolongbao", "pizza", "xiaolongbao", "pizza"],
+			["xiaolongbao", "pizza", "xiaolongbao", "pizza", "xiaolongbao"],
+			["pizza", "xiaolongbao", "pizza", "xiaolongbao", "pizza"],
+			["xiaolongbao", "pizza", "xiaolongbao", "pizza", "xiaolongbao"],
+			["pizza", "xiaolongbao", "pizza", "xiaolongbao", "pizza"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-service-01-french",
+				"perfectServeUnits": 0,
+				"readySequence": 2
+			}
+		],
+		"id": "mystery-profit-c10-different-winner-e0004",
+		"phase": "opening",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 4,
+		"source": "initialReady",
+		"type": "serviceQueueOpened",
+		"windowIndex": 1
+	},
+	{
+		"activeSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"appliedSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"chef": "french",
+		"id": "mystery-profit-c10-different-winner-e0005",
+		"meterAfter": 0,
+		"queueEntryId": "mystery-profit-c10-different-winner-service-01-french",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 5,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"courseId": "mystery-profit-c10-different-winner-course-02",
+		"courseValueAtomicUnits": 5000000,
+		"crownPotAfterAtomicUnits": 10000000,
+		"id": "mystery-profit-c10-different-winner-e0006",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 6,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "french",
+		"id": "mystery-profit-c10-different-winner-e0007",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 7,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0006",
+		"stars": { "chinese": 0, "french": 2, "italian": 0 },
+		"starsAfter": 2,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"entryIds": ["mystery-profit-c10-different-winner-service-01-french"],
+		"finalBoard": [
+			["pizza", "xiaolongbao", "pizza", "xiaolongbao", "pizza"],
+			["xiaolongbao", "pizza", "xiaolongbao", "pizza", "xiaolongbao"],
+			["pizza", "xiaolongbao", "pizza", "xiaolongbao", "pizza"],
+			["xiaolongbao", "pizza", "xiaolongbao", "pizza", "xiaolongbao"],
+			["pizza", "xiaolongbao", "pizza", "xiaolongbao", "pizza"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0008",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 8,
+		"type": "serviceQueueClosed",
+		"windowIndex": 1
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 0,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 10000000,
+		"currentFreeSpin": 1,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0009",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 11,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 9,
+		"stars": { "chinese": 0, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": null
+	},
+	{
+		"board": [
+			["peking_duck", "peking_duck", "peking_duck", "peking_duck", "peking_duck"],
+			["peking_duck", "peking_duck", "peking_duck", "peking_duck", "peking_duck"],
+			["peking_duck", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 2,
+		"id": "mystery-profit-c10-different-winner-e0010",
+		"remainingFreeSpins": 10,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 10,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 10000000,
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0011",
+		"payoutAtomicUnits": 10000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sauceFlightMultiplier": 1,
+		"sequence": 11,
+		"symbol": "peking_duck",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 10000000,
+		"creditAtomicUnits": 10000000,
+		"id": "mystery-profit-c10-different-winner-e0012",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 12,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0011",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 50,
+		"chef": "chinese",
+		"earnedCharge": 110,
+		"id": "mystery-profit-c10-different-winner-e0013",
+		"meterAfter": 100,
+		"overflowCharge": 60,
+		"perfectServeUnitsAfter": 60,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 13,
+		"serviceQueueEntryId": "mystery-profit-c10-different-winner-service-02-chinese",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0014",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 14,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0015",
+		"index": 1,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 15,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0016",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 16,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"entries": [
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-service-02-chinese",
+				"perfectServeUnits": 60,
+				"readySequence": 13
+			}
+		],
+		"id": "mystery-profit-c10-different-winner-e0017",
+		"phase": null,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 17,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 2
+	},
+	{
+		"boardAfter": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "kung_pao_chicken", "kung_pao_chicken"],
+			["pizza", "croissant", "pizza", "kung_pao_chicken", "kung_pao_chicken"]
+		],
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0018",
+		"meterAfter": 0,
+		"positions": [
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"queueEntryId": "mystery-profit-c10-different-winner-service-02-chinese",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 18,
+		"targetSymbol": "kung_pao_chicken",
+		"type": "wokToss"
+	},
+	{
+		"chef": "chinese",
+		"consumedOverflowUnits": 60,
+		"id": "mystery-profit-c10-different-winner-e0019",
+		"payoutAtomicUnits": 1500000,
+		"queueEntryId": "mystery-profit-c10-different-winner-service-02-chinese",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 19,
+		"type": "perfectServeAward"
+	},
+	{
+		"balanceAfterAtomicUnits": 11500000,
+		"creditAtomicUnits": 1500000,
+		"id": "mystery-profit-c10-different-winner-e0020",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 20,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0019",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"chef": "chinese",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"courseId": "mystery-profit-c10-different-winner-course-03",
+		"courseValueAtomicUnits": 10000000,
+		"crownPotAfterAtomicUnits": 20000000,
+		"id": "mystery-profit-c10-different-winner-e0021",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 21,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0022",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 22,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0021",
+		"stars": { "chinese": 1, "french": 2, "italian": 0 },
+		"starsAfter": 1,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"entryIds": ["mystery-profit-c10-different-winner-service-02-chinese"],
+		"finalBoard": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "kung_pao_chicken", "kung_pao_chicken"],
+			["pizza", "croissant", "pizza", "kung_pao_chicken", "kung_pao_chicken"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0023",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 23,
+		"type": "serviceQueueClosed",
+		"windowIndex": 2
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0024",
+		"payoutAtomicUnits": 500000,
+		"positions": [
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sauceFlightMultiplier": 1,
+		"sequence": 24,
+		"symbol": "kung_pao_chicken",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 12000000,
+		"creditAtomicUnits": 500000,
+		"id": "mystery-profit-c10-different-winner-e0025",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 25,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0024",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 40,
+		"chef": "chinese",
+		"earnedCharge": 40,
+		"id": "mystery-profit-c10-different-winner-e0026",
+		"meterAfter": 40,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 26,
+		"serviceQueueEntryId": null,
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0027",
+		"positions": [
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 27,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0028",
+		"index": 2,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 28,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0029",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 29,
+		"type": "boardSettled"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 12000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			}
+		],
+		"crownPotAtomicUnits": 20000000,
+		"currentFreeSpin": 2,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0030",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 10,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 30,
+		"stars": { "chinese": 1, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": null
+	},
+	{
+		"board": [
+			["xiaolongbao", "xiaolongbao", "xiaolongbao", "xiaolongbao", "xiaolongbao"],
+			["xiaolongbao", "xiaolongbao", "xiaolongbao", "xiaolongbao", "xiaolongbao"],
+			["xiaolongbao", "xiaolongbao", "xiaolongbao", "xiaolongbao", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 3,
+		"id": "mystery-profit-c10-different-winner-e0031",
+		"remainingFreeSpins": 9,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 31,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 6000000,
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0032",
+		"payoutAtomicUnits": 6000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 },
+			{ "reel": 2, "row": 1 },
+			{ "reel": 2, "row": 2 },
+			{ "reel": 2, "row": 3 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sauceFlightMultiplier": 1,
+		"sequence": 32,
+		"symbol": "xiaolongbao",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 18000000,
+		"creditAtomicUnits": 6000000,
+		"id": "mystery-profit-c10-different-winner-e0033",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 33,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0032",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 60,
+		"chef": "chinese",
+		"earnedCharge": 140,
+		"id": "mystery-profit-c10-different-winner-e0034",
+		"meterAfter": 100,
+		"overflowCharge": 80,
+		"perfectServeUnitsAfter": 80,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 34,
+		"serviceQueueEntryId": "mystery-profit-c10-different-winner-service-03-chinese",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0035",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 },
+			{ "reel": 2, "row": 1 },
+			{ "reel": 2, "row": 2 },
+			{ "reel": 2, "row": 3 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 35,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0036",
+		"index": 3,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 36,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0037",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 37,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"entries": [
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-service-03-chinese",
+				"perfectServeUnits": 80,
+				"readySequence": 34
+			}
+		],
+		"id": "mystery-profit-c10-different-winner-e0038",
+		"phase": null,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 38,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 3
+	},
+	{
+		"boardAfter": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "kung_pao_chicken", "kung_pao_chicken"],
+			["pizza", "croissant", "pizza", "kung_pao_chicken", "kung_pao_chicken"]
+		],
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0039",
+		"meterAfter": 0,
+		"positions": [
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"queueEntryId": "mystery-profit-c10-different-winner-service-03-chinese",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 39,
+		"targetSymbol": "kung_pao_chicken",
+		"type": "wokToss"
+	},
+	{
+		"chef": "chinese",
+		"consumedOverflowUnits": 80,
+		"id": "mystery-profit-c10-different-winner-e0040",
+		"payoutAtomicUnits": 2000000,
+		"queueEntryId": "mystery-profit-c10-different-winner-service-03-chinese",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 40,
+		"type": "perfectServeAward"
+	},
+	{
+		"balanceAfterAtomicUnits": 20000000,
+		"creditAtomicUnits": 2000000,
+		"id": "mystery-profit-c10-different-winner-e0041",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 41,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0040",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"chef": "chinese",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"courseId": "mystery-profit-c10-different-winner-course-04",
+		"courseValueAtomicUnits": 5000000,
+		"crownPotAfterAtomicUnits": 25000000,
+		"id": "mystery-profit-c10-different-winner-e0042",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 42,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0043",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 43,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0042",
+		"stars": { "chinese": 2, "french": 2, "italian": 0 },
+		"starsAfter": 2,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"entryIds": ["mystery-profit-c10-different-winner-service-03-chinese"],
+		"finalBoard": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "kung_pao_chicken", "kung_pao_chicken"],
+			["pizza", "croissant", "pizza", "kung_pao_chicken", "kung_pao_chicken"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0044",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 44,
+		"type": "serviceQueueClosed",
+		"windowIndex": 3
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0045",
+		"payoutAtomicUnits": 500000,
+		"positions": [
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sauceFlightMultiplier": 1,
+		"sequence": 45,
+		"symbol": "kung_pao_chicken",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 20500000,
+		"creditAtomicUnits": 500000,
+		"id": "mystery-profit-c10-different-winner-e0046",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 46,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0045",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 40,
+		"chef": "chinese",
+		"earnedCharge": 40,
+		"id": "mystery-profit-c10-different-winner-e0047",
+		"meterAfter": 40,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 47,
+		"serviceQueueEntryId": null,
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0048",
+		"positions": [
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 48,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0049",
+		"index": 4,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 49,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0050",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 50,
+		"type": "boardSettled"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 20500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 25000000,
+		"currentFreeSpin": 3,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0051",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 9,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 51,
+		"stars": { "chinese": 2, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": null
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "peking_duck", "peking_duck", "peking_duck", "peking_duck"],
+			["peking_duck", "peking_duck", "peking_duck", "peking_duck", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 4,
+		"id": "mystery-profit-c10-different-winner-e0052",
+		"remainingFreeSpins": 8,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 52,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 6000000,
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0053",
+		"payoutAtomicUnits": 6000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sauceFlightMultiplier": 1,
+		"sequence": 53,
+		"symbol": "peking_duck",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 26500000,
+		"creditAtomicUnits": 6000000,
+		"id": "mystery-profit-c10-different-winner-e0054",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 54,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0053",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 60,
+		"chef": "chinese",
+		"earnedCharge": 180,
+		"id": "mystery-profit-c10-different-winner-e0055",
+		"meterAfter": 100,
+		"overflowCharge": 120,
+		"perfectServeUnitsAfter": 120,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 55,
+		"serviceQueueEntryId": "mystery-profit-c10-different-winner-service-04-chinese",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0056",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 56,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0057",
+		"index": 5,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 57,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0058",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 58,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"entries": [
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-service-04-chinese",
+				"perfectServeUnits": 120,
+				"readySequence": 55
+			}
+		],
+		"id": "mystery-profit-c10-different-winner-e0059",
+		"phase": null,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 59,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 4
+	},
+	{
+		"boardAfter": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "kung_pao_chicken", "kung_pao_chicken"],
+			["pizza", "croissant", "pizza", "kung_pao_chicken", "kung_pao_chicken"]
+		],
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0060",
+		"meterAfter": 0,
+		"positions": [
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"queueEntryId": "mystery-profit-c10-different-winner-service-04-chinese",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 60,
+		"targetSymbol": "kung_pao_chicken",
+		"type": "wokToss"
+	},
+	{
+		"chef": "chinese",
+		"consumedOverflowUnits": 120,
+		"id": "mystery-profit-c10-different-winner-e0061",
+		"payoutAtomicUnits": 3000000,
+		"queueEntryId": "mystery-profit-c10-different-winner-service-04-chinese",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 61,
+		"type": "perfectServeAward"
+	},
+	{
+		"balanceAfterAtomicUnits": 29500000,
+		"creditAtomicUnits": 3000000,
+		"id": "mystery-profit-c10-different-winner-e0062",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 62,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0061",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"chef": "chinese",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"courseId": "mystery-profit-c10-different-winner-course-05",
+		"courseValueAtomicUnits": 5000000,
+		"crownPotAfterAtomicUnits": 30000000,
+		"id": "mystery-profit-c10-different-winner-e0063",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 63,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0064",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 64,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0063",
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"starsAfter": 3,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0065",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 65,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0064",
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"type": "kitchenWinnerLocked",
+		"winner": "chinese"
+	},
+	{
+		"entryIds": ["mystery-profit-c10-different-winner-service-04-chinese"],
+		"finalBoard": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "kung_pao_chicken", "kung_pao_chicken"],
+			["pizza", "croissant", "pizza", "kung_pao_chicken", "kung_pao_chicken"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0066",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 66,
+		"type": "serviceQueueClosed",
+		"windowIndex": 4
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "chinese",
+		"id": "mystery-profit-c10-different-winner-e0067",
+		"payoutAtomicUnits": 500000,
+		"positions": [
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sauceFlightMultiplier": 1,
+		"sequence": 67,
+		"symbol": "kung_pao_chicken",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 30000000,
+		"creditAtomicUnits": 500000,
+		"id": "mystery-profit-c10-different-winner-e0068",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 68,
+		"sourceEventId": "mystery-profit-c10-different-winner-e0067",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 40,
+		"chef": "chinese",
+		"earnedCharge": 40,
+		"id": "mystery-profit-c10-different-winner-e0069",
+		"meterAfter": 40,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 69,
+		"serviceQueueEntryId": null,
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0070",
+		"positions": [
+			{ "reel": 3, "row": 3 },
+			{ "reel": 3, "row": 4 },
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 70,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0071",
+		"index": 6,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 71,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"id": "mystery-profit-c10-different-winner-e0072",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 72,
+		"type": "boardSettled"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 30000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 30000000,
+		"currentFreeSpin": 4,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0073",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 8,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 73,
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "chinese"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 5,
+		"id": "mystery-profit-c10-different-winner-e0074",
+		"remainingFreeSpins": 7,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 74,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 30000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 30000000,
+		"currentFreeSpin": 5,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0075",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 7,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 75,
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "chinese"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 6,
+		"id": "mystery-profit-c10-different-winner-e0076",
+		"remainingFreeSpins": 6,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 76,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 30000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 30000000,
+		"currentFreeSpin": 6,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0077",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 6,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 77,
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "chinese"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 7,
+		"id": "mystery-profit-c10-different-winner-e0078",
+		"remainingFreeSpins": 5,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 78,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 30000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 30000000,
+		"currentFreeSpin": 7,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0079",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 5,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 79,
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "chinese"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 8,
+		"id": "mystery-profit-c10-different-winner-e0080",
+		"remainingFreeSpins": 4,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 80,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 30000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 30000000,
+		"currentFreeSpin": 8,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0081",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 4,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 81,
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "chinese"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 9,
+		"id": "mystery-profit-c10-different-winner-e0082",
+		"remainingFreeSpins": 3,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 82,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 30000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 30000000,
+		"currentFreeSpin": 9,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0083",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 3,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 83,
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "chinese"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 10,
+		"id": "mystery-profit-c10-different-winner-e0084",
+		"remainingFreeSpins": 2,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 84,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 30000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 30000000,
+		"currentFreeSpin": 10,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0085",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 2,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 85,
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "chinese"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 11,
+		"id": "mystery-profit-c10-different-winner-e0086",
+		"remainingFreeSpins": 1,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 86,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 30000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 30000000,
+		"currentFreeSpin": 11,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0087",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 1,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 87,
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "chinese"
+	},
+	{
+		"board": [
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"],
+			["croissant", "pizza", "croissant", "pizza", "croissant"],
+			["pizza", "croissant", "pizza", "croissant", "pizza"]
+		],
+		"currentFreeSpin": 12,
+		"id": "mystery-profit-c10-different-winner-e0088",
+		"remainingFreeSpins": 0,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 88,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 4, "row": 0 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 1 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 2 } }
+		],
+		"bonusBankAtomicUnits": 30000000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-starter-1",
+				"sourceEventId": "mystery-profit-c10-different-winner-purchase-start-french",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-profit-c10-different-winner-course-02",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0005",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-03",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0018",
+				"valueAtomicUnits": 10000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-04",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0039",
+				"valueAtomicUnits": 5000000
+			},
+			{
+				"chef": "chinese",
+				"id": "mystery-profit-c10-different-winner-course-05",
+				"sourceEventId": "mystery-profit-c10-different-winner-e0060",
+				"valueAtomicUnits": 5000000
+			}
+		],
+		"crownPotAtomicUnits": 30000000,
+		"currentFreeSpin": 12,
+		"headliner": "french",
+		"id": "mystery-profit-c10-different-winner-e0089",
+		"meters": { "chinese": 40, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 0,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 89,
+		"stars": { "chinese": 3, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "chinese"
+	},
+	{
+		"bonusBankAtomicUnits": 30000000,
+		"crownPayoutAtomicUnits": 300000000,
+		"crownPotAtomicUnits": 30000000,
+		"finalWinAtomicUnits": 330000000,
+		"id": "mystery-profit-c10-different-winner-e0090",
+		"multiplier": 10,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 90,
+		"type": "kitchenCrownReveal",
+		"winner": "chinese"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0091",
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 91,
+		"totalWinAtomicUnits": 330000000,
+		"type": "setTotalWin"
+	},
+	{
+		"id": "mystery-profit-c10-different-winner-e0092",
+		"payoutAtomicUnits": 330000000,
+		"roundId": "mystery-profit-c10-different-winner",
+		"sequence": 92,
+		"type": "finalWin"
+	}
+]

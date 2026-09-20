@@ -1,0 +1,1135 @@
+[
+	{
+		"betAtomicUnits": 1000000,
+		"id": "grand-small-c3-italian-e0001",
+		"maxWinAtomicUnits": 20000000000,
+		"meters": { "chinese": 0, "french": 0, "italian": 0 },
+		"mode": "grandShowdown",
+		"paidBetAtomicUnits": 250000000,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 1,
+		"type": "roundStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 0,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 3000000,
+		"currentFreeSpin": 0,
+		"entryKind": "purchase",
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0002",
+		"meters": { "chinese": 75, "french": 75, "italian": 75 },
+		"remainingFreeSpins": 10,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 2,
+		"stars": { "chinese": 1, "french": 1, "italian": 1 },
+		"totalFreeSpins": 10,
+		"type": "kitchenShowdownStart",
+		"winner": null
+	},
+	{
+		"board": [
+			[
+				"pasta_carbonara",
+				"pasta_carbonara",
+				"pasta_carbonara",
+				"pasta_carbonara",
+				"pasta_carbonara"
+			],
+			["pasta_carbonara", "pasta_carbonara", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 1,
+		"id": "grand-small-c3-italian-e0003",
+		"remainingFreeSpins": 9,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 3,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 3500000,
+		"chef": "italian",
+		"id": "grand-small-c3-italian-e0004",
+		"payoutAtomicUnits": 3500000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 }
+		],
+		"roundId": "grand-small-c3-italian",
+		"sauceFlightMultiplier": 1,
+		"sequence": 4,
+		"symbol": "pasta_carbonara",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 3500000,
+		"creditAtomicUnits": 3500000,
+		"id": "grand-small-c3-italian-e0005",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 5,
+		"sourceEventId": "grand-small-c3-italian-e0004",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 25,
+		"chef": "italian",
+		"earnedCharge": 70,
+		"id": "grand-small-c3-italian-e0006",
+		"meterAfter": 100,
+		"overflowCharge": 45,
+		"perfectServeUnitsAfter": 45,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 6,
+		"serviceQueueEntryId": "grand-small-c3-italian-service-01-italian",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "grand-small-c3-italian-e0007",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 }
+		],
+		"roundId": "grand-small-c3-italian",
+		"sequence": 7,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "grand-small-c3-italian-e0008",
+		"index": 1,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 8,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"id": "grand-small-c3-italian-e0009",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 9,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"entries": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-service-01-italian",
+				"perfectServeUnits": 45,
+				"readySequence": 6
+			}
+		],
+		"id": "grand-small-c3-italian-e0010",
+		"phase": null,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 10,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 1
+	},
+	{
+		"boardAfter": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "pasta_wild", "pasta_wild"]
+		],
+		"chef": "italian",
+		"id": "grand-small-c3-italian-e0011",
+		"meterAfter": 0,
+		"positions": [
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"queueEntryId": "grand-small-c3-italian-service-01-italian",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 11,
+		"type": "pastaPull"
+	},
+	{
+		"chef": "italian",
+		"consumedOverflowUnits": 45,
+		"id": "grand-small-c3-italian-e0012",
+		"payoutAtomicUnits": 1200000,
+		"queueEntryId": "grand-small-c3-italian-service-01-italian",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 12,
+		"type": "perfectServeAward"
+	},
+	{
+		"balanceAfterAtomicUnits": 4700000,
+		"creditAtomicUnits": 1200000,
+		"id": "grand-small-c3-italian-e0013",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 13,
+		"sourceEventId": "grand-small-c3-italian-e0012",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"chef": "italian",
+		"completedCoursesAfter": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"courseId": "grand-small-c3-italian-course-04",
+		"courseValueAtomicUnits": 1000000,
+		"crownPotAfterAtomicUnits": 4000000,
+		"id": "grand-small-c3-italian-e0014",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 14,
+		"sourceEventId": "grand-small-c3-italian-e0011",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "italian",
+		"id": "grand-small-c3-italian-e0015",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 15,
+		"sourceEventId": "grand-small-c3-italian-e0014",
+		"stars": { "chinese": 1, "french": 1, "italian": 2 },
+		"starsAfter": 2,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"entryIds": ["grand-small-c3-italian-service-01-italian"],
+		"finalBoard": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "pasta_wild", "pasta_wild"]
+		],
+		"id": "grand-small-c3-italian-e0016",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 16,
+		"type": "serviceQueueClosed",
+		"windowIndex": 1
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 4700000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 4000000,
+		"currentFreeSpin": 1,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0017",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 9,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 17,
+		"stars": { "chinese": 1, "french": 1, "italian": 2 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": null
+	},
+	{
+		"board": [
+			["tiramisu", "tiramisu", "tiramisu", "tiramisu", "tiramisu"],
+			["tiramisu", "tiramisu", "tiramisu", "tiramisu", "tiramisu"],
+			["tiramisu", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 2,
+		"id": "grand-small-c3-italian-e0018",
+		"remainingFreeSpins": 8,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 18,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 6000000,
+		"chef": "italian",
+		"id": "grand-small-c3-italian-e0019",
+		"payoutAtomicUnits": 6000000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "grand-small-c3-italian",
+		"sauceFlightMultiplier": 1,
+		"sequence": 19,
+		"symbol": "tiramisu",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 10700000,
+		"creditAtomicUnits": 6000000,
+		"id": "grand-small-c3-italian-e0020",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 20,
+		"sourceEventId": "grand-small-c3-italian-e0019",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "italian",
+		"earnedCharge": 110,
+		"id": "grand-small-c3-italian-e0021",
+		"meterAfter": 100,
+		"overflowCharge": 10,
+		"perfectServeUnitsAfter": 10,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 21,
+		"serviceQueueEntryId": "grand-small-c3-italian-service-02-italian",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "grand-small-c3-italian-e0022",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 0, "row": 2 },
+			{ "reel": 0, "row": 3 },
+			{ "reel": 0, "row": 4 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 1, "row": 2 },
+			{ "reel": 1, "row": 3 },
+			{ "reel": 1, "row": 4 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "grand-small-c3-italian",
+		"sequence": 22,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "grand-small-c3-italian-e0023",
+		"index": 2,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 23,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"id": "grand-small-c3-italian-e0024",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 24,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"entries": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-service-02-italian",
+				"perfectServeUnits": 10,
+				"readySequence": 21
+			}
+		],
+		"id": "grand-small-c3-italian-e0025",
+		"phase": null,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 25,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 2
+	},
+	{
+		"boardAfter": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "pasta_wild", "pasta_wild"]
+		],
+		"chef": "italian",
+		"id": "grand-small-c3-italian-e0026",
+		"meterAfter": 0,
+		"positions": [
+			{ "reel": 4, "row": 3 },
+			{ "reel": 4, "row": 4 }
+		],
+		"queueEntryId": "grand-small-c3-italian-service-02-italian",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 26,
+		"type": "pastaPull"
+	},
+	{
+		"chef": "italian",
+		"consumedOverflowUnits": 10,
+		"id": "grand-small-c3-italian-e0027",
+		"payoutAtomicUnits": 300000,
+		"queueEntryId": "grand-small-c3-italian-service-02-italian",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 27,
+		"type": "perfectServeAward"
+	},
+	{
+		"balanceAfterAtomicUnits": 11000000,
+		"creditAtomicUnits": 300000,
+		"id": "grand-small-c3-italian-e0028",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 28,
+		"sourceEventId": "grand-small-c3-italian-e0027",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"chef": "italian",
+		"completedCoursesAfter": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"courseId": "grand-small-c3-italian-course-05",
+		"courseValueAtomicUnits": 1000000,
+		"crownPotAfterAtomicUnits": 5000000,
+		"id": "grand-small-c3-italian-e0029",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 29,
+		"sourceEventId": "grand-small-c3-italian-e0026",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "italian",
+		"id": "grand-small-c3-italian-e0030",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 30,
+		"sourceEventId": "grand-small-c3-italian-e0029",
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"starsAfter": 3,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"id": "grand-small-c3-italian-e0031",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 31,
+		"sourceEventId": "grand-small-c3-italian-e0030",
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"type": "kitchenWinnerLocked",
+		"winner": "italian"
+	},
+	{
+		"entryIds": ["grand-small-c3-italian-service-02-italian"],
+		"finalBoard": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "pasta_wild", "pasta_wild"]
+		],
+		"id": "grand-small-c3-italian-e0032",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 32,
+		"type": "serviceQueueClosed",
+		"windowIndex": 2
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 11000000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 2,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0033",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 8,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 33,
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "italian"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 3,
+		"id": "grand-small-c3-italian-e0034",
+		"remainingFreeSpins": 7,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 34,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 11000000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 3,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0035",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 7,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 35,
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "italian"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 4,
+		"id": "grand-small-c3-italian-e0036",
+		"remainingFreeSpins": 6,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 36,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 11000000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 4,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0037",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 6,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 37,
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "italian"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 5,
+		"id": "grand-small-c3-italian-e0038",
+		"remainingFreeSpins": 5,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 38,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 11000000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 5,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0039",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 5,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 39,
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "italian"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 6,
+		"id": "grand-small-c3-italian-e0040",
+		"remainingFreeSpins": 4,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 40,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 11000000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 6,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0041",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 4,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 41,
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "italian"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 7,
+		"id": "grand-small-c3-italian-e0042",
+		"remainingFreeSpins": 3,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 42,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 11000000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 7,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0043",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 3,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 43,
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "italian"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 8,
+		"id": "grand-small-c3-italian-e0044",
+		"remainingFreeSpins": 2,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 44,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 11000000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 8,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0045",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 2,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 45,
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "italian"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 9,
+		"id": "grand-small-c3-italian-e0046",
+		"remainingFreeSpins": 1,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 46,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 11000000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 9,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0047",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 1,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 47,
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "italian"
+	},
+	{
+		"board": [
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"],
+			["croissant", "peking_duck", "croissant", "peking_duck", "croissant"],
+			["pizza", "frog_legs", "pizza", "frog_legs", "pizza"]
+		],
+		"currentFreeSpin": 10,
+		"id": "grand-small-c3-italian-e0048",
+		"remainingFreeSpins": 0,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 48,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 11000000,
+		"completedCourses": [
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-starter-1",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-italian",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "french",
+				"id": "grand-small-c3-italian-starter-2",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-french",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "chinese",
+				"id": "grand-small-c3-italian-starter-3",
+				"sourceEventId": "grand-small-c3-italian-purchase-start-chinese",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-04",
+				"sourceEventId": "grand-small-c3-italian-e0011",
+				"valueAtomicUnits": 1000000
+			},
+			{
+				"chef": "italian",
+				"id": "grand-small-c3-italian-course-05",
+				"sourceEventId": "grand-small-c3-italian-e0026",
+				"valueAtomicUnits": 1000000
+			}
+		],
+		"crownPotAtomicUnits": 5000000,
+		"currentFreeSpin": 10,
+		"headliner": null,
+		"id": "grand-small-c3-italian-e0049",
+		"meters": { "chinese": 75, "french": 75, "italian": 0 },
+		"remainingFreeSpins": 0,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 49,
+		"stars": { "chinese": 1, "french": 1, "italian": 3 },
+		"totalFreeSpins": 10,
+		"type": "freeSpinEnd",
+		"winner": "italian"
+	},
+	{
+		"bonusBankAtomicUnits": 11000000,
+		"crownPayoutAtomicUnits": 15000000,
+		"crownPotAtomicUnits": 5000000,
+		"finalWinAtomicUnits": 26000000,
+		"id": "grand-small-c3-italian-e0050",
+		"multiplier": 3,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 50,
+		"type": "kitchenCrownReveal",
+		"winner": "italian"
+	},
+	{
+		"id": "grand-small-c3-italian-e0051",
+		"roundId": "grand-small-c3-italian",
+		"sequence": 51,
+		"totalWinAtomicUnits": 26000000,
+		"type": "setTotalWin"
+	},
+	{
+		"id": "grand-small-c3-italian-e0052",
+		"payoutAtomicUnits": 26000000,
+		"roundId": "grand-small-c3-italian",
+		"sequence": 52,
+		"type": "finalWin"
+	}
+]
