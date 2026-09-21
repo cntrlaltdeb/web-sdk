@@ -1,0 +1,993 @@
+[
+	{
+		"betAtomicUnits": 1000000,
+		"id": "mystery-small-c5-french-gap-e0001",
+		"maxWinAtomicUnits": 20000000000,
+		"meters": { "chinese": 0, "french": 0, "italian": 0 },
+		"mode": "mysteryTasting",
+		"paidBetAtomicUnits": 250000000,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 1,
+		"type": "roundStart"
+	},
+	{
+		"activeSauceSpots": [],
+		"bonusBankAtomicUnits": 0,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 300000,
+		"currentFreeSpin": 0,
+		"entryKind": "purchase",
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0002",
+		"meters": { "chinese": 50, "french": 100, "italian": 50 },
+		"remainingFreeSpins": 12,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 2,
+		"stars": { "chinese": 0, "french": 1, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "kitchenShowdownStart",
+		"winner": null
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 1,
+		"id": "mystery-small-c5-french-gap-e0003",
+		"remainingFreeSpins": 11,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 3,
+		"type": "freeSpinStart"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-service-01-french",
+				"perfectServeUnits": 0,
+				"readySequence": 2
+			}
+		],
+		"id": "mystery-small-c5-french-gap-e0004",
+		"phase": "opening",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 4,
+		"source": "initialReady",
+		"type": "serviceQueueOpened",
+		"windowIndex": 1
+	},
+	{
+		"activeSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"appliedSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"chef": "french",
+		"id": "mystery-small-c5-french-gap-e0005",
+		"meterAfter": 0,
+		"queueEntryId": "mystery-small-c5-french-gap-service-01-french",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 5,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"courseId": "mystery-small-c5-french-gap-course-02",
+		"courseValueAtomicUnits": 300000,
+		"crownPotAfterAtomicUnits": 600000,
+		"id": "mystery-small-c5-french-gap-e0006",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 6,
+		"sourceEventId": "mystery-small-c5-french-gap-e0005",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "french",
+		"id": "mystery-small-c5-french-gap-e0007",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 7,
+		"sourceEventId": "mystery-small-c5-french-gap-e0006",
+		"stars": { "chinese": 0, "french": 2, "italian": 0 },
+		"starsAfter": 2,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"entryIds": ["mystery-small-c5-french-gap-service-01-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "mystery-small-c5-french-gap-e0008",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 8,
+		"type": "serviceQueueClosed",
+		"windowIndex": 1
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 0,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 600000,
+		"currentFreeSpin": 1,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0009",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 11,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 9,
+		"stars": { "chinese": 0, "french": 2, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": null
+	},
+	{
+		"board": [
+			["golden_cloche_wild", "croissant", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "croissant", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["croissant", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 2,
+		"id": "mystery-small-c5-french-gap-e0010",
+		"remainingFreeSpins": 10,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 10,
+		"type": "freeSpinStart"
+	},
+	{
+		"appliedSauceSpots": [],
+		"basePayoutAtomicUnits": 500000,
+		"chef": "french",
+		"id": "mystery-small-c5-french-gap-e0011",
+		"payoutAtomicUnits": 500000,
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "mystery-small-c5-french-gap",
+		"sauceFlightMultiplier": 1,
+		"sequence": 11,
+		"symbol": "croissant",
+		"type": "clusterWin"
+	},
+	{
+		"balanceAfterAtomicUnits": 500000,
+		"creditAtomicUnits": 500000,
+		"id": "mystery-small-c5-french-gap-e0012",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 12,
+		"sourceEventId": "mystery-small-c5-french-gap-e0011",
+		"type": "bonusBankUpdate"
+	},
+	{
+		"appliedCharge": 100,
+		"chef": "french",
+		"earnedCharge": 100,
+		"id": "mystery-small-c5-french-gap-e0013",
+		"meterAfter": 100,
+		"overflowCharge": 0,
+		"perfectServeUnitsAfter": 0,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 13,
+		"serviceQueueEntryId": "mystery-small-c5-french-gap-service-02-french",
+		"type": "chefMeterUpdate"
+	},
+	{
+		"id": "mystery-small-c5-french-gap-e0014",
+		"positions": [
+			{ "reel": 0, "row": 0 },
+			{ "reel": 0, "row": 1 },
+			{ "reel": 1, "row": 0 },
+			{ "reel": 1, "row": 1 },
+			{ "reel": 2, "row": 0 }
+		],
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 14,
+		"type": "removeSymbols"
+	},
+	{
+		"id": "mystery-small-c5-french-gap-e0015",
+		"index": 1,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 15,
+		"type": "cascade"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "mystery-small-c5-french-gap-e0016",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 16,
+		"type": "boardSettled"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"entries": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-service-02-french",
+				"perfectServeUnits": 0,
+				"readySequence": 13
+			}
+		],
+		"id": "mystery-small-c5-french-gap-e0017",
+		"phase": null,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 17,
+		"source": null,
+		"type": "serviceQueueOpened",
+		"windowIndex": 2
+	},
+	{
+		"activeSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"appliedSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"chef": "french",
+		"id": "mystery-small-c5-french-gap-e0018",
+		"meterAfter": 0,
+		"queueEntryId": "mystery-small-c5-french-gap-service-02-french",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 18,
+		"type": "sauceFinish"
+	},
+	{
+		"chef": "french",
+		"completedCoursesAfter": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"courseId": "mystery-small-c5-french-gap-course-03",
+		"courseValueAtomicUnits": 300000,
+		"crownPotAfterAtomicUnits": 900000,
+		"id": "mystery-small-c5-french-gap-e0019",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 19,
+		"sourceEventId": "mystery-small-c5-french-gap-e0018",
+		"type": "crownCourseComplete"
+	},
+	{
+		"chef": "french",
+		"id": "mystery-small-c5-french-gap-e0020",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 20,
+		"sourceEventId": "mystery-small-c5-french-gap-e0019",
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"starsAfter": 3,
+		"type": "judgeStarUpdate"
+	},
+	{
+		"id": "mystery-small-c5-french-gap-e0021",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 21,
+		"sourceEventId": "mystery-small-c5-french-gap-e0020",
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"type": "kitchenWinnerLocked",
+		"winner": "french"
+	},
+	{
+		"entryIds": ["mystery-small-c5-french-gap-service-02-french"],
+		"finalBoard": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"id": "mystery-small-c5-french-gap-e0022",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 22,
+		"type": "serviceQueueClosed",
+		"windowIndex": 2
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 2,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0023",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 10,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 23,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 3,
+		"id": "mystery-small-c5-french-gap-e0024",
+		"remainingFreeSpins": 9,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 24,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 3,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0025",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 9,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 25,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 4,
+		"id": "mystery-small-c5-french-gap-e0026",
+		"remainingFreeSpins": 8,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 26,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 4,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0027",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 8,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 27,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 5,
+		"id": "mystery-small-c5-french-gap-e0028",
+		"remainingFreeSpins": 7,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 28,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 5,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0029",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 7,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 29,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 6,
+		"id": "mystery-small-c5-french-gap-e0030",
+		"remainingFreeSpins": 6,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 30,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 6,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0031",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 6,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 31,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 7,
+		"id": "mystery-small-c5-french-gap-e0032",
+		"remainingFreeSpins": 5,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 32,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 7,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0033",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 5,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 33,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 8,
+		"id": "mystery-small-c5-french-gap-e0034",
+		"remainingFreeSpins": 4,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 34,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 8,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0035",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 4,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 35,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 9,
+		"id": "mystery-small-c5-french-gap-e0036",
+		"remainingFreeSpins": 3,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 36,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 9,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0037",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 3,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 37,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 10,
+		"id": "mystery-small-c5-french-gap-e0038",
+		"remainingFreeSpins": 2,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 38,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 10,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0039",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 2,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 39,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 11,
+		"id": "mystery-small-c5-french-gap-e0040",
+		"remainingFreeSpins": 1,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 40,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 11,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0041",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 1,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 41,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"board": [
+			["pizza", "pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup"],
+			["croissant", "peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza"],
+			["pasta_carbonara", "tiramisu", "frog_legs", "french_onion_soup", "croissant"],
+			["peking_duck", "kung_pao_chicken", "xiaolongbao", "pizza", "pasta_carbonara"],
+			["tiramisu", "frog_legs", "french_onion_soup", "croissant", "peking_duck"]
+		],
+		"currentFreeSpin": 12,
+		"id": "mystery-small-c5-french-gap-e0042",
+		"remainingFreeSpins": 0,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 42,
+		"type": "freeSpinStart"
+	},
+	{
+		"activeSauceSpots": [
+			{ "boost": 1, "position": { "reel": 2, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 3, "row": 4 } },
+			{ "boost": 1, "position": { "reel": 4, "row": 4 } }
+		],
+		"bonusBankAtomicUnits": 500000,
+		"completedCourses": [
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-starter-1",
+				"sourceEventId": "mystery-small-c5-french-gap-purchase-start-french",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-02",
+				"sourceEventId": "mystery-small-c5-french-gap-e0005",
+				"valueAtomicUnits": 300000
+			},
+			{
+				"chef": "french",
+				"id": "mystery-small-c5-french-gap-course-03",
+				"sourceEventId": "mystery-small-c5-french-gap-e0018",
+				"valueAtomicUnits": 300000
+			}
+		],
+		"crownPotAtomicUnits": 900000,
+		"currentFreeSpin": 12,
+		"headliner": "french",
+		"id": "mystery-small-c5-french-gap-e0043",
+		"meters": { "chinese": 50, "french": 0, "italian": 50 },
+		"remainingFreeSpins": 0,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 43,
+		"stars": { "chinese": 0, "french": 3, "italian": 0 },
+		"totalFreeSpins": 12,
+		"type": "freeSpinEnd",
+		"winner": "french"
+	},
+	{
+		"bonusBankAtomicUnits": 500000,
+		"crownPayoutAtomicUnits": 4500000,
+		"crownPotAtomicUnits": 900000,
+		"finalWinAtomicUnits": 5000000,
+		"id": "mystery-small-c5-french-gap-e0044",
+		"multiplier": 5,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 44,
+		"type": "kitchenCrownReveal",
+		"winner": "french"
+	},
+	{
+		"id": "mystery-small-c5-french-gap-e0045",
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 45,
+		"totalWinAtomicUnits": 5000000,
+		"type": "setTotalWin"
+	},
+	{
+		"id": "mystery-small-c5-french-gap-e0046",
+		"payoutAtomicUnits": 5000000,
+		"roundId": "mystery-small-c5-french-gap",
+		"sequence": 46,
+		"type": "finalWin"
+	}
+]
